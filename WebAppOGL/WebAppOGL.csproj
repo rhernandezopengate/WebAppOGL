@@ -200,6 +200,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DCSistemas.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Sistemas\sis_equipos.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\sis_mantenimiento.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\sis_marcas.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\sis_tipoequipos.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

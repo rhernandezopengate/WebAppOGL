@@ -25,5 +25,9 @@ namespace WebAppOGL.Entities.Sistemas
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sis_equipos> sis_equipos { get; set; }
+        public virtual DbSet<sis_mantenimiento> sis_mantenimiento { get; set; }
+        public virtual DbSet<sis_marcas> sis_marcas { get; set; }
+        public virtual DbSet<sis_tipoequipos> sis_tipoequipos { get; set; }
     }
 }

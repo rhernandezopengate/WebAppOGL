@@ -4,20 +4,259 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_a3f19c_administracionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="db_a3f19c_administracionModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="db_a3f19c_administracionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sis_equipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Alta" Type="datetime" />
+          <Property Name="Fecha_Compra" Type="date" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" />
+          <Property Name="Numero_Serie" Type="varchar" MaxLength="50" />
+          <Property Name="Numero_Parte" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre_Equipo" Type="varchar" MaxLength="50" />
+          <Property Name="MAC_Ethernet" Type="varchar" MaxLength="50" />
+          <Property Name="MAC_WiFi" Type="varchar" MaxLength="50" />
+          <Property Name="CPU" Type="varchar" MaxLength="50" />
+          <Property Name="RAM" Type="varchar" MaxLength="50" />
+          <Property Name="STORAGE" Type="varchar" MaxLength="50" />
+          <Property Name="sis_marcas_Id" Type="int" Nullable="false" />
+          <Property Name="sis_tipoequipos_Id" Type="int" Nullable="false" />
+          <Property Name="sis_mantenimiento_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sis_mantenimiento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sis_marcas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sis_tipoequipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="sis_equipos_sis_mantenimiento_FK">
+          <End Role="sis_mantenimiento" Type="Self.sis_mantenimiento" Multiplicity="1" />
+          <End Role="sis_equipos" Type="Self.sis_equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_mantenimiento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_equipos">
+              <PropertyRef Name="sis_mantenimiento_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_equipos_sis_marcas_FK">
+          <End Role="sis_marcas" Type="Self.sis_marcas" Multiplicity="1" />
+          <End Role="sis_equipos" Type="Self.sis_equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_equipos">
+              <PropertyRef Name="sis_marcas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_equipos_sis_tipoequipos_FK">
+          <End Role="sis_tipoequipos" Type="Self.sis_tipoequipos" Multiplicity="1" />
+          <End Role="sis_equipos" Type="Self.sis_equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_tipoequipos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_equipos">
+              <PropertyRef Name="sis_tipoequipos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a3f19c_administracionModelStoreContainer">
+          <EntitySet Name="sis_equipos" EntityType="Self.sis_equipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sis_mantenimiento" EntityType="Self.sis_mantenimiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sis_marcas" EntityType="Self.sis_marcas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sis_tipoequipos" EntityType="Self.sis_tipoequipos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="sis_equipos_sis_mantenimiento_FK" Association="Self.sis_equipos_sis_mantenimiento_FK">
+            <End Role="sis_mantenimiento" EntitySet="sis_mantenimiento" />
+            <End Role="sis_equipos" EntitySet="sis_equipos" />
+          </AssociationSet>
+          <AssociationSet Name="sis_equipos_sis_marcas_FK" Association="Self.sis_equipos_sis_marcas_FK">
+            <End Role="sis_marcas" EntitySet="sis_marcas" />
+            <End Role="sis_equipos" EntitySet="sis_equipos" />
+          </AssociationSet>
+          <AssociationSet Name="sis_equipos_sis_tipoequipos_FK" Association="Self.sis_equipos_sis_tipoequipos_FK">
+            <End Role="sis_tipoequipos" EntitySet="sis_tipoequipos" />
+            <End Role="sis_equipos" EntitySet="sis_equipos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_a3f19c_administracionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="db_a3f19c_administracionEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="db_a3f19c_administracionEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="sis_equipos" EntityType="db_a3f19c_administracionModel.sis_equipos" />
+          <EntitySet Name="sis_mantenimiento" EntityType="db_a3f19c_administracionModel.sis_mantenimiento" />
+          <EntitySet Name="sis_marcas" EntityType="db_a3f19c_administracionModel.sis_marcas" />
+          <EntitySet Name="sis_tipoequipos" EntityType="db_a3f19c_administracionModel.sis_tipoequipos" />
+          <AssociationSet Name="sis_equipos_sis_mantenimiento_FK" Association="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK">
+            <End Role="sis_mantenimiento" EntitySet="sis_mantenimiento" />
+            <End Role="sis_equipos" EntitySet="sis_equipos" />
+          </AssociationSet>
+          <AssociationSet Name="sis_equipos_sis_marcas_FK" Association="db_a3f19c_administracionModel.sis_equipos_sis_marcas_FK">
+            <End Role="sis_marcas" EntitySet="sis_marcas" />
+            <End Role="sis_equipos" EntitySet="sis_equipos" />
+          </AssociationSet>
+          <AssociationSet Name="sis_equipos_sis_tipoequipos_FK" Association="db_a3f19c_administracionModel.sis_equipos_sis_tipoequipos_FK">
+            <End Role="sis_tipoequipos" EntitySet="sis_tipoequipos" />
+            <End Role="sis_equipos" EntitySet="sis_equipos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sis_equipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Alta" Type="DateTime" Precision="3" />
+          <Property Name="Fecha_Compra" Type="DateTime" Precision="0" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_Serie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_Parte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre_Equipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAC_Ethernet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAC_WiFi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CPU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RAM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STORAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sis_marcas_Id" Type="Int32" Nullable="false" />
+          <Property Name="sis_tipoequipos_Id" Type="Int32" Nullable="false" />
+          <Property Name="sis_mantenimiento_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sis_mantenimiento" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK" FromRole="sis_equipos" ToRole="sis_mantenimiento" />
+          <NavigationProperty Name="sis_marcas" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_marcas_FK" FromRole="sis_equipos" ToRole="sis_marcas" />
+          <NavigationProperty Name="sis_tipoequipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_tipoequipos_FK" FromRole="sis_equipos" ToRole="sis_tipoequipos" />
+        </EntityType>
+        <EntityType Name="sis_mantenimiento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sis_equipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK" FromRole="sis_mantenimiento" ToRole="sis_equipos" />
+        </EntityType>
+        <EntityType Name="sis_marcas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sis_equipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_equipos" />
+        </EntityType>
+        <EntityType Name="sis_tipoequipos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sis_equipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_tipoequipos_FK" FromRole="sis_tipoequipos" ToRole="sis_equipos" />
+        </EntityType>
+        <Association Name="sis_equipos_sis_mantenimiento_FK">
+          <End Type="db_a3f19c_administracionModel.sis_mantenimiento" Role="sis_mantenimiento" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_equipos" Role="sis_equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_mantenimiento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_equipos">
+              <PropertyRef Name="sis_mantenimiento_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_equipos_sis_marcas_FK">
+          <End Type="db_a3f19c_administracionModel.sis_marcas" Role="sis_marcas" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_equipos" Role="sis_equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_equipos">
+              <PropertyRef Name="sis_marcas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_equipos_sis_tipoequipos_FK">
+          <End Type="db_a3f19c_administracionModel.sis_tipoequipos" Role="sis_tipoequipos" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_equipos" Role="sis_equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_tipoequipos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_equipos">
+              <PropertyRef Name="sis_tipoequipos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="db_a3f19c_administracionModelStoreContainer" CdmEntityContainer="db_a3f19c_administracionEntities" />
+        <EntityContainerMapping StorageEntityContainer="db_a3f19c_administracionModelStoreContainer" CdmEntityContainer="db_a3f19c_administracionEntities" >
+          <EntitySetMapping Name="sis_equipos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_equipos">
+              <MappingFragment StoreEntitySet="sis_equipos">
+                <ScalarProperty Name="sis_mantenimiento_Id" ColumnName="sis_mantenimiento_Id" />
+                <ScalarProperty Name="sis_tipoequipos_Id" ColumnName="sis_tipoequipos_Id" />
+                <ScalarProperty Name="sis_marcas_Id" ColumnName="sis_marcas_Id" />
+                <ScalarProperty Name="STORAGE" ColumnName="STORAGE" />
+                <ScalarProperty Name="RAM" ColumnName="RAM" />
+                <ScalarProperty Name="CPU" ColumnName="CPU" />
+                <ScalarProperty Name="MAC_WiFi" ColumnName="MAC_WiFi" />
+                <ScalarProperty Name="MAC_Ethernet" ColumnName="MAC_Ethernet" />
+                <ScalarProperty Name="Nombre_Equipo" ColumnName="Nombre_Equipo" />
+                <ScalarProperty Name="Numero_Parte" ColumnName="Numero_Parte" />
+                <ScalarProperty Name="Numero_Serie" ColumnName="Numero_Serie" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Fecha_Compra" ColumnName="Fecha_Compra" />
+                <ScalarProperty Name="Fecha_Alta" ColumnName="Fecha_Alta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_mantenimiento">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_mantenimiento">
+              <MappingFragment StoreEntitySet="sis_mantenimiento">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_marcas">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_marcas">
+              <MappingFragment StoreEntitySet="sis_marcas">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_tipoequipos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_tipoequipos">
+              <MappingFragment StoreEntitySet="sis_tipoequipos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

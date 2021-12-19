@@ -4,7 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="accbd18a41cc49a9a338ac21eb10db64" Name="Diagram1" />
+      <Diagram DiagramId="accbd18a41cc49a9a338ac21eb10db64" Name="Diagram1" ZoomLevel="86" >
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_equipos" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_mantenimiento" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_marcas" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_tipoequipos" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_marcas_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_tipoequipos_FK" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
