@@ -185,6 +185,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_dashboardController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_equiposController.cs" />
     <Compile Include="Controllers\Sistemas\sis_mantenimientoController.cs" />
     <Compile Include="Controllers\Sistemas\sis_marcasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_tipoequiposController.cs" />
@@ -312,9 +314,17 @@
     <Content Include="Views\sis_tipoequipos\Details.cshtml" />
     <Content Include="Views\sis_tipoequipos\Edit.cshtml" />
     <Content Include="Views\sis_tipoequipos\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutSistemas.cshtml" />
+    <Content Include="Views\sis_equipos\Create.cshtml" />
+    <Content Include="Views\sis_equipos\Delete.cshtml" />
+    <Content Include="Views\sis_equipos\Details.cshtml" />
+    <Content Include="Views\sis_equipos\Edit.cshtml" />
+    <Content Include="Views\sis_equipos\Index.cshtml" />
+    <Content Include="Views\sis_dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Sistemas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
