@@ -5,108 +5,184 @@
     Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2> Equipos <small>Index</small></h2> &nbsp;&nbsp;&nbsp;                
+                <button class="btn btn-success" onclick="CrearEquipo()"><i class="fa fa-plus-circle"></i> Agregar Registro</button>
+                <div class="clearfix"></div>
+            </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Alta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha_Compra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Numero_Serie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Numero_Parte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre_Equipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAC_Ethernet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAC_WiFi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CPU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RAM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.STORAGE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sis_mantenimiento.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sis_tipoequipos.Descripcion)
-        </th>
-        <th></th>
-    </tr>
+            <div class="x_content">
+                <table id="tblEquipos" class="table table-bordered jambo_table" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sis_tipoequipos.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Modelo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Numero_Serie)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Numero_Parte)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre_Equipo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CPU)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.RAM)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.STORAGE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sis_mantenimiento.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+                            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_Alta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha_Compra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero_Serie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero_Parte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre_Equipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAC_Ethernet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAC_WiFi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CPU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RAM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.STORAGE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sis_mantenimiento.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sis_tipoequipos.Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                            <th></th>
+                        </tr>
+                    </thead>
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sis_tipoequipos.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Modelo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Numero_Serie)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Numero_Parte)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre_Equipo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CPU)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RAM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.STORAGE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sis_mantenimiento.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
+                            </td>
+
+                            <td>
+                                <button onclick="EditarEquipo(@item.Id)">Editar</button>
+                                <button onclick="EliminarEquipo(@item.Id)">Eliminar</button>
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |                                
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Define el modal -->
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
+        <div class="modal-content">
+            <div id="MyModalContent"></div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tblEquipos').DataTable();
+    });
+
+    var CrearEquipo = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_equipos/Create";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EditarEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_equipos/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EliminarEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_equipos/Delete/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+</script>

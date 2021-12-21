@@ -24,6 +24,7 @@ namespace WebAppOGL.Controllers.Sistemas
         // GET: sis_equipos/Details/5
         public ActionResult Details(int? id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -54,15 +55,16 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
+                sis_equipos.Fecha_Alta = DateTime.Now;
                 db.sis_equipos.Add(sis_equipos);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json("Correcto", JsonRequestBehavior.AllowGet);
             }
 
             ViewBag.sis_mantenimiento_Id = new SelectList(db.sis_mantenimiento, "Id", "Descripcion", sis_equipos.sis_mantenimiento_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_equipos.sis_marcas_Id);
             ViewBag.sis_tipoequipos_Id = new SelectList(db.sis_tipoequipos, "Id", "Descripcion", sis_equipos.sis_tipoequipos_Id);
-            return View(sis_equipos);
+            return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
 
         // GET: sis_equipos/Edit/5
@@ -94,12 +96,12 @@ namespace WebAppOGL.Controllers.Sistemas
             {
                 db.Entry(sis_equipos).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json("Correcto", JsonRequestBehavior.AllowGet);
             }
             ViewBag.sis_mantenimiento_Id = new SelectList(db.sis_mantenimiento, "Id", "Descripcion", sis_equipos.sis_mantenimiento_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_equipos.sis_marcas_Id);
             ViewBag.sis_tipoequipos_Id = new SelectList(db.sis_tipoequipos, "Id", "Descripcion", sis_equipos.sis_tipoequipos_Id);
-            return View(sis_equipos);
+            return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
 
         // GET: sis_equipos/Delete/5
@@ -125,7 +127,7 @@ namespace WebAppOGL.Controllers.Sistemas
             sis_equipos sis_equipos = db.sis_equipos.Find(id);
             db.sis_equipos.Remove(sis_equipos);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
