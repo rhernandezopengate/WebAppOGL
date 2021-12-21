@@ -2,130 +2,137 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<div class="modal-content">
+    <div class="modal-header">
+        <center>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Detalle del Equipo</h4>
+        </center>
+    </div>
+    <div class="modal-body">        
+        <div>            
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fecha_Alta)
+                </dt>
 
-<div>
-    <h4>sis_equipos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_Alta)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Fecha_Alta)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_Alta)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Fecha_Compra)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Fecha_Compra)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Fecha_Compra)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Fecha_Compra)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Modelo)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Modelo)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Modelo)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Modelo)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Numero_Serie)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero_Serie)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Numero_Serie)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Numero_Serie)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Numero_Parte)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero_Parte)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Numero_Parte)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Numero_Parte)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombre_Equipo)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre_Equipo)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nombre_Equipo)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre_Equipo)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MAC_Ethernet)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MAC_Ethernet)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MAC_Ethernet)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MAC_Ethernet)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MAC_WiFi)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MAC_WiFi)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MAC_WiFi)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MAC_WiFi)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CPU)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CPU)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CPU)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CPU)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.RAM)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RAM)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.RAM)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RAM)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.STORAGE)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.STORAGE)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.STORAGE)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.STORAGE)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.sis_mantenimiento.Descripcion)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sis_mantenimiento.Descripcion)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.sis_mantenimiento.Descripcion)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sis_mantenimiento.Descripcion)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.sis_marcas.Descripcion)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sis_marcas.Descripcion)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.sis_tipoequipos.Descripcion)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sis_tipoequipos.Descripcion)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.sis_tipoequipos.Descripcion)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.sis_tipoequipos.Descripcion)
-        </dd>
-
-    </dl>
+            </dl>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>        
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

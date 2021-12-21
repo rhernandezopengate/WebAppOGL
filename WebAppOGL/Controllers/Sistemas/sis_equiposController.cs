@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebAppOGL.Entities.Sistemas;
+using System.Linq.Dynamic;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebAppOGL.Controllers.Sistemas
 {
@@ -16,9 +19,85 @@ namespace WebAppOGL.Controllers.Sistemas
 
         // GET: sis_equipos
         public ActionResult Index()
+        {            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ObtenerEquipos() 
         {
-            var sis_equipos = db.sis_equipos.Include(s => s.sis_mantenimiento).Include(s => s.sis_marcas).Include(s => s.sis_tipoequipos);
-            return View(sis_equipos.ToList());
+            try
+            {
+                var Draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var Start = Request.Form.GetValues("start").FirstOrDefault();
+                var Length = Request.Form.GetValues("length").FirstOrDefault();
+                var SortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][data]").FirstOrDefault();
+                var SortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                var nombreequipo = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
+
+                int PageSize = Length != null ? Convert.ToInt32(Length) : 0;
+                int Skip = Start != null ? Convert.ToInt32(Start) : 0;
+                int TotalRecords = 0;
+
+                List<sis_equipos> lista = new List<sis_equipos>();
+
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString()))
+                {
+                    con.Open();
+
+                    string sql = "exec SP_EquiposComputo @nombreequipo";
+                    var query = new SqlCommand(sql, con);
+
+                    if (nombreequipo != "")
+                    {
+                        query.Parameters.AddWithValue("@nombreequipo", nombreequipo);
+                    }
+                    else
+                    {
+                        query.Parameters.AddWithValue("@nombreequipo", DBNull.Value);
+                    }                   
+
+                    using (var dr = query.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            // facturas
+                            var equipos = new sis_equipos();
+
+                            equipos.Id = Convert.ToInt32(dr["id"]);                            
+                            equipos.Modelo = dr["Modelo"].ToString();
+                            equipos.Numero_Serie = dr["Numero_Serie"].ToString();
+                            equipos.Numero_Parte = dr["Numero_Parte"].ToString();
+                            equipos.Nombre_Equipo = dr["Nombre_Equipo"].ToString();
+                            equipos.CPU = dr["CPU"].ToString();
+                            equipos.RAM = dr["RAM"].ToString();
+                            equipos.STORAGE = dr["STORAGE"].ToString();
+                            
+                            equipos.TipoEquipo = dr["TipoEquipo"].ToString();
+                            equipos.Mantenimiento = dr["Mantenimiento"].ToString();
+                            equipos.Marca = dr["Marca"].ToString();
+
+                            lista.Add(equipos);
+                        }
+                    }
+                }
+
+                if (!(string.IsNullOrEmpty(SortColumn) && string.IsNullOrEmpty(SortColumnDir)))
+                {
+                    lista = lista.OrderBy(SortColumn + " " + SortColumnDir).ToList();
+                }
+
+                TotalRecords = lista.ToList().Count();
+                var NewItems = lista.Skip(Skip).Take(PageSize == -1 ? TotalRecords : PageSize).ToList();
+
+                return Json(new { draw = Draw, recordsFiltered = TotalRecords, recordsTotal = TotalRecords, data = NewItems }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception _ex)
+            {
+                Console.WriteLine(_ex.Message.ToString());
+                return null;
+            }        
         }
 
         // GET: sis_equipos/Details/5
