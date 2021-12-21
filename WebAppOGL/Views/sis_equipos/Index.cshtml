@@ -9,15 +9,30 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2> Equipos <small>Index</small></h2> &nbsp;&nbsp;&nbsp;                
+                <h2> Equipos <small>Index</small></h2> &nbsp;&nbsp;&nbsp;
                 <button class="btn btn-success" onclick="CrearEquipo()"><i class="fa fa-plus-circle"></i> Agregar Registro</button>
                 <div class="clearfix"></div>
             </div>
 
             <div class="x_content">
+
+
+                <div class="form-label-left input_mask">
+                    <div class="col-md-3 col-sm-6  form-group has-feedback">
+                        <input id="txtBuscarEquipo" type="text" class="form-control has-feedback-left" placeholder="Nombre Equipo">
+                        <span class="fa fa-list-alt form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <hr />
+
                 <table id="tblEquipos" class="table table-bordered jambo_table" width="100%">
                     <thead>
                         <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.sis_tipoequipos.Descripcion)
                             </th>
@@ -48,52 +63,9 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
                             </th>
-
                             <th></th>
                         </tr>
                     </thead>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.sis_tipoequipos.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Modelo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Numero_Serie)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Numero_Parte)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre_Equipo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CPU)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.RAM)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.STORAGE)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.sis_mantenimiento.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
-                            </td>
-
-                            <td>
-                                <button onclick="EditarEquipo(@item.Id)">Editar</button>
-                                <button onclick="EliminarEquipo(@item.Id)">Eliminar</button>
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |                                
-                            </td>
-                        </tr>
-                    }
                 </table>
             </div>
         </div>
@@ -117,8 +89,58 @@
 <script src="~/build/js/custom.min.js"></script>
 
 <script type="text/javascript">
+
+    var table;
+
     $(document).ready(function () {
-        $('#tblEquipos').DataTable();
+        table = $('#tblEquipos').DataTable({
+            "order": [[0, "desc"]],
+            "ordering": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "pagingType": "simple_numbers",
+            "dom": 'Blrtip', // Hides Default Search
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "deferRender": true,
+            rowId: 'Id',
+            select: true,
+            "ajax": {
+                "url": "/sis_equipos/ObtenerEquipos",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "aoColumns": [
+                //0
+                { "data": "Id", "autoWidth": true, "visible": false },
+                { "data": "TipoEquipo", "autoWidth": true },
+                { "data": "Modelo", "autoWidth": true },
+                { "data": "Numero_Serie", "autoWidth": true },
+                { "data": "Numero_Parte", "autoWidth": true },
+                { "data": "Nombre_Equipo", "autoWidth": true },
+                { "data": "CPU", "autoWidth": true },
+                { "data": "RAM", "autoWidth": true },
+                { "data": "STORAGE", "autoWidth": true },
+                { "data": "Mantenimiento", "autoWidth": true },
+                { "data": "Marca", "autoWidth": true },
+                {
+                    "data": null,
+                    "targets": -1,
+                    "render": function (data, type, full) {
+                        return " <button onclick='EditarEquipo(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" + 
+                        "<a  onclick='DetalleEquipo(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='glyphicon glyphicon-list-alt'></i></a>";
+                    },
+                    "bSearchable": false,
+                    "sortable": false,
+                    "autoWidth": true,
+                    "sWidth": "100px"
+                }
+            ]
+        });
+
+        $('#txtBuscarEquipo').on('keyup', function () {
+            table.columns(0).search(this.value).draw();
+        });
     });
 
     var CrearEquipo = function () {
@@ -160,6 +182,19 @@
         return false;
     }
 
+    var DetalleEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_equipos/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
     function bindForm(dialog) {
         $('form', dialog).submit(function () {
             $.ajax({
@@ -185,4 +220,5 @@
             return false;
         });
     }
+
 </script>
