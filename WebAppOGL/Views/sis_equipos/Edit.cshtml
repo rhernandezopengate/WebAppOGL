@@ -9,6 +9,8 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.HiddenFor(model => model.Id)
+
     <div class="modal-content">
         <div class="modal-header">
             <center>
@@ -19,127 +21,140 @@
             </center>
         </div>
         <div class="modal-body">
-            <div class="form-horizontal">              
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Informacion del Equipo </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="form-label-left input_mask">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Fecha_Compra, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
+                                    <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Modelo, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Modelo" } })
+                                    <span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Numero_Serie, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Numero_Serie" } })
+                                    <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Numero_Parte, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Numero_Parte" } })
+                                    <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Color" } })
+                                    <span class="fa fa-paint-brush form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Cargador, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Cargador" } })
+                                    <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Informacion Fisica del Equipo </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="form-label-left input_mask">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Nombre_Equipo, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Nombre_Equipo" } })
+                                    <span class="fa fa-bookmark form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.MAC_Ethernet, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "MAC_Ethernet" } })
+                                    <span class="fa fa-tag form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.MAC_WiFi, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "MAC_WiFi" } })
+                                    <span class="fa fa-wifi form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.CPU, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "CPU" } })
+                                    <span class="fa fa-tasks form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "RAM" } })
+                                    <span class="fa fa-exclamation form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.STORAGE, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "STORAGE" } })
+                                    <span class="fa fa-hdd-o form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Otra Informacion </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+
+                            <div class="form-label-left input_mask">
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Fecha_Alta, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control has-feedback-left", @placeholder = "Fecha_Alta" } })
+                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownList("sis_estatusequipo_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                                    <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownList("sis_marcas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                                    <span class="fa fa-copyright form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownList("sis_tipoequipos_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                                    <span class="fa fa-desktop form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownList("sis_mantenimiento_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                                    <span class="fa fa-users form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-horizontal">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.Id)
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Fecha_Alta, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Fecha_Alta, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Fecha_Compra, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Fecha_Compra, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Fecha_Compra, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Modelo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Modelo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Modelo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Numero_Serie, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Numero_Serie, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Numero_Serie, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Numero_Parte, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Numero_Parte, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Numero_Parte, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nombre_Equipo, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Nombre_Equipo, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Nombre_Equipo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MAC_Ethernet, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MAC_Ethernet, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MAC_Ethernet, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.MAC_WiFi, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.MAC_WiFi, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MAC_WiFi, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CPU, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CPU, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CPU, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.RAM, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.RAM, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.STORAGE, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.STORAGE, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.STORAGE, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.sis_marcas_Id, "sis_marcas_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("sis_marcas_Id", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.sis_marcas_Id, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.sis_tipoequipos_Id, "sis_tipoequipos_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("sis_tipoequipos_Id", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.sis_tipoequipos_Id, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.sis_mantenimiento_Id, "sis_mantenimiento_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("sis_mantenimiento_Id", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.sis_mantenimiento_Id, "", new { @class = "text-danger" })
-                    </div>
-                </div>                
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <input type="submit" value="Save" class="btn btn-primary" />
         </div>
-    </div>    
+    </div>
 }
 
 @section Scripts {

@@ -122,6 +122,7 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_mantenimiento_Id = new SelectList(db.sis_mantenimiento, "Id", "Descripcion");
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion");
             ViewBag.sis_tipoequipos_Id = new SelectList(db.sis_tipoequipos, "Id", "Descripcion");
+            ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion");
             return View();
         }
 
@@ -130,7 +131,7 @@ namespace WebAppOGL.Controllers.Sistemas
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id")] sis_equipos sis_equipos)
+        public ActionResult Create([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id,Color,Cargador,sis_estatusequipo_Id")] sis_equipos sis_equipos)
         {
             if (ModelState.IsValid)
             {
@@ -143,7 +144,8 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_mantenimiento_Id = new SelectList(db.sis_mantenimiento, "Id", "Descripcion", sis_equipos.sis_mantenimiento_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_equipos.sis_marcas_Id);
             ViewBag.sis_tipoequipos_Id = new SelectList(db.sis_tipoequipos, "Id", "Descripcion", sis_equipos.sis_tipoequipos_Id);
-            return Json("Correcto", JsonRequestBehavior.AllowGet);
+            ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion", sis_equipos.sis_estatusequipo_Id);
+            return Json("Error", JsonRequestBehavior.AllowGet);
         }
 
         // GET: sis_equipos/Edit/5
@@ -161,6 +163,7 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_mantenimiento_Id = new SelectList(db.sis_mantenimiento, "Id", "Descripcion", sis_equipos.sis_mantenimiento_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_equipos.sis_marcas_Id);
             ViewBag.sis_tipoequipos_Id = new SelectList(db.sis_tipoequipos, "Id", "Descripcion", sis_equipos.sis_tipoequipos_Id);
+            ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion", sis_equipos.sis_estatusequipo_Id);
             return View(sis_equipos);
         }
 
@@ -169,7 +172,7 @@ namespace WebAppOGL.Controllers.Sistemas
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id")] sis_equipos sis_equipos)
+        public ActionResult Edit([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id,Color,Cargador,sis_estatusequipo_Id")] sis_equipos sis_equipos)
         {
             if (ModelState.IsValid)
             {
@@ -180,7 +183,8 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_mantenimiento_Id = new SelectList(db.sis_mantenimiento, "Id", "Descripcion", sis_equipos.sis_mantenimiento_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_equipos.sis_marcas_Id);
             ViewBag.sis_tipoequipos_Id = new SelectList(db.sis_tipoequipos, "Id", "Descripcion", sis_equipos.sis_tipoequipos_Id);
-            return Json("Correcto", JsonRequestBehavior.AllowGet);
+            ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion", sis_equipos.sis_estatusequipo_Id);
+            return Json("Error", JsonRequestBehavior.AllowGet);
         }
 
         // GET: sis_equipos/Delete/5

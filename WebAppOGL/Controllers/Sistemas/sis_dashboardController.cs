@@ -13,5 +13,10 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             return View();
         }
+
+        public ActionResult Plantillas()
+        {
+            return View();
+        }
     }
 }

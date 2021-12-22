@@ -29,7 +29,11 @@ namespace WebAppOGL.Entities.Sistemas
         public int sis_marcas_Id { get; set; }
         public int sis_tipoequipos_Id { get; set; }
         public int sis_mantenimiento_Id { get; set; }
+        public string Color { get; set; }
+        public string Cargador { get; set; }
+        public Nullable<int> sis_estatusequipo_Id { get; set; }
     
+        public virtual sis_estatusequipo sis_estatusequipo { get; set; }
         public virtual sis_mantenimiento sis_mantenimiento { get; set; }
         public virtual sis_marcas sis_marcas { get; set; }
         public virtual sis_tipoequipos sis_tipoequipos { get; set; }

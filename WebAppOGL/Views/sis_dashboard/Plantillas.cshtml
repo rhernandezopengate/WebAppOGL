@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Plantillas";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+<h2>Plantillas</h2>
+
+
+@*Panel con formulario*@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Informacion del Equipo </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <div class="form-label-left input_mask">
+
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @*@Html.EditorFor(model => model.Fecha_Compra, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })*@
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
