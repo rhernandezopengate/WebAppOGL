@@ -1,0 +1,147 @@
+﻿@model WebAppOGL.Entities.Sistemas.sis_celulares
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>sis_celulares</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaAlta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaAlta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero_Producto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_Producto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMEI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMEI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cargador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cargador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Almacenamiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Almacenamiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Procesador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Procesador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pantalla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pantalla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Camara_Frontal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Camara_Frontal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Camara_Trasera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Camara_Trasera)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_estatusequipo.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_mantenimiento.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_mantenimiento.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_marcas.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

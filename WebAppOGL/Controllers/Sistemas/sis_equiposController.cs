@@ -131,7 +131,7 @@ namespace WebAppOGL.Controllers.Sistemas
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id,Color,Cargador,sis_estatusequipo_Id")] sis_equipos sis_equipos)
+        public ActionResult Create([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id,Color,Cargador,sis_estatusequipo_Id,Pantalla")] sis_equipos sis_equipos)
         {
             if (ModelState.IsValid)
             {
@@ -172,7 +172,7 @@ namespace WebAppOGL.Controllers.Sistemas
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id,Color,Cargador,sis_estatusequipo_Id")] sis_equipos sis_equipos)
+        public ActionResult Edit([Bind(Include = "Id,Fecha_Alta,Fecha_Compra,Modelo,Numero_Serie,Numero_Parte,Nombre_Equipo,MAC_Ethernet,MAC_WiFi,CPU,RAM,STORAGE,sis_marcas_Id,sis_tipoequipos_Id,sis_mantenimiento_Id,Color,Cargador,sis_estatusequipo_Id,Pantalla")] sis_equipos sis_equipos)
         {
             if (ModelState.IsValid)
             {

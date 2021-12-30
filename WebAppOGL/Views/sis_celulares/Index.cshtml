@@ -1,0 +1,132 @@
+﻿@model IEnumerable<WebAppOGL.Entities.Sistemas.sis_celulares>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero_Producto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IMEI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cargador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Almacenamiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RAM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Procesador)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pantalla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Camara_Frontal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Camara_Trasera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sis_mantenimiento.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaAlta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_Producto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IMEI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Almacenamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RAM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Procesador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pantalla)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Camara_Frontal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Camara_Trasera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sis_mantenimiento.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>

@@ -190,6 +190,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_celularesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_dashboardController.cs" />
     <Compile Include="Controllers\Sistemas\sis_equiposController.cs" />
     <Compile Include="Controllers\Sistemas\sis_estatusequipoController.cs" />
@@ -212,6 +213,9 @@
       <DependentUpon>DCSistemas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\EquiposViewModel.cs" />
+    <Compile Include="Entities\Sistemas\sis_celulares.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Sistemas\sis_equipos.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
@@ -4634,6 +4638,11 @@
     <Content Include="Views\sis_estatusequipo\Edit.cshtml" />
     <Content Include="Views\sis_estatusequipo\Index.cshtml" />
     <Content Include="Views\sis_dashboard\Plantillas.cshtml" />
+    <Content Include="Views\sis_celulares\Create.cshtml" />
+    <Content Include="Views\sis_celulares\Delete.cshtml" />
+    <Content Include="Views\sis_celulares\Details.cshtml" />
+    <Content Include="Views\sis_celulares\Edit.cshtml" />
+    <Content Include="Views\sis_celulares\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

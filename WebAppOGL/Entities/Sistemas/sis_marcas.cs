@@ -18,6 +18,7 @@ namespace WebAppOGL.Entities.Sistemas
         public sis_marcas()
         {
             this.sis_equipos = new HashSet<sis_equipos>();
+            this.sis_celulares = new HashSet<sis_celulares>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace WebAppOGL.Entities.Sistemas
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sis_equipos> sis_equipos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sis_celulares> sis_celulares { get; set; }
     }
 }
