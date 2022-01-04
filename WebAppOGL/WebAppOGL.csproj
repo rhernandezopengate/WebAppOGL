@@ -197,6 +197,7 @@
     <Compile Include="Controllers\Sistemas\sis_mantenimientoController.cs" />
     <Compile Include="Controllers\Sistemas\sis_marcasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_tipoequiposController.cs" />
+    <Compile Include="Entities\Sistemas\CelularesViewModel.cs" />
     <Compile Include="Entities\Sistemas\DCSistemas.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

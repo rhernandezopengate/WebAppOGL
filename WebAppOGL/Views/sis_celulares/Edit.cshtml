@@ -2,157 +2,189 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+    Layout = null;
 }
-
-<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>sis_celulares</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FechaAlta, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaAlta, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FechaAlta, "", new { @class = "text-danger" })
+    <div class="modal-content">
+        <div class="modal-header">
+            <center>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Editar Nuevo Equipo</h4>
+            </center>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Informacion del Equipo </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id)
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.FechaAlta, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control has-feedback-left", @placeholder = "FechaAlta" } })
+                                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.Modelo, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Modelo" } })
+                                        <span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.Numero_Producto, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Numero_Producto" } })
+                                        <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.IMEI, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "IMEI" } })
+                                        <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Informacion Fisica del Equipo </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="form-horizontal">
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.OS, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "OS" } })
+                                        <span class="fa fa-android form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.Almacenamiento, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Almacenamiento" } })
+                                        <span class="fa fa-hdd-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "RAM" } })
+                                        <span class="fa fa-exclamation form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.Procesador, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Procesador" } })
+                                        <span class="fa fa-tasks form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.Pantalla, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Pantalla" } })
+                                        <span class="fa fa-mobile-phone form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.Camara_Frontal, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Camara_Frontal" } })
+                                        <span class="fa fa-camera form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.Camara_Trasera, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Camara_Trasera" } })
+                                        <span class="fa fa-camera-retro form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-label-left input_mask">
+                                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                        @Html.EditorFor(model => model.MAC_Address, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "MAC_Address" } })
+                                        <span class="fa fa-wifi form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Otra Informacion del Equipo </h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="form-label-left input_mask">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Color" } })
+                                    <span class="fa fa-paint-brush form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-label-left input_mask">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Cargador, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Cargador" } })
+                                    <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-label-left input_mask">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownList("sis_mantenimiento_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                                    <span class="fa fa-users form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-label-left input_mask">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownList("sis_estatusequipo_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                                    <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-label-left input_mask">
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.DropDownList("sis_marcas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                                    <span class="fa fa-copyright form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Modelo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Modelo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Modelo, "", new { @class = "text-danger" })
-            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" value="Save" class="btn btn-primary" />
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Numero_Producto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Numero_Producto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Numero_Producto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IMEI, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IMEI, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IMEI, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cargador, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cargador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cargador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OS, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OS, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OS, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Almacenamiento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Almacenamiento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Almacenamiento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RAM, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RAM, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Procesador, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Procesador, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Procesador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Pantalla, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Pantalla, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Pantalla, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Camara_Frontal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Camara_Frontal, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Camara_Frontal, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Camara_Trasera, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Camara_Trasera, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Camara_Trasera, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sis_mantenimiento_Id, "sis_mantenimiento_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("sis_mantenimiento_Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.sis_mantenimiento_Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sis_estatusequipo_Id, "sis_estatusequipo_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("sis_estatusequipo_Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.sis_estatusequipo_Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.sis_marcas_Id, "sis_marcas_Id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("sis_marcas_Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.sis_marcas_Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    </div>    
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

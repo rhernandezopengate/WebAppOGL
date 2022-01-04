@@ -26,6 +26,7 @@
           <Property Name="sis_mantenimiento_Id" Type="int" Nullable="false" />
           <Property Name="sis_estatusequipo_Id" Type="int" Nullable="false" />
           <Property Name="sis_marcas_Id" Type="int" Nullable="false" />
+          <Property Name="MAC_Address" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sis_equipos">
           <Key>
@@ -371,6 +372,7 @@
           <Property Name="sis_mantenimiento_Id" Type="Int32" Nullable="false" />
           <Property Name="sis_estatusequipo_Id" Type="Int32" Nullable="false" />
           <Property Name="sis_marcas_Id" Type="Int32" Nullable="false" />
+          <Property Name="MAC_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="sis_estatusequipo" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_estatusequipo_FK" FromRole="sis_celulares" ToRole="sis_estatusequipo" />
           <NavigationProperty Name="sis_mantenimiento" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_mantenimiento_FK" FromRole="sis_celulares" ToRole="sis_mantenimiento" />
           <NavigationProperty Name="sis_marcas" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_marcas_FK" FromRole="sis_celulares" ToRole="sis_marcas" />
@@ -477,6 +479,7 @@
           <EntitySetMapping Name="sis_celulares">
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_celulares">
               <MappingFragment StoreEntitySet="sis_celulares">
+                <ScalarProperty Name="MAC_Address" ColumnName="MAC_Address" />
                 <ScalarProperty Name="sis_marcas_Id" ColumnName="sis_marcas_Id" />
                 <ScalarProperty Name="sis_estatusequipo_Id" ColumnName="sis_estatusequipo_Id" />
                 <ScalarProperty Name="sis_mantenimiento_Id" ColumnName="sis_mantenimiento_Id" />

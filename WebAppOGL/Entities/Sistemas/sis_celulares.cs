@@ -31,6 +31,7 @@ namespace WebAppOGL.Entities.Sistemas
         public int sis_mantenimiento_Id { get; set; }
         public int sis_estatusequipo_Id { get; set; }
         public int sis_marcas_Id { get; set; }
+        public string MAC_Address { get; set; }
     
         public virtual sis_estatusequipo sis_estatusequipo { get; set; }
         public virtual sis_mantenimiento sis_mantenimiento { get; set; }

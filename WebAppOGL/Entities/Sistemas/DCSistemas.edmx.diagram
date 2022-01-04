@@ -14,7 +14,7 @@
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_marcas_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_tipoequipos_FK" />
-        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_celulares" Width="1.5" PointX="3.5" PointY="1.375" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_celulares" Width="1.5" PointX="4.5" PointY="1.125" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_celulares_sis_estatusequipo_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_celulares_sis_mantenimiento_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_celulares_sis_marcas_FK" />

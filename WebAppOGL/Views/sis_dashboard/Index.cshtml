@@ -4,21 +4,40 @@
     Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="">
+            <div class="x_content">
+                <div class="row">
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                        <div class="tile-stats">
+                            <div class="icon">
+                                <i class="fa fa-desktop"></i>
+                            </div>
+                            <div class="count">@ViewBag.EquiposOG</div>
+                            <h3>Equipos OGL</h3>
+                            <p>Lorem ipsum psdea itgum rixt.</p>
+                        </div>
+                    </div>                   
+                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                        <div class="tile-stats">
+                            <div class="icon">
+                                <i class="fa fa-mobile"></i>
+                            </div>
+                            <div class="count">@ViewBag.CelularesOGL</div>
+                            <h3>Celulares OGL</h3>
+                            <p>Lorem ipsum psdea itgum rixt.</p>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<a href="@Url.Action("Index", "sis_dashboard")">Dashboard</a>
-<br />
-<a href="@Url.Action("Index", "sis_equipos")">Equipos</a>
-<br />
-<a href="@Url.Action("Index", "sis_tipoequipos")">Tipo Equipos</a>
-<br />
-<a href="@Url.Action("Index", "sis_marcas")">Marcas</a>
-<br />
-<a href="@Url.Action("Index", "sis_mantenimiento")">Mantenimiento</a>
-<br />
-<a href="@Url.Action("Index", "sis_estatusequipo")">Estado Equipos</a>
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
 <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme Scripts -->
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
 <script src="~/build/js/custom.min.js"></script>

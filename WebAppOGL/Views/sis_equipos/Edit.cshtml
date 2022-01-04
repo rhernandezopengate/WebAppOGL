@@ -46,14 +46,7 @@
                                     @Html.EditorFor(model => model.Numero_Parte, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Numero_Parte" } })
                                     <span class="fa fa-asterisk form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                                <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Color" } })
-                                    <span class="fa fa-paint-brush form-control-feedback left" aria-hidden="true"></span>
-                                </div>
-                                <div class="col-md-6 col-sm-6  form-group has-feedback">
-                                    @Html.EditorFor(model => model.Cargador, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Cargador" } })
-                                    <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -72,7 +65,7 @@
                                 <div class="col-md-6 col-sm-6  form-group has-feedback">
                                     @Html.EditorFor(model => model.Nombre_Equipo, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Nombre_Equipo" } })
                                     <span class="fa fa-bookmark form-control-feedback left" aria-hidden="true"></span>
-                                </div>
+                                </div>                         
 
                                 <div class="col-md-6 col-sm-6  form-group has-feedback">
                                     @Html.EditorFor(model => model.MAC_Ethernet, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "MAC_Ethernet" } })
@@ -120,6 +113,15 @@
                         <div class="x_content">
 
                             <div class="form-label-left input_mask">
+
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Color, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Color" } })
+                                    <span class="fa fa-paint-brush form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                                <div class="col-md-6 col-sm-6  form-group has-feedback">
+                                    @Html.EditorFor(model => model.Cargador, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Cargador" } })
+                                    <span class="fa fa-plug form-control-feedback left" aria-hidden="true"></span>
+                                </div>
 
                                 <div class="col-md-6 col-sm-6  form-group has-feedback">
                                     @Html.EditorFor(model => model.Fecha_Alta, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control has-feedback-left", @placeholder = "Fecha_Alta" } })
