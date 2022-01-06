@@ -45,12 +45,13 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a href='@Url.Action("Index", "sis_dashboard")'><i class="fa fa-dashboard"></i>Dashboard</a></li>
+                                <li><a href='@Url.Action("Index", "sis_asignacion")'><i class="fa fa-users"></i>Asignaciones</a></li>
                                 <li><a href='@Url.Action("Index", "sis_equipos")'><i class="fa fa-desktop"></i>Equipos</a></li>
                                 <li><a href='@Url.Action("Index", "sis_celulares")'><i class="fa fa-mobile-phone"></i>Celulares</a></li>
                             </ul>
                         </div>
                         <div class="menu_section">
-                            <h3>Catalogos</h3>
+                            <h3>Catalogos Sistemas</h3>
                             <ul class="nav side-menu">
                                 <li>
                                     <a><i class="fa fa-cogs"></i> Configuracion <span class="fa fa-chevron-down"></span></a>
@@ -60,7 +61,21 @@
                                         <li><a href='@Url.Action("Index", "sis_mantenimiento")'>Mantenimiento</a></li>
                                         <li><a href='@Url.Action("Index", "sis_estatusequipo")'>Estado Equipos</a></li>
                                     </ul>
-                                </li>                               
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="menu_section">
+                            <h3>Catalogos Administracion</h3>
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a><i class="fa fa-cogs"></i> Configuracion <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="">
+                                        <li><a href='@Url.Action("Index", "adm_empleados")'>Empleados</a></li>
+                                        <li><a href='@Url.Action("Index", "adm_area")'>Areas</a></li>
+                                        <li><a href='@Url.Action("Index", "adm_sucursales")'>Sucursales</a></li>
+                                        <li><a href='@Url.Action("Index", "adm_cuentas")'>Cuentas</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>

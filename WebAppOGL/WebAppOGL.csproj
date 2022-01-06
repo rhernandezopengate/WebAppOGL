@@ -188,8 +188,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Administracion\adm_areaController.cs" />
+    <Compile Include="Controllers\Administracion\adm_cuentasController.cs" />
+    <Compile Include="Controllers\Administracion\adm_empleadosController.cs" />
+    <Compile Include="Controllers\Administracion\adm_sucursalesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_asignacionController.cs" />
     <Compile Include="Controllers\Sistemas\sis_celularesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_dashboardController.cs" />
     <Compile Include="Controllers\Sistemas\sis_equiposController.cs" />
@@ -197,6 +202,34 @@
     <Compile Include="Controllers\Sistemas\sis_mantenimientoController.cs" />
     <Compile Include="Controllers\Sistemas\sis_marcasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_tipoequiposController.cs" />
+    <Compile Include="Entities\Administracion\adm_area.cs">
+      <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Administracion\adm_cuentas.cs">
+      <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Administracion\adm_empleados.cs">
+      <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Administracion\adm_sucursales.cs">
+      <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Administracion\DCAdministracion.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCAdministracion.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Administracion\DCAdministracion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Administracion\DCAdministracion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCAdministracion.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\AsignacionEquiposViewModel.cs" />
     <Compile Include="Entities\Sistemas\CelularesViewModel.cs" />
     <Compile Include="Entities\Sistemas\DCSistemas.Context.cs">
       <AutoGen>True</AutoGen>
@@ -214,6 +247,9 @@
       <DependentUpon>DCSistemas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\EquiposViewModel.cs" />
+    <Compile Include="Entities\Sistemas\sis_asignacion.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Sistemas\sis_celulares.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
@@ -259,6 +295,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Entities\Administracion\DCAdministracion.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCAdministracion.edmx</DependentUpon>
+      <LastGenOutput>DCAdministracion.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\Administracion\DCAdministracion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCAdministracion.edmx</DependentUpon>
+      <LastGenOutput>DCAdministracion.cs</LastGenOutput>
+    </Content>
     <Content Include="Entities\Sistemas\DCSistemas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DCSistemas.edmx</DependentUpon>
@@ -320,6 +366,13 @@
     </Content>
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <EntityDeploy Include="Entities\Administracion\DCAdministracion.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DCAdministracion.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\Administracion\DCAdministracion.edmx.diagram">
+      <DependentUpon>DCAdministracion.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4644,6 +4697,32 @@
     <Content Include="Views\sis_celulares\Details.cshtml" />
     <Content Include="Views\sis_celulares\Edit.cshtml" />
     <Content Include="Views\sis_celulares\Index.cshtml" />
+    <Content Include="Views\adm_area\Create.cshtml" />
+    <Content Include="Views\adm_area\Delete.cshtml" />
+    <Content Include="Views\adm_area\Details.cshtml" />
+    <Content Include="Views\adm_area\Edit.cshtml" />
+    <Content Include="Views\adm_area\Index.cshtml" />
+    <Content Include="Views\adm_empleados\Create.cshtml" />
+    <Content Include="Views\adm_empleados\Delete.cshtml" />
+    <Content Include="Views\adm_empleados\Details.cshtml" />
+    <Content Include="Views\adm_empleados\Edit.cshtml" />
+    <Content Include="Views\adm_empleados\Index.cshtml" />
+    <Content Include="Views\adm_sucursales\Create.cshtml" />
+    <Content Include="Views\adm_sucursales\Delete.cshtml" />
+    <Content Include="Views\adm_sucursales\Details.cshtml" />
+    <Content Include="Views\adm_sucursales\Edit.cshtml" />
+    <Content Include="Views\adm_sucursales\Index.cshtml" />
+    <Content Include="Views\sis_asignacion\Create.cshtml" />
+    <Content Include="Views\sis_asignacion\Delete.cshtml" />
+    <Content Include="Views\sis_asignacion\Details.cshtml" />
+    <Content Include="Views\sis_asignacion\Edit.cshtml" />
+    <Content Include="Views\sis_asignacion\Index.cshtml" />
+    <Content Include="Views\sis_asignacion\AsignacionEquiposParcial.cshtml" />
+    <Content Include="Views\adm_cuentas\Create.cshtml" />
+    <Content Include="Views\adm_cuentas\Delete.cshtml" />
+    <Content Include="Views\adm_cuentas\Details.cshtml" />
+    <Content Include="Views\adm_cuentas\Edit.cshtml" />
+    <Content Include="Views\adm_cuentas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,6 +14,12 @@ namespace WebAppOGL.Entities.Sistemas
     
     public partial class sis_equipos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public sis_equipos()
+        {
+            this.sis_asignacion = new HashSet<sis_asignacion>();
+        }
+    
         public int Id { get; set; }
         public Nullable<System.DateTime> Fecha_Alta { get; set; }
         public Nullable<System.DateTime> Fecha_Compra { get; set; }
@@ -38,5 +44,7 @@ namespace WebAppOGL.Entities.Sistemas
         public virtual sis_mantenimiento sis_mantenimiento { get; set; }
         public virtual sis_marcas sis_marcas { get; set; }
         public virtual sis_tipoequipos sis_tipoequipos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sis_asignacion> sis_asignacion { get; set; }
     }
 }

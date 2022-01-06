@@ -16,5 +16,7 @@ namespace WebAppOGL.Entities.Sistemas
         public string Mantenimiento { get; set; }
 
         public string Marca { get; set; }
+
+        public string Estado { get; set; }
     }
 }

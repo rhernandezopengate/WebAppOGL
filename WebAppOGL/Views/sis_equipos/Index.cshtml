@@ -31,9 +31,6 @@
                                 @Html.DisplayNameFor(model => model.Id)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.sis_tipoequipos.Descripcion)
-                            </th>
-                            <th>
                                 @Html.DisplayNameFor(model => model.Modelo)
                             </th>
                             <th>
@@ -46,19 +43,16 @@
                                 @Html.DisplayNameFor(model => model.Nombre_Equipo)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.CPU)
+                                Estado
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.RAM)
+                                Marca
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.STORAGE)
+                                Tipo_Equipo
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.sis_mantenimiento.Descripcion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+                                Mantenimiento
                             </th>
                             <th></th>
                         </tr>
@@ -107,19 +101,16 @@
                 "type": "POST",
                 "datatype": "json"
             },
-            "aoColumns": [
-                //0
-                { "data": "Id", "autoWidth": true, "visible": false },
-                { "data": "TipoEquipo", "autoWidth": true },
+            "aoColumns": [                
+                { "data": "Id", "autoWidth": true, "visible": false },                
                 { "data": "Modelo", "autoWidth": true },
                 { "data": "Numero_Serie", "autoWidth": true },
                 { "data": "Numero_Parte", "autoWidth": true },
                 { "data": "Nombre_Equipo", "autoWidth": true },
-                { "data": "CPU", "autoWidth": true },
-                { "data": "RAM", "autoWidth": true },
-                { "data": "STORAGE", "autoWidth": true },
-                { "data": "Mantenimiento", "autoWidth": true },
+                { "data": "Estado", "autoWidth": true },
                 { "data": "Marca", "autoWidth": true },
+                { "data": "TipoEquipo", "autoWidth": true },
+                { "data": "Mantenimiento", "autoWidth": true },
                 {
                     "data": null,
                     "targets": -1,

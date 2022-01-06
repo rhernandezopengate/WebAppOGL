@@ -46,7 +46,7 @@ namespace WebAppOGL.Controllers.Sistemas
                 {
                     con.Open();
 
-                    string sql = "exec SP_EquiposComputo @nombreequipo";
+                    string sql = "exec SP_EquiposComputo_Index @nombreequipo";
                     var query = new SqlCommand(sql, con);
 
                     if (nombreequipo != "")
@@ -65,18 +65,16 @@ namespace WebAppOGL.Controllers.Sistemas
                             // facturas
                             var equipos = new sis_equipos();
 
-                            equipos.Id = Convert.ToInt32(dr["id"]);                            
+                            equipos.Id = Convert.ToInt32(dr["Id"]);                            
                             equipos.Modelo = dr["Modelo"].ToString();
                             equipos.Numero_Serie = dr["Numero_Serie"].ToString();
                             equipos.Numero_Parte = dr["Numero_Parte"].ToString();
                             equipos.Nombre_Equipo = dr["Nombre_Equipo"].ToString();
-                            equipos.CPU = dr["CPU"].ToString();
-                            equipos.RAM = dr["RAM"].ToString();
-                            equipos.STORAGE = dr["STORAGE"].ToString();
-                            
+
+                            equipos.Estado = dr["Estado"].ToString();
+                            equipos.Marca = dr["Marca"].ToString();
                             equipos.TipoEquipo = dr["TipoEquipo"].ToString();
                             equipos.Mantenimiento = dr["Mantenimiento"].ToString();
-                            equipos.Marca = dr["Marca"].ToString();
 
                             lista.Add(equipos);
                         }

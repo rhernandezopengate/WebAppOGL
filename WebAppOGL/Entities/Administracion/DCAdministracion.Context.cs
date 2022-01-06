@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAppOGL.Entities.Sistemas
+namespace WebAppOGL.Entities.Administracion
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class db_a3f19c_administracionEntities : DbContext
+    public partial class db_a3f19c_administracionEntities1 : DbContext
     {
-        public db_a3f19c_administracionEntities()
-            : base("name=db_a3f19c_administracionEntities")
+        public db_a3f19c_administracionEntities1()
+            : base("name=db_a3f19c_administracionEntities1")
         {
         }
     
@@ -25,12 +25,9 @@ namespace WebAppOGL.Entities.Sistemas
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sis_mantenimiento> sis_mantenimiento { get; set; }
-        public virtual DbSet<sis_marcas> sis_marcas { get; set; }
-        public virtual DbSet<sis_tipoequipos> sis_tipoequipos { get; set; }
-        public virtual DbSet<sis_estatusequipo> sis_estatusequipo { get; set; }
-        public virtual DbSet<sis_equipos> sis_equipos { get; set; }
-        public virtual DbSet<sis_celulares> sis_celulares { get; set; }
-        public virtual DbSet<sis_asignacion> sis_asignacion { get; set; }
+        public virtual DbSet<adm_area> adm_area { get; set; }
+        public virtual DbSet<adm_empleados> adm_empleados { get; set; }
+        public virtual DbSet<adm_sucursales> adm_sucursales { get; set; }
+        public virtual DbSet<adm_cuentas> adm_cuentas { get; set; }
     }
 }
