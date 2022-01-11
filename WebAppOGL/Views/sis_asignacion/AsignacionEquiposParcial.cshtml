@@ -55,9 +55,6 @@
     </div>
 </div>
 
-
-
-
 <script type="text/javascript">
 
     var table;
@@ -93,8 +90,8 @@
                     "data": null,
                     "targets": -1,
                     "render": function (data, type, full) {
-                        return " <button onclick='EditarAsignacion(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
-                            "<a  onclick='DetalleEquipo(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='glyphicon glyphicon-list-alt'></i></a>";
+                        return "<button onclick='EditarAsignacion(" + full['Id'] + ")' class='btn btn-sm btn-primary'> <span class='fa fa-edit'></span> </button>" +
+                            "<a onclick='DetalleAsignacion(" + full['Id'] + ")' class='btn btn-sm btn-info'> <span class='fa fa-list'></span> </a>"
                     },
                     "bSearchable": false,
                     "sortable": false,

@@ -6,9 +6,11 @@
     <edmx:Diagrams>
       <Diagram DiagramId="44d8eb9770254e9391d3469750db4797" Name="Diagram1">
         <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_area" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_empleados" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_empleados" Width="1.5" PointX="3.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_sucursales" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_cuentas" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_puestos" Width="1.5" PointX="5.75" PointY="1.25" />
+        <AssociationConnector Association="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

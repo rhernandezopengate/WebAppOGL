@@ -28,6 +28,14 @@
           <Property Name="Nombres" Type="varchar" MaxLength="100" />
           <Property Name="Apellido_Paterno" Type="varchar" MaxLength="50" />
           <Property Name="Apellido_Materno" Type="varchar" MaxLength="50" />
+          <Property Name="adm_puestos_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="adm_puestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="adm_sucursales">
           <Key>
@@ -36,11 +44,28 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="adm_empleados_adm_puestos_FK">
+          <End Role="adm_puestos" Type="Self.adm_puestos" Multiplicity="0..1" />
+          <End Role="adm_empleados" Type="Self.adm_empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adm_puestos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="adm_empleados">
+              <PropertyRef Name="adm_puestos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_a3f19c_administracionModel1StoreContainer">
           <EntitySet Name="adm_area" EntityType="Self.adm_area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adm_cuentas" EntityType="Self.adm_cuentas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adm_empleados" EntityType="Self.adm_empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adm_puestos" EntityType="Self.adm_puestos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adm_sucursales" EntityType="Self.adm_sucursales" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="adm_empleados_adm_puestos_FK" Association="Self.adm_empleados_adm_puestos_FK">
+            <End Role="adm_puestos" EntitySet="adm_puestos" />
+            <End Role="adm_empleados" EntitySet="adm_empleados" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -62,6 +87,8 @@
           <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Apellido_Paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Apellido_Materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adm_puestos_Id" Type="Int32" />
+          <NavigationProperty Name="adm_puestos" Relationship="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK" FromRole="adm_empleados" ToRole="adm_puestos" />
         </EntityType>
         <EntityType Name="adm_sucursales">
           <Key>
@@ -75,6 +102,11 @@
           <EntitySet Name="adm_empleados" EntityType="Self.adm_empleados" />
           <EntitySet Name="adm_sucursales" EntityType="Self.adm_sucursales" />
           <EntitySet Name="adm_cuentas" EntityType="db_a3f19c_administracionModel1.adm_cuentas" />
+          <EntitySet Name="adm_puestos" EntityType="db_a3f19c_administracionModel1.adm_puestos" />
+          <AssociationSet Name="adm_empleados_adm_puestos_FK" Association="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK">
+            <End Role="adm_puestos" EntitySet="adm_puestos" />
+            <End Role="adm_empleados" EntitySet="adm_empleados" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="adm_cuentas">
           <Key>
@@ -83,6 +115,26 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="adm_puestos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adm_empleados" Relationship="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK" FromRole="adm_puestos" ToRole="adm_empleados" />
+        </EntityType>
+        <Association Name="adm_empleados_adm_puestos_FK">
+          <End Type="db_a3f19c_administracionModel1.adm_puestos" Role="adm_puestos" Multiplicity="0..1" />
+          <End Type="db_a3f19c_administracionModel1.adm_empleados" Role="adm_empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adm_puestos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="adm_empleados">
+              <PropertyRef Name="adm_puestos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -100,6 +152,7 @@
           <EntitySetMapping Name="adm_empleados">
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_empleados">
               <MappingFragment StoreEntitySet="adm_empleados">
+                <ScalarProperty Name="adm_puestos_Id" ColumnName="adm_puestos_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -119,6 +172,14 @@
           <EntitySetMapping Name="adm_cuentas">
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_cuentas">
               <MappingFragment StoreEntitySet="adm_cuentas">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adm_puestos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_puestos">
+              <MappingFragment StoreEntitySet="adm_puestos">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

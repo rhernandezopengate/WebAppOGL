@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using WebAppOGL.Entities.Administracion;
 using WebAppOGL.Entities.Sistemas;
 using System.Linq.Dynamic;
+using Rotativa;
 
 namespace WebAppOGL.Controllers.Sistemas
 {
@@ -72,7 +73,7 @@ namespace WebAppOGL.Controllers.Sistemas
                             asignacion.NombreEmpleado = dr["Nombres"].ToString();
                             asignacion.Sucursal = dr["Sucursal"].ToString();
                             asignacion.Cuenta = dr["Cuenta"].ToString();
-                            asignacion.Nombreequipo = dr["Nombre_Equipo"].ToString();
+                            asignacion.Nombreequipo = dr["Numero_Serie"].ToString();
 
                             if (dr["FechaAlta"].ToString() != "")
                             {
@@ -104,7 +105,29 @@ namespace WebAppOGL.Controllers.Sistemas
                 return null;
             }
         }
+        
+        
+        public ActionResult ImprimirVista(int? id) 
+        {
+            return new ActionAsPdf("VistaReporteAsignacion", new { Id = id }) { FileName = "Carta_Responsiva.pdf" };
+        }
 
+        public ActionResult VistaReporteAsignacion(int Id = 0) 
+        {
+            ViewBag.Id = Id;
+            ViewBag.fecha_documento = fechaconletra();
+
+            sis_asignacion asignacion = db.sis_asignacion.Where(x => x.Id == Id).FirstOrDefault();
+
+            var nombres = (from e in dbAdmin.adm_empleados
+                          where e.Id == asignacion.adm_empleados_Id
+                          select new { e.Nombres, e.Apellido_Paterno, e.Apellido_Materno }).FirstOrDefault();
+
+
+            ViewBag.Nombres = nombres.Nombres + " " + nombres.Apellido_Paterno + " " + nombres.Apellido_Materno;
+
+            return View(asignacion);
+        }
 
         // GET: sis_asignacion
         public ActionResult Index()
@@ -159,8 +182,70 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.adm_area_Id = new SelectList(db.sis_equipos, "Id", "Descripcion", sis_asignacion.adm_area_Id);
             ViewBag.adm_sucursales_Id = new SelectList(db.sis_equipos, "Id", "Descripcion", sis_asignacion.adm_sucursales_Id);
             ViewBag.adm_cuentas_Id = new SelectList(db.sis_equipos, "Id", "Descripcion", sis_asignacion.adm_cuentas_Id);
+            
+
 
             return Json("Error", JsonRequestBehavior.AllowGet);
+        }
+
+        public string fechaconletra() 
+        {
+            DateTime fecha_actual = DateTime.Now;
+                        
+            string mes = "";
+
+            if (fecha_actual.Month == 1)
+            {
+                mes = "Enero";
+            }
+            else if (fecha_actual.Month == 2)
+            {
+                mes = "Febrero";
+            }
+            else if (fecha_actual.Month == 3)
+            {
+                mes = "Marzo";
+            }
+            else if (fecha_actual.Month == 4)
+            {
+                mes = "Abril";
+            }
+            else if (fecha_actual.Month == 5)
+            {
+                mes = "Mayo";
+            }
+            else if (fecha_actual.Month == 6)
+            {
+                mes = "Junio";
+            }
+            else if (fecha_actual.Month == 7)
+            {
+                mes = "Julio";
+            }
+            else if (fecha_actual.Month == 8)
+            {
+                mes = "Agosto";
+            }
+            else if (fecha_actual.Month == 9)
+            {
+                mes = "Septiembre";
+            }
+            else if (fecha_actual.Month == 10)
+            {
+                mes = "Octubre";
+            }
+            else if (fecha_actual.Month == 11)
+            {
+                mes = "Noviembre";
+            }
+            else
+            {
+                mes = "Diciembre";
+            }
+
+            string fecha_string = "A " + fecha_actual.Day + " de " + mes + " del " + fecha_actual.Year;
+
+            return fecha_string;
         }
 
         // GET: sis_asignacion/Edit/5
@@ -176,7 +261,7 @@ namespace WebAppOGL.Controllers.Sistemas
                 return HttpNotFound();
             }
 
-            ViewBag.sis_equipos_Id = new SelectList(db.sis_equipos, "Id", "Modelo", sis_asignacion.sis_equipos_Id);
+            ViewBag.sis_equipos_Id = new SelectList(db.sis_equipos, "Id", "Numero_Serie", sis_asignacion.sis_equipos_Id);
             ViewBag.adm_empleados_Id = new SelectList(dbAdmin.adm_empleados, "Id", "Nombres", sis_asignacion.adm_empleados_Id);
             ViewBag.adm_area_Id = new SelectList(dbAdmin.adm_area, "Id", "Descripcion", sis_asignacion.adm_area_Id);
             ViewBag.adm_sucursales_Id = new SelectList(dbAdmin.adm_sucursales, "Id", "Descripcion", sis_asignacion.adm_sucursales_Id);
@@ -198,7 +283,7 @@ namespace WebAppOGL.Controllers.Sistemas
                 db.SaveChanges();
                 return Json("Correcto", JsonRequestBehavior.AllowGet);
             }
-            ViewBag.sis_equipos_Id = new SelectList(db.sis_equipos, "Id", "Modelo", sis_asignacion.sis_equipos_Id);
+            ViewBag.sis_equipos_Id = new SelectList(db.sis_equipos, "Id", "Numero_Serie", sis_asignacion.sis_equipos_Id);
             ViewBag.adm_area_Id = new SelectList(dbAdmin.adm_area, "Id", "Descripcion", sis_asignacion.adm_area_Id);
             ViewBag.adm_cuentas_Id = new SelectList(dbAdmin.adm_cuentas, "Id", "Descripcion", sis_asignacion.adm_cuentas_Id);
             ViewBag.adm_empleados_Id = new SelectList(dbAdmin.adm_empleados, "Id", "Nombres", sis_asignacion.adm_empleados_Id);

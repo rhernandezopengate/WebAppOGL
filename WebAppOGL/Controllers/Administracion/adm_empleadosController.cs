@@ -38,6 +38,7 @@ namespace WebAppOGL.Controllers.Administracion
         // GET: adm_empleados/Create
         public ActionResult Create()
         {
+            ViewBag.adm_puestos_Id = new SelectList(db.adm_puestos, "Id", "Descripcion");
             return View();
         }
 
@@ -46,7 +47,7 @@ namespace WebAppOGL.Controllers.Administracion
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FechaAlta,Nombres,Apellido_Paterno,Apellido_Materno")] adm_empleados adm_empleados)
+        public ActionResult Create([Bind(Include = "Id,FechaAlta,Nombres,Apellido_Paterno,Apellido_Materno,adm_puestos_Id")] adm_empleados adm_empleados)
         {
             if (ModelState.IsValid)
             {
@@ -54,6 +55,8 @@ namespace WebAppOGL.Controllers.Administracion
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.adm_puestos_Id = new SelectList(db.adm_puestos, "Id", "Descripcion", adm_empleados.adm_puestos_Id);
 
             return View(adm_empleados);
         }
@@ -70,6 +73,9 @@ namespace WebAppOGL.Controllers.Administracion
             {
                 return HttpNotFound();
             }
+
+            ViewBag.adm_puestos_Id = new SelectList(db.adm_puestos, "Id", "Descripcion", adm_empleados.adm_puestos_Id);
+
             return View(adm_empleados);
         }
 
@@ -78,7 +84,7 @@ namespace WebAppOGL.Controllers.Administracion
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FechaAlta,Nombres,Apellido_Paterno,Apellido_Materno")] adm_empleados adm_empleados)
+        public ActionResult Edit([Bind(Include = "Id,FechaAlta,Nombres,Apellido_Paterno,Apellido_Materno,adm_puestos_Id")] adm_empleados adm_empleados)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +92,7 @@ namespace WebAppOGL.Controllers.Administracion
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.adm_puestos_Id = new SelectList(db.adm_puestos, "Id", "Descripcion", adm_empleados.adm_puestos_Id);
             return View(adm_empleados);
         }
 

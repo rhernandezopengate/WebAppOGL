@@ -19,5 +19,8 @@ namespace WebAppOGL.Entities.Administracion
         public string Nombres { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
+        public Nullable<int> adm_puestos_Id { get; set; }
+    
+        public virtual adm_puestos adm_puestos { get; set; }
     }
 }
