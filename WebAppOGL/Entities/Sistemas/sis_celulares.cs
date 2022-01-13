@@ -14,6 +14,12 @@ namespace WebAppOGL.Entities.Sistemas
     
     public partial class sis_celulares
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public sis_celulares()
+        {
+            this.sis_asignacion_celulares = new HashSet<sis_asignacion_celulares>();
+        }
+    
         public int Id { get; set; }
         public Nullable<System.DateTime> FechaAlta { get; set; }
         public string Modelo { get; set; }
@@ -36,5 +42,7 @@ namespace WebAppOGL.Entities.Sistemas
         public virtual sis_estatusequipo sis_estatusequipo { get; set; }
         public virtual sis_mantenimiento sis_mantenimiento { get; set; }
         public virtual sis_marcas sis_marcas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sis_asignacion_celulares> sis_asignacion_celulares { get; set; }
     }
 }

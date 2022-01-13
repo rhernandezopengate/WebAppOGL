@@ -144,10 +144,39 @@ namespace WebAppOGL.Controllers.Sistemas
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             sis_asignacion sis_asignacion = db.sis_asignacion.Find(id);
+
             if (sis_asignacion == null)
             {
                 return HttpNotFound();
             }
+
+            var nombres = (from e in dbAdmin.adm_empleados
+                           where e.Id == sis_asignacion.adm_empleados_Id
+                           select new { e.Nombres, e.Apellido_Paterno, e.Apellido_Materno }).FirstOrDefault();
+
+
+            ViewBag.Nombres = nombres.Nombres + " " + nombres.Apellido_Paterno + " " + nombres.Apellido_Materno;
+
+            var area = (from e in dbAdmin.adm_area
+                        where e.Id == sis_asignacion.adm_area_Id
+                        select new { e.Descripcion }).FirstOrDefault();
+
+            ViewBag.area = area.Descripcion;
+
+            var sucursal = (from e in dbAdmin.adm_sucursales
+                        where e.Id == sis_asignacion.adm_sucursales_Id
+                        select new { e.Descripcion }).FirstOrDefault();
+
+            ViewBag.sucursal = sucursal.Descripcion;
+
+            var cuenta = (from e in dbAdmin.adm_cuentas
+                            where e.Id == sis_asignacion.adm_cuentas_Id
+                            select new { e.Descripcion }).FirstOrDefault();
+
+            ViewBag.cuenta = cuenta.Descripcion;
+
+            ViewBag.status = sis_asignacion.sis_equipos.sis_estatusequipo.Descripcion;
+
             return View(sis_asignacion);
         }
 

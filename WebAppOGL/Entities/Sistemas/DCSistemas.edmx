@@ -17,6 +17,18 @@
           <Property Name="sis_equipos_Id" Type="int" Nullable="false" />
           <Property Name="adm_cuentas_Id" Type="int" />
         </EntityType>
+        <EntityType Name="sis_asignacion_celulares">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" />
+          <Property Name="adm_empleados_Id" Type="int" Nullable="false" />
+          <Property Name="adm_area_Id" Type="int" Nullable="false" />
+          <Property Name="adm_sucursales_Id" Type="int" Nullable="false" />
+          <Property Name="sis_celulares_Id" Type="int" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="sis_celulares">
           <Key>
             <PropertyRef Name="Id" />
@@ -92,6 +104,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="sis_asignacion_celulares_sis_celulares_FK">
+          <End Role="sis_celulares" Type="Self.sis_celulares" Multiplicity="1" />
+          <End Role="sis_asignacion_celulares" Type="Self.sis_asignacion_celulares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_celulares">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_asignacion_celulares">
+              <PropertyRef Name="sis_celulares_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="sis_asignacion_sis_equipos_FK">
           <End Role="sis_equipos" Type="Self.sis_equipos" Multiplicity="1" />
           <End Role="sis_asignacion" Type="Self.sis_asignacion" Multiplicity="*" />
@@ -190,12 +214,17 @@
         </Association>
         <EntityContainer Name="db_a3f19c_administracionModelStoreContainer">
           <EntitySet Name="sis_asignacion" EntityType="Self.sis_asignacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sis_asignacion_celulares" EntityType="Self.sis_asignacion_celulares" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_celulares" EntityType="Self.sis_celulares" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_equipos" EntityType="Self.sis_equipos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_estatusequipo" EntityType="Self.sis_estatusequipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_mantenimiento" EntityType="Self.sis_mantenimiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_marcas" EntityType="Self.sis_marcas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_tipoequipos" EntityType="Self.sis_tipoequipos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="sis_asignacion_celulares_sis_celulares_FK" Association="Self.sis_asignacion_celulares_sis_celulares_FK">
+            <End Role="sis_celulares" EntitySet="sis_celulares" />
+            <End Role="sis_asignacion_celulares" EntitySet="sis_asignacion_celulares" />
+          </AssociationSet>
           <AssociationSet Name="sis_asignacion_sis_equipos_FK" Association="Self.sis_asignacion_sis_equipos_FK">
             <End Role="sis_equipos" EntitySet="sis_equipos" />
             <End Role="sis_asignacion" EntitySet="sis_asignacion" />
@@ -272,6 +301,11 @@
           <AssociationSet Name="sis_asignacion_sis_equipos_FK" Association="db_a3f19c_administracionModel.sis_asignacion_sis_equipos_FK">
             <End Role="sis_equipos" EntitySet="sis_equipos" />
             <End Role="sis_asignacion" EntitySet="sis_asignacion" />
+          </AssociationSet>
+          <EntitySet Name="sis_asignacion_celulares" EntityType="db_a3f19c_administracionModel.sis_asignacion_celulares" />
+          <AssociationSet Name="sis_asignacion_celulares_sis_celulares_FK" Association="db_a3f19c_administracionModel.sis_asignacion_celulares_sis_celulares_FK">
+            <End Role="sis_celulares" EntitySet="sis_celulares" />
+            <End Role="sis_asignacion_celulares" EntitySet="sis_asignacion_celulares" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="sis_mantenimiento">
@@ -411,6 +445,7 @@
           <NavigationProperty Name="sis_estatusequipo" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_estatusequipo_FK" FromRole="sis_celulares" ToRole="sis_estatusequipo" />
           <NavigationProperty Name="sis_mantenimiento" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_mantenimiento_FK" FromRole="sis_celulares" ToRole="sis_mantenimiento" />
           <NavigationProperty Name="sis_marcas" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_marcas_FK" FromRole="sis_celulares" ToRole="sis_marcas" />
+          <NavigationProperty Name="sis_asignacion_celulares" Relationship="db_a3f19c_administracionModel.sis_asignacion_celulares_sis_celulares_FK" FromRole="sis_celulares" ToRole="sis_asignacion_celulares" />
         </EntityType>
         <Association Name="sis_celulares_sis_estatusequipo_FK">
           <End Type="db_a3f19c_administracionModel.sis_estatusequipo" Role="sis_estatusequipo" Multiplicity="1" />
@@ -470,6 +505,31 @@
             </Principal>
             <Dependent Role="sis_asignacion">
               <PropertyRef Name="sis_equipos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sis_asignacion_celulares">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="adm_empleados_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_area_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_sucursales_Id" Type="Int32" Nullable="false" />
+          <Property Name="sis_celulares_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sis_celulares" Relationship="db_a3f19c_administracionModel.sis_asignacion_celulares_sis_celulares_FK" FromRole="sis_asignacion_celulares" ToRole="sis_celulares" />
+        </EntityType>
+        <Association Name="sis_asignacion_celulares_sis_celulares_FK">
+          <End Type="db_a3f19c_administracionModel.sis_celulares" Role="sis_celulares" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_asignacion_celulares" Role="sis_asignacion_celulares" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_celulares">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_asignacion_celulares">
+              <PropertyRef Name="sis_celulares_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -565,6 +625,19 @@
               <MappingFragment StoreEntitySet="sis_asignacion">
                 <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
                 <ScalarProperty Name="sis_equipos_Id" ColumnName="sis_equipos_Id" />
+                <ScalarProperty Name="adm_sucursales_Id" ColumnName="adm_sucursales_Id" />
+                <ScalarProperty Name="adm_area_Id" ColumnName="adm_area_Id" />
+                <ScalarProperty Name="adm_empleados_Id" ColumnName="adm_empleados_Id" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_asignacion_celulares">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_asignacion_celulares">
+              <MappingFragment StoreEntitySet="sis_asignacion_celulares">
+                <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
+                <ScalarProperty Name="sis_celulares_Id" ColumnName="sis_celulares_Id" />
                 <ScalarProperty Name="adm_sucursales_Id" ColumnName="adm_sucursales_Id" />
                 <ScalarProperty Name="adm_area_Id" ColumnName="adm_area_Id" />
                 <ScalarProperty Name="adm_empleados_Id" ColumnName="adm_empleados_Id" />
