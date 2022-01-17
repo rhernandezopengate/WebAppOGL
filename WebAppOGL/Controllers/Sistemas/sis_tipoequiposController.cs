@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebAppOGL.Entities.Sistemas;
+using System.Linq.Dynamic;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace WebAppOGL.Controllers.Sistemas
 {
