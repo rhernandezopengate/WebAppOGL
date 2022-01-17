@@ -5,45 +5,37 @@
     Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-7 col-sm-7 col-xs-7">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2> Tipo Equipos </h2> &nbsp;&nbsp;&nbsp;
-                <button class="btn btn-success" onclick="CrearEquipo()"><i class="fa fa-plus-circle"></i> @Html.ActionLink("Agregar Registro", "Create")</button>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table id="example" class="table table-bordered jambo_table" width="100%">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Descripcion)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
+<h2>Index</h2>
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
-                            </td>
-                            <td width="30%">
-                                <button class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) </button> |
-                                @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |*@
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            </td>
-                        </tr>
-                    }
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="example" class="table table-bordered jambo_table" width="100%" ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
 
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
 <!-- Define el modal -->
 <div id="MyModal" class="modal fade bs-example-modal-lg">
     <div class="modal-dialog modal-lg" id="mdialTamanio">

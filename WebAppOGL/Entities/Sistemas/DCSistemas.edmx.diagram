@@ -20,6 +20,8 @@
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_celulares_sis_marcas_FK" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_asignacion" Width="1.5" PointX="11.625" PointY="2.625" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_asignacion_sis_equipos_FK" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_asignacion_celulares" Width="1.5" PointX="1.75" PointY="1.875" />
+        <AssociationConnector Association="db_a3f19c_administracionModel.sis_asignacion_celulares_sis_celulares_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

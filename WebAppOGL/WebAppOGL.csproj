@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacionController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_asignacion_celularesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_celularesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_dashboardController.cs" />
     <Compile Include="Controllers\Sistemas\sis_equiposController.cs" />
@@ -255,6 +256,9 @@
     </Compile>
     <Compile Include="Entities\Sistemas\EquiposViewModel.cs" />
     <Compile Include="Entities\Sistemas\sis_asignacion.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\sis_asignacion_celulares.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\sis_celulares.cs">
@@ -4741,6 +4745,12 @@
     <Content Include="Views\adm_puestos\Details.cshtml" />
     <Content Include="Views\adm_puestos\Edit.cshtml" />
     <Content Include="Views\adm_puestos\Index.cshtml" />
+    <Content Include="Views\sis_asignacion_celulares\Create.cshtml" />
+    <Content Include="Views\sis_asignacion_celulares\Delete.cshtml" />
+    <Content Include="Views\sis_asignacion_celulares\Details.cshtml" />
+    <Content Include="Views\sis_asignacion_celulares\Edit.cshtml" />
+    <Content Include="Views\sis_asignacion_celulares\Index.cshtml" />
+    <Content Include="Views\sis_asignacion_celulares\AsignacionCelularesParcial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

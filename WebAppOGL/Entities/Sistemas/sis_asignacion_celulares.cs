@@ -7,23 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAppOGL.Entities.Administracion
+namespace WebAppOGL.Entities.Sistemas
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class adm_empleados
+    public partial class sis_asignacion_celulares
     {
         public int Id { get; set; }
         public Nullable<System.DateTime> FechaAlta { get; set; }
-        public string Nombres { get; set; }
-        public string Apellido_Paterno { get; set; }
-        public string Apellido_Materno { get; set; }
-        public Nullable<int> adm_puestos_Id { get; set; }
-        public string Email { get; set; }
-        public Nullable<int> adm_area_Id { get; set; }
+        public int adm_empleados_Id { get; set; }
+        public int adm_area_Id { get; set; }
+        public int adm_sucursales_Id { get; set; }
+        public int sis_celulares_Id { get; set; }
+        public int adm_cuentas_Id { get; set; }
     
-        public virtual adm_area adm_area { get; set; }
-        public virtual adm_puestos adm_puestos { get; set; }
+        public virtual sis_celulares sis_celulares { get; set; }
     }
 }

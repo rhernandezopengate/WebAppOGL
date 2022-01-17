@@ -29,6 +29,8 @@
           <Property Name="Apellido_Paterno" Type="varchar" MaxLength="50" />
           <Property Name="Apellido_Materno" Type="varchar" MaxLength="50" />
           <Property Name="adm_puestos_Id" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="adm_area_Id" Type="int" />
         </EntityType>
         <EntityType Name="adm_puestos">
           <Key>
@@ -56,6 +58,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_adm_empleados_adm_area">
+          <End Role="adm_area" Type="Self.adm_area" Multiplicity="0..1" />
+          <End Role="adm_empleados" Type="Self.adm_empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adm_area">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="adm_empleados">
+              <PropertyRef Name="adm_area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_a3f19c_administracionModel1StoreContainer">
           <EntitySet Name="adm_area" EntityType="Self.adm_area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adm_cuentas" EntityType="Self.adm_cuentas" Schema="dbo" store:Type="Tables" />
@@ -64,6 +78,10 @@
           <EntitySet Name="adm_sucursales" EntityType="Self.adm_sucursales" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="adm_empleados_adm_puestos_FK" Association="Self.adm_empleados_adm_puestos_FK">
             <End Role="adm_puestos" EntitySet="adm_puestos" />
+            <End Role="adm_empleados" EntitySet="adm_empleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_adm_empleados_adm_area" Association="Self.FK_adm_empleados_adm_area">
+            <End Role="adm_area" EntitySet="adm_area" />
             <End Role="adm_empleados" EntitySet="adm_empleados" />
           </AssociationSet>
         </EntityContainer>
@@ -77,18 +95,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="adm_empleados">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
-          <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Apellido_Paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Apellido_Materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="adm_puestos_Id" Type="Int32" />
-          <NavigationProperty Name="adm_puestos" Relationship="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK" FromRole="adm_empleados" ToRole="adm_puestos" />
+          <NavigationProperty Name="adm_empleados" Relationship="db_a3f19c_administracionModel1.FK_adm_empleados_adm_area" FromRole="adm_area" ToRole="adm_empleados" />
         </EntityType>
         <EntityType Name="adm_sucursales">
           <Key>
@@ -99,10 +106,14 @@
         </EntityType>
         <EntityContainer Name="db_a3f19c_administracionEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="adm_area" EntityType="Self.adm_area" />
-          <EntitySet Name="adm_empleados" EntityType="Self.adm_empleados" />
           <EntitySet Name="adm_sucursales" EntityType="Self.adm_sucursales" />
           <EntitySet Name="adm_cuentas" EntityType="db_a3f19c_administracionModel1.adm_cuentas" />
           <EntitySet Name="adm_puestos" EntityType="db_a3f19c_administracionModel1.adm_puestos" />
+          <EntitySet Name="adm_empleados" EntityType="db_a3f19c_administracionModel1.adm_empleados" />
+          <AssociationSet Name="FK_adm_empleados_adm_area" Association="db_a3f19c_administracionModel1.FK_adm_empleados_adm_area">
+            <End Role="adm_area" EntitySet="adm_area" />
+            <End Role="adm_empleados" EntitySet="adm_empleados" />
+          </AssociationSet>
           <AssociationSet Name="adm_empleados_adm_puestos_FK" Association="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK">
             <End Role="adm_puestos" EntitySet="adm_puestos" />
             <End Role="adm_empleados" EntitySet="adm_empleados" />
@@ -123,6 +134,33 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="adm_empleados" Relationship="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK" FromRole="adm_puestos" ToRole="adm_empleados" />
         </EntityType>
+        <EntityType Name="adm_empleados">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="Nombres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido_Paterno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido_Materno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adm_puestos_Id" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="adm_area_Id" Type="Int32" />
+          <NavigationProperty Name="adm_area" Relationship="db_a3f19c_administracionModel1.FK_adm_empleados_adm_area" FromRole="adm_empleados" ToRole="adm_area" />
+          <NavigationProperty Name="adm_puestos" Relationship="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK" FromRole="adm_empleados" ToRole="adm_puestos" />
+        </EntityType>
+        <Association Name="FK_adm_empleados_adm_area">
+          <End Type="db_a3f19c_administracionModel1.adm_area" Role="adm_area" Multiplicity="0..1" />
+          <End Type="db_a3f19c_administracionModel1.adm_empleados" Role="adm_empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adm_area">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="adm_empleados">
+              <PropertyRef Name="adm_area_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="adm_empleados_adm_puestos_FK">
           <End Type="db_a3f19c_administracionModel1.adm_puestos" Role="adm_puestos" Multiplicity="0..1" />
           <End Type="db_a3f19c_administracionModel1.adm_empleados" Role="adm_empleados" Multiplicity="*" />
@@ -149,18 +187,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="adm_empleados">
-            <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_empleados">
-              <MappingFragment StoreEntitySet="adm_empleados">
-                <ScalarProperty Name="adm_puestos_Id" ColumnName="adm_puestos_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
-                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="adm_sucursales">
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_sucursales">
               <MappingFragment StoreEntitySet="adm_sucursales">
@@ -181,6 +207,20 @@
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_puestos">
               <MappingFragment StoreEntitySet="adm_puestos">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adm_empleados">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_empleados">
+              <MappingFragment StoreEntitySet="adm_empleados">
+                <ScalarProperty Name="adm_area_Id" ColumnName="adm_area_Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="adm_puestos_Id" ColumnName="adm_puestos_Id" />
+                <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+                <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

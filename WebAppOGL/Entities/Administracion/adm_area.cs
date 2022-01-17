@@ -14,7 +14,16 @@ namespace WebAppOGL.Entities.Administracion
     
     public partial class adm_area
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public adm_area()
+        {
+            this.adm_empleados = new HashSet<adm_empleados>();
+        }
+    
         public int Id { get; set; }
         public string Descripcion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<adm_empleados> adm_empleados { get; set; }
     }
 }
