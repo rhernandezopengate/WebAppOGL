@@ -5,23 +5,47 @@
     Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
 }
 
-<h2>Details</h2>
+<div class="modal-content">
 
-<div>
-    <h4>sis_tipoequipos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
+    <div class="modal-body">
+        <div class="col-md-12 col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <center>
+                        <h3><i class="fa fa-desktop"></i> Detalle del Tipo de Equipo <br />@Html.DisplayFor(model => model.Descripcion)</h3>
+                    </center>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel">
+                            <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h4 class="panel-title">Informacion del tipo de Equipo</h4>
+                            </a>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <dl class="dl-horizontal">
+                                        <dt>
+                                            @Html.DisplayNameFor(model => model.Descripcion)
+                                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+                                        <dd>
+                                            @Html.DisplayFor(model => model.Descripcion)
+                                        </dd>
 
-    </dl>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class='btn btn-sm btn-primary'><i class='fa fa-edit'></i>@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) </button> |
+    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location='/sis_tipoequipos'">CANCELAR</button>
+    @*@Html.ActionLink("Back to List", "Index")*@
 </p>

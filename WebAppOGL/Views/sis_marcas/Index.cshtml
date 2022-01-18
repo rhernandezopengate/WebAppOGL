@@ -9,16 +9,12 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Marcas </h2>
+                <h2>Marcas </h2> &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Agregar Registro</a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <h2>Index</h2>
-
-                <p>
-                    @Html.ActionLink("Create New", "Create")
-                </p>
-                <table id="example" class="table table-bordered">
+                <table id="tblMarcas" class="table table-bordered jambo_table">
                     <thead>
                         <tr>
                             <th>
@@ -35,9 +31,8 @@
                                 @Html.DisplayFor(modelItem => item.Descripcion)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit"></span> </a>
+                                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.Id })"> <span class="fa fa-trash-o"></span> </a>
                             </td>
                         </tr>
                     }
@@ -62,7 +57,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#example').DataTable();
+            $('#tblMarcas').DataTable();
         });
     </script>
 }
