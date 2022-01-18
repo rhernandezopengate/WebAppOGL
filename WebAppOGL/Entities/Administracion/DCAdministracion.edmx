@@ -12,6 +12,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="adm_bodega">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="adm_cuentas">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,6 +79,7 @@
         </Association>
         <EntityContainer Name="db_a3f19c_administracionModel1StoreContainer">
           <EntitySet Name="adm_area" EntityType="Self.adm_area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="adm_bodega" EntityType="Self.adm_bodega" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adm_cuentas" EntityType="Self.adm_cuentas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adm_empleados" EntityType="Self.adm_empleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="adm_puestos" EntityType="Self.adm_puestos" Schema="dbo" store:Type="Tables" />
@@ -118,6 +126,7 @@
             <End Role="adm_puestos" EntitySet="adm_puestos" />
             <End Role="adm_empleados" EntitySet="adm_empleados" />
           </AssociationSet>
+          <EntitySet Name="adm_bodega" EntityType="db_a3f19c_administracionModel1.adm_bodega" />
         </EntityContainer>
         <EntityType Name="adm_cuentas">
           <Key>
@@ -173,6 +182,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="adm_bodega">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -221,6 +237,14 @@
                 <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adm_bodega">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel1.adm_bodega">
+              <MappingFragment StoreEntitySet="adm_bodega">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

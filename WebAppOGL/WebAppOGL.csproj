@@ -192,6 +192,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Administracion\adm_areaController.cs" />
+    <Compile Include="Controllers\Administracion\adm_bodegaController.cs" />
     <Compile Include="Controllers\Administracion\adm_cuentasController.cs" />
     <Compile Include="Controllers\Administracion\adm_empleadosController.cs" />
     <Compile Include="Controllers\Administracion\adm_puestosController.cs" />
@@ -208,6 +209,9 @@
     <Compile Include="Controllers\Sistemas\sis_marcasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_tipoequiposController.cs" />
     <Compile Include="Entities\Administracion\adm_area.cs">
+      <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Administracion\adm_bodega.cs">
       <DependentUpon>DCAdministracion.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Administracion\adm_cuentas.cs">
@@ -4751,10 +4755,15 @@
     <Content Include="Views\sis_asignacion_celulares\Edit.cshtml" />
     <Content Include="Views\sis_asignacion_celulares\Index.cshtml" />
     <Content Include="Views\sis_asignacion_celulares\AsignacionCelularesParcial.cshtml" />
+    <Content Include="Views\adm_bodega\Create.cshtml" />
+    <Content Include="Views\adm_bodega\Delete.cshtml" />
+    <Content Include="Views\adm_bodega\Details.cshtml" />
+    <Content Include="Views\adm_bodega\Edit.cshtml" />
+    <Content Include="Views\adm_bodega\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Sistemas\" />
+    <Folder Include="Controllers\Mantenimiento\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

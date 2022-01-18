@@ -1,6 +1,4 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = null;
 }
@@ -8,7 +6,7 @@
 <div class="x_panel">
     <div class="x_title">
         <h2>Asignacion de Equipo de Computo </h2> &nbsp;&nbsp;&nbsp;
-        <a class="btn btn-success" onclick="CrearAsignacion()"><span class="fa fa-plus-circle"></span> Asignar Equipo de Computo</a>
+        <a class="btn btn-success" onclick="CrearAsignacionEquipo()"><span class="fa fa-plus-circle"></span> Asignar Equipo de Computo</a>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -21,36 +19,20 @@
         <br />
         <br />
         <hr />
-
         <table id="tblAsignacionEquipos" class="table table-bordered jambo_table" width="100%">
             <thead>
                 <tr>
-                    <th>
-                        Id
-                    </th>
-                    <th>
-                        FechaAlta
-                    </th>
-                    <th>
-                        Area
-                    </th>
-                    <th>
-                        Empleado
-                    </th>
-                    <th>
-                        Sucursal
-                    </th>
-                    <th>
-                        Cuenta
-                    </th>
-                    <th>
-                        Equipo
-                    </th>
+                    <th>Id</th>
+                    <th>FechaAlta</th>
+                    <th>Empleado</th>
+                    <th>Equipo</th>
+                    <th>Cuenta</th>
+                    <th>Area</th>
+                    <th>Sucursal</th>
                     <th></th>
                 </tr>
             </thead>
         </table>
-
     </div>
 </div>
 
@@ -80,17 +62,17 @@
                 //0
                 { "data": "Id", "autoWidth": true, "visible": false },
                 { "data": "FechaAlta", "autoWidth": true, },
-                { "data": "Area", "autoWidth": true, },
                 { "data": "NombreEmpleado", "autoWidth": true, },
-                { "data": "Sucursal", "autoWidth": true, },
-                { "data": "Cuenta", "autoWidth": true, },
                 { "data": "Nombreequipo", "autoWidth": true, },
+                { "data": "Cuenta", "autoWidth": true, },
+                { "data": "Area", "autoWidth": true, },                
+                { "data": "Sucursal", "autoWidth": true, },        
                 {
                     "data": null,
                     "targets": -1,
                     "render": function (data, type, full) {
-                        return "<button onclick='EditarAsignacion(" + full['Id'] + ")' class='btn btn-sm btn-primary'> <span class='fa fa-edit'></span> </button>" +
-                            "<a onclick='DetalleAsignacion(" + full['Id'] + ")' class='btn btn-sm btn-info'> <span class='fa fa-list'></span> </a>"
+                        return "<button onclick='EditarAsignacionEquipo(" + full['Id'] + ")' class='btn btn-sm btn-primary'> <span class='fa fa-edit'></span> </button>" +
+                            "<a onclick='DetalleAsignacionEquipo(" + full['Id'] + ")' class='btn btn-sm btn-info'> <span class='fa fa-list'></span> </a>"
                     },
                     "bSearchable": false,
                     "sortable": false,

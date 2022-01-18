@@ -31,7 +31,7 @@
 
 <script type="text/javascript">
 
-    var CrearAsignacion = function () {
+    var CrearAsignacionEquipo = function () {
         $.ajaxSetup({ cache: false });
         var url = "/sis_asignacion/Create";
         $("#MyModalContent").load(url, function () {
@@ -44,7 +44,7 @@
         return false;
     }
 
-    var EditarAsignacion = function (ID) {
+    var EditarAsignacionEquipo = function (ID) {
         $.ajaxSetup({ cache: false });
         var url = "/sis_asignacion/Edit/" + ID;
         $("#MyModalContent").load(url, function () {
@@ -57,9 +57,48 @@
         return false;
     }
 
-    var DetalleAsignacion = function (ID) {               
+    var DetalleAsignacionEquipo = function (ID) {               
         $.ajaxSetup({ cache: false });
         var url = "/sis_asignacion/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var CrearAsignacionCelulares = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Create";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EditarAsignacionCelular = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var DetalleAsignacionCelular = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Details/" + ID;
         $("#MyModalContent").load(url, function () {
             $("#MyModal").modal({
                 //backdrop: 'static',

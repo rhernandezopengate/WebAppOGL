@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_empleados" Width="1.5" PointX="3.375" PointY="0.5" />
         <AssociationConnector Association="db_a3f19c_administracionModel1.FK_adm_empleados_adm_area" />
         <AssociationConnector Association="db_a3f19c_administracionModel1.adm_empleados_adm_puestos_FK" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel1.adm_bodega" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

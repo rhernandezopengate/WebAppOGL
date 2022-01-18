@@ -30,7 +30,6 @@ namespace WebAppOGL.Entities.Administracion
         public virtual DbSet<adm_cuentas> adm_cuentas { get; set; }
         public virtual DbSet<adm_puestos> adm_puestos { get; set; }
         public virtual DbSet<adm_empleados> adm_empleados { get; set; }
-
-        public System.Data.Entity.DbSet<WebAppOGL.Entities.Sistemas.sis_asignacion_celulares> sis_asignacion_celulares { get; set; }
+        public virtual DbSet<adm_bodega> adm_bodega { get; set; }
     }
 }
