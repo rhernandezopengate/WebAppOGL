@@ -10,51 +10,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table id="example" class="table table-bordered jambo_table" width="100%" ">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th></th>
+    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
 
 </table>
-
-<!-- Define el modal -->
-<div id="MyModal" class="modal fade bs-example-modal-lg">
-    <div class="modal-dialog modal-lg" id="mdialTamanio">
-        <div class="modal-content">
-            <div id="MyModalContent"></div>
-        </div>
-    </div>
-</div>
-
-<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-
-@section Scripts{
-
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js">dispatchEvent</script>
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-    </script>
-}

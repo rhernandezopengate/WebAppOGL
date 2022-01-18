@@ -3862,7 +3862,6 @@
     <Content Include="Views\sis_tipoequipos\Delete.cshtml" />
     <Content Include="Views\sis_tipoequipos\Details.cshtml" />
     <Content Include="Views\sis_tipoequipos\Edit.cshtml" />
-    <Content Include="Views\sis_tipoequipos\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutSistemas.cshtml" />
     <Content Include="Views\sis_equipos\Create.cshtml" />
     <Content Include="Views\sis_equipos\Delete.cshtml" />
@@ -4760,6 +4759,7 @@
     <Content Include="Views\adm_bodega\Details.cshtml" />
     <Content Include="Views\adm_bodega\Edit.cshtml" />
     <Content Include="Views\adm_bodega\Index.cshtml" />
+    <Content Include="Views\sis_tipoequipos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
