@@ -13,7 +13,7 @@
             <div class="x_content">
                 <div class="form-label-left input_mask">
                     <div class="col-md-6 col-sm-6  form-group has-feedback">
-                        <input id="txtBusquedaCelulares" type="text" class="form-control has-feedback-left" placeholder="IMEI">
+                        <input id="txtBusquedaCelulares" type="text" class="form-control has-feedback-left" placeholder="Nombre Empleado">
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -23,9 +23,13 @@
                 <table id="tblAsignacionCelulares" class="table table-bordered jambo_table" width="100%">
                     <thead>
                         <tr>
-                            <th>
-                                Id
-                            </th>
+                            <th>Id</th>
+                            <th>FechaAlta</th>
+                            <th>Empleado</th>
+                            <th>Celular</th>
+                            <th>Cuenta</th>
+                            <th>Area</th>
+                            <th>Sucursal</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -37,10 +41,10 @@
 
 <script type="text/javascript">
 
-    var table;
+    var tableAsignacionCelulares;
 
     $(document).ready(function () {
-        table = $('#tblAsignacionCelulares').DataTable({
+        tableAsignacionCelulares = $('#tblAsignacionCelulares').DataTable({
             "order": [[0, "desc"]],
             "ordering": true,
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -53,13 +57,19 @@
             rowId: 'Id',
             select: true,
             "ajax": {
-                "url": "/sis_asignacion/ObtenerAsignacionEquipos",
+                "url": "/sis_asignacion_celulares/ObtenerAsignacionCelulares",
                 "type": "POST",
                 "datatype": "json"
             },
             "aoColumns": [
                 //0
-                { "data": "Id", "autoWidth": true, },               
+                { "data": "Id", "autoWidth": true, "visible": false },
+                { "data": "FechaAlta", "autoWidth": true, },
+                { "data": "Empleado", "autoWidth": true, },
+                { "data": "ModeloCelular", "autoWidth": true, },
+                { "data": "Area", "autoWidth": true, },
+                { "data": "Cuenta", "autoWidth": true, },                         
+                { "data": "Sucursal", "autoWidth": true, },            
                 {
                     "data": null,
                     "targets": -1,
@@ -76,7 +86,7 @@
         });
 
         $('#txtBusquedaCelulares').on('keyup', function () {
-            table.columns(0).search(this.value).draw();
+            tableAsignacionCelulares.columns(0).search(this.value).draw();
         });
     });
 

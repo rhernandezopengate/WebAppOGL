@@ -241,6 +241,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DCAdministracion.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Sistemas\AsignacionCelularesViewModel.cs" />
     <Compile Include="Entities\Sistemas\AsignacionEquiposViewModel.cs" />
     <Compile Include="Entities\Sistemas\CelularesViewModel.cs" />
     <Compile Include="Entities\Sistemas\DCSistemas.Context.cs">
