@@ -1,0 +1,150 @@
+﻿@model WebAppOGL.Entities.Sistemas.sis_asignacion_celulares
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <style>
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <img src="~/images/LOGO TRANSPARENTE.png" alt="50px" width="250px" />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <p style="text-align:right">
+        Querétaro, Querétaro @ViewBag.fecha_documento
+    </p>
+    <p>
+        <br />
+        <br />
+        A quién corresponda:
+        <br />
+        <br />
+        <br />
+        <br />
+        Por medio de la presente la empresa OPEN GATE LOGISTICS, ubicada en ACCESO III No.52 INTERIOR 3, ZONA INDUSTRIAL BENITO JUAREZ, CONJUNTO VICTORIA II, CP 76120 EN QUERETARO, QUERETARO, hace de su conocimiento que @ViewBag.Nombres recibe un CELULAR
+        <br />
+        <br />
+        <ul>          
+            <li>
+                Modelo: @Model.sis_celulares.Modelo
+            </li>
+            <li>
+                Numero de Producto: @Model.sis_celulares.Numero_Producto
+            </li>
+            <li>
+                Procesador: @Model.sis_celulares.IMEI
+            </li>
+            <li>
+                Sistema Operativo: @Model.sis_celulares.OS
+            </li>
+            <li>
+                Pantalla: @Model.sis_celulares.Pantalla
+            </li>
+            <li>
+                Procesador: @Model.sis_celulares.Procesador
+            </li>
+            <li>
+                RAM: @Model.sis_celulares.RAM
+            </li>
+            <li>
+                Camara Frontal: @Model.sis_celulares.Camara_Frontal
+            </li>
+            <li>
+                Camara Trasera: @Model.sis_celulares.Camara_Trasera
+            </li>          
+            <li>
+                Cargador: @Model.sis_celulares.Cargador
+            </li>
+        </ul>
+        <br />
+    </p>
+    <p>
+        Para ser utilizado exclusivamente dentro de las instalaciones como herramienta de trabajo, quedando bajo su responsabilidad y en caso de extravió o avería se deberá pagar en su totalidad para su reposición.
+        Se extiende la presente para los fines que al interesado convengan, quedando a sus órdenes para cualquier aclaración adicional.
+    </p>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <table>
+        <tr>
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+                <center>
+                    <h4>
+                        Atentamente <br />
+                        Lic. Karla García <br />
+                        Recursos Humanos <br />
+                    </h4>
+                </center>
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+            <td>
+                <center>
+                    <h4>
+                        Recibí Equipo de trabajo <br />
+                        @ViewBag.Nombres <br />
+                        <br />
+                    </h4>
+                </center>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <center>
+        <h4>
+            Acceso III No. 52 Int. 3 Parque Industrial Benito Juárez, CP 76120 Conjunto Victoria, Querétaro, Qro.
+            www.opengatelogistics.com
+        </h4>
+    </center>
+</body>
+</html>

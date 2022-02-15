@@ -5,63 +5,242 @@
     Layout = null;
 }
 
-<h2>Details</h2>
+<div class="modal-content">
 
-<div>
-    <h4>sis_asignacion_celulares</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaAlta)
-        </dt>
+    <div class="modal-body">
+        <div class="col-md-12 col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <center>
+                        <h3>Detalle de la Asignacion</h3>
+                    </center>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel">
+                            <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h4 class="panel-title">Informacion de Asignacion</h4>
+                            </a>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <center>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Fecha Alta</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.FechaAlta">
+                                                    <div class="input-group-addon"><span class="fa fa-calendar"></span> </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Empleado</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@ViewBag.Nombres">
+                                                        <div class="input-group-addon"><span class="fa fa-user"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Area</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@ViewBag.area">
+                                                        <div class="input-group-addon"><span class="fa fa-users"></span> </div>
+                                                    </div>
+                                                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaAlta)
-        </dd>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <h4 class="panel-title">Informacion del Equipo Asignado</h4>
+                            </a>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <center>
+                                        <div class="form-inline">
+                                            <div class="form-group">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adm_empleados_Id)
-        </dt>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Numero_Serie</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.IMEI">
+                                                        <div class="input-group-addon"><span class="fa fa-qrcode"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Numero_Parte</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.Numero_Producto">
+                                                        <div class="input-group-addon"><span class="fa fa-asterisk"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            Modelo
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.Modelo">
+                                                        <div class="input-group-addon"><span class="fa fa-book"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            CPU
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.Procesador">
+                                                        <div class="input-group-addon"><span class="fa fa-tasks"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            RAM
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.RAM">
+                                                        <div class="input-group-addon"><span class="fa fa-exclamation"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            STORAGE
+                                                            &nbsp;
+                                                            &nbsp;
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.Almacenamiento">
+                                                        <div class="input-group-addon"><span class="fa fa-hdd-o"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            Pantalla
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.Pantalla">
+                                                        <div class="input-group-addon"><span class="fa fa-desktop"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            Color
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
+                                                            &nbsp;
 
-        <dd>
-            @Html.DisplayFor(model => model.adm_empleados_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.adm_area_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adm_area_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.adm_sucursales_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adm_sucursales_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sis_celulares_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sis_celulares_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.adm_cuentas_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adm_cuentas_Id)
-        </dd>
-
-    </dl>
+                                                        </div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.Color">
+                                                        <div class="input-group-addon"><span class="fa fa-paint-brush"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Cargador</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_celulares.Cargador">
+                                                        <div class="input-group-addon"><span class="fa fa-plug"></span> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h4 class="panel-title">Informacion de la Ubicacion</h4>
+                            </a>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <center>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Sucursal</div>
+                                                    <input type="text" class="form-control" value="@ViewBag.sucursal">
+                                                    <div class="input-group-addon"><span class="fa fa-building"></span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Cuenta</div>
+                                                    <input type="text" class="form-control" value="@ViewBag.cuenta">
+                                                    <div class="input-group-addon"><span class="fa fa-globe"></span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Status</div>
+                                                    <input type="text" class="form-control" value="@ViewBag.status">
+                                                    <div class="input-group-addon"><span class="fa fa-flag-checkered"></span> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button class="btn btn-info">@Html.ActionLink("Descargar Carta Para Firma", "ImprimirVista", new { id = Model.Id })</button>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -11,6 +11,7 @@ using WebAppOGL.Entities.Sistemas;
 using System.Linq.Dynamic;
 using System.Data.SqlClient;
 using System.Configuration;
+using Rotativa;
 
 namespace WebAppOGL.Controllers.Sistemas
 {
@@ -18,6 +19,90 @@ namespace WebAppOGL.Controllers.Sistemas
     {
         private db_a3f19c_administracionEntities db = new db_a3f19c_administracionEntities();
         private db_a3f19c_administracionEntities1 dbAdmin = new db_a3f19c_administracionEntities1();
+
+
+        public ActionResult ReporteAsignacionCelulares(int Id = 0) 
+        {
+            ViewBag.Id = Id;
+            ViewBag.fecha_documento = fechaconletra();
+
+            sis_asignacion_celulares asignacion = db.sis_asignacion_celulares.Where(x => x.Id == Id).FirstOrDefault();
+
+            var nombres = (from e in dbAdmin.adm_empleados
+                           where e.Id == asignacion.adm_empleados_Id
+                           select new { e.Nombres, e.Apellido_Paterno, e.Apellido_Materno }).FirstOrDefault();
+
+            ViewBag.Nombres = nombres.Nombres + " " + nombres.Apellido_Paterno + " " + nombres.Apellido_Materno;
+
+
+            return View(asignacion);
+        }
+
+        public ActionResult ImprimirVista(int? id)
+        {
+            return new ActionAsPdf("ReporteAsignacionCelulares", new { Id = id }) { FileName = "Carta_Responsiva_Celular.pdf" };
+        }
+
+
+        public string fechaconletra()
+        {
+            DateTime fecha_actual = DateTime.Now;
+
+            string mes = "";
+
+            if (fecha_actual.Month == 1)
+            {
+                mes = "Enero";
+            }
+            else if (fecha_actual.Month == 2)
+            {
+                mes = "Febrero";
+            }
+            else if (fecha_actual.Month == 3)
+            {
+                mes = "Marzo";
+            }
+            else if (fecha_actual.Month == 4)
+            {
+                mes = "Abril";
+            }
+            else if (fecha_actual.Month == 5)
+            {
+                mes = "Mayo";
+            }
+            else if (fecha_actual.Month == 6)
+            {
+                mes = "Junio";
+            }
+            else if (fecha_actual.Month == 7)
+            {
+                mes = "Julio";
+            }
+            else if (fecha_actual.Month == 8)
+            {
+                mes = "Agosto";
+            }
+            else if (fecha_actual.Month == 9)
+            {
+                mes = "Septiembre";
+            }
+            else if (fecha_actual.Month == 10)
+            {
+                mes = "Octubre";
+            }
+            else if (fecha_actual.Month == 11)
+            {
+                mes = "Noviembre";
+            }
+            else
+            {
+                mes = "Diciembre";
+            }
+
+            string fecha_string = "A " + fecha_actual.Day + " de " + mes + " del " + fecha_actual.Year;
+
+            return fecha_string;
+        }
 
         public ActionResult AsignacionCelularesParcial() 
         {
@@ -119,11 +204,41 @@ namespace WebAppOGL.Controllers.Sistemas
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             sis_asignacion_celulares sis_asignacion_celulares = db.sis_asignacion_celulares.Find(id);
+
             if (sis_asignacion_celulares == null)
             {
                 return HttpNotFound();
             }
+
+            var nombres = (from e in dbAdmin.adm_empleados
+                           where e.Id == sis_asignacion_celulares.adm_empleados_Id
+                           select new { e.Nombres, e.Apellido_Paterno, e.Apellido_Materno }).FirstOrDefault();
+
+
+            ViewBag.Nombres = nombres.Nombres + " " + nombres.Apellido_Paterno + " " + nombres.Apellido_Materno;
+
+            var area = (from e in dbAdmin.adm_area
+                        where e.Id == sis_asignacion_celulares.adm_area_Id
+                        select new { e.Descripcion }).FirstOrDefault();
+
+            ViewBag.area = area.Descripcion;
+
+            var sucursal = (from e in dbAdmin.adm_sucursales
+                            where e.Id == sis_asignacion_celulares.adm_sucursales_Id
+                            select new { e.Descripcion }).FirstOrDefault();
+
+            ViewBag.sucursal = sucursal.Descripcion;
+
+            var cuenta = (from e in dbAdmin.adm_cuentas
+                          where e.Id == sis_asignacion_celulares.adm_cuentas_Id
+                          select new { e.Descripcion }).FirstOrDefault();
+
+            ViewBag.cuenta = cuenta.Descripcion;
+
+            ViewBag.status = sis_asignacion_celulares.sis_celulares.sis_estatusequipo.Descripcion;
+
             return View(sis_asignacion_celulares);
         }
 

@@ -4761,6 +4761,7 @@
     <Content Include="Views\adm_bodega\Edit.cshtml" />
     <Content Include="Views\adm_bodega\Index.cshtml" />
     <Content Include="Views\sis_tipoequipos\Index.cshtml" />
+    <Content Include="Views\sis_asignacion_celulares\ReporteAsignacionCelulares.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
