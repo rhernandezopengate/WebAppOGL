@@ -1,0 +1,206 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2> Terminales <small>Index</small></h2> &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-success" onclick="CrearEquipo()"><i class="fa fa-plus-circle"></i> Agregar Registro</button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="form-label-left input_mask">
+                    <div class="col-md-3 col-sm-6  form-group has-feedback">
+                        <input id="txtBuscarTerminal" type="text" class="form-control has-feedback-left" placeholder="Nombre Equipo">
+                        <span class="fa fa-bookmark form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <hr />
+
+                <table id="tblTerminales" class="table table-bordered jambo_table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Id
+                            </th>
+                            <th>
+                                Modelo
+                            </th>
+                            <th>
+                                Numero Serie
+                            </th>
+                            <th>
+                                MAC
+                            </th>
+                            <th>
+                                Estado
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                TipoEquipo
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                 
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Define el modal -->
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
+        <div class="modal-content">
+            <div id="MyModalContent"></div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
+
+<script type="text/javascript">
+
+    var table;
+
+    $(document).ready(function () {
+        table = $('#tblTerminales').DataTable({
+            "order": [[0, "desc"]],
+            "ordering": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "pagingType": "simple_numbers",
+            "dom": 'Blrtip', // Hides Default Search
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "deferRender": true,
+            rowId: 'Id',
+            select: true,
+            "ajax": {
+                "url": "/sis_terminales/ObtenerTerminales",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "aoColumns": [
+                { "data": "Id", "autoWidth": true, "visible": false },
+                { "data": "Modelo", "autoWidth": true },
+                { "data": "NumeroSerie", "autoWidth": true },
+                { "data": "MAC", "autoWidth": true },
+                { "data": "Estado", "autoWidth": true },
+                { "data": "Marca", "autoWidth": true },
+                { "data": "TipoEquipo", "autoWidth": true },
+                {
+                    "data": null,
+                    "targets": -1,
+                    "render": function (data, type, full) {
+                        return " <button onclick='EditarEquipo(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
+                            "<a  onclick='DetalleEquipo(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='glyphicon glyphicon-list-alt'></i></a>";
+                    },
+                    "bSearchable": false,
+                    "sortable": false,
+                    "autoWidth": true,
+                    "sWidth": "100px"
+                }
+            ]
+        });
+
+        $('#txtBuscarTerminal').on('keyup', function () {
+            table.columns(0).search(this.value).draw();
+        });
+    });
+
+    var CrearEquipo = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_terminales/Create";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EditarEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_terminales/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EliminarEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_terminales/Delete/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var DetalleEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_terminales/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+
+</script>

@@ -33,5 +33,6 @@ namespace WebAppOGL.Entities.Sistemas
         public virtual DbSet<sis_celulares> sis_celulares { get; set; }
         public virtual DbSet<sis_asignacion> sis_asignacion { get; set; }
         public virtual DbSet<sis_asignacion_celulares> sis_asignacion_celulares { get; set; }
+        public virtual DbSet<sis_terminales> sis_terminales { get; set; }
     }
 }

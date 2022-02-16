@@ -7,11 +7,14 @@ using WebAppOGL.Entities.Sistemas;
 
 namespace WebAppOGL.Controllers.Sistemas
 {
+    [Authorize]
     public class sis_dashboardController : Controller
     {
         // GET: sis_dashboard
 
         db_a3f19c_administracionEntities db = new db_a3f19c_administracionEntities();
+
+
 
         public ActionResult Index()
         {

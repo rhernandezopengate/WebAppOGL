@@ -207,6 +207,7 @@
     <Compile Include="Controllers\Sistemas\sis_estatusequipoController.cs" />
     <Compile Include="Controllers\Sistemas\sis_mantenimientoController.cs" />
     <Compile Include="Controllers\Sistemas\sis_marcasController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_terminalesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_tipoequiposController.cs" />
     <Compile Include="Entities\Administracion\adm_area.cs">
       <DependentUpon>DCAdministracion.tt</DependentUpon>
@@ -281,9 +282,13 @@
     <Compile Include="Entities\Sistemas\sis_marcas.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Sistemas\sis_terminales.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Sistemas\sis_tipoequipos.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Sistemas\TerminalesVM.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -4762,6 +4767,11 @@
     <Content Include="Views\adm_bodega\Index.cshtml" />
     <Content Include="Views\sis_tipoequipos\Index.cshtml" />
     <Content Include="Views\sis_asignacion_celulares\ReporteAsignacionCelulares.cshtml" />
+    <Content Include="Views\sis_terminales\Create.cshtml" />
+    <Content Include="Views\sis_terminales\Delete.cshtml" />
+    <Content Include="Views\sis_terminales\Details.cshtml" />
+    <Content Include="Views\sis_terminales\Edit.cshtml" />
+    <Content Include="Views\sis_terminales\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

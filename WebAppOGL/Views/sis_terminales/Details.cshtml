@@ -1,0 +1,67 @@
+﻿@model WebAppOGL.Entities.Sistemas.sis_terminales
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>sis_terminales</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_estatusequipo.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_marcas.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_tipoequipos.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_tipoequipos.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

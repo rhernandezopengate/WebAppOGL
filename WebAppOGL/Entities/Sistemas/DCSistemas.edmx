@@ -97,6 +97,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="sis_terminales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" />
+          <Property Name="MAC" Type="varchar" MaxLength="20" />
+          <Property Name="NumeroSerie" Type="varchar" MaxLength="50" />
+          <Property Name="sis_marcas_Id" Type="int" Nullable="false" />
+          <Property Name="sis_estatusequipo_Id" Type="int" Nullable="false" />
+          <Property Name="sis_tipoequipos_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="sis_tipoequipos">
           <Key>
             <PropertyRef Name="Id" />
@@ -212,6 +224,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="sis_terminales_sis_estatusequipo_FK">
+          <End Role="sis_estatusequipo" Type="Self.sis_estatusequipo" Multiplicity="1" />
+          <End Role="sis_terminales" Type="Self.sis_terminales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_estatusequipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_terminales">
+              <PropertyRef Name="sis_estatusequipo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_terminales_sis_marcas_FK">
+          <End Role="sis_marcas" Type="Self.sis_marcas" Multiplicity="1" />
+          <End Role="sis_terminales" Type="Self.sis_terminales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_terminales">
+              <PropertyRef Name="sis_marcas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_terminales_sis_tipoequipos_FK">
+          <End Role="sis_tipoequipos" Type="Self.sis_tipoequipos" Multiplicity="1" />
+          <End Role="sis_terminales" Type="Self.sis_terminales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_tipoequipos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_terminales">
+              <PropertyRef Name="sis_tipoequipos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_a3f19c_administracionModelStoreContainer">
           <EntitySet Name="sis_asignacion" EntityType="Self.sis_asignacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_asignacion_celulares" EntityType="Self.sis_asignacion_celulares" Schema="dbo" store:Type="Tables" />
@@ -220,6 +268,7 @@
           <EntitySet Name="sis_estatusequipo" EntityType="Self.sis_estatusequipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_mantenimiento" EntityType="Self.sis_mantenimiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_marcas" EntityType="Self.sis_marcas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sis_terminales" EntityType="Self.sis_terminales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_tipoequipos" EntityType="Self.sis_tipoequipos" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="sis_asignacion_celulares_sis_celulares_FK" Association="Self.sis_asignacion_celulares_sis_celulares_FK">
             <End Role="sis_celulares" EntitySet="sis_celulares" />
@@ -256,6 +305,18 @@
           <AssociationSet Name="sis_equipos_sis_tipoequipos_FK" Association="Self.sis_equipos_sis_tipoequipos_FK">
             <End Role="sis_tipoequipos" EntitySet="sis_tipoequipos" />
             <End Role="sis_equipos" EntitySet="sis_equipos" />
+          </AssociationSet>
+          <AssociationSet Name="sis_terminales_sis_estatusequipo_FK" Association="Self.sis_terminales_sis_estatusequipo_FK">
+            <End Role="sis_estatusequipo" EntitySet="sis_estatusequipo" />
+            <End Role="sis_terminales" EntitySet="sis_terminales" />
+          </AssociationSet>
+          <AssociationSet Name="sis_terminales_sis_marcas_FK" Association="Self.sis_terminales_sis_marcas_FK">
+            <End Role="sis_marcas" EntitySet="sis_marcas" />
+            <End Role="sis_terminales" EntitySet="sis_terminales" />
+          </AssociationSet>
+          <AssociationSet Name="sis_terminales_sis_tipoequipos_FK" Association="Self.sis_terminales_sis_tipoequipos_FK">
+            <End Role="sis_tipoequipos" EntitySet="sis_tipoequipos" />
+            <End Role="sis_terminales" EntitySet="sis_terminales" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -307,6 +368,19 @@
             <End Role="sis_celulares" EntitySet="sis_celulares" />
             <End Role="sis_asignacion_celulares" EntitySet="sis_asignacion_celulares" />
           </AssociationSet>
+          <EntitySet Name="sis_terminales" EntityType="db_a3f19c_administracionModel.sis_terminales" />
+          <AssociationSet Name="sis_terminales_sis_estatusequipo_FK" Association="db_a3f19c_administracionModel.sis_terminales_sis_estatusequipo_FK">
+            <End Role="sis_estatusequipo" EntitySet="sis_estatusequipo" />
+            <End Role="sis_terminales" EntitySet="sis_terminales" />
+          </AssociationSet>
+          <AssociationSet Name="sis_terminales_sis_marcas_FK" Association="db_a3f19c_administracionModel.sis_terminales_sis_marcas_FK">
+            <End Role="sis_marcas" EntitySet="sis_marcas" />
+            <End Role="sis_terminales" EntitySet="sis_terminales" />
+          </AssociationSet>
+          <AssociationSet Name="sis_terminales_sis_tipoequipos_FK" Association="db_a3f19c_administracionModel.sis_terminales_sis_tipoequipos_FK">
+            <End Role="sis_tipoequipos" EntitySet="sis_tipoequipos" />
+            <End Role="sis_terminales" EntitySet="sis_terminales" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="sis_mantenimiento">
           <Key>
@@ -325,6 +399,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="sis_equipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_equipos" />
           <NavigationProperty Name="sis_celulares" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_celulares" />
+          <NavigationProperty Name="sis_terminales" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_terminales" />
         </EntityType>
         <EntityType Name="sis_tipoequipos">
           <Key>
@@ -333,6 +408,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="sis_equipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_tipoequipos_FK" FromRole="sis_tipoequipos" ToRole="sis_equipos" />
+          <NavigationProperty Name="sis_terminales" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_tipoequipos_FK" FromRole="sis_tipoequipos" ToRole="sis_terminales" />
         </EntityType>
         <EntityType Name="sis_estatusequipo">
           <Key>
@@ -342,6 +418,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="sis_equipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_estatusequipo_FK" FromRole="sis_estatusequipo" ToRole="sis_equipos" />
           <NavigationProperty Name="sis_celulares" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_estatusequipo_FK" FromRole="sis_estatusequipo" ToRole="sis_celulares" />
+          <NavigationProperty Name="sis_terminales" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_estatusequipo_FK" FromRole="sis_estatusequipo" ToRole="sis_terminales" />
         </EntityType>
         <EntityType Name="sis_equipos">
           <Key>
@@ -533,6 +610,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sis_terminales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAC" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroSerie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sis_marcas_Id" Type="Int32" Nullable="false" />
+          <Property Name="sis_estatusequipo_Id" Type="Int32" Nullable="false" />
+          <Property Name="sis_tipoequipos_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sis_estatusequipo" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_estatusequipo_FK" FromRole="sis_terminales" ToRole="sis_estatusequipo" />
+          <NavigationProperty Name="sis_marcas" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_marcas_FK" FromRole="sis_terminales" ToRole="sis_marcas" />
+          <NavigationProperty Name="sis_tipoequipos" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_tipoequipos_FK" FromRole="sis_terminales" ToRole="sis_tipoequipos" />
+        </EntityType>
+        <Association Name="sis_terminales_sis_estatusequipo_FK">
+          <End Type="db_a3f19c_administracionModel.sis_estatusequipo" Role="sis_estatusequipo" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_terminales" Role="sis_terminales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_estatusequipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_terminales">
+              <PropertyRef Name="sis_estatusequipo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_terminales_sis_marcas_FK">
+          <End Type="db_a3f19c_administracionModel.sis_marcas" Role="sis_marcas" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_terminales" Role="sis_terminales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_terminales">
+              <PropertyRef Name="sis_marcas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_terminales_sis_tipoequipos_FK">
+          <End Type="db_a3f19c_administracionModel.sis_tipoequipos" Role="sis_tipoequipos" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_terminales" Role="sis_terminales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_tipoequipos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_terminales">
+              <PropertyRef Name="sis_tipoequipos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -642,6 +770,19 @@
                 <ScalarProperty Name="adm_area_Id" ColumnName="adm_area_Id" />
                 <ScalarProperty Name="adm_empleados_Id" ColumnName="adm_empleados_Id" />
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_terminales">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_terminales">
+              <MappingFragment StoreEntitySet="sis_terminales">
+                <ScalarProperty Name="sis_tipoequipos_Id" ColumnName="sis_tipoequipos_Id" />
+                <ScalarProperty Name="sis_estatusequipo_Id" ColumnName="sis_estatusequipo_Id" />
+                <ScalarProperty Name="sis_marcas_Id" ColumnName="sis_marcas_Id" />
+                <ScalarProperty Name="NumeroSerie" ColumnName="NumeroSerie" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
