@@ -6,128 +6,111 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebAppOGL.Entities.Administracion;
+using WebAppOGL.Entities.OrdenesCompra;
 
-
-namespace WebAppOGL.Controllers.Administracion
+namespace WebAppOGL.Controllers.OrdenesCompra
 {
-    public class adm_cuentasController : Controller
+    public class oc_divisaController : Controller
     {
-        private db_a3f19c_administracionEntities1 db = new db_a3f19c_administracionEntities1();
+        private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
 
-        // GET: adm_cuentas
+        // GET: oc_divisa
         public ActionResult Index()
         {
-            return View(db.adm_cuentas.ToList());
+            return View(db.oc_divisa.ToList());
         }
 
-        public JsonResult ListaSelect()
-        {
-            List<SelectListItem> listaElementos = new List<SelectListItem>();
-
-            foreach (var item in db.adm_cuentas.ToList())
-            {
-                listaElementos.Add(new SelectListItem
-                {
-                    Value = item.Id.ToString(),
-                    Text = item.Descripcion
-                });
-            }
-
-            return Json(listaElementos);
-        }
-
-        // GET: adm_cuentas/Details/5
+        // GET: oc_divisa/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_divisa oc_divisa = db.oc_divisa.Find(id);
+            if (oc_divisa == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_divisa);
         }
 
-        // GET: adm_cuentas/Create
+        // GET: oc_divisa/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: adm_cuentas/Create
+        // POST: oc_divisa/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Create([Bind(Include = "Id,Descripcion")] oc_divisa oc_divisa)
         {
             if (ModelState.IsValid)
             {
-                db.adm_cuentas.Add(adm_cuentas);
+                db.oc_divisa.Add(oc_divisa);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(adm_cuentas);
+            return View(oc_divisa);
         }
 
-        // GET: adm_cuentas/Edit/5
+        // GET: oc_divisa/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_divisa oc_divisa = db.oc_divisa.Find(id);
+            if (oc_divisa == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_divisa);
         }
 
-        // POST: adm_cuentas/Edit/5
+        // POST: oc_divisa/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion")] oc_divisa oc_divisa)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(adm_cuentas).State = EntityState.Modified;
+                db.Entry(oc_divisa).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(adm_cuentas);
+            return View(oc_divisa);
         }
 
-        // GET: adm_cuentas/Delete/5
+        // GET: oc_divisa/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_divisa oc_divisa = db.oc_divisa.Find(id);
+            if (oc_divisa == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_divisa);
         }
 
-        // POST: adm_cuentas/Delete/5
+        // POST: oc_divisa/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            db.adm_cuentas.Remove(adm_cuentas);
+            oc_divisa oc_divisa = db.oc_divisa.Find(id);
+            db.oc_divisa.Remove(oc_divisa);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

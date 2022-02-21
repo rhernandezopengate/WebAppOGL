@@ -199,6 +199,69 @@
     <Compile Include="Controllers\Administracion\adm_sucursalesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_categoriaController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_centrocostosController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_dashboardController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_divisaController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_formapagoController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_lugarentregaController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_ordenesdecomprasController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_productosController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_proveedoresController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_subcentrocostosController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_tipocompraController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\UoMsController.cs" />
+    <Compile Include="Entities\OrdenesCompra\DCOrdenesCompras.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCOrdenesCompras.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\DCOrdenesCompras.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\DCOrdenesCompras.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_categoria.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_centrocostos.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_det_ordenes_productos.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_divisa.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_formapago.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_lugarentrega.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_ordenescompras.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_productos.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_proveedores.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_subcentrocostos.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_tipocompra.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\UoM.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Sistemas\sis_asignacionController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_celularesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_celularesController.cs" />
@@ -316,6 +379,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Entities\OrdenesCompra\DCOrdenesCompras.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>
+      <LastGenOutput>DCOrdenesCompras.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\OrdenesCompra\DCOrdenesCompras.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>
+      <LastGenOutput>DCOrdenesCompras.cs</LastGenOutput>
+    </Content>
     <Content Include="Entities\Administracion\DCAdministracion.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DCAdministracion.edmx</DependentUpon>
@@ -399,6 +472,13 @@
       <DependentUpon>DCAdministracion.edmx</DependentUpon>
     </Content>
     <Content Include="App_Browsers\qt.browser" />
+    <EntityDeploy Include="Entities\OrdenesCompra\DCOrdenesCompras.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DCOrdenesCompras.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\OrdenesCompra\DCOrdenesCompras.edmx.diagram">
+      <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -4772,6 +4852,60 @@
     <Content Include="Views\sis_terminales\Details.cshtml" />
     <Content Include="Views\sis_terminales\Edit.cshtml" />
     <Content Include="Views\sis_terminales\Index.cshtml" />
+    <Content Include="Views\oc_categoria\Create.cshtml" />
+    <Content Include="Views\oc_categoria\Delete.cshtml" />
+    <Content Include="Views\oc_categoria\Details.cshtml" />
+    <Content Include="Views\oc_categoria\Edit.cshtml" />
+    <Content Include="Views\oc_categoria\Index.cshtml" />
+    <Content Include="Views\oc_centrocostos\Create.cshtml" />
+    <Content Include="Views\oc_centrocostos\Delete.cshtml" />
+    <Content Include="Views\oc_centrocostos\Details.cshtml" />
+    <Content Include="Views\oc_centrocostos\Edit.cshtml" />
+    <Content Include="Views\oc_centrocostos\Index.cshtml" />
+    <Content Include="Views\oc_divisa\Create.cshtml" />
+    <Content Include="Views\oc_divisa\Delete.cshtml" />
+    <Content Include="Views\oc_divisa\Details.cshtml" />
+    <Content Include="Views\oc_divisa\Edit.cshtml" />
+    <Content Include="Views\oc_divisa\Index.cshtml" />
+    <Content Include="Views\oc_formapago\Create.cshtml" />
+    <Content Include="Views\oc_formapago\Delete.cshtml" />
+    <Content Include="Views\oc_formapago\Details.cshtml" />
+    <Content Include="Views\oc_formapago\Edit.cshtml" />
+    <Content Include="Views\oc_formapago\Index.cshtml" />
+    <Content Include="Views\oc_lugarentrega\Create.cshtml" />
+    <Content Include="Views\oc_lugarentrega\Delete.cshtml" />
+    <Content Include="Views\oc_lugarentrega\Details.cshtml" />
+    <Content Include="Views\oc_lugarentrega\Edit.cshtml" />
+    <Content Include="Views\oc_lugarentrega\Index.cshtml" />
+    <Content Include="Views\oc_productos\Create.cshtml" />
+    <Content Include="Views\oc_productos\Delete.cshtml" />
+    <Content Include="Views\oc_productos\Details.cshtml" />
+    <Content Include="Views\oc_productos\Edit.cshtml" />
+    <Content Include="Views\oc_productos\Index.cshtml" />
+    <Content Include="Views\oc_proveedores\Create.cshtml" />
+    <Content Include="Views\oc_proveedores\Delete.cshtml" />
+    <Content Include="Views\oc_proveedores\Details.cshtml" />
+    <Content Include="Views\oc_proveedores\Edit.cshtml" />
+    <Content Include="Views\oc_proveedores\Index.cshtml" />
+    <Content Include="Views\oc_subcentrocostos\Create.cshtml" />
+    <Content Include="Views\oc_subcentrocostos\Delete.cshtml" />
+    <Content Include="Views\oc_subcentrocostos\Details.cshtml" />
+    <Content Include="Views\oc_subcentrocostos\Edit.cshtml" />
+    <Content Include="Views\oc_subcentrocostos\Index.cshtml" />
+    <Content Include="Views\oc_tipocompra\Create.cshtml" />
+    <Content Include="Views\oc_tipocompra\Delete.cshtml" />
+    <Content Include="Views\oc_tipocompra\Details.cshtml" />
+    <Content Include="Views\oc_tipocompra\Edit.cshtml" />
+    <Content Include="Views\oc_tipocompra\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutOrdenesCompras.cshtml" />
+    <Content Include="Views\oc_dashboard\Index.cshtml" />
+    <Content Include="Views\UoMs\Create.cshtml" />
+    <Content Include="Views\UoMs\Delete.cshtml" />
+    <Content Include="Views\UoMs\Details.cshtml" />
+    <Content Include="Views\UoMs\Edit.cshtml" />
+    <Content Include="Views\UoMs\Index.cshtml" />
+    <Content Include="Views\oc_ordenesdecompras\Index.cshtml" />
+    <Content Include="Views\oc_ordenesdecompras\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

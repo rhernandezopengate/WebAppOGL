@@ -6,128 +6,111 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebAppOGL.Entities.Administracion;
+using WebAppOGL.Entities.OrdenesCompra;
 
-
-namespace WebAppOGL.Controllers.Administracion
+namespace WebAppOGL.Controllers.OrdenesCompra
 {
-    public class adm_cuentasController : Controller
+    public class UoMsController : Controller
     {
-        private db_a3f19c_administracionEntities1 db = new db_a3f19c_administracionEntities1();
+        private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
 
-        // GET: adm_cuentas
+        // GET: UoMs
         public ActionResult Index()
         {
-            return View(db.adm_cuentas.ToList());
+            return View(db.UoM.ToList());
         }
 
-        public JsonResult ListaSelect()
-        {
-            List<SelectListItem> listaElementos = new List<SelectListItem>();
-
-            foreach (var item in db.adm_cuentas.ToList())
-            {
-                listaElementos.Add(new SelectListItem
-                {
-                    Value = item.Id.ToString(),
-                    Text = item.Descripcion
-                });
-            }
-
-            return Json(listaElementos);
-        }
-
-        // GET: adm_cuentas/Details/5
+        // GET: UoMs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            UoM uoM = db.UoM.Find(id);
+            if (uoM == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(uoM);
         }
 
-        // GET: adm_cuentas/Create
+        // GET: UoMs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: adm_cuentas/Create
+        // POST: UoMs/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Create([Bind(Include = "Id,Descripcion")] UoM uoM)
         {
             if (ModelState.IsValid)
             {
-                db.adm_cuentas.Add(adm_cuentas);
+                db.UoM.Add(uoM);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(adm_cuentas);
+            return View(uoM);
         }
 
-        // GET: adm_cuentas/Edit/5
+        // GET: UoMs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            UoM uoM = db.UoM.Find(id);
+            if (uoM == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(uoM);
         }
 
-        // POST: adm_cuentas/Edit/5
+        // POST: UoMs/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion")] UoM uoM)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(adm_cuentas).State = EntityState.Modified;
+                db.Entry(uoM).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(adm_cuentas);
+            return View(uoM);
         }
 
-        // GET: adm_cuentas/Delete/5
+        // GET: UoMs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            UoM uoM = db.UoM.Find(id);
+            if (uoM == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(uoM);
         }
 
-        // POST: adm_cuentas/Delete/5
+        // POST: UoMs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            db.adm_cuentas.Remove(adm_cuentas);
+            UoM uoM = db.UoM.Find(id);
+            db.UoM.Remove(uoM);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -6,128 +6,127 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebAppOGL.Entities.Administracion;
+using WebAppOGL.Entities.OrdenesCompra;
 
-
-namespace WebAppOGL.Controllers.Administracion
+namespace WebAppOGL.Controllers.OrdenesCompra
 {
-    public class adm_cuentasController : Controller
+    public class oc_proveedoresController : Controller
     {
-        private db_a3f19c_administracionEntities1 db = new db_a3f19c_administracionEntities1();
+        private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
 
-        // GET: adm_cuentas
+        // GET: oc_proveedores
         public ActionResult Index()
         {
-            return View(db.adm_cuentas.ToList());
+            return View(db.oc_proveedores.ToList());
         }
 
         public JsonResult ListaSelect()
         {
-            List<SelectListItem> listaElementos = new List<SelectListItem>();
+            List<SelectListItem> listaProveedores = new List<SelectListItem>();
 
-            foreach (var item in db.adm_cuentas.ToList())
+            foreach (var item in db.oc_proveedores.ToList())
             {
-                listaElementos.Add(new SelectListItem
+                listaProveedores.Add(new SelectListItem
                 {
                     Value = item.Id.ToString(),
-                    Text = item.Descripcion
+                    Text = item.NombreComercial
                 });
             }
 
-            return Json(listaElementos);
+            return Json(listaProveedores);
         }
 
-        // GET: adm_cuentas/Details/5
+        // GET: oc_proveedores/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_proveedores oc_proveedores = db.oc_proveedores.Find(id);
+            if (oc_proveedores == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_proveedores);
         }
 
-        // GET: adm_cuentas/Create
+        // GET: oc_proveedores/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: adm_cuentas/Create
+        // POST: oc_proveedores/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Create([Bind(Include = "Id,RFC,RazonSocial,DiasCredito,NombreComercial")] oc_proveedores oc_proveedores)
         {
             if (ModelState.IsValid)
             {
-                db.adm_cuentas.Add(adm_cuentas);
+                db.oc_proveedores.Add(oc_proveedores);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(adm_cuentas);
+            return View(oc_proveedores);
         }
 
-        // GET: adm_cuentas/Edit/5
+        // GET: oc_proveedores/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_proveedores oc_proveedores = db.oc_proveedores.Find(id);
+            if (oc_proveedores == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_proveedores);
         }
 
-        // POST: adm_cuentas/Edit/5
+        // POST: oc_proveedores/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Edit([Bind(Include = "Id,RFC,RazonSocial,DiasCredito,NombreComercial")] oc_proveedores oc_proveedores)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(adm_cuentas).State = EntityState.Modified;
+                db.Entry(oc_proveedores).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(adm_cuentas);
+            return View(oc_proveedores);
         }
 
-        // GET: adm_cuentas/Delete/5
+        // GET: oc_proveedores/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_proveedores oc_proveedores = db.oc_proveedores.Find(id);
+            if (oc_proveedores == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_proveedores);
         }
 
-        // POST: adm_cuentas/Delete/5
+        // POST: oc_proveedores/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            db.adm_cuentas.Remove(adm_cuentas);
+            oc_proveedores oc_proveedores = db.oc_proveedores.Find(id);
+            db.oc_proveedores.Remove(oc_proveedores);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

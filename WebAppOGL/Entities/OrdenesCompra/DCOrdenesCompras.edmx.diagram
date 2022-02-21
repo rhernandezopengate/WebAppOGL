@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d617af06a19f4767be8f264286b85091" Name="Diagram1">
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_categoria" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_centrocostos" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_det_ordenes_productos" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_divisa" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_formapago" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_lugarentrega" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_ordenescompras" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_productos" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_proveedores" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_subcentrocostos" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_tipocompra" Width="1.5" PointX="0.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.UoM" Width="1.5" PointX="0.75" PointY="26.375" IsExpanded="true" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_categoria_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_centrocostos_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_productos_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_divisa_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_formapago_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_lugarentrega_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_proveedores_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_subcentrocostos_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_productos_UoM_FK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

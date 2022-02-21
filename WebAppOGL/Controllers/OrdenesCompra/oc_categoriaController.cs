@@ -6,128 +6,111 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebAppOGL.Entities.Administracion;
+using WebAppOGL.Entities.OrdenesCompra;
 
-
-namespace WebAppOGL.Controllers.Administracion
+namespace WebAppOGL.Controllers.OrdenesCompra
 {
-    public class adm_cuentasController : Controller
+    public class oc_categoriaController : Controller
     {
-        private db_a3f19c_administracionEntities1 db = new db_a3f19c_administracionEntities1();
+        private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
 
-        // GET: adm_cuentas
+        // GET: oc_categoria
         public ActionResult Index()
         {
-            return View(db.adm_cuentas.ToList());
+            return View(db.oc_categoria.ToList());
         }
 
-        public JsonResult ListaSelect()
-        {
-            List<SelectListItem> listaElementos = new List<SelectListItem>();
-
-            foreach (var item in db.adm_cuentas.ToList())
-            {
-                listaElementos.Add(new SelectListItem
-                {
-                    Value = item.Id.ToString(),
-                    Text = item.Descripcion
-                });
-            }
-
-            return Json(listaElementos);
-        }
-
-        // GET: adm_cuentas/Details/5
+        // GET: oc_categoria/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_categoria oc_categoria = db.oc_categoria.Find(id);
+            if (oc_categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_categoria);
         }
 
-        // GET: adm_cuentas/Create
+        // GET: oc_categoria/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: adm_cuentas/Create
+        // POST: oc_categoria/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Create([Bind(Include = "Id,Descripcion")] oc_categoria oc_categoria)
         {
             if (ModelState.IsValid)
             {
-                db.adm_cuentas.Add(adm_cuentas);
+                db.oc_categoria.Add(oc_categoria);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(adm_cuentas);
+            return View(oc_categoria);
         }
 
-        // GET: adm_cuentas/Edit/5
+        // GET: oc_categoria/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_categoria oc_categoria = db.oc_categoria.Find(id);
+            if (oc_categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_categoria);
         }
 
-        // POST: adm_cuentas/Edit/5
+        // POST: oc_categoria/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Descripcion")] adm_cuentas adm_cuentas)
+        public ActionResult Edit([Bind(Include = "Id,Descripcion")] oc_categoria oc_categoria)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(adm_cuentas).State = EntityState.Modified;
+                db.Entry(oc_categoria).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(adm_cuentas);
+            return View(oc_categoria);
         }
 
-        // GET: adm_cuentas/Delete/5
+        // GET: oc_categoria/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            if (adm_cuentas == null)
+            oc_categoria oc_categoria = db.oc_categoria.Find(id);
+            if (oc_categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(adm_cuentas);
+            return View(oc_categoria);
         }
 
-        // POST: adm_cuentas/Delete/5
+        // POST: oc_categoria/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            adm_cuentas adm_cuentas = db.adm_cuentas.Find(id);
-            db.adm_cuentas.Remove(adm_cuentas);
+            oc_categoria oc_categoria = db.oc_categoria.Find(id);
+            db.oc_categoria.Remove(oc_categoria);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
