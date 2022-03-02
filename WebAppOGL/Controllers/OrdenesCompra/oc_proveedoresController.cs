@@ -18,7 +18,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         public ActionResult Index()
         {
             return View(db.oc_proveedores.ToList());
-        }
+        }        
 
         public JsonResult ListaSelect()
         {

@@ -259,6 +259,7 @@
     <Compile Include="Entities\OrdenesCompra\oc_tipocompra.cs">
       <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrdenesCompra\OrdenesCompraVM.cs" />
     <Compile Include="Entities\OrdenesCompra\UoM.cs">
       <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
     </Compile>

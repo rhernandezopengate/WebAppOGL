@@ -8,7 +8,12 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Form Design <small>different form elements</small></h2>                
+                <h2>Orden de Compra <small>Create</small></h2>
+                &nbsp;
+                &nbsp;
+                &nbsp;               
+                
+                <button type="submit" class="btn btn-success" id="btnSave">Submit</button>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -60,26 +65,263 @@
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                     </div>
 
+                    <div class="col-md-12">
+                        <table id="conceptos" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="10%">Codigo</th>
+                                    <th width="30%">Producto</th>
+                                    <th width="15%">Cantidad</th>
+                                    <th width="15%">Precio</th>
+                                    <th width="15%">Subtotal</th>
+                                    <td width="10%"></td>
+                                </tr>
+                                <tr>
+                                    <th> <input type="text" id="txtCodigo" class="form-control" />  </th>
+                                    <th> <input type="text" id="txtProducto" class="form-control" /> </th>
+                                    <th> <input type="text" id="txtCantidad" class="form-control" /> </th>
+                                    <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" /> </th>
+                                    <th> <input type="text" id="txtSubtotal" class="form-control" onkeyup="sumar()" disabled/> </th>
+                                    <th>
+                                        <input type="button" id="btnAdd" value="Add" class="btn btn-primary btn-sm" data-dismiss="modal" />
+                                        <button onclick="AbrirModal()" class="btn btn-success btn-sm"><span class="fa fa-plus"></span></button>
+                                    </th>
 
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Subtotal</td>
+                                    <td>                                        
+                                        <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="0" /> 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>IVA</td>
+                                    <td> <input type="text" class="form-control" disabled id="txtIVA" value="0"/> </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td> <input type="text" class="form-control" disabled id="txtTotal" value="0" /> </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                     <br />
                     <br />
                     <br />
                     <br />
-                    <div class="ln_solid"></div>
+                    <br />
+                    <br />
+                    <br />
+                    <div class="col-md-6">
+                        <textarea class="form-control" cols="20" id="Description" name="Description" rows="2" placeholder="Justificacion"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <textarea class="form-control" cols="20" id="Description" name="Description" rows="2" placeholder="Politicas"></textarea>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
                     <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-3">
-                            <button type="button" class="btn btn-primary">Cancel</button>
-                            <button class="btn btn-primary" type="reset">Reset</button>
-                            <button type="submit" class="btn btn-success">Submit</button>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
 
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer text-center">
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+<style>
+    .ui-autocomplete {
+        height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+</style>
+
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
 <script>
+
+    function AbrirModal() {
+        $("#myModal").modal();
+    }
+
+    function sumar() {
+        var txtCantidad = $("#txtCantidad");
+        var txtPrecio = $("#txtPrecio");
+        var subtotal = txtCantidad.val() * txtPrecio.val();
+
+        $("#txtSubtotal").val(subtotal.toFixed(2));
+    }
+
+    $("body").on("click", "#btnAdd", function () {
+        //Reference the Name and Country TextBoxes.
+        var txtCodigo = $("#txtCodigo");
+        var txtProducto = $("#txtProducto");
+        var txtCantidad = $("#txtCantidad");
+        var txtPrecio = $("#txtPrecio");
+        var txtSubtotal = $("#txtSubtotal");
+
+        //Get the reference of the Table's TBODY element.
+        var tBody = $("#conceptos > TBODY")[0];
+
+        //Add Row.
+        var row = tBody.insertRow(-1);
+
+        //Add Codigo cell.
+        var cell = $(row.insertCell(-1));
+        cell.html(txtCodigo.val());
+
+        //Add Producto cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtProducto.val());
+
+        //Add Cantidad cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtCantidad.val());
+
+        //Add Precio cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtPrecio.val());
+
+        //Add Subtotal cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtSubtotal.val());
+
+        //Add Button cell.
+        cell = $(row.insertCell(-1));
+        var btnRemove = $("<input class='btn btn-danger' />");
+        btnRemove.attr("type", "button");
+        btnRemove.attr("onclick", "Remove(this);");
+        btnRemove.val("Eliminar");
+        cell.append(btnRemove);
+
+        //Subtotal
+        var subtotalproducto = parseFloat(txtCantidad.val() * txtPrecio.val());
+        var subtotalactual = parseFloat($("#txtSubtotalCantidad").val());
+        var subtotalcaja = (subtotalactual + subtotalproducto).toFixed(2);
+
+        $("#txtSubtotalCantidad").val(subtotalcaja);
+
+        var valoriva = parseFloat(0.16);
+        var ivacaja = parseFloat(subtotalcaja * valoriva).toFixed(2);
+
+        $("#txtIVA").val(ivacaja);
+
+        var totalcaja = parseFloat(parseFloat(subtotalcaja) + parseFloat( ivacaja));
+
+        $("#txtTotal").val(totalcaja.toFixed(2));
+
+        //Clear the TextBoxes.
+
+        txtCodigo.val("");
+        txtCodigo.focus();
+        txtProducto.val("");
+        txtCantidad.val("");
+        txtPrecio.val("");
+        txtSubtotal.val("");
+    });
+
+    function Remove(button) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+        var valoreliminado = parseFloat($("TD", row).eq(4).html());
+
+        var subtotalactual = parseFloat($("#txtSubtotalCantidad").val());        
+        var nuevosubtotal = parseFloat(subtotalactual - valoreliminado).toFixed(2);
+
+        var ivaactual = parseFloat($("#txtIVA").val());
+        var ivaeliminado = parseFloat(valoreliminado) * parseFloat(0.16);
+        var nuevoiva = parseFloat(ivaactual - ivaeliminado).toFixed(2);
+
+        var totalactual = parseFloat($("#txtTotal").val());
+        var totaleliminado = parseFloat(valoreliminado) + parseFloat(ivaeliminado);
+        var nuevototal = parseFloat(totalactual - totaleliminado).toFixed(2);
+
+        $("#txtSubtotalCantidad").val(nuevosubtotal);
+        $("#txtIVA").val(nuevoiva);
+        $("#txtTotal").val(nuevototal);
+        
+        var table = $("#conceptos")[0];
+        table.deleteRow(row[0].rowIndex);
+    };
+
+    $("body").on("click", "#btnSave", function () {
+        //Loop through the Table rows and build a JSON array.
+        var detalleproductos = new Array();
+        $("#conceptos TBODY TR").each(function () {
+            var row = $(this);
+            var producto = {};
+            producto.codigo = row.find("TD").eq(0).html();
+            producto.producto = row.find("TD").eq(1).html();
+            producto.cantidad = row.find("TD").eq(2).html();
+            producto.precio = row.find("TD").eq(3).html();
+            producto.subtotal = row.find("TD").eq(4).html();
+           
+            detalleproductos.push(producto);
+        });
+
+        //Send the JSON array to Controller using AJAX.
+        $.ajax({
+            type: "POST",
+            url: "/oc_ordenesdecompras/InsertarOC",
+            data: JSON.stringify(detalleproductos),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                alert(r + " record(s) inserted.");
+            }
+        });
+    });
+
     $(function () {
         var ddlProveedores = $("#ddlProveedores");
         ddlProveedores.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
@@ -125,7 +367,6 @@
             }
         });
 
-
         var ddlCentroCostos = $("#ddlCentroCostos");
         ddlCentroCostos.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
         $.ajax({
@@ -148,8 +389,167 @@
             }
         });
 
+        var ddlSubCentroCostos = $("#ddlSubCentroCostos");
+        ddlSubCentroCostos.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/oc_subcentrocostos/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlSubCentroCostos.empty().append('<option selected="selected" value="0">Seleccione una Centro de Costos...</option>');
+                $.each(response, function () {
+                    ddlSubCentroCostos.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
 
-        
+        var ddlLugarEntrega = $("#ddlLugarEntrega");
+        ddlLugarEntrega.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/oc_lugarentrega/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlLugarEntrega.empty().append('<option selected="selected" value="0">Seleccione el Lugar de Entrega...</option>');
+                $.each(response, function () {
+                    ddlLugarEntrega.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
 
+        var ddlCategoria = $("#ddlCategoria");
+        ddlLugarEntrega.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/oc_categoria/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlCategoria.empty().append('<option selected="selected" value="0">Seleccione la Categoria...</option>');
+                $.each(response, function () {
+                    ddlCategoria.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+        var ddlTipoCompra = $("#ddlTipoCompra");
+        ddlTipoCompra.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/oc_tipocompra/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlTipoCompra.empty().append('<option selected="selected" value="0">Seleccione el Tipo de Compra...</option>');
+                $.each(response, function () {
+                    ddlTipoCompra.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+        var ddlDivisa = $("#ddlDivisa");
+        ddlDivisa.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/oc_divisa/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlDivisa.empty().append('<option selected="selected" value="0">Seleccione la Divisa...</option>');
+                $.each(response, function () {
+                    ddlDivisa.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+        var ddlFormaPago = $("#ddlFormaPago");
+        ddlFormaPago.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/oc_formapago/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlFormaPago.empty().append('<option selected="selected" value="0">Seleccione la Forma de Pago...</option>');
+                $.each(response, function () {
+                    ddlFormaPago.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
     });
+
+
+    $("#txtProducto").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/oc_productos/AutoComplete/',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return item;
+                    }))
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#txtProducto").val(i.item.val);
+        },
+        minLength: 0
+    }).focus(function () {
+        $(this).autocomplete("search");
+    });
+
 </script>

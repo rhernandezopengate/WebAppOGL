@@ -20,6 +20,22 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View(db.oc_subcentrocostos.ToList());
         }
 
+        public JsonResult ListaSelect()
+        {
+            List<SelectListItem> listaElementos = new List<SelectListItem>();
+
+            foreach (var item in db.oc_subcentrocostos.ToList())
+            {
+                listaElementos.Add(new SelectListItem
+                {
+                    Value = item.Id.ToString(),
+                    Text = item.Descripcion
+                });
+            }
+
+            return Json(listaElementos);
+        }
+
         // GET: oc_subcentrocostos/Details/5
         public ActionResult Details(int? id)
         {

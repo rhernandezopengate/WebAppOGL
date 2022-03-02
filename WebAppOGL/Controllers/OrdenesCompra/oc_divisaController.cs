@@ -20,6 +20,23 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View(db.oc_divisa.ToList());
         }
 
+        public JsonResult ListaSelect()
+        {
+            List<SelectListItem> listaElementos = new List<SelectListItem>();
+
+            foreach (var item in db.oc_divisa.ToList())
+            {
+                listaElementos.Add(new SelectListItem
+                {
+                    Value = item.Id.ToString(),
+                    Text = item.Descripcion
+                });
+            }
+
+            return Json(listaElementos);
+        }
+
+
         // GET: oc_divisa/Details/5
         public ActionResult Details(int? id)
         {

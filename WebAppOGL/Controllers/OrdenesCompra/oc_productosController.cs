@@ -21,6 +21,20 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View(oc_productos.ToList());
         }
 
+        public JsonResult AutoComplete(string prefix)
+        {
+            var proveedores = (from p in db.oc_productos
+                               where p.Descripcion.Contains(prefix)
+                               orderby p.Descripcion ascending
+                               select new
+                               {
+                                   label = p.Descripcion,
+                                   val = p.Id
+                               }).ToList();
+
+            return Json(proveedores);
+        }
+
         // GET: oc_productos/Details/5
         public ActionResult Details(int? id)
         {
