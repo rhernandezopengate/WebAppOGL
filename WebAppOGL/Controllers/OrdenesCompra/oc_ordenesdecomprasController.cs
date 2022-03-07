@@ -24,6 +24,13 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         [HttpPost]
         public JsonResult InsertarOC(List<detalleproductos> detalleproductos)
         {
+
+            foreach (var items in detalleproductos)
+            {
+                Console.WriteLine(items.codigo + " " + items.producto);
+            }
+
+
             using (db_a3f19c_administracionEntities2 entities = new db_a3f19c_administracionEntities2())
             {
                 //Truncate Table to delete all old records.
@@ -36,10 +43,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                 //}
 
                 //Loop and insert records.
-                foreach (var items in detalleproductos)
-                {
-                    Console.WriteLine(items.codigo + " " + items.producto);                   
-                }
+                
 
                 //int insertedRecords = entities.SaveChanges();
                 return Json("Hola");

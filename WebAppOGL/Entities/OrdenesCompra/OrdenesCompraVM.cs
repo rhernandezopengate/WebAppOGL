@@ -10,6 +10,11 @@ namespace WebAppOGL.Entities.OrdenesCompra
         
     }
 
+    public class encabezadooc 
+    {
+        public string Folio { get; set; }
+    }
+
     public class detalleproductos 
     {
         public string codigo { get; set; }
