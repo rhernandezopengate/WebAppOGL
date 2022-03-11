@@ -31,11 +31,13 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public virtual DbSet<oc_divisa> oc_divisa { get; set; }
         public virtual DbSet<oc_formapago> oc_formapago { get; set; }
         public virtual DbSet<oc_lugarentrega> oc_lugarentrega { get; set; }
-        public virtual DbSet<oc_ordenescompras> oc_ordenescompras { get; set; }
         public virtual DbSet<oc_productos> oc_productos { get; set; }
         public virtual DbSet<oc_proveedores> oc_proveedores { get; set; }
         public virtual DbSet<oc_subcentrocostos> oc_subcentrocostos { get; set; }
         public virtual DbSet<oc_tipocompra> oc_tipocompra { get; set; }
         public virtual DbSet<UoM> UoM { get; set; }
+        public virtual DbSet<oc_ordenescompras> oc_ordenescompras { get; set; }
+
+        public System.Data.Entity.DbSet<WebAppOGL.Entities.Sistemas.sis_asignacion_terminales> sis_asignacion_terminales { get; set; }
     }
 }

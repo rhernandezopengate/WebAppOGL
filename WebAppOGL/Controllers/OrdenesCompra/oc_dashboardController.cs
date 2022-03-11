@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace WebAppOGL.Controllers.OrdenesCompra
 {
+    [Authorize]
     public class oc_dashboardController : Controller
     {
         // GET: oc_dashboard

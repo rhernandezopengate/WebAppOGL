@@ -7,22 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAppOGL.Entities.OrdenesCompra
+namespace WebAppOGL.Entities.Sistemas
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class oc_det_ordenes_productos
+    public partial class sis_asignacion_terminales
     {
         public int Id { get; set; }
-        public string Codigo { get; set; }
-        public Nullable<int> Cantidad { get; set; }
-        public Nullable<decimal> Precio { get; set; }
-        public Nullable<decimal> Subtotal { get; set; }
-        public int oc_ordenescompras_Id { get; set; }
-        public int oc_productos_Id { get; set; }
+        public System.DateTime FechaAlta { get; set; }
+        public int sis_terminales_Id { get; set; }
+        public int adm_empleados_Id { get; set; }
+        public int adm_area_Id { get; set; }
+        public int adm_cuentas_Id { get; set; }
+        public int adm_sucursales_Id { get; set; }
+        public int oc_proveedores_Id { get; set; }
     
-        public virtual oc_productos oc_productos { get; set; }
-        public virtual oc_ordenescompras oc_ordenescompras { get; set; }
+        public virtual sis_terminales sis_terminales { get; set; }
     }
 }

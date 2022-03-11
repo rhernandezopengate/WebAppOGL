@@ -1,0 +1,94 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2> Asignacion de Terminales <small>Index</small></h2> &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-success" onclick="CrearAsignacionTerminales()"><i class="fa fa-plus-circle"></i> Asignar Terminales</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="form-label-left input_mask">
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        <input id="txtBusquedaTerminales" type="text" class="form-control has-feedback-left" placeholder="Nombre Empleado">
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <hr />
+                <table id="tblAsignacionTerminales" class="table table-bordered jambo_table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Fecha alta</th>
+                            <th>Empleado</th>
+                            <th>Modelo</th>
+                            <th>Numero Serie</th>
+                            <th>Cuenta</th>
+                            <th>Area</th>
+                            <th>Sucursal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var tableAsignacionCelulares;
+
+    $(document).ready(function () {
+        tblAsignacionTerminales = $('#tblAsignacionTerminales').DataTable({
+            "order": [[0, "desc"]],
+            "ordering": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "pagingType": "simple_numbers",
+            "dom": 'Blrtip', // Hides Default Search
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "deferRender": true,
+            rowId: 'Id',
+            select: true,
+            "ajax": {
+                "url": "/sis_asignacion_terminales/ObtenerAsignacionTerminales",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "aoColumns": [
+                //0
+                { "data": "Id", "autoWidth": true, "visible": false },
+                { "data": "FechaAltaString", "autoWidth": true, },
+                { "data": "Empleado", "autoWidth": true, },
+                { "data": "Modelo", "autoWidth": true, },
+                { "data": "Area", "autoWidth": true, },
+                { "data": "Cuenta", "autoWidth": true, },
+                { "data": "Sucursal", "autoWidth": true, },               
+                {
+                    "data": null,
+                    "targets": -1,
+                    "render": function (data, type, full) {
+                        return "<button onclick='EditarAsignacionCelular(" + full['Id'] + ")' class='btn btn-sm btn-primary'> <span class='fa fa-edit'></span> </button>" +
+                            "<a onclick='DetalleAsignacionCelular(" + full['Id'] + ")' class='btn btn-sm btn-info'> <span class='fa fa-list'></span> </a>"
+                    },
+                    "bSearchable": false,
+                    "sortable": false,
+                    "autoWidth": true,
+                    "sWidth": "100px"
+                }
+            ]
+        });
+
+        $('#txtBusquedaTerminales').on('keyup', function () {
+            tblAsignacionTerminales.columns(0).search(this.value).draw();
+        });
+    });
+
+</script>

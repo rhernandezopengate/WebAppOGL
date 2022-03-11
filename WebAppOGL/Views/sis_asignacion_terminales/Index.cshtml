@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebAppOGL.Entities.Sistemas.sis_asignacion_terminales>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaAlta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sis_terminales_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adm_empleados_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adm_area_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adm_cuentas_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adm_sucursales_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.oc_proveedores_Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaAlta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sis_terminales_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adm_empleados_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adm_area_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adm_cuentas_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adm_sucursales_Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.oc_proveedores_Id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

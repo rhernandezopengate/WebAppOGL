@@ -14,6 +14,12 @@ namespace WebAppOGL.Entities.Sistemas
     
     public partial class sis_terminales
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public sis_terminales()
+        {
+            this.sis_asignacion_terminales = new HashSet<sis_asignacion_terminales>();
+        }
+    
         public int Id { get; set; }
         public string Modelo { get; set; }
         public string MAC { get; set; }
@@ -25,5 +31,7 @@ namespace WebAppOGL.Entities.Sistemas
         public virtual sis_estatusequipo sis_estatusequipo { get; set; }
         public virtual sis_marcas sis_marcas { get; set; }
         public virtual sis_tipoequipos sis_tipoequipos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sis_asignacion_terminales> sis_asignacion_terminales { get; set; }
     }
 }

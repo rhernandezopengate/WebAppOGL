@@ -36,6 +36,7 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public int oc_divisa_Id { get; set; }
         public int oc_proveedores_Id { get; set; }
         public int adm_cuentas_Id { get; set; }
+        public Nullable<int> adm_empleados_Id { get; set; }
     
         public virtual oc_categoria oc_categoria { get; set; }
         public virtual oc_centrocostos oc_centrocostos { get; set; }

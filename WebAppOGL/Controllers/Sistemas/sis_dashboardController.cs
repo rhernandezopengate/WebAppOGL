@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,8 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.EquiposHLF = db.sis_equipos.Where(x => x.sis_mantenimiento_Id == 1).Count();
 
             ViewBag.CelularesOGL = db.sis_celulares.Count();
+
+            
 
             return View();
         }

@@ -211,6 +211,10 @@
     <Compile Include="Controllers\OrdenesCompra\oc_subcentrocostosController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_tipocompraController.cs" />
     <Compile Include="Controllers\OrdenesCompra\UoMsController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
+    <Compile Include="Entities\Administracion\AspNetUsers.cs">
+      <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\OrdenesCompra\DCOrdenesCompras.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -308,6 +312,7 @@
     </Compile>
     <Compile Include="Entities\Sistemas\AsignacionCelularesViewModel.cs" />
     <Compile Include="Entities\Sistemas\AsignacionEquiposViewModel.cs" />
+    <Compile Include="Entities\Sistemas\AsignacionTerminalesVM.cs" />
     <Compile Include="Entities\Sistemas\CelularesViewModel.cs" />
     <Compile Include="Entities\Sistemas\DCSistemas.Context.cs">
       <AutoGen>True</AutoGen>
@@ -329,6 +334,9 @@
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\sis_asignacion_celulares.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\sis_asignacion_terminales.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\sis_celulares.cs">
@@ -4907,6 +4915,12 @@
     <Content Include="Views\UoMs\Index.cshtml" />
     <Content Include="Views\oc_ordenesdecompras\Index.cshtml" />
     <Content Include="Views\oc_ordenesdecompras\Create.cshtml" />
+    <Content Include="Views\sis_asignacion_terminales\Create.cshtml" />
+    <Content Include="Views\sis_asignacion_terminales\Delete.cshtml" />
+    <Content Include="Views\sis_asignacion_terminales\Details.cshtml" />
+    <Content Include="Views\sis_asignacion_terminales\Edit.cshtml" />
+    <Content Include="Views\sis_asignacion_terminales\Index.cshtml" />
+    <Content Include="Views\sis_asignacion_terminales\AsiganacionTerminalesParcial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

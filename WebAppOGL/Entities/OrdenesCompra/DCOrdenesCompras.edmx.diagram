@@ -11,23 +11,23 @@
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_divisa" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_formapago" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_lugarentrega" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_ordenescompras" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_productos" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_proveedores" Width="1.5" PointX="0.75" PointY="18.25" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_subcentrocostos" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_tipocompra" Width="1.5" PointX="0.75" PointY="23.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel2.UoM" Width="1.5" PointX="0.75" PointY="26.375" IsExpanded="true" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_categoria_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_centrocostos_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK" ManuallyRouted="false" />
         <AssociationConnector Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_productos_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_divisa_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_formapago_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_lugarentrega_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_proveedores_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_subcentrocostos_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK" ManuallyRouted="false" />
         <AssociationConnector Association="db_a3f19c_administracionModel2.oc_productos_UoM_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel2.oc_ordenescompras" Width="1.5" PointX="3" PointY="12.75" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_categoria_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_centrocostos_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_divisa_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_formapago_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_lugarentrega_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_proveedores_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_subcentrocostos_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

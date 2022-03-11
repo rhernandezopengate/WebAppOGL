@@ -124,10 +124,10 @@
                     <br />
                     <br />
                     <div class="col-md-6">
-                        <textarea class="form-control" cols="20" id="Description" name="Description" rows="2" placeholder="Justificacion"></textarea>
+                        <textarea class="form-control" cols="20" id="txtProyecto" name="Description" rows="2" placeholder="Proyecto"></textarea>
                     </div>
                     <div class="col-md-6">
-                        <textarea class="form-control" cols="20" id="Description" name="Description" rows="2" placeholder="Politicas"></textarea>
+                        <textarea class="form-control" cols="20" id="txtJustificacion" name="Description" rows="2" placeholder="Justificacion"></textarea>
                     </div>
                     <br />
                     <br />
@@ -142,7 +142,6 @@
                     <br />
                     <br />
                     <br />
-
                     <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-3">
 
@@ -179,7 +178,7 @@
 
 <style>
     .ui-autocomplete {
-        height: 200px;
+        height: 100px;
         overflow-y: scroll;
         overflow-x: hidden;
     }
@@ -274,7 +273,7 @@
         var row = $(button).closest("TR");
         var valoreliminado = parseFloat($("TD", row).eq(4).html());
 
-        var subtotalactual = parseFloat($("#txtSubtotalCantidad").val());        
+        var subtotalactual = parseFloat($("#txtSubtotalCantidad").val());
         var nuevosubtotal = parseFloat(subtotalactual - valoreliminado).toFixed(2);
 
         var ivaactual = parseFloat($("#txtIVA").val());
@@ -288,7 +287,7 @@
         $("#txtSubtotalCantidad").val(nuevosubtotal);
         $("#txtIVA").val(nuevoiva);
         $("#txtTotal").val(nuevototal);
-        
+
         var table = $("#conceptos")[0];
         table.deleteRow(row[0].rowIndex);
     };
@@ -304,19 +303,34 @@
             producto.cantidad = row.find("TD").eq(2).html();
             producto.precio = row.find("TD").eq(3).html();
             producto.subtotal = row.find("TD").eq(4).html();
-           
+
             detalleproductos.push(producto);
         });
+
+
+        var encabezado = {
+            ProveedorId: $("#ddlProveedores").val(),
+            CuentaId: $("#ddlCuentas").val(),
+            CentroCostosId: $("#ddlCentroCostos").val(),
+            SubCentroCostosId: $("#ddlSubCentroCostos").val(),
+            LugarEntregaId: $("#ddlLugarEntrega").val(),
+            CategoriaId: $("#ddlCategoria").val(),
+            TipoCompraId: $("#ddlTipoCompra").val(),
+            DivisaId: $("#ddlDivisa").val(),
+            FormaPagoId: $("#ddlFormaPago").val(),
+            Proyecto: $("#txtProyecto").val(),
+            Justificacion: $("#txtJustificacion").val(),
+        }
 
         //Send the JSON array to Controller using AJAX.
         $.ajax({
             type: "POST",
             url: "/oc_ordenesdecompras/InsertarOC",
-            data: JSON.stringify(detalleproductos),
+            data: '{encabezado:' + JSON.stringify(encabezado) + ', detalleproductos: ' + JSON.stringify(detalleproductos) + ' }',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (r) {
-                alert(r + " record(s) inserted.");
+                location.href = "/oc_ordenesdecompras/index";
             }
         });
     });
@@ -520,7 +534,6 @@
             }
         });
     });
-
 
     $("#txtProducto").autocomplete({
         source: function (request, response) {

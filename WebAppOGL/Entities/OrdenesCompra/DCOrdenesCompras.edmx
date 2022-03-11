@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="db_a3f19c_administracionModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="db_a3f19c_administracionModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="oc_categoria">
           <Key>
             <PropertyRef Name="Id" />
@@ -72,6 +72,7 @@
           <Property Name="oc_divisa_Id" Type="int" Nullable="false" />
           <Property Name="oc_proveedores_Id" Type="int" Nullable="false" />
           <Property Name="adm_cuentas_Id" Type="int" Nullable="false" />
+          <Property Name="adm_empleados_Id" Type="int" />
         </EntityType>
         <EntityType Name="oc_productos">
           <Key>
@@ -302,8 +303,7 @@
             <End Role="oc_productos" EntitySet="oc_productos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_a3f19c_administracionModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -313,7 +313,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_categoria_FK" FromRole="oc_categoria" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_categoria_FK" FromRole="oc_categoria" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_centrocostos">
           <Key>
@@ -321,7 +321,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_centrocostos_FK" FromRole="oc_centrocostos" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_centrocostos_FK" FromRole="oc_centrocostos" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_det_ordenes_productos">
           <Key>
@@ -334,8 +334,8 @@
           <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="oc_ordenescompras_Id" Type="Int32" Nullable="false" />
           <Property Name="oc_productos_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_det_ordenes_productos_oc_ordenescompras_FK" FromRole="oc_det_ordenes_productos" ToRole="oc_ordenescompras" />
           <NavigationProperty Name="oc_productos" Relationship="Self.oc_det_ordenes_productos_oc_productos_FK" FromRole="oc_det_ordenes_productos" ToRole="oc_productos" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK" FromRole="oc_det_ordenes_productos" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_divisa">
           <Key>
@@ -343,7 +343,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_divisa_FK" FromRole="oc_divisa" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_divisa_FK" FromRole="oc_divisa" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_formapago">
           <Key>
@@ -351,7 +351,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_formapago_FK" FromRole="oc_formapago" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_formapago_FK" FromRole="oc_formapago" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_lugarentrega">
           <Key>
@@ -359,37 +359,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_lugarentrega_FK" FromRole="oc_lugarentrega" ToRole="oc_ordenescompras" />
-        </EntityType>
-        <EntityType Name="oc_ordenescompras">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Folio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
-          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-          <Property Name="FechaPosibleEntrega" Type="DateTime" Precision="0" />
-          <Property Name="Proyecto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Justificacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="oc_categoria_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_formapago_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_centrocostos_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_subcentrocostos_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_tipocompra_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_lugarentrega_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_divisa_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_proveedores_Id" Type="Int32" Nullable="false" />
-          <Property Name="adm_cuentas_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="oc_categoria" Relationship="Self.oc_ordenescompras_oc_categoria_FK" FromRole="oc_ordenescompras" ToRole="oc_categoria" />
-          <NavigationProperty Name="oc_centrocostos" Relationship="Self.oc_ordenescompras_oc_centrocostos_FK" FromRole="oc_ordenescompras" ToRole="oc_centrocostos" />
-          <NavigationProperty Name="oc_det_ordenes_productos" Relationship="Self.oc_det_ordenes_productos_oc_ordenescompras_FK" FromRole="oc_ordenescompras" ToRole="oc_det_ordenes_productos" />
-          <NavigationProperty Name="oc_divisa" Relationship="Self.oc_ordenescompras_oc_divisa_FK" FromRole="oc_ordenescompras" ToRole="oc_divisa" />
-          <NavigationProperty Name="oc_formapago" Relationship="Self.oc_ordenescompras_oc_formapago_FK" FromRole="oc_ordenescompras" ToRole="oc_formapago" />
-          <NavigationProperty Name="oc_lugarentrega" Relationship="Self.oc_ordenescompras_oc_lugarentrega_FK" FromRole="oc_ordenescompras" ToRole="oc_lugarentrega" />
-          <NavigationProperty Name="oc_proveedores" Relationship="Self.oc_ordenescompras_oc_proveedores_FK" FromRole="oc_ordenescompras" ToRole="oc_proveedores" />
-          <NavigationProperty Name="oc_subcentrocostos" Relationship="Self.oc_ordenescompras_oc_subcentrocostos_FK" FromRole="oc_ordenescompras" ToRole="oc_subcentrocostos" />
-          <NavigationProperty Name="oc_tipocompra" Relationship="Self.oc_ordenescompras_oc_tipocompra_FK" FromRole="oc_ordenescompras" ToRole="oc_tipocompra" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_lugarentrega_FK" FromRole="oc_lugarentrega" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_productos">
           <Key>
@@ -410,7 +380,7 @@
           <Property Name="RazonSocial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DiasCredito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NombreComercial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_proveedores_FK" FromRole="oc_proveedores" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_proveedores_FK" FromRole="oc_proveedores" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_subcentrocostos">
           <Key>
@@ -418,7 +388,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_subcentrocostos_FK" FromRole="oc_subcentrocostos" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_subcentrocostos_FK" FromRole="oc_subcentrocostos" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_tipocompra">
           <Key>
@@ -426,7 +396,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="Self.oc_ordenescompras_oc_tipocompra_FK" FromRole="oc_tipocompra" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK" FromRole="oc_tipocompra" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="UoM">
           <Key>
@@ -436,42 +406,6 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="oc_productos" Relationship="Self.oc_productos_UoM_FK" FromRole="UoM" ToRole="oc_productos" />
         </EntityType>
-        <Association Name="oc_ordenescompras_oc_categoria_FK">
-          <End Role="oc_categoria" Type="Self.oc_categoria" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_categoria">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_categoria_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_ordenescompras_oc_centrocostos_FK">
-          <End Role="oc_centrocostos" Type="Self.oc_centrocostos" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_centrocostos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_centrocostos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_det_ordenes_productos_oc_ordenescompras_FK">
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="1" />
-          <End Role="oc_det_ordenes_productos" Type="Self.oc_det_ordenes_productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_ordenescompras">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_det_ordenes_productos">
-              <PropertyRef Name="oc_ordenescompras_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="oc_det_ordenes_productos_oc_productos_FK">
           <End Role="oc_productos" Type="Self.oc_productos" Multiplicity="1" />
           <End Role="oc_det_ordenes_productos" Type="Self.oc_det_ordenes_productos" Multiplicity="*" />
@@ -481,78 +415,6 @@
             </Principal>
             <Dependent Role="oc_det_ordenes_productos">
               <PropertyRef Name="oc_productos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_ordenescompras_oc_divisa_FK">
-          <End Role="oc_divisa" Type="Self.oc_divisa" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_divisa">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_divisa_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_ordenescompras_oc_formapago_FK">
-          <End Role="oc_formapago" Type="Self.oc_formapago" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_formapago">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_formapago_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_ordenescompras_oc_lugarentrega_FK">
-          <End Role="oc_lugarentrega" Type="Self.oc_lugarentrega" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_lugarentrega">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_lugarentrega_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_ordenescompras_oc_proveedores_FK">
-          <End Role="oc_proveedores" Type="Self.oc_proveedores" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_proveedores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_proveedores_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_ordenescompras_oc_subcentrocostos_FK">
-          <End Role="oc_subcentrocostos" Type="Self.oc_subcentrocostos" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_subcentrocostos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_subcentrocostos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_ordenescompras_oc_tipocompra_FK">
-          <End Role="oc_tipocompra" Type="Self.oc_tipocompra" Multiplicity="1" />
-          <End Role="oc_ordenescompras" Type="Self.oc_ordenescompras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_tipocompra">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_ordenescompras">
-              <PropertyRef Name="oc_tipocompra_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -575,57 +437,196 @@
           <EntitySet Name="oc_divisa" EntityType="Self.oc_divisa" />
           <EntitySet Name="oc_formapago" EntityType="Self.oc_formapago" />
           <EntitySet Name="oc_lugarentrega" EntityType="Self.oc_lugarentrega" />
-          <EntitySet Name="oc_ordenescompras" EntityType="Self.oc_ordenescompras" />
           <EntitySet Name="oc_productos" EntityType="Self.oc_productos" />
           <EntitySet Name="oc_proveedores" EntityType="Self.oc_proveedores" />
           <EntitySet Name="oc_subcentrocostos" EntityType="Self.oc_subcentrocostos" />
           <EntitySet Name="oc_tipocompra" EntityType="Self.oc_tipocompra" />
           <EntitySet Name="UoM" EntityType="Self.UoM" />
-          <AssociationSet Name="oc_ordenescompras_oc_categoria_FK" Association="Self.oc_ordenescompras_oc_categoria_FK">
-            <End Role="oc_categoria" EntitySet="oc_categoria" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <AssociationSet Name="oc_ordenescompras_oc_centrocostos_FK" Association="Self.oc_ordenescompras_oc_centrocostos_FK">
-            <End Role="oc_centrocostos" EntitySet="oc_centrocostos" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <AssociationSet Name="oc_det_ordenes_productos_oc_ordenescompras_FK" Association="Self.oc_det_ordenes_productos_oc_ordenescompras_FK">
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-            <End Role="oc_det_ordenes_productos" EntitySet="oc_det_ordenes_productos" />
-          </AssociationSet>
           <AssociationSet Name="oc_det_ordenes_productos_oc_productos_FK" Association="Self.oc_det_ordenes_productos_oc_productos_FK">
             <End Role="oc_productos" EntitySet="oc_productos" />
             <End Role="oc_det_ordenes_productos" EntitySet="oc_det_ordenes_productos" />
-          </AssociationSet>
-          <AssociationSet Name="oc_ordenescompras_oc_divisa_FK" Association="Self.oc_ordenescompras_oc_divisa_FK">
-            <End Role="oc_divisa" EntitySet="oc_divisa" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <AssociationSet Name="oc_ordenescompras_oc_formapago_FK" Association="Self.oc_ordenescompras_oc_formapago_FK">
-            <End Role="oc_formapago" EntitySet="oc_formapago" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <AssociationSet Name="oc_ordenescompras_oc_lugarentrega_FK" Association="Self.oc_ordenescompras_oc_lugarentrega_FK">
-            <End Role="oc_lugarentrega" EntitySet="oc_lugarentrega" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <AssociationSet Name="oc_ordenescompras_oc_proveedores_FK" Association="Self.oc_ordenescompras_oc_proveedores_FK">
-            <End Role="oc_proveedores" EntitySet="oc_proveedores" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <AssociationSet Name="oc_ordenescompras_oc_subcentrocostos_FK" Association="Self.oc_ordenescompras_oc_subcentrocostos_FK">
-            <End Role="oc_subcentrocostos" EntitySet="oc_subcentrocostos" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <AssociationSet Name="oc_ordenescompras_oc_tipocompra_FK" Association="Self.oc_ordenescompras_oc_tipocompra_FK">
-            <End Role="oc_tipocompra" EntitySet="oc_tipocompra" />
-            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
           </AssociationSet>
           <AssociationSet Name="oc_productos_UoM_FK" Association="Self.oc_productos_UoM_FK">
             <End Role="UoM" EntitySet="UoM" />
             <End Role="oc_productos" EntitySet="oc_productos" />
           </AssociationSet>
+          <EntitySet Name="oc_ordenescompras" EntityType="db_a3f19c_administracionModel2.oc_ordenescompras" />
+          <AssociationSet Name="oc_ordenescompras_oc_categoria_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_categoria_FK">
+            <End Role="oc_categoria" EntitySet="oc_categoria" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <AssociationSet Name="oc_ordenescompras_oc_centrocostos_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_centrocostos_FK">
+            <End Role="oc_centrocostos" EntitySet="oc_centrocostos" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <AssociationSet Name="oc_det_ordenes_productos_oc_ordenescompras_FK" Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK">
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+            <End Role="oc_det_ordenes_productos" EntitySet="oc_det_ordenes_productos" />
+          </AssociationSet>
+          <AssociationSet Name="oc_ordenescompras_oc_divisa_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_divisa_FK">
+            <End Role="oc_divisa" EntitySet="oc_divisa" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <AssociationSet Name="oc_ordenescompras_oc_formapago_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_formapago_FK">
+            <End Role="oc_formapago" EntitySet="oc_formapago" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <AssociationSet Name="oc_ordenescompras_oc_lugarentrega_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_lugarentrega_FK">
+            <End Role="oc_lugarentrega" EntitySet="oc_lugarentrega" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <AssociationSet Name="oc_ordenescompras_oc_proveedores_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_proveedores_FK">
+            <End Role="oc_proveedores" EntitySet="oc_proveedores" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <AssociationSet Name="oc_ordenescompras_oc_subcentrocostos_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_subcentrocostos_FK">
+            <End Role="oc_subcentrocostos" EntitySet="oc_subcentrocostos" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <AssociationSet Name="oc_ordenescompras_oc_tipocompra_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK">
+            <End Role="oc_tipocompra" EntitySet="oc_tipocompra" />
+            <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="oc_ordenescompras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Folio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="0" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="FechaPosibleEntrega" Type="DateTime" Precision="0" />
+          <Property Name="Proyecto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Justificacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="oc_categoria_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_formapago_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_centrocostos_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_subcentrocostos_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_tipocompra_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_lugarentrega_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_divisa_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_proveedores_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_empleados_Id" Type="Int32" />
+          <NavigationProperty Name="oc_categoria" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_categoria_FK" FromRole="oc_ordenescompras" ToRole="oc_categoria" />
+          <NavigationProperty Name="oc_centrocostos" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_centrocostos_FK" FromRole="oc_ordenescompras" ToRole="oc_centrocostos" />
+          <NavigationProperty Name="oc_det_ordenes_productos" Relationship="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK" FromRole="oc_ordenescompras" ToRole="oc_det_ordenes_productos" />
+          <NavigationProperty Name="oc_divisa" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_divisa_FK" FromRole="oc_ordenescompras" ToRole="oc_divisa" />
+          <NavigationProperty Name="oc_formapago" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_formapago_FK" FromRole="oc_ordenescompras" ToRole="oc_formapago" />
+          <NavigationProperty Name="oc_lugarentrega" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_lugarentrega_FK" FromRole="oc_ordenescompras" ToRole="oc_lugarentrega" />
+          <NavigationProperty Name="oc_proveedores" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_proveedores_FK" FromRole="oc_ordenescompras" ToRole="oc_proveedores" />
+          <NavigationProperty Name="oc_subcentrocostos" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_subcentrocostos_FK" FromRole="oc_ordenescompras" ToRole="oc_subcentrocostos" />
+          <NavigationProperty Name="oc_tipocompra" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK" FromRole="oc_ordenescompras" ToRole="oc_tipocompra" />
+        </EntityType>
+        <Association Name="oc_ordenescompras_oc_categoria_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_categoria" Role="oc_categoria" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_categoria_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_ordenescompras_oc_centrocostos_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_centrocostos" Role="oc_centrocostos" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_centrocostos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_centrocostos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_det_ordenes_productos_oc_ordenescompras_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_det_ordenes_productos" Role="oc_det_ordenes_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_ordenescompras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_det_ordenes_productos">
+              <PropertyRef Name="oc_ordenescompras_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_ordenescompras_oc_divisa_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_divisa" Role="oc_divisa" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_divisa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_divisa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_ordenescompras_oc_formapago_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_formapago" Role="oc_formapago" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_formapago">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_formapago_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_ordenescompras_oc_lugarentrega_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_lugarentrega" Role="oc_lugarentrega" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_lugarentrega">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_lugarentrega_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_ordenescompras_oc_proveedores_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_proveedores" Role="oc_proveedores" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_proveedores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_proveedores_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_ordenescompras_oc_subcentrocostos_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_subcentrocostos" Role="oc_subcentrocostos" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_subcentrocostos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_subcentrocostos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_ordenescompras_oc_tipocompra_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_tipocompra" Role="oc_tipocompra" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_ordenescompras" Role="oc_ordenescompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_tipocompra">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_ordenescompras">
+              <PropertyRef Name="oc_tipocompra_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -685,28 +686,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="oc_ordenescompras">
-            <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_ordenescompras">
-              <MappingFragment StoreEntitySet="oc_ordenescompras">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Folio" ColumnName="Folio" />
-                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="FechaPosibleEntrega" ColumnName="FechaPosibleEntrega" />
-                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
-                <ScalarProperty Name="Justificacion" ColumnName="Justificacion" />
-                <ScalarProperty Name="oc_categoria_Id" ColumnName="oc_categoria_Id" />
-                <ScalarProperty Name="oc_formapago_Id" ColumnName="oc_formapago_Id" />
-                <ScalarProperty Name="oc_centrocostos_Id" ColumnName="oc_centrocostos_Id" />
-                <ScalarProperty Name="oc_subcentrocostos_Id" ColumnName="oc_subcentrocostos_Id" />
-                <ScalarProperty Name="oc_tipocompra_Id" ColumnName="oc_tipocompra_Id" />
-                <ScalarProperty Name="oc_lugarentrega_Id" ColumnName="oc_lugarentrega_Id" />
-                <ScalarProperty Name="oc_divisa_Id" ColumnName="oc_divisa_Id" />
-                <ScalarProperty Name="oc_proveedores_Id" ColumnName="oc_proveedores_Id" />
-                <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="oc_productos">
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_productos">
               <MappingFragment StoreEntitySet="oc_productos">
@@ -748,6 +727,29 @@
               <MappingFragment StoreEntitySet="UoM">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oc_ordenescompras">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_ordenescompras">
+              <MappingFragment StoreEntitySet="oc_ordenescompras">
+                <ScalarProperty Name="adm_empleados_Id" ColumnName="adm_empleados_Id" />
+                <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
+                <ScalarProperty Name="oc_proveedores_Id" ColumnName="oc_proveedores_Id" />
+                <ScalarProperty Name="oc_divisa_Id" ColumnName="oc_divisa_Id" />
+                <ScalarProperty Name="oc_lugarentrega_Id" ColumnName="oc_lugarentrega_Id" />
+                <ScalarProperty Name="oc_tipocompra_Id" ColumnName="oc_tipocompra_Id" />
+                <ScalarProperty Name="oc_subcentrocostos_Id" ColumnName="oc_subcentrocostos_Id" />
+                <ScalarProperty Name="oc_centrocostos_Id" ColumnName="oc_centrocostos_Id" />
+                <ScalarProperty Name="oc_formapago_Id" ColumnName="oc_formapago_Id" />
+                <ScalarProperty Name="oc_categoria_Id" ColumnName="oc_categoria_Id" />
+                <ScalarProperty Name="Justificacion" ColumnName="Justificacion" />
+                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+                <ScalarProperty Name="FechaPosibleEntrega" ColumnName="FechaPosibleEntrega" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

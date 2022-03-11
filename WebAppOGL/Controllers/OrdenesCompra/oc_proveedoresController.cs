@@ -24,7 +24,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             List<SelectListItem> listaProveedores = new List<SelectListItem>();
 
-            foreach (var item in db.oc_proveedores.ToList())
+            foreach (var item in db.oc_proveedores.OrderBy(x => x.NombreComercial).ToList())
             {
                 listaProveedores.Add(new SelectListItem
                 {

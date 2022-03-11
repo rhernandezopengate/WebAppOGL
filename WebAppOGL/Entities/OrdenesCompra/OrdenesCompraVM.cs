@@ -12,7 +12,27 @@ namespace WebAppOGL.Entities.OrdenesCompra
 
     public class encabezadooc 
     {
-        public string Folio { get; set; }
+        public int ProveedorId { get; set; }
+
+        public int CuentaId { get; set; }
+
+        public int CentroCostosId { get; set; }
+
+        public int SubCentroCostosId { get; set; }
+
+        public int LugarEntregaId { get; set; }
+
+        public int CategoriaId { get; set; }
+
+        public int TipoCompraId { get; set; }
+
+        public int DivisaId { get; set; }
+
+        public int FormaPagoId { get; set; }
+
+        public string Proyecto { get; set; }
+
+        public string Justificacion { get; set; }
     }
 
     public class detalleproductos 
@@ -21,7 +41,7 @@ namespace WebAppOGL.Entities.OrdenesCompra
         
         public string producto { get; set; }
 
-        public decimal cantidad { get; set; }
+        public int cantidad { get; set; }
 
         public decimal precio { get; set; }
 
