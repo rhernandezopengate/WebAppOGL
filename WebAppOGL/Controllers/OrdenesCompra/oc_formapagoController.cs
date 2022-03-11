@@ -66,7 +66,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_formapago.Add(oc_formapago);
+                oc_formapago pago = new oc_formapago();
+                pago.Descripcion = oc_formapago.Descripcion.ToUpper();
+
+                db.oc_formapago.Add(pago);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,7 +101,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_formapago).State = EntityState.Modified;
+                oc_formapago pago = db.oc_formapago.Find(oc_formapago.Id);
+                pago.Descripcion = oc_formapago.Descripcion.ToUpper();
+
+                db.Entry(pago).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

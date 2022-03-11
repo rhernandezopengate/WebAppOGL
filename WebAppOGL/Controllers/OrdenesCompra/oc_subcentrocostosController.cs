@@ -66,7 +66,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_subcentrocostos.Add(oc_subcentrocostos);
+                oc_subcentrocostos costos = new oc_subcentrocostos();
+                costos.Descripcion = oc_subcentrocostos.Descripcion.ToUpper();
+
+                db.oc_subcentrocostos.Add(costos);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,7 +101,11 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_subcentrocostos).State = EntityState.Modified;
+                oc_subcentrocostos costos = db.oc_subcentrocostos.Find(oc_subcentrocostos.Id);
+                costos.Descripcion = oc_subcentrocostos.Descripcion.ToUpper();
+
+
+                db.Entry(costos).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

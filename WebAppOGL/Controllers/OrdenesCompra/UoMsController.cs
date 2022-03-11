@@ -50,7 +50,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.UoM.Add(uoM);
+                UoM uni = new UoM();
+                uni.Descripcion = uoM.Descripcion.ToUpper();
+
+                db.UoM.Add(uni);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -82,7 +85,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(uoM).State = EntityState.Modified;
+                UoM uni = db.UoM.Find(uoM.Id);
+                uni.Descripcion = uoM.Descripcion.ToUpper();
+
+                db.Entry(uni).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

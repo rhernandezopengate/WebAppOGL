@@ -53,7 +53,12 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.sis_tipoequipos.Add(sis_tipoequipos);
+
+                sis_tipoequipos tipo = new sis_tipoequipos();
+                tipo.Descripcion = sis_tipoequipos.Descripcion.ToUpper();
+
+
+                db.sis_tipoequipos.Add(tipo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,6 +74,7 @@ namespace WebAppOGL.Controllers.Sistemas
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             sis_tipoequipos sis_tipoequipos = db.sis_tipoequipos.Find(id);
+
             if (sis_tipoequipos == null)
             {
                 return HttpNotFound();
@@ -85,7 +91,10 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sis_tipoequipos).State = EntityState.Modified;
+                sis_tipoequipos tipo = db.sis_tipoequipos.Find(sis_tipoequipos.Id);
+                tipo.Descripcion = sis_tipoequipos.Descripcion.ToUpper();
+
+                db.Entry(tipo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

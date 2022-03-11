@@ -66,7 +66,11 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_categoria.Add(oc_categoria);
+                oc_categoria cate = new oc_categoria();
+                cate.Descripcion = oc_categoria.Descripcion.ToUpper();
+
+
+                db.oc_categoria.Add(cate);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,7 +102,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_categoria).State = EntityState.Modified;
+                oc_categoria cate = db.oc_categoria.Find(oc_categoria.Id);
+                cate.Descripcion = oc_categoria.Descripcion.ToUpper();
+
+                db.Entry(cate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
