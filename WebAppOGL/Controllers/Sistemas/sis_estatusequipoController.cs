@@ -50,7 +50,10 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.sis_estatusequipo.Add(sis_estatusequipo);
+                sis_estatusequipo status = new sis_estatusequipo();
+                status.Descripcion = sis_estatusequipo.Descripcion.ToUpper();
+
+                db.sis_estatusequipo.Add(status);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -82,7 +85,11 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sis_estatusequipo).State = EntityState.Modified;
+                sis_estatusequipo status = db.sis_estatusequipo.Find(sis_estatusequipo.Id);
+                status.Descripcion = sis_estatusequipo.Descripcion.ToUpper();
+
+
+                db.Entry(status).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

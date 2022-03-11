@@ -50,7 +50,10 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.sis_marcas.Add(sis_marcas);
+                sis_marcas marca = new sis_marcas();
+                marca.Descripcion = sis_marcas.Descripcion.ToUpper();
+                
+                db.sis_marcas.Add(marca);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -82,7 +85,10 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sis_marcas).State = EntityState.Modified;
+                sis_marcas marca = db.sis_marcas.Find(sis_marcas.Id);
+                marca.Descripcion = sis_marcas.Descripcion.ToUpper();
+
+                db.Entry(marca).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

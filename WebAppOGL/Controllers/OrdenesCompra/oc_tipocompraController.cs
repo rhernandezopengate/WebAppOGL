@@ -66,7 +66,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_tipocompra.Add(oc_tipocompra);
+                oc_tipocompra tipo = new oc_tipocompra();
+                tipo.Descripcion = oc_tipocompra.Descripcion.ToUpper();
+
+                db.oc_tipocompra.Add(tipo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,7 +101,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_tipocompra).State = EntityState.Modified;
+                oc_tipocompra tipo = db.oc_tipocompra.Find(oc_tipocompra.Id);
+                tipo.Descripcion = oc_tipocompra.Descripcion.ToUpper();
+
+                db.Entry(tipo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

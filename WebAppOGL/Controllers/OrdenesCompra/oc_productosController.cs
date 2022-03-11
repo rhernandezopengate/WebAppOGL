@@ -66,7 +66,11 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_productos.Add(oc_productos);
+                oc_productos prod = new oc_productos();
+                prod.Descripcion = oc_productos.Descripcion.ToUpper();
+
+
+                db.oc_productos.Add(prod);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -100,7 +104,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_productos).State = EntityState.Modified;
+                oc_productos prod = db.oc_productos.Find(oc_productos.Id);
+                prod.Descripcion = oc_productos.Descripcion.ToUpper();
+
+                db.Entry(prod).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

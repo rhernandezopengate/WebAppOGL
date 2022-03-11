@@ -67,7 +67,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_centrocostos.Add(oc_centrocostos);
+                oc_centrocostos centro = new oc_centrocostos();
+                centro.Descripcion = oc_centrocostos.Descripcion.ToUpper();
+
+                db.oc_centrocostos.Add(centro);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -99,7 +102,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_centrocostos).State = EntityState.Modified;
+                oc_centrocostos centro = db.oc_centrocostos.Find(oc_centrocostos.Id);
+                centro.Descripcion = oc_centrocostos.Descripcion.ToUpper();
+
+                db.Entry(centro).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

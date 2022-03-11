@@ -66,7 +66,11 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_lugarentrega.Add(oc_lugarentrega);
+                oc_lugarentrega lugar = new oc_lugarentrega();
+                lugar.Descripcion = oc_lugarentrega.Descripcion.ToUpper();
+
+
+                db.oc_lugarentrega.Add(lugar);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -98,7 +102,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_lugarentrega).State = EntityState.Modified;
+                oc_lugarentrega lugar = db.oc_lugarentrega.Find(oc_lugarentrega.Id);
+                lugar.Descripcion = oc_lugarentrega.Descripcion.ToUpper();
+
+                db.Entry(lugar).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

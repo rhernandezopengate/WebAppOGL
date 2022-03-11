@@ -67,7 +67,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.oc_divisa.Add(oc_divisa);
+                oc_divisa divisa = new oc_divisa();
+                divisa.Descripcion = oc_divisa.Descripcion.ToUpper();
+
+                db.oc_divisa.Add(divisa);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -99,7 +102,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
-                db.Entry(oc_divisa).State = EntityState.Modified;
+                oc_divisa divisa = db.oc_divisa.Find(oc_divisa.Id);
+                divisa.Descripcion = oc_divisa.Descripcion.ToUpper();
+
+                db.Entry(divisa).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
