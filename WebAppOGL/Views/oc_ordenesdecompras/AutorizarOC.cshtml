@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <center>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Crear Nuevo Equipo</h4>
+        </center>
+    </div>
+    <div class="modal-body">
+        <div id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+            @if (User.IsInRole("compras"))
+            {
+                <div class="form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
+                        oc_statuscompras_Id
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.DropDownList("oc_statuscompras_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                    </div>
+                </div>
+
+            }
+            else if (User.IsInRole("finanzas"))
+            {
+                <div class="form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
+                        oc_statusfinanzas_Id
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.DropDownList("oc_statusfinanzas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                    </div>
+                </div>
+                if (ViewBag.Usuario == "Supervisor")
+                {
+                    <div class="form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
+                            oc_statussupervisor_Id
+                        </label>
+                        <div class="col-md-6 col-sm-6">
+                            @Html.DropDownList("oc_statussupervisor_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        </div>
+                    </div>
+                }
+            }
+            else if (User.IsInRole("direccion"))
+            {
+                <div class="form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
+                        oc_statusdirector_Id
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.DropDownList("oc_statusdirector_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                    </div>
+                </div>
+            }
+            else if (ViewBag.Usuario == "Supervisor")
+            {
+                <div class="form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
+                        oc_statussupervisor_Id
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.DropDownList("oc_statussupervisor_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                    </div>
+                </div>
+            }
+            else
+            {
+                <label>Dar Seguimiento a los Estatus</label>
+            }
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</div>

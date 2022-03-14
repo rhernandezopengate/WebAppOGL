@@ -73,7 +73,8 @@ namespace WebAppOGL.Controllers.Sistemas
                             asignacion.Empleado = dr["Empleado"].ToString();
                             asignacion.Sucursal = dr["Sucursal"].ToString();
                             asignacion.Cuenta = dr["Cuenta"].ToString();
-                            asignacion.Modelo = dr["Modelo"].ToString() + " - " +dr["NumeroSerie"].ToString();                            
+                            asignacion.Modelo = dr["Modelo"].ToString();
+                            asignacion.Terminal = dr["NumeroSerie"].ToString();
 
                             if (dr["FechaAlta"].ToString() != "")
                             {
@@ -106,8 +107,6 @@ namespace WebAppOGL.Controllers.Sistemas
                 return null;
             }
         }
-
-
 
         // GET: sis_asignacion_terminales
         public ActionResult Index()
@@ -172,6 +171,14 @@ namespace WebAppOGL.Controllers.Sistemas
             {
                 return HttpNotFound();
             }
+
+            ViewBag.sis_terminales_Id = new SelectList(db.sis_terminales, "Id", "NumeroSerie", sis_asignacion_terminales.sis_terminales_Id);
+            ViewBag.adm_empleados_Id = new SelectList(dbAdmin.adm_empleados, "Id", "Nombres", sis_asignacion_terminales.adm_empleados_Id);
+            ViewBag.adm_area_Id = new SelectList(dbAdmin.adm_area, "Id", "Descripcion", sis_asignacion_terminales.adm_area_Id);
+            ViewBag.adm_sucursales_Id = new SelectList(dbAdmin.adm_sucursales, "Id", "Descripcion", sis_asignacion_terminales.adm_sucursales_Id);
+            ViewBag.adm_cuentas_Id = new SelectList(dbAdmin.adm_cuentas, "Id", "Descripcion", sis_asignacion_terminales.adm_cuentas_Id);
+            ViewBag.oc_proveedores_Id = new SelectList(dbOC.oc_proveedores, "Id", "NombreComercial", sis_asignacion_terminales.oc_proveedores_Id);
+
             return View(sis_asignacion_terminales);
         }
 

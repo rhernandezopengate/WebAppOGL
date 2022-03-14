@@ -208,7 +208,13 @@
     <Compile Include="Controllers\OrdenesCompra\oc_ordenesdecomprasController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_productosController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_proveedoresController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_solicitantesController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_statuscomprasController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_statusdirectorController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_statusfinanzasController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_statussupervisorController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_subcentrocostosController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_supervisoresController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_tipocompraController.cs" />
     <Compile Include="Controllers\OrdenesCompra\UoMsController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
@@ -257,7 +263,25 @@
     <Compile Include="Entities\OrdenesCompra\oc_proveedores.cs">
       <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_solicitantes.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_statuscompras.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_statusdirector.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_statusfinanzas.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_statussupervisor.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\OrdenesCompra\oc_subcentrocostos.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_supervisores.cs">
       <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\OrdenesCompra\oc_tipocompra.cs">
@@ -4921,6 +4945,37 @@
     <Content Include="Views\sis_asignacion_terminales\Edit.cshtml" />
     <Content Include="Views\sis_asignacion_terminales\Index.cshtml" />
     <Content Include="Views\sis_asignacion_terminales\AsiganacionTerminalesParcial.cshtml" />
+    <Content Include="Views\oc_solicitantes\Create.cshtml" />
+    <Content Include="Views\oc_solicitantes\Delete.cshtml" />
+    <Content Include="Views\oc_solicitantes\Details.cshtml" />
+    <Content Include="Views\oc_solicitantes\Edit.cshtml" />
+    <Content Include="Views\oc_solicitantes\Index.cshtml" />
+    <Content Include="Views\oc_supervisores\Create.cshtml" />
+    <Content Include="Views\oc_supervisores\Delete.cshtml" />
+    <Content Include="Views\oc_supervisores\Details.cshtml" />
+    <Content Include="Views\oc_supervisores\Edit.cshtml" />
+    <Content Include="Views\oc_supervisores\Index.cshtml" />
+    <Content Include="Views\oc_statuscompras\Create.cshtml" />
+    <Content Include="Views\oc_statuscompras\Delete.cshtml" />
+    <Content Include="Views\oc_statuscompras\Details.cshtml" />
+    <Content Include="Views\oc_statuscompras\Edit.cshtml" />
+    <Content Include="Views\oc_statuscompras\Index.cshtml" />
+    <Content Include="Views\oc_statusdirector\Create.cshtml" />
+    <Content Include="Views\oc_statusdirector\Delete.cshtml" />
+    <Content Include="Views\oc_statusdirector\Details.cshtml" />
+    <Content Include="Views\oc_statusdirector\Edit.cshtml" />
+    <Content Include="Views\oc_statusdirector\Index.cshtml" />
+    <Content Include="Views\oc_statusfinanzas\Create.cshtml" />
+    <Content Include="Views\oc_statusfinanzas\Delete.cshtml" />
+    <Content Include="Views\oc_statusfinanzas\Details.cshtml" />
+    <Content Include="Views\oc_statusfinanzas\Edit.cshtml" />
+    <Content Include="Views\oc_statusfinanzas\Index.cshtml" />
+    <Content Include="Views\oc_statussupervisor\Create.cshtml" />
+    <Content Include="Views\oc_statussupervisor\Delete.cshtml" />
+    <Content Include="Views\oc_statussupervisor\Details.cshtml" />
+    <Content Include="Views\oc_statussupervisor\Edit.cshtml" />
+    <Content Include="Views\oc_statussupervisor\Index.cshtml" />
+    <Content Include="Views\oc_ordenesdecompras\AutorizarOC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

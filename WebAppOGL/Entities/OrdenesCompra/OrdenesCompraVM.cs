@@ -10,6 +10,27 @@ namespace WebAppOGL.Entities.OrdenesCompra
         
     }
 
+    public partial class oc_ordenescompras 
+    {
+        public string FechaAltaString { get; set; }
+
+        public string Proveedor { get; set; }
+
+        public string CentroCostos { get; set; }
+
+        public string Cuenta { get; set; }
+
+        public string Solicitante { get; set; }
+
+        public string StatusCompras { get; set; }
+
+        public string StatusDirector { get; set; }
+
+        public string StatusFinanzas { get; set; }
+
+        public string StatusSupervisor { get; set; }
+    }
+
     public class encabezadooc 
     {
         public int ProveedorId { get; set; }

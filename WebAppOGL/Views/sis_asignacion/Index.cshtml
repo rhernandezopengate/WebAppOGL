@@ -10,164 +10,181 @@
         @Html.Action("AsignacionEquiposParcial", "sis_asignacion")
     </div>
     <div class="col-md-6">
-        @Html.Action("AsignacionCelularesParcial", "sis_asignacion_celulares")      
-    </div>       
-    <div class="col-md-6">       
-        @Html.Action("AsiganacionTerminalesParcial", "sis_asignacion_terminales")
-    </div>    
-</div>
-
-    <div id="MyModal" class="modal fade bs-example-modal-lg">
-        <div class="modal-dialog modal-lg" id="mdialTamanio">
-            <div class="modal-content">
-                <div id="MyModalContent"></div>
-            </div>
-        </div>
+        @Html.Action("AsignacionCelularesParcial", "sis_asignacion_celulares")
     </div>
 
-    <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+</div>
 
-    <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
-    <script src="~/build/js/custom.min.js"></script>
-
-    <script type="text/javascript">
-
-        /*Asignacion Terminales*/
-        var CrearAsignacionTerminales = function () {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion_terminales/Create";
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
-
-        var EditarAsignacionTerminales = function (ID) {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion_terminales/Edit/" + ID;
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
+<div class="row">
+    <div class="col-md-6">
+        @Html.Action("AsiganacionTerminalesParcial", "sis_asignacion_terminales")
+    </div>
+</div>
 
 
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
+        <div class="modal-content">
+            <div id="MyModalContent"></div>
+        </div>
+    </div>
+</div>
 
-        var CrearAsignacionEquipo = function () {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion/Create";
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
-        
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
 
-        var EditarAsignacionEquipo = function (ID) {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion/Edit/" + ID;
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
+<script type="text/javascript">
 
-        var DetalleAsignacionEquipo = function (ID) {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion/Details/" + ID;
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
+    /*Asignacion Terminales*/
+    var CrearAsignacionTerminales = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_terminales/Create";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
 
-        var CrearAsignacionCelulares = function () {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion_celulares/Create";
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
+    var EditarAsignacionTerminales = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_terminales/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
 
-        var EditarAsignacionCelular = function (ID) {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion_celulares/Edit/" + ID;
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
+    /*Asignacion Terminales*/
 
-        var DetalleAsignacionCelular = function (ID) {
-            $.ajaxSetup({ cache: false });
-            var url = "/sis_asignacion_celulares/Details/" + ID;
-            $("#MyModalContent").load(url, function () {
-                $("#MyModal").modal({
-                    //backdrop: 'static',
-                    keyboard: false
-                }, 'show');
-                bindForm(this);
-            });
-            return false;
-        }
+    var CrearAsignacionEquipo = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion/Create";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
 
-        function bindForm(dialog) {
-            $('form', dialog).submit(function () {
-                $.ajax({
-                    url: this.action,
-                    type: this.method,
-                    data: $(this).serialize(),
-                    success: function (result) {
-                        if (result === 'Correcto') {
-                            $("#MyModal").modal('hide');
-                            toastr.success('Operacion Correcta.');
-                            table.draw();
-                            tableAsignacionCelulares.draw();
-                        }
-                        else {
-                            $("#MyModal").modal('show');
-                            toastr.error('Ha ocurrido un error.');
-                            bindForm(dialog);
-                        }
-                    },
-                    error: function (xml, message, text) {
-                        toastr.error("Msg: " + message + ", Text: " + text);
+    var EditarAsignacionEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var DetalleAsignacionTerminal = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_terminales/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var DetalleAsignacionEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var CrearAsignacionCelulares = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Create";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EditarAsignacionCelular = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var DetalleAsignacionCelular = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+                        tableAsignacionCelulares.draw();
+                        tblAsignacionTerminales.draw();
                     }
-                });
-                return false;
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
             });
-        }
+            return false;
+        });
+    }
 
-    </script>
+</script>

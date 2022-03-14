@@ -36,8 +36,12 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public virtual DbSet<oc_subcentrocostos> oc_subcentrocostos { get; set; }
         public virtual DbSet<oc_tipocompra> oc_tipocompra { get; set; }
         public virtual DbSet<UoM> UoM { get; set; }
+        public virtual DbSet<oc_solicitantes> oc_solicitantes { get; set; }
+        public virtual DbSet<oc_supervisores> oc_supervisores { get; set; }
+        public virtual DbSet<oc_statuscompras> oc_statuscompras { get; set; }
+        public virtual DbSet<oc_statusdirector> oc_statusdirector { get; set; }
+        public virtual DbSet<oc_statusfinanzas> oc_statusfinanzas { get; set; }
+        public virtual DbSet<oc_statussupervisor> oc_statussupervisor { get; set; }
         public virtual DbSet<oc_ordenescompras> oc_ordenescompras { get; set; }
-
-        public System.Data.Entity.DbSet<WebAppOGL.Entities.Sistemas.sis_asignacion_terminales> sis_asignacion_terminales { get; set; }
     }
 }

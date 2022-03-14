@@ -36,7 +36,11 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public int oc_divisa_Id { get; set; }
         public int oc_proveedores_Id { get; set; }
         public int adm_cuentas_Id { get; set; }
-        public Nullable<int> adm_empleados_Id { get; set; }
+        public Nullable<int> oc_solicitantes_Id { get; set; }
+        public Nullable<int> oc_statuscompras_Id { get; set; }
+        public Nullable<int> oc_statussupervisor_Id { get; set; }
+        public Nullable<int> oc_statusfinanzas_Id { get; set; }
+        public Nullable<int> oc_statusdirector_Id { get; set; }
     
         public virtual oc_categoria oc_categoria { get; set; }
         public virtual oc_centrocostos oc_centrocostos { get; set; }
@@ -46,6 +50,11 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public virtual oc_formapago oc_formapago { get; set; }
         public virtual oc_lugarentrega oc_lugarentrega { get; set; }
         public virtual oc_proveedores oc_proveedores { get; set; }
+        public virtual oc_solicitantes oc_solicitantes { get; set; }
+        public virtual oc_statuscompras oc_statuscompras { get; set; }
+        public virtual oc_statusdirector oc_statusdirector { get; set; }
+        public virtual oc_statusfinanzas oc_statusfinanzas { get; set; }
+        public virtual oc_statussupervisor oc_statussupervisor { get; set; }
         public virtual oc_subcentrocostos oc_subcentrocostos { get; set; }
         public virtual oc_tipocompra oc_tipocompra { get; set; }
     }
