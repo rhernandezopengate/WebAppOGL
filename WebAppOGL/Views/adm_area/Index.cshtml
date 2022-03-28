@@ -30,8 +30,8 @@
                                 @Html.DisplayFor(modelItem => item.Descripcion)
                             </td>
                             <td>
-                                <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit"></span> </a>
-                                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.Id })"> <span class="fa fa-trash-o"></span> </a>
+                                <a class="btn btn-primary btn-sm" all="Editar" title="Editar" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit"></span> </a>
+                                <a class="btn btn-danger btn-sm" all="Eliminar" title="Eliminar" href="@Url.Action("Delete", new { id = item.Id })"> <span class="fa fa-trash-o"></span> </a>
                             </td>
                         </tr>
                     }

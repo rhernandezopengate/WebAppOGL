@@ -112,8 +112,8 @@
                     "data": null,
                     "targets": -1,
                     "render": function (data, type, full) {
-                        return " <button onclick='EditarEquipo(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
-                            "<a  onclick='DetalleEquipo(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='glyphicon glyphicon-list-alt'></i></a>";
+                        return " <button all='Editar' title='Editar' onclick='EditarEquipo(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
+                            "<a  all='Detalles' title='Detalles' onclick='DetalleEquipo(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='glyphicon glyphicon-list-alt' ></i></a>";
                     },
                     "bSearchable": false,
                     "sortable": false,
