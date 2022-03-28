@@ -1,84 +1,198 @@
-﻿@{
+﻿@model WebAppOGL.Entities.OrdenesCompra.oc_ordenescompras
+
+@{
     Layout = null;
 }
 
-<div class="modal-content">
-    <div class="modal-header">
-        <center>
-            <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">×</span>
-            </button>
-            <h4 class="modal-title" id="myModalLabel">Crear Nuevo Equipo</h4>
-        </center>
-    </div>
-    <div class="modal-body">
-        <div id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+@using (Html.BeginForm())
+{
+    <input type="hidden" value="@Model.Id" />
+    <div class="modal-content">
+        <div class="modal-header">
+            <center>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Seguimiento Estatus: @Model.Folio</h4>
+            </center>
+        </div>
+        <div class="modal-body">
+            <div class="x_panel" style="">
+                <div class="x_content">
+                    <div class="row">
+                        @if (User.IsInRole("compras"))
+                        {
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-sm-6">
+                                <center>
+                                    Status Compras
+                                </center>
+                                <br />
+                                <div class="form-group">
+                                    <div class="input-group date" id="myDatepicker2">
+                                        @Html.DropDownList("oc_statuscompras_Id", null, htmlAttributes: new { @class = "form-control" })
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-flag-checkered"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (User.IsInRole("finanzas"))
+                        {
+                            <div class="col-sm-6">
+                                Status Finanzas
+                                <div class="form-group">
+                                    <div class="input-group date" id="myDatepicker2">
 
-            @if (User.IsInRole("compras"))
-            {
-                <div class="form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
-                        oc_statuscompras_Id
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        @Html.DropDownList("oc_statuscompras_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                    </div>
-                </div>
+                                        @Html.DropDownList("oc_statusfinanzas_Id", null, htmlAttributes: new { @class = "form-control" })
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-flag-checkered"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
-            }
-            else if (User.IsInRole("finanzas"))
-            {
-                <div class="form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
-                        oc_statusfinanzas_Id
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        @Html.DropDownList("oc_statusfinanzas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                    </div>
-                </div>
-                if (ViewBag.Usuario == "Supervisor")
-                {
-                    <div class="form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
-                            oc_statussupervisor_Id
-                        </label>
-                        <div class="col-md-6 col-sm-6">
-                            @Html.DropDownList("oc_statussupervisor_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        </div>
-                    </div>
-                }
-            }
-            else if (User.IsInRole("direccion"))
-            {
-                <div class="form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
-                        oc_statusdirector_Id
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        @Html.DropDownList("oc_statusdirector_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                    </div>
-                </div>
-            }
-            else if (ViewBag.Usuario == "Supervisor")
-            {
-                <div class="form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
-                        oc_statussupervisor_Id
-                    </label>
-                    <div class="col-md-6 col-sm-6">
-                        @Html.DropDownList("oc_statussupervisor_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                    </div>
-                </div>
-            }
-            else
-            {
-                <label>Dar Seguimiento a los Estatus</label>
-            }
+                            if (ViewBag.Usuario == "Supervisor")
+                            {
 
+                                <div class="col-sm-6">
+                                    Status Supervisor
+                                    <div class="form-group">
+                                        <div class="input-group date" id="myDatepicker2">
+                                            @Html.DropDownList("oc_statussupervisor_Id", null, htmlAttributes: new { @class = "form-control" })
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-flag-checkered"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else if (User.IsInRole("direccion"))
+                        {
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-sm-6">
+                                <center>
+                                    Status Direccion
+                                </center>
+                                <br />
+                                <div class="form-group">
+                                    <div class="input-group date" id="myDatepicker2">
+                                        @Html.DropDownList("oc_statusdirector_Id", null, htmlAttributes: new { @class = "form-control" })
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-flag-checkered"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (ViewBag.Usuario == "Supervisor")
+                        {
+                            <div class="col-lg-3">
+                            </div>
+                            <div class="col-sm-6">
+                                <center>
+                                    Status Supervisor
+                                </center>
+                                <br />
+                                <div class="form-group">
+                                    <div class="input-group date" id="myDatepicker2">
+                                        @Html.DropDownList("oc_statussupervisor_Id", null, htmlAttributes: new { @class = "form-control" })
+                                        <span class="input-group-addon">
+                                            <span class="fa fa-flag-checkered"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="x_panel" style="">
+                <div class="x_content">
+                    <div class="container">
+                        <center>
+                            <br />
+                            <ul class="list-inline prod_color display-layout">
+                                <li>
+                                    <p>Supervisor</p>
+
+                                    @if (Model.oc_statussupervisor_Id == 1)
+                                    {
+                                        <div class="color bg-orange"></div>
+                                    }
+                                    else if (Model.oc_statussupervisor_Id == 2)
+                                    {
+                                        <div class="color bg-green"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="color bg-red"></div>
+                                    }
+                                </li>
+                                <li>
+                                    <p>Compras</p>
+
+                                    @if (Model.oc_statuscompras_Id == 1)
+                                    {
+                                        <div class="color bg-orange"></div>
+                                    }
+                                    else if (Model.oc_statuscompras_Id == 2)
+                                    {
+                                        <div class="color bg-blue"></div>
+                                    }
+                                    else if (Model.oc_statuscompras_Id == 3)
+                                    {
+                                        <div class="color bg-green"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="color bg-red"></div>
+                                    }
+                                </li>
+                                <li>
+                                    <p>Finanzas</p>
+                                    @if (Model.oc_statusfinanzas_Id == 1)
+                                    {
+                                        <div class="color bg-orange"></div>
+                                    }
+                                    else if (Model.oc_statusfinanzas_Id == 2)
+                                    {
+                                        <div class="color bg-green"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="color bg-red"></div>
+                                    }
+                                </li>
+                                <li>
+                                    <p>Direccion</p>
+                                    @if (Model.oc_statusdirector_Id == 1)
+                                    {
+                                        <div class="color bg-orange"></div>
+                                    }
+                                    else if (Model.oc_statusdirector_Id == 2)
+                                    {
+                                        <div class="color bg-green"></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="color bg-red"></div>
+                                    }
+                                </li>
+                            </ul>
+                        </center>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" value="Autorizar" class="btn btn-primary" />
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" value="Create" class="btn btn-primary" />
-    </div>
-</div>
+}

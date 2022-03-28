@@ -1,0 +1,24 @@
+﻿@model WebAppOGL.Entities.OrdenesCompra.oc_ordenescompras
+
+@{
+    Layout = null;
+
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <center>
+            <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Crear Nuevo Equipo</h4>
+        </center>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button class="btn btn-info">@Html.ActionLink("Descargar Carta Para Firma", "ImprimirVista", new { id = Model.Id })</button>
+    </div>
+</div>
+

@@ -4976,6 +4976,8 @@
     <Content Include="Views\oc_statussupervisor\Edit.cshtml" />
     <Content Include="Views\oc_statussupervisor\Index.cshtml" />
     <Content Include="Views\oc_ordenesdecompras\AutorizarOC.cshtml" />
+    <Content Include="Views\oc_ordenesdecompras\ReporteOC.cshtml" />
+    <Content Include="Views\oc_ordenesdecompras\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

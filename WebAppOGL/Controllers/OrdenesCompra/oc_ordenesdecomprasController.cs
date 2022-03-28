@@ -9,6 +9,7 @@ using WebAppOGL.Entities.Administracion;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Linq.Dynamic;
+using Rotativa;
 
 namespace WebAppOGL.Controllers.OrdenesCompra
 {    
@@ -22,6 +23,29 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View();
         }
 
+        public ActionResult Details(int? id) 
+        {
+            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
+            return View(oc);
+        }
+
+        public ActionResult ReporteOC(int? Id)
+        {
+            oc_ordenescompras oc = db.oc_ordenescompras.Find(Id);
+
+            return View(oc);
+        }
+
+        public ActionResult ImprimirVista(int? id)
+        {            
+            return new ActionAsPdf("ReporteOC", new { Id = id })
+            {
+                FileName = "Reporte OC.pdf",
+                PageOrientation = Rotativa.Options.Orientation.Landscape,                
+            };
+        }
+
+
         public ActionResult AutorizarOC(int? id)
         {
             oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
@@ -30,7 +54,6 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             ViewBag.oc_statusdirector_Id = new SelectList(db.oc_statusdirector, "Id", "Descripcion", oc.oc_statusdirector_Id);
             ViewBag.oc_statusfinanzas_Id = new SelectList(db.oc_statusfinanzas, "Id", "Descripcion", oc.oc_statusfinanzas_Id);
             
-
             //supervisor
             var user = User.Identity.GetUserId();
             string email = db1.AspNetUsers.Where(x => x.Id == user).Select(x => x.Email).FirstOrDefault().ToString();
@@ -42,7 +65,37 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                 ViewBag.oc_statussupervisor_Id = new SelectList(db.oc_statussupervisor, "Id", "Descripcion", oc.oc_statussupervisor_Id);
             }     
 
-            return View();
+            return View(oc);
+        }
+
+        [HttpPost]
+        public ActionResult AutorizarOC(oc_ordenescompras oc) 
+        {
+            oc_ordenescompras _oc = db.oc_ordenescompras.Find(oc.Id);
+
+            if (oc.oc_statuscompras_Id != null)
+            {
+                _oc.oc_statuscompras_Id = oc.oc_statuscompras_Id;
+            }
+            
+            if (oc.oc_statusdirector_Id != null)
+            {
+                _oc.oc_statusdirector_Id = oc.oc_statusdirector_Id;
+            }
+            
+            if (oc.oc_statusfinanzas_Id != null)
+            {
+                _oc.oc_statusfinanzas_Id = oc.oc_statusfinanzas_Id;
+            }
+            
+            if (oc.oc_statussupervisor_Id != null)
+            {
+                _oc.oc_statussupervisor_Id = oc.oc_statussupervisor_Id;
+            }   
+
+            db.SaveChanges();
+
+            return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -130,7 +183,6 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             }
         }
 
-
         public ActionResult Create()
         {
             return View();
@@ -145,7 +197,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
 
                 int folio = db.oc_ordenescompras.Count();
 
-                oc.Folio = "OC-" + (folio + 1);
+                oc.Folio = "OC-" + (folio + 2000);
                 oc.FechaAlta = DateTime.Now;
                 oc.FechaCreacion = DateTime.Now;
                 oc.adm_cuentas_Id = encabezado.CuentaId;
