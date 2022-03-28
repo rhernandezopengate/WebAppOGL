@@ -8,27 +8,26 @@
 <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-0 ">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Unidades de Medida <small>Editar</small></h2>
+            <h2>Unidad de Medida <small>Editar</small></h2>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true, "", new { @class = "text-dager" })
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id)
-                <div id="demo-form2" data-parsley-validate="" class="form-horizontal form-label left" novalidate="">
+                <div id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
 
                     <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
-                            Descripcion de Unidades de Medida
+                            Descripcion
                         </label>
                         <div class="col-md-6 col-sm-6">
                             @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
                 </div>
                 <div class="ln_solid"></div>
                 <div class="form-actions no-color">
@@ -37,9 +36,9 @@
                 </div>
             }
         </div>
-
     </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
