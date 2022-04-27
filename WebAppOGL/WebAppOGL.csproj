@@ -412,6 +412,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="css\style.css" />
     <Content Include="Entities\OrdenesCompra\DCOrdenesCompras.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>

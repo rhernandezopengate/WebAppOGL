@@ -4,184 +4,119 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ReporteOC</title>
-    <link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/vendors/nprogress/nprogress.css" rel="stylesheet" />
-    <link href="~/vendors/iCheck/skins/flat/green.css" rel="stylesheet" />
-    <link href="~/build/css/custom.min.css" rel="stylesheet" />
-
-    <script src="~/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="~/vendors/fastclick/lib/fastclick.js"></script>
-    <script src="~/vendors/nprogress/nprogress.js"></script>
-    <script src="~/vendors/iCheck/icheck.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/css/style.css" rel="stylesheet" />
 </head>
-<body class="nav-md">
-    <div class="container body">
-        <div class="main_container">           
-            <div class="right_col" role="main">
-                <div class="">                    
-                    <div class="clearfix"></div>
+
+
+
+<body>
+    <header class="clearfix">
+        <div id="logo">
+            <img src="~/images/LOGO TRANSPARENTE.png">
+        </div>
+        <div id="company">
+            <h2 class="name">OPEN GATE LOGISTICS</h2>
+            <div>Acceso III No 52, Int 3 PI Benito Juarez, Qro, Qro.</div>
+            <div>442-295-0899</div>
+            <div><a href="mailto:ventas@opengatelogistics.com">ventas@opengatelogistics.com</a></div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 brandSection">
+                <div class="row">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Invoice Design <small>Sample user invoice design</small></h2>                                  
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            a
+                        
+                        <div class="col-md-12 col-sm-12 content">
+                            <h1>Orden de Compra<strong> @Model.Folio</strong></h1>
+                            <p>@Model.FechaCreacion.Value.ToShortDateString()</p>
+                        </div>
+                        <div class="col-md-12 col-sm-12 panelPart">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 panelPart">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            Datos Generales
                                         </div>
-                                        <div class="col-md-4">
-                                            a
-                                        </div>
-                                        <div class="col-md-4">
-                                            a
-                                        </div>
-                                    </div>
+                                        <div class="panel-footer">
+                                            <div class="row">
 
-                                
+                                                <div class="col-md-8 col-sm-6 col-xs-6">
+                                                    <p>Solicitante: @Model.oc_solicitantes.NombreCompleto</p>
+                                                    <p>Cuenta: @Model.Cuenta</p>
+                                                    <p>Centro de Costos: @Model.oc_centrocostos.Descripcion</p>
+                                                    <p>Sub Centro de Costos: @Model.oc_subcentrocostos.Descripcion</p>
+                                                </div>
+                                                <div class="col-md-8 col-sm-6 col-xs-6">
+                                                    <p>Proyecto: @Model.Proyecto</p>
+                                                    <p>Proveedor: @Model.oc_proveedores.NombreComercial</p>
+                                                    <p>Forma de Pago: @Model.oc_formapago.Descripcion</p>
+                                                    <p>Lugar de Entrega: @Model.oc_lugarentrega.Descripcion</p>
 
-
-                                    <section class="content invoice">
-
-                                        <div class="row">
-                                            <div class="  invoice-header">
-                                                <h1>
-                                                    <i class="fa fa-globe"></i> Invoice.
-                                                    <small class="pull-right">Date: 16/08/2016</small>
-                                                </h1>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row invoice-info">
-                                            <div class="col-sm-4 invoice-col">
-                                                From
-                                                <address>
-                                                    <strong>Iron Admin, Inc.</strong>
-                                                    <br>795 Freedom Ave, Suite 600
-                                                    <br>New York, CA 94107
-                                                    <br>Phone: 1 (804) 123-9876
-                                                    <br>Email: ironadmin.com
-                                                </address>
-                                            </div>
-
-                                            <div class="col-sm-4 invoice-col">
-                                                To
-                                                <address>
-                                                    <strong>John Doe</strong>
-                                                    <br>795 Freedom Ave, Suite 600
-                                                    <br>New York, CA 94107
-                                                    <br>Phone: 1 (804) 123-9876
-                                                    <br>Email: jon@ironadmin.com
-                                                </address>
-                                            </div>
-
-                                            <div class="col-sm-4 invoice-col">
-                                                <b>Invoice #007612</b>
-                                                <br>
-                                                <br>
-                                                <b>Order ID:</b> 4F3S8J
-                                                <br>
-                                                <b>Payment Due:</b> 2/22/2014
-                                                <br>
-                                                <b>Account:</b> 968-34567
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <br />
-                                            <br />
-                                            <br />
-                                            <div class="table table-bordered">
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Qty</th>
-                                                            <th>Product</th>
-                                                            <th>Serial #</th>
-                                                            <th style="width: 59%">Description</th>
-                                                            <th>Subtotal</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Call of Duty</td>
-                                                            <td>455-981-221</td>
-                                                            <td>
-                                                                El snort testosterone trophy driving gloves handsome gerry Richardson helvetica tousled street art master testosterone trophy driving gloves handsome gerry Richardson
-                                                            </td>
-                                                            <td>$64.50</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Need for Speed IV</td>
-                                                            <td>247-925-726</td>
-                                                            <td>Wes Anderson umami biodiesel</td>
-                                                            <td>$50.00</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Monsters DVD</td>
-                                                            <td>735-845-642</td>
-                                                            <td>Terry Richardson helvetica tousled street art master, El snort testosterone trophy driving gloves handsome letterpress erry Richardson helvetica tousled</td>
-                                                            <td>$10.70</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Grown Ups Blue Ray</td>
-                                                            <td>422-568-642</td>
-                                                            <td>Tousled lomo letterpress erry Richardson helvetica tousled street art master helvetica tousled street art master, El snort testosterone</td>
-                                                            <td>$25.99</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-                                                    @Model.Proyecto
-                                                </p>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <p class="lead">Amount Due 2/22/2014</p>
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th style="width:50%">Subtotal:</th>
-                                                                <td>$250.30</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Tax (9.3%)</th>
-                                                                <td>$10.34</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Shipping:</th>
-                                                                <td>$5.80</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th>Total:</th>
-                                                                <td>$265.24</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
-                                    </section>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 tableSection">
+                            <h1>ITEMS</h1>
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                    <tr class="tableHead">
+                                        <th style="width:30px;">Codigo</th>
+                                        <th>Description</th>
+                                        <th style="width:100px;">Cantidad</th>
+                                        <th style="width:100px;text-align:center;">P.Unitario</th>
+                                        <th style="width:100px;text-align:center;">Sub Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>                                   
+                                    @foreach (var item in ViewData["ListaOC"] as IEnumerable<WebAppOGL.Entities.OrdenesCompra.detalleproductos>)
+                                    {
+                                    <tr>
+                                        <td>@item.codigo</td>
+                                        <td>@item.producto</td>
+                                        <td>@item.cantidad</td>
+                                        <td>@item.precio</td>
+                                        <td>@item.subtotal</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12 col-sm-12 lastSectionleft ">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-6 Sectionleft">
+                                    <p><i>Justificacion</i> @Model.Justificacion</p>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body lastPanel">
+                                            AMOUNT DUE
+                                        </div>
+                                        <div class="panel-footer lastFooter">
+                                            <div class="row">
+                                                <div class="col-md-5 col-sm-6 col-xs-6 panelLastLeft">
+                                                    <p>SUBTOTAL</p>
+                                                    <p>TAX</p>
+                                                    <p>SHIPPING</p>
+                                                    <p>TOTAL</p>
+                                                </div>
+                                                <div class="col-md-7 col-sm-6 col-xs-6 panelLastRight">
+                                                    <p>$90</p>
+                                                    <p>$90</p>
+                                                    <p>$90</p>
+                                                    <p><strong>$270</strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -190,153 +125,5 @@
             </div>
         </div>
     </div>
-
-
 </body>
-
 </html>
-
-
-
-@*<div class="right_col" role="main">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="x_panel">
-                            <div class="x_content">
-                                <section class="content invoice">
-                                    <div class="row">
-                                        <div class="  invoice-header">
-                                            <h1>
-                                                <i class="fa fa-globe"></i> Orden de Compra: @Model.Folio
-                                                <small class="pull-right">Date: @DateTime.Now.ToShortDateString()</small>
-                                            </h1>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    From:
-                                                    <address>
-                                                        <strong>Iron Admin, Inc.</strong>
-                                                        <br>795 Freedom Ave, Suite 600
-                                                        <br>New York, CA 94107
-                                                        <br>Phone: 1 (804) 123-9876
-                                                        <br>Email: ironadmin.com
-                                                    </address>
-                                                </td>
-                                                <td>
-                                                    From:
-                                                    <address>
-                                                        <strong>Iron Admin, Inc.</strong>
-                                                        <br>795 Freedom Ave, Suite 600
-                                                        <br>New York, CA 94107
-                                                        <br>Phone: 1 (804) 123-9876
-                                                        <br>Email: ironadmin.com
-                                                    </address>
-
-                                                </td>
-                                                <td>
-                                                    From:
-                                                    <address>
-                                                        <strong>Iron Admin, Inc.</strong>
-                                                        <br>795 Freedom Ave, Suite 600
-                                                        <br>New York, CA 94107
-                                                        <br>Phone: 1 (804) 123-9876
-                                                        <br>Email: ironadmin.com
-                                                    </address>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-
-                                    <div class="row">
-                                        <br />
-                                        <br />
-                                        <div class="table table-bordered">
-                                            <table class="table table-striped" width="100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Qty</th>
-                                                        <th>Product</th>
-                                                        <th>Serial #</th>
-                                                        <th>Subtotal</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Call of Duty</td>
-                                                        <td>455-981-221</td>
-
-                                                        <td>$64.50</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Need for Speed IV</td>
-                                                        <td>247-925-726</td>
-                                                        <td>$50.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Monsters DVD</td>
-                                                        <td>735-845-642</td>
-
-                                                        <td>$10.70</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Grown Ups Blue Ray</td>
-                                                        <td>422-568-642</td>
-                                                        <td>$25.99</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-                                                @Model.Proyecto
-                                              
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p class="lead">Amount Due 2/22/2014</p>
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <th style="width:50%">Subtotal:</th>
-                                                            <td>$250.30</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Tax (9.3%)</th>
-                                                            <td>$10.34</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Shipping:</th>
-                                                            <td>$5.80</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Total:</th>
-                                                            <td>$265.24</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@

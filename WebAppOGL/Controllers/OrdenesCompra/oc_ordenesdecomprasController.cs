@@ -32,6 +32,26 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         public ActionResult ReporteOC(int? Id)
         {
             oc_ordenescompras oc = db.oc_ordenescompras.Find(Id);
+            oc.Cuenta = db1.adm_cuentas.Where(x => x.Id.Equals(oc.adm_cuentas_Id)).FirstOrDefault().Descripcion;
+
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(oc.Id)).ToList();
+
+            List<detalleproductos> listaView = new List<detalleproductos>();
+
+            foreach (var item in lista)
+            {
+                detalleproductos detalleproductos = new detalleproductos();
+
+                detalleproductos.codigo = item.Codigo;
+                detalleproductos.producto = item.oc_productos.Descripcion;
+                detalleproductos.cantidad = (int)item.Cantidad;
+                detalleproductos.precio = (decimal)item.Precio;
+                detalleproductos.subtotal = (decimal)item.Subtotal;
+
+                listaView.Add(detalleproductos);
+            }
+
+            ViewData["ListaOC"] = listaView;
 
             return View(oc);
         }
@@ -41,7 +61,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return new ActionAsPdf("ReporteOC", new { Id = id })
             {
                 FileName = "Reporte OC.pdf",
-                PageOrientation = Rotativa.Options.Orientation.Landscape,                
+                PageOrientation = Rotativa.Options.Orientation.Portrait,                
             };
         }
 
