@@ -9,9 +9,6 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
-
-
-
 <body>
     <header class="clearfix">
         <div id="logo">
@@ -29,7 +26,7 @@
             <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 brandSection">
                 <div class="row">
                     <div class="row">
-                        
+
                         <div class="col-md-12 col-sm-12 content">
                             <h1>Orden de Compra<strong> @Model.Folio</strong></h1>
                             <p>@Model.FechaCreacion.Value.ToShortDateString()</p>
@@ -76,16 +73,16 @@
                                         <th style="width:100px;text-align:center;">Sub Total</th>
                                     </tr>
                                 </thead>
-                                <tbody>                                   
+                                <tbody>
                                     @foreach (var item in ViewData["ListaOC"] as IEnumerable<WebAppOGL.Entities.OrdenesCompra.detalleproductos>)
                                     {
-                                    <tr>
-                                        <td>@item.codigo</td>
-                                        <td>@item.producto</td>
-                                        <td>@item.cantidad</td>
-                                        <td>@item.precio</td>
-                                        <td>@item.subtotal</td>
-                                    </tr>
+                                        <tr>
+                                            <td>@item.codigo</td>
+                                            <td>@item.producto</td>
+                                            <td>@item.cantidad</td>
+                                            <td>@item.precio</td>
+                                            <td>@item.subtotal</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
@@ -98,22 +95,52 @@
                                 <div class="col-md-4 col-sm-6">
                                     <div class="panel panel-default">
                                         <div class="panel-body lastPanel">
-                                            AMOUNT DUE
+                                            IMPORTE TOTAL
                                         </div>
                                         <div class="panel-footer lastFooter">
                                             <div class="row">
                                                 <div class="col-md-5 col-sm-6 col-xs-6 panelLastLeft">
                                                     <p>SUBTOTAL</p>
-                                                    <p>TAX</p>
-                                                    <p>SHIPPING</p>
+                                                    <p>IVA</p>
                                                     <p>TOTAL</p>
                                                 </div>
                                                 <div class="col-md-7 col-sm-6 col-xs-6 panelLastRight">
-                                                    <p>$90</p>
-                                                    <p>$90</p>
-                                                    <p>$90</p>
-                                                    <p><strong>$270</strong></p>
+                                                    <p>@ViewBag.Subtotal</p>
+                                                    <p>@ViewBag.Iva</p>
+                                                    <p>@ViewBag.Total</p>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 lastSectionleft ">
+                            <div class="row">                               
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="panel panel-default">                                       
+                                        <div class="panel-footer lastFooter">
+                                            <div class="row">
+                                                <table class="table table-bordered text-center">
+                                                    <thead>
+                                                        <tr class="tableHead">
+                                                            <th style="text-align:center">Solicitante</th>
+                                                            <th style="text-align:center">Supervisor</th>
+                                                            <th style="text-align:center">VoBo Compras</th>
+                                                            <th style="text-align:center">VoBo Finanzas</th>
+                                                            <th style="text-align:center">VoBo Direccion General</th>
+                                                        </tr>
+                                                    </thead> 
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>@Model.oc_solicitantes.NombreCompleto</td>
+                                                            <td>@Model.oc_solicitantes.oc_supervisores.NombreCompleto.ToUpper()</td>
+                                                            <td>PATRICIA SANCHEZ</td>
+                                                            <td>GUSTAVO JASSO</td>
+                                                            <td>JORGE REYNOSO</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
