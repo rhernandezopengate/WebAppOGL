@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using WebAppOGL.Entities.OrdenesCompra;
 
-//guj
 
 
 namespace WebAppOGL.Controllers.OrdenesCompra
