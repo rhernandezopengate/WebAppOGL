@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using WebAppOGL.Entities.OrdenesCompra;
 
+//guj
+
+
 namespace WebAppOGL.Controllers.OrdenesCompra
 {
     public class oc_divisaController : Controller
