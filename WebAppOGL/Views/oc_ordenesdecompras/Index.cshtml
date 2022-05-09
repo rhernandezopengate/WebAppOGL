@@ -116,6 +116,16 @@
         $('#txtFolio').on('keyup', function () {
             table.columns(0).search(this.value).draw();
         });
+
+        $('#tblOrdenesCompra tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
     });
 
     var AutorizarOC = function (ID) {
@@ -144,15 +154,11 @@
         return false;
     }
 
-
     var Edit = function (ID) {
         $.ajaxSetup({ cache: false });
-
         window.location.href = '/oc_ordenesdecompras/Edit/' + ID;
-
         return false;
     }
-
 
     function bindForm(dialog) {
         $('form', dialog).submit(function () {

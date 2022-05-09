@@ -19,7 +19,6 @@
             <div class="x_content">
                 <br>
                 <div class="form-label-left input_mask">
-
                     <div class="col-md-3 col-sm-3  form-group has-feedback">
                         <select class="form-control has-feedback-left" id="ddlCuentas"></select>
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
@@ -79,9 +78,9 @@
                                 <tr>
                                     <th> <input type="text" id="txtCodigo" class="form-control" />  </th>
                                     <th> <input type="text" id="txtProducto" class="form-control" /> </th>
-                                    <th> <input type="text" id="txtCantidad" class="form-control" /> </th>
-                                    <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" /> </th>
-                                    <th> <input type="text" id="txtSubtotal" class="form-control" onkeyup="sumar()" disabled/> </th>
+                                    <th> <input type="text" id="txtCantidad" class="form-control" value="0"/> </th>
+                                    <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" value="0"/> </th>
+                                    <th> <input type="text" id="txtSubtotal" class="form-control" onkeyup="sumar()" value="0" disabled/> </th>
                                     <th>
                                         <input type="button" id="btnAdd" value="Add" class="btn btn-primary btn-sm" data-dismiss="modal" />
                                         <button onclick="AbrirModal()" class="btn btn-success btn-sm"><span class="fa fa-plus"></span></button>

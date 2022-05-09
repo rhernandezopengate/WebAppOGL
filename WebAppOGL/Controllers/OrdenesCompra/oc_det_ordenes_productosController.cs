@@ -34,7 +34,26 @@ namespace WebAppOGL.Controllers.OrdenesCompra
 
             db.SaveChanges();
 
-            return Json(new { respuesta = "Correcto" }, JsonRequestBehavior.AllowGet);
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(detalle.oc_ordenescompras_Id)).ToList();
+
+            decimal subtotal = 0;
+            decimal iva = (decimal)0.16;
+            decimal impuesto = (decimal)1.16;
+
+
+            foreach (var item in lista)
+            {
+                subtotal += (decimal)item.Subtotal;
+            }
+
+            return Json(
+                new
+                {
+                    respuesta = "Correcto",
+                    nuevosubtotal = Math.Round(subtotal, 2),
+                    nuevoiva = Math.Round(subtotal * iva, 2),
+                    nuevototal = Math.Round(subtotal * impuesto, 2),
+                }, JsonRequestBehavior.AllowGet);
         }
 
     }
