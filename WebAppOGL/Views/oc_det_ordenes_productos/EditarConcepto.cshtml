@@ -1,0 +1,102 @@
+﻿@model WebAppOGL.Entities.OrdenesCompra.oc_det_ordenes_productos
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Id)
+
+    @Html.HiddenFor(model => model.oc_ordenescompras_Id)
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <center>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Crear Nuevo Equipo</h4>
+            </center>
+        </div>
+        <div class="modal-body">
+            <div class="form-label-left input_mask">
+                <div class="col-md-12 col-sm-12 form-group has-feedback">
+                    @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
+                    <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                </div>
+
+                <div class="col-md-12 col-sm-12 form-group has-feedback">
+                    @Html.EditorFor(model => model.producto, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
+                    <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                </div>
+
+                <div class="col-md-12 col-sm-12 form-group has-feedback">
+                    @Html.EditorFor(model => model.Cantidad, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
+                    <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                </div>
+
+                <div class="col-md-12 col-sm-12 form-group has-feedback">
+                    @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
+                    <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />            
+        </div>
+        <div class="modal-footer">
+           
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" value="Editar" class="btn btn-primary" />
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+    <style>
+        .ui-autocomplete {
+            height: 200px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            z-index: 2147483647;
+        }
+    </style>
+
+    <script>
+        $("#producto").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/oc_productos/AutoComplete/',
+                    data: "{ 'prefix': '" + request.term + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return item;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#producto").val(i.item.val);
+            },
+            minLength: 0
+        }).focus(function () {
+            $(this).autocomplete("search");
+        });
+    </script>
+}

@@ -1,0 +1,192 @@
+﻿@model WebAppOGL.Entities.OrdenesCompra.oc_ordenescompras
+
+@{
+    Layout = "~/Views/Shared/_LayoutOrdenesCompras.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Informacion de la Orden de Compra </h2>
+                &nbsp;
+                &nbsp;
+                &nbsp;
+                <button type="submit" class="btn btn-success" id="btnSave"><i class="fa fa-plus-circle"></i> Guardar</button>
+                <a type="submit" class="btn btn-danger" href="@Url.Action("Index")"><i class="fa fa-trash"></i> Cancelar</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="form-label-left input_mask">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
+                        <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.EditorFor(model => model.Proyecto, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Modelo" } })
+                        <span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.EditorFor(model => model.Justificacion, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Numero_Serie" } })
+                        <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_centrocostos_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_subcentrocostos_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_proveedores_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_categoria_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_formapago_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_lugarentrega_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_tipocompra_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                        @Html.DropDownList("oc_divisa_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+
+@Html.Action("TablaConceptos")
+
+<script type="text/javascript">
+
+    var table;
+
+    var IdOC = '@Html.Raw(Model.Id)';
+
+    $(document).ready(function () {
+        table = $('#tblConceptos').DataTable({
+            "order": [[0, "desc"]],
+            "ordering": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "pagingType": "simple_numbers",
+            "dom": 'Blrtip', // Hides Default Search
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "deferRender": true,
+            rowId: 'Id',
+            select: true,
+            "ajax": {
+                "url": "/oc_ordenesdecompras/ObtenerConceptosOC",
+                "data": { id: IdOC },
+                "type": "POST",
+                "datatype": "json"
+            },
+            "aoColumns": [
+                { "data": "Id", "autoWidth": true, "visible": false },
+                { "data": "codigo", "autoWidth": true },
+                { "data": "producto", "autoWidth": true },
+                { "data": "cantidad", "autoWidth": true },
+                { "data": "precio", "autoWidth": true },
+                { "data": "subtotal", "autoWidth": true },
+                {
+                    "data": null,
+                    "targets": -1,
+                    "render": function (data, type, full) {
+                        return "<a onclick='EditarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i></a>";
+                    },
+                    "bSearchable": false,
+                    "sortable": false,
+                    "autoWidth": false,
+                    "sWidth": "18px"
+                }
+            ]
+        });
+
+        $('#txtFolio').on('keyup', function () {
+            table.columns(0).search(this.value).draw();
+        });
+    });
+
+    var EditarConcepto = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/oc_det_ordenes_productos/EditarConcepto/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+
+    var EditarConcepto = function () {
+        var encabezado = {
+            ProveedorId: $("#ddlProveedores").val(),
+            CuentaId: $("#ddlCuentas").val(),
+            CentroCostosId: $("#ddlCentroCostos").val(),
+            SubCentroCostosId: $("#ddlSubCentroCostos").val(),
+            LugarEntregaId: $("#ddlLugarEntrega").val(),
+            CategoriaId: $("#ddlCategoria").val(),
+            TipoCompraId: $("#ddlTipoCompra").val(),
+            DivisaId: $("#ddlDivisa").val(),
+            FormaPagoId: $("#ddlFormaPago").val(),
+            Proyecto: $("#txtProyecto").val(),
+            Justificacion: $("#txtJustificacion").val(),
+        }
+    }
+
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.respuesta === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+
+</script>

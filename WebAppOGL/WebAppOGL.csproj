@@ -202,6 +202,7 @@
     <Compile Include="Controllers\OrdenesCompra\oc_categoriaController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_centrocostosController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_dashboardController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_det_ordenes_productosController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_divisaController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_formapagoController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_lugarentregaController.cs" />
@@ -236,6 +237,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrdenesCompra\DetOrdenesCompraVM.cs" />
     <Compile Include="Entities\OrdenesCompra\oc_categoria.cs">
       <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
     </Compile>
@@ -4979,6 +4981,9 @@
     <Content Include="Views\oc_ordenesdecompras\AutorizarOC.cshtml" />
     <Content Include="Views\oc_ordenesdecompras\ReporteOC.cshtml" />
     <Content Include="Views\oc_ordenesdecompras\Details.cshtml" />
+    <Content Include="Views\oc_ordenesdecompras\Edit.cshtml" />
+    <Content Include="Views\oc_ordenesdecompras\TablaConceptos.cshtml" />
+    <Content Include="Views\oc_det_ordenes_productos\EditarConcepto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -58,6 +58,8 @@ namespace WebAppOGL.Entities.OrdenesCompra
 
     public class detalleproductos 
     {
+        public int Id { get; set; }
+
         public string codigo { get; set; }
         
         public string producto { get; set; }

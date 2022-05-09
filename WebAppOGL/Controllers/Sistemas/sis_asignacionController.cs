@@ -344,7 +344,7 @@ namespace WebAppOGL.Controllers.Sistemas
             sis_asignacion sis_asignacion = db.sis_asignacion.Find(id);
             db.sis_asignacion.Remove(sis_asignacion);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

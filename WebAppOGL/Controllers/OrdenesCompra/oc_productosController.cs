@@ -53,7 +53,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         // GET: oc_productos/Create
         public ActionResult Create()
         {
-            ViewBag.UoM_Id = new SelectList(db.UoM, "Id", "Descripcion");
+            ViewBag.UoM_Id = new SelectList(db.UoM.OrderBy(x => x.Descripcion), "Id", "Descripcion");
             return View();
         }
 
@@ -106,6 +106,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             {
                 oc_productos prod = db.oc_productos.Find(oc_productos.Id);
                 prod.Descripcion = oc_productos.Descripcion.ToUpper();
+                prod.UoM_Id = oc_productos.UoM_Id;
 
                 db.Entry(prod).State = EntityState.Modified;
                 db.SaveChanges();

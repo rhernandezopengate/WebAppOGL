@@ -227,10 +227,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
 
             return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
-
         
-
-
         //CREANDO OC
         public ActionResult Create()
         {
@@ -246,7 +243,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
 
                 int folio = db.oc_ordenescompras.Count();
 
-                oc.Folio = "OC-" + (folio + 2000);
+                oc.Folio = "OC-" + (folio + 3000);
                 oc.FechaAlta = DateTime.Now;
                 oc.FechaCreacion = DateTime.Now;
                 oc.adm_cuentas_Id = encabezado.CuentaId;
@@ -297,5 +294,158 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                 return Json(" " + _ex.Message.ToString());               
             }      
         }
+
+        //Editando OC
+        public ActionResult Edit(int? id) 
+        {
+            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
+
+            ViewBag.oc_categoria_Id = new SelectList(db.oc_categoria, "Id", "Descripcion", oc.oc_categoria_Id);
+
+            ViewBag.oc_formapago_Id = new SelectList(db.oc_formapago, "Id", "Descripcion", oc.oc_formapago_Id);
+
+            ViewBag.oc_centrocostos_Id = new SelectList(db.oc_centrocostos, "Id", "Descripcion", oc.oc_centrocostos_Id);
+
+            ViewBag.oc_subcentrocostos_Id = new SelectList(db.oc_subcentrocostos, "Id", "Descripcion", oc.oc_subcentrocostos_Id);
+            
+            ViewBag.oc_tipocompra_Id = new SelectList(db.oc_tipocompra, "Id", "Descripcion", oc.oc_tipocompra_Id);
+
+            ViewBag.oc_lugarentrega_Id = new SelectList(db.oc_lugarentrega, "Id", "Descripcion", oc.oc_lugarentrega_Id);
+
+            ViewBag.oc_divisa_Id = new SelectList(db.oc_divisa, "Id", "Descripcion", oc.oc_divisa_Id);
+
+            ViewBag.oc_proveedores_Id = new SelectList(db.oc_proveedores, "Id", "NombreComercial", oc.oc_proveedores_Id);
+
+            ViewBag.adm_cuentas_Id = new SelectList(db1.adm_cuentas, "Id", "Descripcion", oc.adm_cuentas_Id);
+
+
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(oc.Id)).ToList();
+
+            List<detalleproductos> listaView = new List<detalleproductos>();
+
+            foreach (var item in lista)
+            {
+                detalleproductos detalleproductos = new detalleproductos();
+
+                detalleproductos.Id = item.Id;
+                detalleproductos.codigo = item.Codigo;
+                detalleproductos.producto = item.oc_productos.Descripcion;
+                detalleproductos.cantidad = (int)item.Cantidad;
+                detalleproductos.precio = (decimal)item.Precio;
+                detalleproductos.subtotal = (decimal)item.Subtotal;
+
+                listaView.Add(detalleproductos);
+            }
+
+            ViewData["ListaOC"] = listaView;
+
+            return View(oc);
+        }
+
+        public ActionResult EditandoOC(oc_ordenescompras oc) 
+        {
+            oc_ordenescompras orden = db.oc_ordenescompras.Find(oc.Id);
+
+            orden.Justificacion = "";
+
+            orden.Proyecto = "";
+
+            orden.adm_cuentas_Id = 1;
+
+            orden.oc_centrocostos_Id = 1;
+
+            orden.oc_subcentrocostos_Id = 1;
+
+            orden.oc_proveedores_Id = 1;
+
+            orden.oc_categoria_Id = 1;
+
+            orden.oc_formapago_Id = 1;
+
+            orden.oc_lugarentrega_Id = 1;
+
+            orden.oc_tipocompra_Id = 1;
+
+            orden.oc_divisa_Id = 1;                           
+
+            return View();
+        }
+
+        public ActionResult TablaConceptos(int? id) 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ObtenerConceptosOC(int id)
+        {
+            try
+            {
+                var Draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var Start = Request.Form.GetValues("start").FirstOrDefault();
+                var Length = Request.Form.GetValues("length").FirstOrDefault();
+                var SortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][data]").FirstOrDefault();
+                var SortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                var folio = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
+
+                int PageSize = Length != null ? Convert.ToInt32(Length) : 0;
+                int Skip = Start != null ? Convert.ToInt32(Start) : 0;
+                int TotalRecords = 0;
+
+                List<detalleproductos> lista = new List<detalleproductos>();
+
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString()))
+                {
+                    con.Open();
+
+                    string sql = "exec SP_DetOrdenesCompras_Editar @IdOrden";
+                    
+                    var query = new SqlCommand(sql, con);
+                                                          
+                    query.Parameters.AddWithValue("@IdOrden", id);
+                                        
+                    using (var dr = query.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            // facturas
+                            var oc = new detalleproductos();
+
+                            oc.Id = Convert.ToInt32(dr["Id"]);
+
+                            oc.codigo = dr["Codigo"].ToString();
+
+                            oc.producto = dr["Descripcion"].ToString();
+
+                            oc.cantidad = Convert.ToInt32(dr["Cantidad"]);
+
+                            oc.precio = Convert.ToDecimal(dr["Precio"]);
+
+                            oc.subtotal = Convert.ToDecimal(dr["Subtotal"]);
+
+                            lista.Add(oc);
+                        }
+                    }
+                }
+
+                if (!(string.IsNullOrEmpty(SortColumn) && string.IsNullOrEmpty(SortColumnDir)))
+                {
+                    lista = lista.OrderBy(SortColumn + " " + SortColumnDir).ToList();
+                }
+
+                TotalRecords = lista.ToList().Count();
+                var NewItems = lista.Skip(Skip).Take(PageSize == -1 ? TotalRecords : PageSize).ToList();
+
+                return Json(new { draw = Draw, recordsFiltered = TotalRecords, recordsTotal = TotalRecords, data = NewItems }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception _ex)
+            {
+                Console.WriteLine(_ex.Message.ToString());
+                return null;
+            }
+        }
+
+
     }
 }

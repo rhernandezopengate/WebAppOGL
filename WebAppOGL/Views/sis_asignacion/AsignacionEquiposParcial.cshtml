@@ -70,7 +70,8 @@
                     "targets": -1,
                     "render": function (data, type, full) {
                         return "<button onclick='EditarAsignacionEquipo(" + full['Id'] + ")' class='btn btn-sm btn-primary'> <span class='fa fa-edit'></span> </button>" +
-                            "<a onclick='DetalleAsignacionEquipo(" + full['Id'] + ")' class='btn btn-sm btn-info'> <span class='fa fa-list'></span> </a>"
+                            "<a onclick='DetalleAsignacionEquipo(" + full['Id'] + ")' class='btn btn-sm btn-info'> <span class='fa fa-list'></span> </a>" +
+                            "<a onclick='EliminarAsignacionEquipo(" + full['Id'] + ")' class='btn btn-sm btn-danger'> <span class='fa fa-trash'></span> </a>"
                     },
                     "bSearchable": false,
                     "sortable": false,

@@ -22,7 +22,7 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public int oc_ordenescompras_Id { get; set; }
         public int oc_productos_Id { get; set; }
     
-        public virtual oc_productos oc_productos { get; set; }
         public virtual oc_ordenescompras oc_ordenescompras { get; set; }
+        public virtual oc_productos oc_productos { get; set; }
     }
 }
