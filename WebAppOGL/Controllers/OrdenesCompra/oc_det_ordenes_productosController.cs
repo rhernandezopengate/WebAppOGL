@@ -56,5 +56,14 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                 }, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult EliminarConcepto(int? id)
+        {
+            oc_det_ordenes_productos det = db.oc_det_ordenes_productos.Find(id);
+            det.producto = db.oc_productos.Where(x => x.Id.Equals(det.oc_productos_Id)).FirstOrDefault().Descripcion;
+
+            return View(det);
+        }
+
     }
 }

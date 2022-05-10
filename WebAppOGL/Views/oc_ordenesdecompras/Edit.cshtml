@@ -19,44 +19,44 @@
             <div class="x_content">
                 <div class="form-label-left input_mask">
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
-                        @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
-                        <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                        @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control has-feedback-left", disabled = "disabled", @placeholder = "Fecha_Compra" } })
+                        <span class="fa fa-bookmark form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_centrocostos_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-cube form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_subcentrocostos_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-cubes form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_proveedores_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_categoria_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-tags form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_formapago_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_lugarentrega_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_tipocompra_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-globe form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("oc_divisa_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>           
                 @Html.Action("TablaConceptos")
@@ -137,7 +137,8 @@
                     "data": null,
                     "targets": -1,
                     "render": function (data, type, full) {
-                        return "<a onclick='EditarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i></a>";
+                        return "<a onclick='EditarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i></a>" +
+                               "<a onclick='EliminarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a>";
                     },
                     "bSearchable": false,
                     "sortable": false,
@@ -155,6 +156,19 @@
     var EditarConcepto = function (ID) {
         $.ajaxSetup({ cache: false });
         var url = "/oc_det_ordenes_productos/EditarConcepto/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EliminarConcepto = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/oc_det_ordenes_productos/EliminarConcepto/" + ID;
         $("#MyModalContent").load(url, function () {
             $("#MyModal").modal({
                 //backdrop: 'static',
