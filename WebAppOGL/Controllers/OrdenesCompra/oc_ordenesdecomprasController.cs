@@ -18,8 +18,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
     {
         db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
         db_a3f19c_administracionEntities1 db1 = new db_a3f19c_administracionEntities1();
-
-        // GET: oc_ordenesdecompras
+                
         // GET: oc_ordenesdecompras
         [Authorize]
         public ActionResult Index()
@@ -342,37 +341,65 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View(oc);
         }
 
-        public ActionResult EditandoOC(oc_ordenescompras oc) 
+        public ActionResult EditandoOC(oc_ordenescompras encabezado) 
         {
-            oc_ordenescompras orden = db.oc_ordenescompras.Find(oc.Id);
+            try
+            {
+                oc_ordenescompras orden = db.oc_ordenescompras.Find(encabezado.Id);
 
-            orden.Justificacion = "";
+                orden.Justificacion = encabezado.Justificacion;
 
-            orden.Proyecto = "";
+                orden.Proyecto = encabezado.Proyecto;
 
-            orden.adm_cuentas_Id = 1;
+                orden.adm_cuentas_Id = encabezado.adm_cuentas_Id;
 
-            orden.oc_centrocostos_Id = 1;
+                orden.oc_centrocostos_Id = encabezado.oc_centrocostos_Id;
 
-            orden.oc_subcentrocostos_Id = 1;
+                orden.oc_subcentrocostos_Id = encabezado.oc_subcentrocostos_Id;
 
-            orden.oc_proveedores_Id = 1;
+                orden.oc_proveedores_Id = encabezado.oc_proveedores_Id;
 
-            orden.oc_categoria_Id = 1;
+                orden.oc_categoria_Id = encabezado.oc_categoria_Id;
 
-            orden.oc_formapago_Id = 1;
+                orden.oc_formapago_Id = encabezado.oc_formapago_Id;
 
-            orden.oc_lugarentrega_Id = 1;
+                orden.oc_lugarentrega_Id = encabezado.oc_lugarentrega_Id;
 
-            orden.oc_tipocompra_Id = 1;
+                orden.oc_tipocompra_Id = encabezado.oc_tipocompra_Id;
 
-            orden.oc_divisa_Id = 1;                           
+                orden.oc_divisa_Id = encabezado.oc_divisa_Id;
 
-            return View();
+                db.SaveChanges();
+
+                return Json(new { respuesta = "Correcto" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { respuesta = "Error" }, JsonRequestBehavior.AllowGet);
+            }           
         }
 
-        public ActionResult TablaConceptos(int? id) 
+        public ActionResult TablaConceptos(int id) 
         {
+            List<oc_det_ordenes_productos> det = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(id)).ToList();
+
+            decimal subtotal = 0;
+            decimal impuesto = (decimal)0.16;
+            decimal impuesto_final = (decimal)1.16;
+
+            foreach (var item in det)
+            {
+                subtotal += (decimal)item.Subtotal;
+            }
+
+            decimal a = subtotal;
+            decimal b = subtotal * impuesto;
+            decimal c = subtotal * impuesto_final;
+
+            ViewBag.Subtotal = Math.Round(a, 2);
+            ViewBag.IVA = Math.Round(b, 2);
+            ViewBag.Total = Math.Round(c, 2);
+
             return View();
         }
 
@@ -445,7 +472,6 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                 return null;
             }
         }
-
 
     }
 }

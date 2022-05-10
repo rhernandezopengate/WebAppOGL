@@ -8,11 +8,11 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Informacion de la Orden de Compra </h2>
+                <h2>Informacion General </h2>
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                <button type="submit" class="btn btn-success" id="btnSave"><i class="fa fa-plus-circle"></i> Guardar</button>
+                <button type="button" onclick="EditarOrden()" class="btn btn-success" id="btnSave"><i class="fa fa-plus-circle"></i> Guardar</button>
                 <a type="submit" class="btn btn-danger" href="@Url.Action("Index")"><i class="fa fa-trash"></i> Cancelar</a>
                 <div class="clearfix"></div>
             </div>
@@ -21,14 +21,6 @@
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Fecha_Compra" } })
                         <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
-                        @Html.EditorFor(model => model.Proyecto, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Modelo" } })
-                        <span class="fa fa-book form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
-                        @Html.EditorFor(model => model.Justificacion, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Numero_Serie" } })
-                        <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3 form-group has-feedback">
                         @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
@@ -66,8 +58,25 @@
                         @Html.DropDownList("oc_divisa_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-flag-checkered form-control-feedback left" aria-hidden="true"></span>
                     </div>
+                </div>           
+                @Html.Action("TablaConceptos")
+                <br />
+                <br />
+                <div class="x_title">
+                    <h2>Infromacion Adicional</h2>
+                    <div class="clearfix"></div>
                 </div>
-            </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.Proyecto, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.Justificacion, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </div>
     </div>
 </div>
@@ -79,7 +88,7 @@
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
 
-@Html.Action("TablaConceptos")
+
 
 <script type="text/javascript">
 
@@ -106,6 +115,17 @@
                 "type": "POST",
                 "datatype": "json"
             },
+            "columnDefs": [
+                {
+                    "targets": [3,4,5], // your case first column
+                    "className": "text-center",
+                    "width": "10%"
+                },
+                {
+                    "targets": [2], // your case first column                    
+                    "width": "40%"
+                }
+            ],
             "aoColumns": [
                 { "data": "Id", "autoWidth": true, "visible": false },
                 { "data": "codigo", "autoWidth": true },
@@ -145,21 +165,38 @@
         return false;
     }
 
-
-    var EditarConcepto = function () {
+    var EditarOrden = function () {
         var encabezado = {
-            ProveedorId: $("#ddlProveedores").val(),
-            CuentaId: $("#ddlCuentas").val(),
-            CentroCostosId: $("#ddlCentroCostos").val(),
-            SubCentroCostosId: $("#ddlSubCentroCostos").val(),
-            LugarEntregaId: $("#ddlLugarEntrega").val(),
-            CategoriaId: $("#ddlCategoria").val(),
-            TipoCompraId: $("#ddlTipoCompra").val(),
-            DivisaId: $("#ddlDivisa").val(),
-            FormaPagoId: $("#ddlFormaPago").val(),
-            Proyecto: $("#txtProyecto").val(),
-            Justificacion: $("#txtJustificacion").val(),
+            Id: IdOC,
+            Justificacion: $("#Justificacion").val(),
+            Proyecto: $("#Proyecto").val(),
+            adm_cuentas_Id: $("#adm_cuentas_Id").val(),
+            oc_centrocostos_Id: $("#oc_centrocostos_Id").val(),
+            oc_subcentrocostos_Id: $("#oc_subcentrocostos_Id").val(),
+            oc_proveedores_Id: $("#oc_proveedores_Id").val(),
+            oc_categoria_Id: $("#oc_categoria_Id").val(),
+            oc_formapago_Id: $("#oc_formapago_Id").val(),
+            oc_lugarentrega_Id: $("#oc_lugarentrega_Id").val(),
+            oc_tipocompra_Id: $("#oc_tipocompra_Id").val(),
+            oc_divisa_Id: $("#oc_divisa_Id").val(),
         }
+
+        $.ajax({
+            type: "POST",
+            url: "/oc_ordenesdecompras/EditandoOC",
+            data: '{encabezado:' + JSON.stringify(encabezado) + '}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                if (r.respuesta) {
+                    location.href = "/oc_ordenesdecompras/Index";
+                }
+                else {
+                    toastr.error('Ha ocurrido un error.');
+                }                
+            }
+        });
+
     }
 
 
@@ -174,6 +211,12 @@
                         $("#MyModal").modal('hide');
                         toastr.success('Operacion Correcta.');
                         table.draw();
+                                                
+
+                        $("#Subtotal").text('' + result.nuevosubtotal);
+                        $("#IVA").text('' + result.nuevoiva);
+                        $("#Total").text('' + result.nuevototal);
+
                     }
                     else {
                         $("#MyModal").modal('show');
