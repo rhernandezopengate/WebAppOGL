@@ -1,6 +1,6 @@
-﻿@model WebAppOGL.Entities.OrdenesCompra.oc_det_ordenes_productos 
+﻿@model WebAppOGL.Entities.OrdenesCompra.oc_det_ordenes_productos
 
-@{ 
+@{
     Layout = null;
 }
 
@@ -10,13 +10,44 @@
             <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Crear Nuevo Equipo</h4>
+            <h4 class="modal-title" id="myModalLabel">Eliminar Asignacion</h4>
         </center>
     </div>
     <div class="modal-body">
+        <div class="bs-example" data-example-id="simple-jumbotron">
+            <center>
+                <h3>¿Desea eliminar estos registro?</h3>
+            </center>
+
+            <div class="jumbotron ">
+                <p>
+                    <h4>
+                        <label>
+                            Producto: @Html.DisplayFor(model => model.oc_productos.Descripcion)
+                        </label>
+                    </h4>
+                    <h4>
+                        <label>
+                            Cantidad : @Html.DisplayFor(model => model.Cantidad)
+                        </label>
+                    </h4>
+                    <h4>
+                        <label>
+                            Precio Unitario : @Html.DisplayFor(model => model.Precio)
+                        </label>
+                    </h4>                    
+                </p>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <input type="submit" value="Create" class="btn btn-primary" />
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        }
     </div>
 </div>

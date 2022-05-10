@@ -4985,6 +4985,7 @@
     <Content Include="Views\oc_ordenesdecompras\TablaConceptos.cshtml" />
     <Content Include="Views\oc_det_ordenes_productos\EditarConcepto.cshtml" />
     <Content Include="Views\oc_det_ordenes_productos\EliminarConcepto.cshtml" />
+    <Content Include="Views\oc_det_ordenes_productos\AgregarConcepto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

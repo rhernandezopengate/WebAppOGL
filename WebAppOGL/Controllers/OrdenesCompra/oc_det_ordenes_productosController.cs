@@ -65,5 +65,71 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View(det);
         }
 
+        [HttpPost]
+        public ActionResult EliminarConcepto(oc_det_ordenes_productos det)
+        {
+            oc_det_ordenes_productos dett = db.oc_det_ordenes_productos.Find(det.Id);
+            db.oc_det_ordenes_productos.Remove(dett);
+            db.SaveChanges();
+
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(det.oc_ordenescompras_Id)).ToList();
+
+            decimal subtotal = 0;
+            decimal iva = (decimal)0.16;
+            decimal impuesto = (decimal)1.16;
+
+
+            foreach (var item in lista)
+            {
+                subtotal += (decimal)item.Subtotal;
+            }
+
+            return Json(
+                new
+                {
+                    respuesta = "Correcto",
+                    nuevosubtotal = Math.Round(subtotal, 2),
+                    nuevoiva = Math.Round(subtotal * iva, 2),
+                    nuevototal = Math.Round(subtotal * impuesto, 2),
+                }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AgregarConcepto(int id) 
+        {
+            ViewBag.oc_ordenescompras_Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AgregarConcepto(oc_det_ordenes_productos det)
+        {
+            det.oc_productos_Id = db.oc_productos.Where(x => x.Descripcion.Contains(det.producto)).FirstOrDefault().Id;
+
+            det.Subtotal = det.Cantidad * det.Precio;
+
+            db.oc_det_ordenes_productos.Add(det);
+            db.SaveChanges();
+
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(det.oc_ordenescompras_Id)).ToList();
+
+            decimal subtotal = 0;
+            decimal iva = (decimal)0.16;
+            decimal impuesto = (decimal)1.16;
+
+
+            foreach (var item in lista)
+            {
+                subtotal += (decimal)item.Subtotal;
+            }
+
+            return Json(
+                new
+                {
+                    respuesta = "Correcto",
+                    nuevosubtotal = Math.Round(subtotal, 2),
+                    nuevoiva = Math.Round(subtotal * iva, 2),
+                    nuevototal = Math.Round(subtotal * impuesto, 2),
+                }, JsonRequestBehavior.AllowGet);            
+        }
     }
 }

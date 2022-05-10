@@ -66,6 +66,11 @@
 
     var table;
 
+    var IdEmpleado = '@Html.Raw(ViewBag.EmpleadoId)';
+    var IdSupervisor = '@Html.Raw(ViewBag.SupervisorId)';
+
+    var Identificador = '@Html.Raw(ViewBag.Identificador)';
+
     $(document).ready(function () {
         table = $('#tblOrdenesCompra').DataTable({
             "order": [[0, "desc"]],
@@ -82,6 +87,7 @@
             "ajax": {
                 "url": "/oc_ordenesdecompras/ObtenerOrdenesCompra",
                 "type": "POST",
+                "data": { idempleado: IdEmpleado, idsupervisor: IdSupervisor, identificador: Identificador },
                 "datatype": "json"
             },
             "aoColumns": [
@@ -101,7 +107,7 @@
                     "data": null,
                     "targets": -1,
                     "render": function (data, type, full) {
-                        return " <button onclick='Edit(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +                            
+                        return " <button onclick='Edit(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
                             "<a onclick='Details(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='fa fa-eye'></i></a>" +
                             "<button onclick='AutorizarOC(" + full['Id'] + ")' class='btn btn-sm btn-success '><i class='fa fa-check-circle'></i></button>";
                     },
@@ -159,6 +165,7 @@
         window.location.href = '/oc_ordenesdecompras/Edit/' + ID;
         return false;
     }
+   
 
     function bindForm(dialog) {
         $('form', dialog).submit(function () {

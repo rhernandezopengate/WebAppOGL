@@ -153,6 +153,19 @@
         });
     });
 
+    var AgregarConcepto = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/oc_det_ordenes_productos/AgregarConcepto/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
     var EditarConcepto = function (ID) {
         $.ajaxSetup({ cache: false });
         var url = "/oc_det_ordenes_productos/EditarConcepto/" + ID;

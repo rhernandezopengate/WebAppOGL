@@ -12,22 +12,56 @@ using System.Linq.Dynamic;
 using Rotativa;
 
 namespace WebAppOGL.Controllers.OrdenesCompra
-{    
-    
+{
+
     public class oc_ordenesdecomprasController : Controller
     {
         db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
         db_a3f19c_administracionEntities1 db1 = new db_a3f19c_administracionEntities1();
-                
+
         // GET: oc_ordenesdecompras
         [Authorize]
         public ActionResult Index()
         {
+            var user = User.Identity.GetUserId();
+            string email = db1.AspNetUsers.Where(x => x.Id == user).Select(x => x.Email).FirstOrDefault().ToString();
+            int empleado = db1.adm_empleados.Where(x => x.Email.Contains(email)).FirstOrDefault().Id;
+
+            if (User.IsInRole("compras") || User.IsInRole("finanzas") || User.IsInRole("direccion"))
+            {
+                ViewBag.Identificador = 3;
+                ViewBag.SupervisorId = 0;
+                ViewBag.EmpleadoId = 0;
+            }
+            else
+            {
+                var supervisor = db.oc_supervisores.Where(x => x.adm_empleados_Id.Equals(empleado)).FirstOrDefault();
+
+                if (supervisor != null)
+                {
+                    var solicitante = db.oc_solicitantes.Where(x => x.adm_empleados_Id.Equals(empleado)).FirstOrDefault();
+                    ViewBag.SupervisorId = supervisor.Id;
+                    ViewBag.EmpleadoId = solicitante.Id;
+                    ViewBag.Identificador = 1;
+                }
+                else
+                {                   
+                    ViewBag.SupervisorId = 0;
+                    var solicitante = db.oc_solicitantes.Where(x => x.adm_empleados_Id.Equals(empleado)).FirstOrDefault();
+                    ViewBag.EmpleadoId = solicitante.Id;
+                    ViewBag.Identificador = 2;                 
+                }
+            }
+
+
+            //validar si es supervisor
+            
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult ObtenerOrdenesCompra()
+        public ActionResult ObtenerOrdenesCompra(int idempleado, int idsupervisor, int identificador)
         {
             try
             {
@@ -49,7 +83,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                 {
                     con.Open();
 
-                    string sql = "exec SP_OrdenesCompra_Index @folio";
+                    string sql = "exec SP_OrdenesCompra_Index @folio, @identificador, @idempleado, @idsupervisor";
                     var query = new SqlCommand(sql, con);
 
                     if (folio != "")
@@ -60,6 +94,34 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                     {
                         query.Parameters.AddWithValue("@folio", DBNull.Value);
                     }
+
+                    if (identificador != 0)
+                    {
+                        query.Parameters.AddWithValue("@identificador", identificador);
+                    }
+                    else
+                    {
+                        query.Parameters.AddWithValue("@identificador", DBNull.Value);
+                    }
+
+                    if (idsupervisor != 0)
+                    {
+                        query.Parameters.AddWithValue("@idsupervisor", idsupervisor);
+                    }
+                    else
+                    {
+                        query.Parameters.AddWithValue("@idsupervisor", DBNull.Value);
+                    }
+
+                    if (idempleado != 0)
+                    {
+                        query.Parameters.AddWithValue("@idempleado", idempleado);
+                    }
+                    else
+                    {
+                        query.Parameters.AddWithValue("@idempleado", DBNull.Value);
+                    }
+                    
 
                     using (var dr = query.ExecuteReader())
                     {
@@ -226,8 +288,9 @@ namespace WebAppOGL.Controllers.OrdenesCompra
 
             return Json("Correcto", JsonRequestBehavior.AllowGet);
         }
-        
+
         //CREANDO OC
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -294,6 +357,8 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             }      
         }
 
+
+        [Authorize]
         //Editando OC
         public ActionResult Edit(int? id) 
         {
@@ -381,6 +446,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
 
         public ActionResult TablaConceptos(int id) 
         {
+            ViewBag.oc_ordenescompras_Id = id;
             List<oc_det_ordenes_productos> det = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(id)).ToList();
 
             decimal subtotal = 0;
