@@ -21,4 +21,17 @@ namespace WebAppOGL.Entities.Sistemas
 
         public string Cuenta { get; set; }
     }
+
+    public partial class sis_asignacion 
+    {
+        public string NombreEmpleado { get; set; }
+
+        public string Area { get; set; }
+
+        public string NumeroSerie { get; set; }
+
+        public string Sucursal { get; set; }
+
+        public string Cuenta { get; set; }
+    }
 }

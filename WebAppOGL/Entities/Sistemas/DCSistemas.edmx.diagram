@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_marcas" Width="1.5" PointX="7" PointY="5" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_tipoequipos" Width="1.5" PointX="7" PointY="0.75" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_estatusequipo" Width="1.5" PointX="7" PointY="7.125" />
-        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_equipos" Width="1.5" PointX="9.375" PointY="1.125" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_equipos" Width="1.5" PointX="9.375" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_estatusequipo_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_marcas_FK" />
