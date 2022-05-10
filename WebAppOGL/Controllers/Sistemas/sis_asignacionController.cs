@@ -290,6 +290,9 @@ namespace WebAppOGL.Controllers.Sistemas
                 return HttpNotFound();
             }
 
+
+            
+
             ViewBag.sis_equipos_Id = new SelectList(db.sis_equipos, "Id", "Numero_Serie", sis_asignacion.sis_equipos_Id);
             ViewBag.adm_empleados_Id = new SelectList(dbAdmin.adm_empleados, "Id", "Nombres", sis_asignacion.adm_empleados_Id);
             ViewBag.adm_area_Id = new SelectList(dbAdmin.adm_area, "Id", "Descripcion", sis_asignacion.adm_area_Id);
@@ -333,6 +336,16 @@ namespace WebAppOGL.Controllers.Sistemas
             {
                 return HttpNotFound();
             }
+
+            sis_asignacion.NombreEmpleado = dbAdmin.adm_empleados.Where(x => x.Id.Equals(sis_asignacion.adm_empleados_Id)).FirstOrDefault().Nombres;
+            sis_asignacion.Area = dbAdmin.adm_area.Where(x => x.Id.Equals(sis_asignacion.adm_area_Id)).FirstOrDefault().Descripcion;
+
+            string ns = db.sis_equipos.Where(x => x.Id.Equals(sis_asignacion.sis_equipos_Id)).FirstOrDefault().Numero_Serie;
+            string modelo = db.sis_equipos.Where(x => x.Id.Equals(sis_asignacion.sis_equipos_Id)).FirstOrDefault().Modelo;
+
+            sis_asignacion.NumeroSerie = modelo  + " con numero de serie: " + ns;
+            sis_asignacion.Sucursal = dbAdmin.adm_sucursales.Where(x => x.Id.Equals(sis_asignacion.adm_sucursales_Id)).FirstOrDefault().Descripcion;
+
             return View(sis_asignacion);
         }
 
