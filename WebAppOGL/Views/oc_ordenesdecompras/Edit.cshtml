@@ -22,39 +22,39 @@
                         @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control has-feedback-left", disabled = "disabled", @placeholder = "Fecha_Compra" } })
                         <span class="fa fa-bookmark form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
-                        @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    <div class="col-md-3 col-sm-3 form-group has-feedback"  all="Cuentas" title="Cuentas">
+                        @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left"})
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true" ></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Centro De Costos" title="Centro De Costos">
                         @Html.DropDownList("oc_centrocostos_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-cube form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Subcentro de Costos" title="Subcentro de Costos">
                         @Html.DropDownList("oc_subcentrocostos_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-cubes form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Proveedores" title="Proveedores">
                         @Html.DropDownList("oc_proveedores_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Categorias" title="Categorias">
                         @Html.DropDownList("oc_categoria_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-tags form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Forma de Pago" title="Forma de Pago">
                         @Html.DropDownList("oc_formapago_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Lugar de Entrega" title="Lugar de Entrega">
                         @Html.DropDownList("oc_lugarentrega_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Tipo de Compra" title="Tipo de Compra">
                         @Html.DropDownList("oc_tipocompra_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-globe form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-3 col-sm-3 form-group has-feedback">
+                    <div class="col-md-3 col-sm-3 form-group has-feedback" all="Divisas" title="Divisas">
                         @Html.DropDownList("oc_divisa_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
                     </div>
@@ -137,8 +137,8 @@
                     "data": null,
                     "targets": -1,
                     "render": function (data, type, full) {
-                        return "<a onclick='EditarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-primary'><i class='fa fa-edit'></i></a>" +
-                               "<a onclick='EliminarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a>";
+                        return "<a onclick='EditarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-primary'><i class='fa fa-edit' all='Editar' title='Editar'></i></a>" +
+                            "<a onclick='EliminarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-danger'><i class='fa fa-trash' all='Eliminar' title='Eliminar'></i></a>";
                     },
                     "bSearchable": false,
                     "sortable": false,
