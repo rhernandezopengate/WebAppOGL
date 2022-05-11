@@ -176,6 +176,48 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         public ActionResult Details(int? id) 
         {
             oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
+            oc.Cuenta = db1.adm_cuentas.Where(x => x.Id.Equals(oc.adm_cuentas_Id)).FirstOrDefault().Descripcion;
+
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(oc.Id)).ToList();
+
+            List<detalleproductos> listaView = new List<detalleproductos>();
+
+            foreach (var item in lista)
+            {
+                detalleproductos detalleproductos = new detalleproductos();
+
+                detalleproductos.codigo = item.Codigo;
+                detalleproductos.producto = item.oc_productos.Descripcion;
+                detalleproductos.cantidad = (int)item.Cantidad;
+                detalleproductos.precio = (decimal)item.Precio;
+                detalleproductos.subtotal = (decimal)item.Subtotal;
+
+                listaView.Add(detalleproductos);
+            }
+
+            double subtotal = 0;
+            double iva = 0.16;
+
+            foreach (var item in lista)
+            {
+                subtotal += (double)item.Subtotal;
+            }
+
+            ViewBag.Subtotal = string.Format("{0:C}", subtotal);
+
+            iva = (double)(subtotal * double.Parse(iva.ToString()));
+
+            iva = Math.Round(iva, 2);
+
+            ViewBag.Iva = string.Format("{0:C}", iva);
+
+
+            double total = subtotal + iva;
+
+            ViewBag.Total = string.Format("{0:C}", total);
+
+            ViewData["ListaOC"] = listaView;
+
             return View(oc);
         }
 
