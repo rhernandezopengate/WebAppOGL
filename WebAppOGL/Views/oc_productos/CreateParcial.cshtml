@@ -1,0 +1,52 @@
+﻿@model WebAppOGL.Entities.OrdenesCompra.oc_productos
+
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-content">
+        <div class="modal-header">
+            <center>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Crear Nuevo Producto</h4>
+            </center>
+        </div>
+        <div class="modal-body">
+
+
+            <div id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
+                        Descripcion
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <label class="col-form-label col-md-3 col-sm-3 label-align" for="Descripcion">
+                        Unidad de Medida
+                    </label>
+                    <div class="col-md-6 col-sm-6">
+                        @Html.DropDownList("UoM_Id", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.UoM_Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>            
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="submit" value="Create" class="btn btn-success" />
+        </div>
+    </div>
+}
+
+

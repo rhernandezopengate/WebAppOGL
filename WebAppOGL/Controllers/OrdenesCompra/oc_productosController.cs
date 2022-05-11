@@ -51,10 +51,30 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_productos/Create
-        public ActionResult Create()
+
+        public ActionResult CreateParcial()
         {
             ViewBag.UoM_Id = new SelectList(db.UoM.OrderBy(x => x.Descripcion), "Id", "Descripcion");
             return View();
+        }
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateParcial([Bind(Include = "Id,Descripcion,UoM_Id")] oc_productos oc_productos)
+        {
+            if (ModelState.IsValid)
+            {
+                oc_productos prod = new oc_productos();
+                prod.Descripcion = oc_productos.Descripcion.ToUpper().Trim();
+                prod.UoM_Id = oc_productos.UoM_Id;
+
+                db.oc_productos.Add(prod);
+                db.SaveChanges();
+                return Json(new { respuesta = "Correcto" }, JsonRequestBehavior.AllowGet);
+            }
+
+            ViewBag.UoM_Id = new SelectList(db.UoM, "Id", "Descripcion", oc_productos.UoM_Id);
+            return Json(new { respuesta = "Error" }, JsonRequestBehavior.AllowGet);
         }
 
         // POST: oc_productos/Create
@@ -67,7 +87,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             if (ModelState.IsValid)
             {
                 oc_productos prod = new oc_productos();
-                prod.Descripcion = oc_productos.Descripcion.ToUpper();
+                prod.Descripcion = oc_productos.Descripcion.ToUpper().Trim();
                 prod.UoM_Id = oc_productos.UoM_Id;
 
                 db.oc_productos.Add(prod);

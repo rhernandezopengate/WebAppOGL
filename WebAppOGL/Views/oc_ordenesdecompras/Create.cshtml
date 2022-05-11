@@ -8,16 +8,15 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Orden de Compra <small>Create</small></h2>
+                <h2>Informacion General <small>Create</small></h2>
                 &nbsp;
                 &nbsp;
                 &nbsp;
-                <button type="submit" class="btn btn-success" id="btnSave"><i class="fa fa-plus-circle"></i> Guardar</button>
+                <button type="submit" class="btn btn-primary" id="btnSave"><i class="fa fa-floppy-o"></i> Guardar</button>
                 <a type="submit" class="btn btn-danger" href="@Url.Action("Index")"><i class="fa fa-trash"></i> Cancelar</a>
                 <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <br>
+            </div>           
+            <div class="x_content">             
                 <div class="form-label-left input_mask">
                     <div class="col-md-3 col-sm-3  form-group has-feedback">
                         <select class="form-control has-feedback-left " id="ddlCuentas" all="Cuentas" title="Cuentas"></select>
@@ -50,7 +49,7 @@
                     </div>
 
                     <div class="col-md-3 col-sm-3  form-group has-feedback">
-                        <select class="form-control has-feedback-left" id="ddlTipoCompra" all="Tipo de Compra" title="Tipo de Compra" ></select>
+                        <select class="form-control has-feedback-left" id="ddlTipoCompra" all="Tipo de Compra" title="Tipo de Compra"></select>
                         <span class="fa fa-globe form-control-feedback left" aria-hidden="true"></span>
                     </div>
 
@@ -64,90 +63,89 @@
                         <span class="fa fa-credit-card form-control-feedback left" aria-hidden="true"></span>
                     </div>
 
-                    <div class="col-md-12">
-                        <table id="conceptos" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th width="10%">Codigo</th>
-                                    <th width="30%">Producto</th>
-                                    <th width="15%">Cantidad</th>
-                                    <th width="15%">Precio</th>
-                                    <th width="15%">Subtotal</th>
-                                    <td width="10%"></td>
-                                </tr>
-                                <tr>
-                                    <th> <input type="text" id="txtCodigo" class="form-control" />  </th>
-                                    <th> <input type="text" id="txtProducto" class="form-control" /> </th>
-                                    <th> <input type="text" id="txtCantidad" class="form-control" value="0"/> </th>
-                                    <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" value="0"/> </th>
-                                    <th> <input type="text" id="txtSubtotal" class="form-control" onkeyup="sumar()" value="0" disabled/> </th>
-                                    <th>
-                                        <input type="button" id="btnAdd" value="Add" class="btn btn-primary btn-sm" all="Agregar" title="Agregar" data-dismiss="modal" />
-                                        <button onclick="AbrirModal()" class="btn btn-success btn-sm"><span class="fa fa-plus"></span></button>
-                                    </th>
 
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Subtotal</td>
-                                    <td>                                        
-                                        <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="0" /> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>IVA</td>
-                                    <td> <input type="text" class="form-control" disabled id="txtIVA" value="0"/> </td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Total</td>
-                                    <td> <input type="text" class="form-control" disabled id="txtTotal" value="0" /> </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div class="col-md-6">
-                        <textarea class="form-control" cols="20" id="txtProyecto" name="Description" rows="2" placeholder="Proyecto"></textarea>
-                    </div>
-                    <div class="col-md-6">
-                        <textarea class="form-control" cols="20" id="txtJustificacion" name="Description" rows="2" placeholder="Justificacion"></textarea>
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
                     <div class="form-group row">
                         <div class="col-md-9 col-sm-9  offset-md-3">
 
                         </div>
                     </div>
                 </div>
+                <div class="x_title">
+                 
+                    <h2>Items</h2>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-12">
+                    <table id="conceptos" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="10%">Codigo</th>
+                                <th width="30%">Producto</th>
+                                <th width="15%">Cantidad</th>
+                                <th width="15%">Precio</th>
+                                <th width="15%">Subtotal</th>
+                                <td width="10%"></td>
+                            </tr>
+                            <tr>
+                                <th> <input type="text" id="txtCodigo" class="form-control" />  </th>
+                                <th> <input type="text" id="txtProducto" class="form-control" /> </th>
+                                <th> <input type="text" id="txtCantidad" class="form-control" value="0" /> </th>
+                                <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" value="0" /> </th>
+                                <th> <input type="text" id="txtSubtotal" class="form-control" onkeyup="sumar()" value="0" disabled /> </th>
+                                <th>
+                                    <input type="button" id="btnAdd" value="Agregar" class="btn btn-primary btn-sm" all="Agregar" title="Agregar" data-dismiss="modal" />
+                                    <button onclick="AgregarProductos()" class="btn btn-success btn-sm"><span class="fa fa-plus"></span></button>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Subtotal</td>
+                                <td>
+                                    <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="0" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>IVA</td>
+                                <td> <input type="text" class="form-control" disabled id="txtIVA" value="0" /> </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total</td>
+                                <td> <input type="text" class="form-control" disabled id="txtTotal" value="0" /> </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>              
+                <div class="x_title">
+                    <h2>Informacion Adicional</h2>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" cols="20" id="txtProyecto" name="Description" rows="2" placeholder="Proyecto"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" cols="20" id="txtJustificacion" name="Description" rows="2" placeholder="Justificacion"></textarea>
+                </div>     
+                <br />
+                <br />
+                <br />
             </div>
         </div>
     </div>
@@ -157,19 +155,10 @@
 <script src="~/build/js/custom.min.js"></script>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer text-center">
-            </div>
+            <div id="MyModalContent"></div>
         </div>
     </div>
 </div>
@@ -186,11 +175,7 @@
 
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-<script>
-
-    function AbrirModal() {
-        $("#myModal").modal();
-    }
+<script type="text/javascript">
 
     function sumar() {
         var txtCantidad = $("#txtCantidad");
@@ -307,7 +292,6 @@
             detalleproductos.push(producto);
         });
 
-
         var encabezado = {
             ProveedorId: $("#ddlProveedores").val(),
             CuentaId: $("#ddlCuentas").val(),
@@ -322,17 +306,19 @@
             Justificacion: $("#txtJustificacion").val(),
         }
 
-        //Send the JSON array to Controller using AJAX.
-        $.ajax({
-            type: "POST",
-            url: "/oc_ordenesdecompras/InsertarOC",
-            data: '{encabezado:' + JSON.stringify(encabezado) + ', detalleproductos: ' + JSON.stringify(detalleproductos) + ' }',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (r) {
-                location.href = "/oc_ordenesdecompras/index";
-            }
-        });
+        if (ValidarDatos()) {
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "/oc_ordenesdecompras/InsertarOC",
+                data: '{encabezado:' + JSON.stringify(encabezado) + ', detalleproductos: ' + JSON.stringify(detalleproductos) + ' }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    location.href = "/oc_ordenesdecompras/index";
+                }
+            });
+        }        
     });
 
     $(function () {
@@ -411,7 +397,7 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
-                ddlSubCentroCostos.empty().append('<option selected="selected" value="0">Seleccione una Centro de Costos...</option>');
+                ddlSubCentroCostos.empty().append('<option selected="selected" value="0">Seleccione un Sub Centro de Costos...</option>');
                 $.each(response, function () {
                     ddlSubCentroCostos.append($("<option></option>").val(this['Value']).html(this['Text']));
                 });
@@ -563,5 +549,108 @@
     }).focus(function () {
         $(this).autocomplete("search");
     });
+
+    function ValidarDatos() {
+        var ProveedorId = $("#ddlProveedores").val();
+        var CuentaId = $("#ddlCuentas").val();
+        var CentroCostosId = $("#ddlCentroCostos").val();
+        var SubCentroCostosId = $("#ddlSubCentroCostos").val();
+        var LugarEntregaId = $("#ddlLugarEntrega").val();
+        var CategoriaId = $("#ddlCategoria").val();
+        var TipoCompraId = $("#ddlTipoCompra").val();
+        var DivisaId = $("#ddlDivisa").val();
+        var FormaPagoId = $("#ddlFormaPago").val();
+        var Proyecto = $("#txtProyecto").val();
+        var Justificacion = $("#txtJustificacion").val();
+
+        if (ProveedorId == 0) {
+            toastr.error('El campo PROVEEDOR no puede estar vacio.');
+            return false;
+        }
+        else if (CuentaId == 0) {
+            toastr.error('El campo CUENTA no puede estar vacio.');
+            return false;
+        }
+        else if (CentroCostosId == 0) {
+            toastr.error('El campo CENTRO DE COSTOS no puede estar vacio.');
+            return false;
+        }
+        else if (SubCentroCostosId == 0) {
+            toastr.error('El campo SUB CENTRO DE COSTOS no puede estar vacio.');
+            return false;
+        }
+        else if (LugarEntregaId == 0) {
+            toastr.error('El campo LUGAR DE ENTREGA no puede estar vacio.');
+            return false;
+        }
+        else if (CategoriaId == 0) {
+            toastr.error('El campo CATEGORIA no puede estar vacio.');
+            return false;
+        }
+        else if (TipoCompraId == 0) {
+            toastr.error('El campo TIPO DE COMPRA no puede estar vacio.');
+            return false;
+        }
+        else if (DivisaId == 0) {
+            toastr.error('El campo DIVISA no puede estar vacio.');
+            return false;
+        }
+        else if (FormaPagoId == 0) {
+            toastr.error('El campo FORMA DE PAGO no puede estar vacio.');
+            return false;
+        }
+        else if (Proyecto === "") {
+            toastr.error('El campo PROYECTO no puede estar vacio.');
+            return false;
+        }
+        else if (Justificacion === "") {
+            toastr.error('El campo JUSTIFICACION no puede estar vacio.');
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+
+    var AgregarProductos = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/oc_productos/CreateParcial/";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.respuesta === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');                        
+
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
 
 </script>

@@ -27,6 +27,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             oc_det_ordenes_productos detalle = db.oc_det_ordenes_productos.Find(det.Id);
 
+            detalle.Codigo = det.Codigo.ToUpper().Trim();
             detalle.oc_productos_Id = db.oc_productos.Where(x => x.Descripcion.Contains(det.producto)).FirstOrDefault().Id;
             detalle.Cantidad = det.Cantidad;
             detalle.Precio = det.Precio;
