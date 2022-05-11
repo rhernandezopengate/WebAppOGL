@@ -469,6 +469,7 @@
     <Content Include="images\LOGO.jpg" />
     <Content Include="images\mastercard.png" />
     <Content Include="images\media.jpg" />
+    <Content Include="images\oc.png" />
     <Content Include="images\paypal.png" />
     <Content Include="images\picture.jpg" />
     <Content Include="images\prod-1.jpg" />
