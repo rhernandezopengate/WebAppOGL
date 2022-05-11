@@ -2,7 +2,6 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,22 +43,22 @@
                                                     <p>Cuenta: @Model.Cuenta</p>
                                                     <p>Centro de Costos: @Model.oc_centrocostos.Descripcion</p>
                                                     <p>Sub Centro de Costos: @Model.oc_subcentrocostos.Descripcion</p>
-                                                    <p>Categoria: @Model.oc_categoria.Descripcion</p>
                                                 </div>
                                                 <div class="col-md-8 col-sm-6 col-xs-6">
                                                     <p>Proyecto: @Model.Proyecto</p>
                                                     <p>Proveedor: @Model.oc_proveedores.NombreComercial</p>
                                                     <p>Forma de Pago: @Model.oc_formapago.Descripcion</p>
-                                                    <p>Divisa: @Model.oc_divisa.Descripcion</p>
                                                     <p>Lugar de Entrega: @Model.oc_lugarentrega.Descripcion</p>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
-                        <div class="col-md-12 col-sm-12 tableSection">                            
+                        <div class="col-md-12 col-sm-12 tableSection">
                             <table class="table table-bordered text-center">
                                 <thead>
                                     <tr class="tableHead">
@@ -113,9 +112,9 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 lastSectionleft ">
-                            <div class="row">                               
+                            <div class="row">
                                 <div class="col-md-4 col-sm-6">
-                                    <div class="panel panel-default">                                       
+                                    <div class="panel panel-default">
                                         <div class="panel-footer lastFooter">
                                             <div class="row">
                                                 <table class="table table-bordered text-center">
@@ -127,7 +126,7 @@
                                                             <th style="text-align:center">VoBo Finanzas</th>
                                                             <th style="text-align:center">VoBo Direccion General</th>
                                                         </tr>
-                                                    </thead> 
+                                                    </thead>
                                                     <tbody>
                                                         <tr>
                                                             <td>@Model.oc_solicitantes.NombreCompleto</td>
