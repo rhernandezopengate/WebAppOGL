@@ -173,164 +173,6 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             }
         }
 
-        public ActionResult Details(int? id) 
-        {
-            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
-            oc.Cuenta = db1.adm_cuentas.Where(x => x.Id.Equals(oc.adm_cuentas_Id)).FirstOrDefault().Descripcion;
-
-            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(oc.Id)).ToList();
-
-            List<detalleproductos> listaView = new List<detalleproductos>();
-
-            foreach (var item in lista)
-            {
-                detalleproductos detalleproductos = new detalleproductos();
-
-                detalleproductos.codigo = item.Codigo;
-                detalleproductos.producto = item.oc_productos.Descripcion;
-                detalleproductos.cantidad = (int)item.Cantidad;
-                detalleproductos.precio = (decimal)item.Precio;
-                detalleproductos.subtotal = (decimal)item.Subtotal;
-
-                listaView.Add(detalleproductos);
-            }
-
-            double subtotal = 0;
-            double iva = 0.16;
-
-            foreach (var item in lista)
-            {
-                subtotal += (double)item.Subtotal;
-            }
-
-            ViewBag.Subtotal = string.Format("{0:C}", subtotal);
-
-            iva = (double)(subtotal * double.Parse(iva.ToString()));
-
-            iva = Math.Round(iva, 2);
-
-            ViewBag.Iva = string.Format("{0:C}", iva);
-
-
-            double total = subtotal + iva;
-
-            ViewBag.Total = string.Format("{0:C}", total);
-
-            ViewData["ListaOC"] = listaView;
-
-            return View(oc);
-        }
-
-        public ActionResult ReporteOC(int? Id)
-        {
-            oc_ordenescompras oc = db.oc_ordenescompras.Find(Id);
-            oc.Cuenta = db1.adm_cuentas.Where(x => x.Id.Equals(oc.adm_cuentas_Id)).FirstOrDefault().Descripcion;
-
-            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(oc.Id)).ToList();
-
-            List<detalleproductos> listaView = new List<detalleproductos>();
-
-            foreach (var item in lista)
-            {
-                detalleproductos detalleproductos = new detalleproductos();
-
-                detalleproductos.codigo = item.Codigo;
-                detalleproductos.producto = item.oc_productos.Descripcion;
-                detalleproductos.cantidad = (int)item.Cantidad;
-                detalleproductos.precio = (decimal)item.Precio;
-                detalleproductos.subtotal = (decimal)item.Subtotal;
-
-                listaView.Add(detalleproductos);
-            }
-
-            double subtotal = 0;
-            double iva = 0.16;
-
-            foreach (var item in lista)
-            {
-                subtotal += (double)item.Subtotal;
-            }
-
-            ViewBag.Subtotal = string.Format("{0:C}", subtotal); 
-
-            iva = (double)(subtotal * double.Parse(iva.ToString()));
-
-            iva = Math.Round(iva, 2);
-
-            ViewBag.Iva = string.Format("{0:C}", iva);
-
-
-            double total = subtotal + iva;
-
-            ViewBag.Total = string.Format("{0:C}", total);
-
-            ViewData["ListaOC"] = listaView;
-
-            return View(oc);
-        }
-
-        public ActionResult ImprimirVista(int? id)
-        {
-            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
-            return new ActionAsPdf("ReporteOC", new { Id = id })
-            {
-                FileName = "Reporte_"+ oc.Folio +".pdf",
-                PageOrientation = Rotativa.Options.Orientation.Portrait,                
-            };
-        }
-
-        public ActionResult AutorizarOC(int? id)
-        {
-            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
-            
-            ViewBag.oc_statuscompras_Id = new SelectList(db.oc_statuscompras, "Id", "Descripcion", oc.oc_statuscompras_Id);
-            ViewBag.oc_statusdirector_Id = new SelectList(db.oc_statusdirector, "Id", "Descripcion", oc.oc_statusdirector_Id);
-            ViewBag.oc_statusfinanzas_Id = new SelectList(db.oc_statusfinanzas, "Id", "Descripcion", oc.oc_statusfinanzas_Id);
-            
-            //supervisor
-            var user = User.Identity.GetUserId();
-            string email = db1.AspNetUsers.Where(x => x.Id == user).Select(x => x.Email).FirstOrDefault().ToString();
-            var empleado = db1.adm_empleados.Where(x => x.Email.Contains(email)).FirstOrDefault().Id;
-
-            if (oc.oc_solicitantes.oc_supervisores.adm_empleados_Id == empleado)
-            {
-                ViewBag.Usuario = "Supervisor";
-                ViewBag.oc_statussupervisor_Id = new SelectList(db.oc_statussupervisor, "Id", "Descripcion", oc.oc_statussupervisor_Id);
-            }     
-
-            return View(oc);
-        }
-
-        [HttpPost]
-        public ActionResult AutorizarOC(oc_ordenescompras oc) 
-        {
-            oc_ordenescompras _oc = db.oc_ordenescompras.Find(oc.Id);
-
-            if (oc.oc_statuscompras_Id != null)
-            {
-                _oc.oc_statuscompras_Id = oc.oc_statuscompras_Id;
-            }
-            
-            if (oc.oc_statusdirector_Id != null)
-            {
-                _oc.oc_statusdirector_Id = oc.oc_statusdirector_Id;
-            }
-            
-            if (oc.oc_statusfinanzas_Id != null)
-            {
-                _oc.oc_statusfinanzas_Id = oc.oc_statusfinanzas_Id;
-            }
-            
-            if (oc.oc_statussupervisor_Id != null)
-            {
-                _oc.oc_statussupervisor_Id = oc.oc_statussupervisor_Id;
-            }   
-
-            db.SaveChanges();
-
-            return Json("Correcto", JsonRequestBehavior.AllowGet);
-        }
-
         //CREANDO OC
         [Authorize]
         public ActionResult Create()
@@ -395,13 +237,13 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             }
             catch (Exception _ex)
             {
-                return Json(" " + _ex.Message.ToString());               
-            }      
+                return Json(" " + _ex.Message.ToString());
+            }
         }
 
-        [Authorize]
         //Editando OC
-        public ActionResult Edit(int? id) 
+        [Authorize]
+        public ActionResult Edit(int? id)
         {
             oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
 
@@ -412,7 +254,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             ViewBag.oc_centrocostos_Id = new SelectList(db.oc_centrocostos, "Id", "Descripcion", oc.oc_centrocostos_Id);
 
             ViewBag.oc_subcentrocostos_Id = new SelectList(db.oc_subcentrocostos, "Id", "Descripcion", oc.oc_subcentrocostos_Id);
-            
+
             ViewBag.oc_tipocompra_Id = new SelectList(db.oc_tipocompra, "Id", "Descripcion", oc.oc_tipocompra_Id);
 
             ViewBag.oc_lugarentrega_Id = new SelectList(db.oc_lugarentrega, "Id", "Descripcion", oc.oc_lugarentrega_Id);
@@ -447,7 +289,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View(oc);
         }
 
-        public ActionResult EditandoOC(oc_ordenescompras encabezado) 
+        public ActionResult EditandoOC(oc_ordenescompras encabezado)
         {
             try
             {
@@ -482,10 +324,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             catch (Exception)
             {
                 return Json(new { respuesta = "Error" }, JsonRequestBehavior.AllowGet);
-            }           
+            }
         }
 
-        public ActionResult TablaConceptos(int id) 
+        public ActionResult TablaConceptos(int id)
         {
             ViewBag.oc_ordenescompras_Id = id;
             List<oc_det_ordenes_productos> det = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(id)).ToList();
@@ -534,11 +376,11 @@ namespace WebAppOGL.Controllers.OrdenesCompra
                     con.Open();
 
                     string sql = "exec SP_DetOrdenesCompras_Editar @IdOrden";
-                    
+
                     var query = new SqlCommand(sql, con);
-                                                          
+
                     query.Parameters.AddWithValue("@IdOrden", id);
-                                        
+
                     using (var dr = query.ExecuteReader())
                     {
                         while (dr.Read())
@@ -580,5 +422,165 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             }
         }
 
+        public ActionResult Details(int? id) 
+        {
+            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
+            oc.Cuenta = db1.adm_cuentas.Where(x => x.Id.Equals(oc.adm_cuentas_Id)).FirstOrDefault().Descripcion;
+
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(oc.Id)).ToList();
+
+            List<detalleproductos> listaView = new List<detalleproductos>();
+
+            foreach (var item in lista)
+            {
+                detalleproductos detalleproductos = new detalleproductos();
+
+                detalleproductos.codigo = item.Codigo;
+                detalleproductos.producto = item.oc_productos.Descripcion;
+                detalleproductos.cantidad = (int)item.Cantidad;
+                detalleproductos.precio = (decimal)item.Precio;
+                detalleproductos.subtotal = (decimal)item.Subtotal;
+
+                listaView.Add(detalleproductos);
+            }
+
+            double subtotal = 0;
+            double iva = 0.16;
+
+            foreach (var item in lista)
+            {
+                subtotal += (double)item.Subtotal;
+            }
+
+            ViewBag.Subtotal = string.Format("{0:C}", subtotal);
+
+            iva = (double)(subtotal * double.Parse(iva.ToString()));
+
+            iva = Math.Round(iva, 2);
+
+            ViewBag.Iva = string.Format("{0:C}", iva);
+
+
+            double total = subtotal + iva;
+
+            ViewBag.Total = string.Format("{0:C}", total);
+
+            ViewData["ListaOC"] = listaView;
+
+            return View(oc);
+        }
+
+        //REPORTE OC
+        public ActionResult ReporteOC(int? Id)
+        {
+            oc_ordenescompras oc = db.oc_ordenescompras.Find(Id);
+            oc.Cuenta = db1.adm_cuentas.Where(x => x.Id.Equals(oc.adm_cuentas_Id)).FirstOrDefault().Descripcion;
+
+            List<oc_det_ordenes_productos> lista = db.oc_det_ordenes_productos.Where(x => x.oc_ordenescompras_Id.Equals(oc.Id)).ToList();
+
+            List<detalleproductos> listaView = new List<detalleproductos>();
+
+            foreach (var item in lista)
+            {
+                detalleproductos detalleproductos = new detalleproductos();
+
+                detalleproductos.codigo = item.Codigo;
+                detalleproductos.producto = item.oc_productos.Descripcion;
+                detalleproductos.cantidad = (int)item.Cantidad;
+                detalleproductos.precio = (decimal)item.Precio;
+                detalleproductos.subtotal = (decimal)item.Subtotal;
+
+                listaView.Add(detalleproductos);
+            }
+
+            double subtotal = 0;
+            double iva = 0.16;
+
+            foreach (var item in lista)
+            {
+                subtotal += (double)item.Subtotal;
+            }
+
+            ViewBag.Subtotal = string.Format("{0:C}", subtotal); 
+
+            iva = (double)(subtotal * double.Parse(iva.ToString()));
+
+            iva = Math.Round(iva, 2);
+
+            ViewBag.Iva = string.Format("{0:C}", iva);
+
+
+            double total = subtotal + iva;
+
+            ViewBag.Total = string.Format("{0:C}", total);
+
+            ViewData["ListaOC"] = listaView;
+
+            return View(oc);
+        }
+
+        public ActionResult ImprimirVista(int? id)
+        {
+            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
+            return new ActionAsPdf("ReporteOC", new { Id = id })
+            {
+                FileName = "Reporte_"+ oc.Folio +".pdf",
+                PageOrientation = Rotativa.Options.Orientation.Portrait,                
+            };
+        }
+
+        //AUTORIZAR OC
+        public ActionResult AutorizarOC(int? id)
+        {
+            oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
+            
+            ViewBag.oc_statuscompras_Id = new SelectList(db.oc_statuscompras, "Id", "Descripcion", oc.oc_statuscompras_Id);
+            ViewBag.oc_statusdirector_Id = new SelectList(db.oc_statusdirector, "Id", "Descripcion", oc.oc_statusdirector_Id);
+            ViewBag.oc_statusfinanzas_Id = new SelectList(db.oc_statusfinanzas, "Id", "Descripcion", oc.oc_statusfinanzas_Id);
+            
+            //supervisor
+            var user = User.Identity.GetUserId();
+            string email = db1.AspNetUsers.Where(x => x.Id == user).Select(x => x.Email).FirstOrDefault().ToString();
+            var empleado = db1.adm_empleados.Where(x => x.Email.Contains(email)).FirstOrDefault().Id;
+
+            if (oc.oc_solicitantes.oc_supervisores.adm_empleados_Id == empleado)
+            {
+                ViewBag.Usuario = "Supervisor";
+                ViewBag.oc_statussupervisor_Id = new SelectList(db.oc_statussupervisor, "Id", "Descripcion", oc.oc_statussupervisor_Id);
+            }     
+
+            return View(oc);
+        }
+
+        [HttpPost]
+        public ActionResult AutorizarOC(oc_ordenescompras oc) 
+        {
+            oc_ordenescompras _oc = db.oc_ordenescompras.Find(oc.Id);
+
+            if (oc.oc_statuscompras_Id != null)
+            {
+                _oc.oc_statuscompras_Id = oc.oc_statuscompras_Id;
+            }
+            
+            if (oc.oc_statusdirector_Id != null)
+            {
+                _oc.oc_statusdirector_Id = oc.oc_statusdirector_Id;
+            }
+            
+            if (oc.oc_statusfinanzas_Id != null)
+            {
+                _oc.oc_statusfinanzas_Id = oc.oc_statusfinanzas_Id;
+            }
+            
+            if (oc.oc_statussupervisor_Id != null)
+            {
+                _oc.oc_statussupervisor_Id = oc.oc_statussupervisor_Id;
+            }   
+
+            db.SaveChanges();
+
+            return Json("Correcto", JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

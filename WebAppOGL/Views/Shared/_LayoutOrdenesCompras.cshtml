@@ -54,35 +54,43 @@
                                     <a><i class="fa fa-cogs"></i> Configuracion <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="">
                                         <li><a href='@Url.Action("Index", "oc_productos")'>Productos</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_proveedores")'>Proveedores</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_solicitantes")'>Solicitantes</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_supervisores")'>Supervisores</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_categoria")'>Categorias OC</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_centrocostos")'>Centros de Costos</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_lugarentrega")'>Lugares de Entrega</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_subcentrocostos")'>Sub Centros de Costos</a></li>
+
+                                        @if (User.IsInRole("sistemas") || User.IsInRole("compras"))
+                                        {
+                                            <li><a href='@Url.Action("Index", "oc_proveedores")'>Proveedores</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_solicitantes")'>Solicitantes</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_supervisores")'>Supervisores</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_categoria")'>Categorias OC</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_centrocostos")'>Centros de Costos</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_lugarentrega")'>Lugares de Entrega</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_subcentrocostos")'>Sub Centros de Costos</a></li>
+                                        }
+
                                     </ul>
                                 </li>
                             </ul>
                         </div>
-                        <div class="menu_section">
-                            <h3>Catalogos</h3>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-cogs"></i> Configuracion <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="">
-                                        <li><a href='@Url.Action("Index", "oc_statuscompras")'>Status Compras</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_statusdirector")'>Status Director</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_statusfinanzas")'>Status Finanzas</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_statussupervisor")'>Status Supervisor</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_divisa")'>Divisas</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_formapago")'>Formas de Pago</a></li>
-                                        <li><a href='@Url.Action("Index", "oc_tipocompra")'>Tipo de Compra</a></li>
-                                        <li><a href='@Url.Action("Index", "UoMs")'>Unidades de Medida</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>                       
+                        @if (User.IsInRole("sistemas") || User.IsInRole("compras"))
+                        {
+                            <div class="menu_section">
+                                <h3>Catalogos</h3>
+                                <ul class="nav side-menu">
+                                    <li>
+                                        <a><i class="fa fa-cogs"></i> Configuracion <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="">
+                                            <li><a href='@Url.Action("Index", "oc_statuscompras")'>Status Compras</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_statusdirector")'>Status Director</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_statusfinanzas")'>Status Finanzas</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_statussupervisor")'>Status Supervisor</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_divisa")'>Divisas</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_formapago")'>Formas de Pago</a></li>
+                                            <li><a href='@Url.Action("Index", "oc_tipocompra")'>Tipo de Compra</a></li>
+                                            <li><a href='@Url.Action("Index", "UoMs")'>Unidades de Medida</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
                     </div>
                     <!-- /sidebar menu -->
                 </div>
