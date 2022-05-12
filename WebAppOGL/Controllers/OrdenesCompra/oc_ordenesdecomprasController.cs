@@ -422,6 +422,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             }
         }
 
+        [Authorize]
         public ActionResult Details(int? id) 
         {
             oc_ordenescompras oc = db.oc_ordenescompras.Find(id);
