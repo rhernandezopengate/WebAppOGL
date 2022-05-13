@@ -9,12 +9,13 @@ using System.Web.Mvc;
 using WebAppOGL.Entities.OrdenesCompra;
 
 namespace WebAppOGL.Controllers.OrdenesCompra
-{
+{    
     public class oc_proveedoresController : Controller
     {
         private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
-
+        
         // GET: oc_proveedores
+        [Authorize(Roles = "sistemas, compras")]
         public ActionResult Index()
         {
             return View(db.oc_proveedores.ToList());
@@ -37,6 +38,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_proveedores/Details/5
+        [Authorize(Roles = "sistemas, compras")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -52,6 +54,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_proveedores/Create
+        [Authorize(Roles = "sistemas, compras")]
         public ActionResult Create()
         {
             return View();
@@ -65,7 +68,12 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         public ActionResult Create([Bind(Include = "Id,RFC,RazonSocial,DiasCredito,NombreComercial")] oc_proveedores oc_proveedores)
         {
             if (ModelState.IsValid)
-            {
+            {              
+                oc_proveedores.NombreComercial = oc_proveedores.NombreComercial.ToUpper().Trim();
+                oc_proveedores.RazonSocial = oc_proveedores.RazonSocial.ToUpper().Trim();
+                oc_proveedores.RFC = oc_proveedores.RFC.ToUpper().Trim();
+                oc_proveedores.DiasCredito = oc_proveedores.DiasCredito;
+
                 db.oc_proveedores.Add(oc_proveedores);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -75,6 +83,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_proveedores/Edit/5
+        [Authorize(Roles = "sistemas, compras")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -98,6 +107,11 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         {
             if (ModelState.IsValid)
             {
+                oc_proveedores.NombreComercial = oc_proveedores.NombreComercial.ToUpper().Trim();
+                oc_proveedores.RazonSocial = oc_proveedores.RazonSocial.ToUpper().Trim();
+                oc_proveedores.RFC = oc_proveedores.RFC.ToUpper().Trim();
+                oc_proveedores.DiasCredito = oc_proveedores.DiasCredito;
+
                 db.Entry(oc_proveedores).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -106,6 +120,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_proveedores/Delete/5
+        [Authorize(Roles = "sistemas, compras")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
