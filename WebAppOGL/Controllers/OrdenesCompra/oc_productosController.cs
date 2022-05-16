@@ -77,6 +77,12 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return Json(new { respuesta = "Error" }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Create()
+        {
+            ViewBag.UoM_Id = new SelectList(db.UoM.OrderBy(x => x.Descripcion), "Id", "Descripcion");
+            return View();
+        }
+
         // POST: oc_productos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
