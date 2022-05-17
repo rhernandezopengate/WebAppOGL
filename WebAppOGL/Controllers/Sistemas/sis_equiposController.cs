@@ -18,6 +18,7 @@ namespace WebAppOGL.Controllers.Sistemas
         private db_a3f19c_administracionEntities db = new db_a3f19c_administracionEntities();
 
         // GET: sis_equipos
+        [Authorize(Roles = "sistemas")]
         public ActionResult Index()
         {            
             return View();
@@ -99,6 +100,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_equipos/Details/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Details(int? id)
         {
             
@@ -115,6 +117,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_equipos/Create
+        [Authorize(Roles = "sistemas")]
         public ActionResult Create()
         {
             ViewBag.sis_mantenimiento_Id = new SelectList(db.sis_mantenimiento, "Id", "Descripcion");
@@ -147,6 +150,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_equipos/Edit/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -186,6 +190,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_equipos/Delete/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
