@@ -17,7 +17,9 @@ namespace WebAppOGL.Controllers.Sistemas
     {
         private db_a3f19c_administracionEntities db = new db_a3f19c_administracionEntities();
 
+
         // GET: sis_terminales
+        [Authorize(Roles = "sistemas")]
         public ActionResult Index()
         {            
             return View();
