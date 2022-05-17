@@ -20,6 +20,10 @@
                         <input id="txtBuscarEquipo" type="text" class="form-control has-feedback-left" placeholder="Nombre Equipo">
                         <span class="fa fa-bookmark form-control-feedback left" aria-hidden="true"></span>
                     </div>
+                    <div class="col-md-3 col-sm-6  form-group has-feedback">
+                        <input id="txtBuscarSerie" type="text" class="form-control has-feedback-left" placeholder="Numero Serie">
+                        <span class="fa fa-qrcode form-control-feedback left" aria-hidden="true"></span>
+                    </div>
                 </div>
                 <br />
                 <br />
@@ -128,6 +132,10 @@
 
         $('#txtBuscarEquipo').on('keyup', function () {
             table.columns(0).search(this.value).draw();
+        });
+
+        $('#txtBuscarSerie').on('keyup', function () {
+            table.columns(1).search(this.value).draw();
         });
     });
 

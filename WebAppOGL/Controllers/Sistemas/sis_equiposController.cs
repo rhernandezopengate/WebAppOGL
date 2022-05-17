@@ -35,6 +35,7 @@ namespace WebAppOGL.Controllers.Sistemas
                 var SortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
 
                 var nombreequipo = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
+                var numeroserie = Request.Form.GetValues("columns[1][search][value]").FirstOrDefault();
 
                 int PageSize = Length != null ? Convert.ToInt32(Length) : 0;
                 int Skip = Start != null ? Convert.ToInt32(Start) : 0;
@@ -46,7 +47,7 @@ namespace WebAppOGL.Controllers.Sistemas
                 {
                     con.Open();
 
-                    string sql = "exec SP_EquiposComputo_Index @nombreequipo";
+                    string sql = "exec SP_EquiposComputo_Index @nombreequipo, @numeroserie";
                     var query = new SqlCommand(sql, con);
 
                     if (nombreequipo != "")
@@ -56,7 +57,16 @@ namespace WebAppOGL.Controllers.Sistemas
                     else
                     {
                         query.Parameters.AddWithValue("@nombreequipo", DBNull.Value);
-                    }                   
+                    }
+
+                    if (numeroserie != "")
+                    {
+                        query.Parameters.AddWithValue("@numeroserie", numeroserie);
+                    }
+                    else
+                    {
+                        query.Parameters.AddWithValue("@numeroserie", DBNull.Value);
+                    }
 
                     using (var dr = query.ExecuteReader())
                     {
