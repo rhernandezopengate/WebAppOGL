@@ -16,8 +16,18 @@
                                 <div class="icon">
                                     <i class="fa fa-check-circle-o"></i>
                                 </div>
-                                <div class="count">@ViewBag.OrdenesPendientes</div>
-                                <h3>Ordenes Por Aprobar</h3>
+                                <div class="count">@ViewBag.OrdenesComprasPendientes</div>
+                                <h3>Ordenes Por Aprobar Compras</h3>
+                                <p>Ordenes en espera de aprobacion.</p>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-check-circle-o"></i>
+                                </div>
+                                <div class="count">@ViewBag.OrdenesFinanzasPendientes</div>
+                                <h3>Ordenes Por Aprobar Finanzas</h3>
                                 <p>Ordenes en espera de aprobacion.</p>
                             </div>
                         </div>
@@ -29,6 +39,30 @@
     </div>
 }
 
+@if (User.IsInRole("finanzas"))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="">
+                <div class="x_content">
+                    <div class="row">                        
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-check-circle-o"></i>
+                                </div>
+                                <div class="count">@ViewBag.OrdenesFinanzasPendientes</div>
+                                <h3>Ordenes Por Aprobar Finanzas</h3>
+                                <p>Ordenes en espera de aprobacion.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 @if (User.IsInRole("sistemas"))
 {
@@ -42,8 +76,18 @@
                                 <div class="icon">
                                     <i class="fa fa-check-circle-o"></i>
                                 </div>
-                                <div class="count">@ViewBag.OrdenesPendientes</div>
-                                <h3>Ordenes Por Aprobar</h3>
+                                <div class="count">@ViewBag.OrdenesComprasPendientes</div>
+                                <h3>Ordenes Por Aprobar Compras</h3>
+                                <p>Ordenes en espera de aprobacion.</p>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-check-circle-o"></i>
+                                </div>
+                                <div class="count">@ViewBag.OrdenesFinanzasPendientes</div>
+                                <h3>Ordenes Por Aprobar Finanzas</h3>
                                 <p>Ordenes en espera de aprobacion.</p>
                             </div>
                         </div>

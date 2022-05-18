@@ -15,7 +15,8 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         // GET: oc_dashboard
         public ActionResult Index()
         {
-            ViewBag.OrdenesPendientes = db.oc_ordenescompras.Where(x => x.oc_statuscompras_Id == 1).Count();
+            ViewBag.OrdenesComprasPendientes = db.oc_ordenescompras.Where(x => x.oc_statuscompras_Id == 1).Count();
+            ViewBag.OrdenesFinanzasPendientes = db.oc_ordenescompras.Where(x => x.oc_statusfinanzas_Id == 1).Count();
 
             return View();
         }

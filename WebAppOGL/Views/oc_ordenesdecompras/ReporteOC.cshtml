@@ -130,10 +130,26 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>@Model.oc_solicitantes.NombreCompleto</td>
-                                                            <td>@Model.oc_solicitantes.oc_supervisores.NombreCompleto.ToUpper()</td>
-                                                            <td>PATRICIA SANCHEZ</td>
-                                                            <td>GUSTAVO JASSO</td>
-                                                            <td>JORGE REYNOSO</td>
+                                                            <td>
+                                                                @Model.oc_solicitantes.oc_supervisores.NombreCompleto.ToUpper()
+                                                                <br />
+                                                                @Model.oc_statussupervisor.Descripcion
+                                                            </td>
+                                                            <td>
+                                                                PATRICIA SANCHEZ
+                                                                <br />
+                                                                @Model.oc_statuscompras.Descripcion
+                                                            </td>
+                                                            <td>
+                                                                GUSTAVO JASSO
+                                                                <br />
+                                                                @Model.oc_statusfinanzas.Descripcion
+                                                            </td>
+                                                            <td>
+                                                                JORGE REYNOSO
+                                                                <br />
+                                                                @Model.oc_statusdirector.Descripcion
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
