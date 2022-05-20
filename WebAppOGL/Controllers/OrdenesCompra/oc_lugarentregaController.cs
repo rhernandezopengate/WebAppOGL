@@ -15,6 +15,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
 
         // GET: oc_lugarentrega
+        [Authorize(Roles = "sistemas")]
         public ActionResult Index()
         {
             return View(db.oc_lugarentrega.ToList());
@@ -37,6 +38,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_lugarentrega/Details/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -52,6 +54,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_lugarentrega/Create
+        [Authorize(Roles = "sistemas")]
         public ActionResult Create()
         {
             return View();
@@ -79,6 +82,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_lugarentrega/Edit/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -113,6 +117,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_lugarentrega/Delete/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

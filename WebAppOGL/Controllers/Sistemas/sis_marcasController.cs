@@ -22,6 +22,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_marcas/Details/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Details(int? id)
         {
             if (id == null)
