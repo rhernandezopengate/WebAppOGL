@@ -1,0 +1,242 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutOrdenesServicio.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Orden de Servicio <small>Index</small></h2> &nbsp;&nbsp;&nbsp;                
+                <button type="submit" class="btn btn-primary" id="btnSave"><i class="fa fa-floppy-o"></i> Guardar</button>
+                <a class="btn btn-danger" href="@Url.Action("Index")"><i class="fa fa-trash"></i> Cancelar</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="form-label-left input_mask">
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        <select class="form-control has-feedback-left " id="ddlCuentas" all="Cuentas" title="Cuentas"></select>
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        <select class="form-control has-feedback-left" id="ddlProveedores" all="Proveedor" title="Proveedor"></select>
+                        <span class="fa fa-users form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" placeholder="Remision" />
+                        <span class="fa fa-first-order form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" placeholder="Fecha de Solicitud" id="txtFechaPeticion"/>
+                        <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="x_title">
+                    <h2>Rutas</h2>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-label-left input_mask">
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        <select class="form-control has-feedback-left " id="ddlRutas" all="Ruta" title="Ruta"></select>
+                        <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left" placeholder="Costo de Venta" />
+                        <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="x_title">
+                    <h2>Items</h2>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <div class="clearfix"></div>
+                </div>
+
+                <table id="conceptos" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="10%">Codigo</th>
+                            <th width="25%">Producto</th>
+                            <th width="10%">Cantidad</th>
+                            <th width="10%">Precio</th>
+                            <th width="10%">Retencion</th>
+                            <th width="15%">Subtotal</th>
+                            <td width="10%"></td>
+                        </tr>
+                        <tr>
+                            <th> <input type="text" id="txtCodigo" class="form-control" />  </th>
+                            <th> <input type="text" id="txtProducto" class="form-control" /> </th>
+                            <th> <input type="text" id="txtCantidad" class="form-control" value="0" /> </th>
+                            <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" value="0" /> </th>
+                            <th> <input type="text" id="txtRetencion" class="form-control" onkeyup="sumar()" value="0" /> </th>
+                            <th> <input type="text" id="txtSubtotal" class="form-control" onkeyup="sumar()" value="0" disabled /> </th>
+                            <th>
+                                <input type="button" id="btnAdd" value="Agregar" class="btn btn-primary btn-sm" all="Agregar" title="Agregar" data-dismiss="modal" />
+                                <button onclick="AgregarProductos()" class="btn btn-success btn-sm"><span class="fa fa-plus"></span></button>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Subtotal</td>
+                            <td>
+                                <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="0" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>IVA</td>
+                            <td> <input type="text" class="form-control" disabled id="txtIVA" value="0" /> </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td> <input type="text" class="form-control" disabled id="txtTotal" value="0" /> </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Theme Scripts -->
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        var ddlProveedores = $("#ddlProveedores");
+        ddlProveedores.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/oc_proveedores/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlProveedores.empty().append('<option selected="selected" value="0">Seleccione un Proveedor...</option>');
+                $.each(response, function () {
+                    ddlProveedores.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+        var ddlCuentas = $("#ddlCuentas");
+        ddlCuentas.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/adm_cuentas/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlCuentas.empty().append('<option selected="selected" value="0">Seleccione una Cuenta...</option>');
+                $.each(response, function () {
+                    ddlCuentas.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+
+        var ddlRutas = $("#ddlRutas");
+        ddlRutas.empty().append('<option selected="selected" value="0" disabled = "disabled">Loading ...</option>');
+        $.ajax({
+            type: "POST",
+            url: "/os_rutas/ListaSelect",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                ddlRutas.empty().append('<option selected="selected" value="0">Seleccione una Ruta...</option>');
+                $.each(response, function () {
+                    ddlRutas.append($("<option></option>").val(this['Value']).html(this['Text']));
+                });
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    });
+
+    $(function () {
+        $("#txtFechaPeticion").datepicker({
+            dateFormat: 'dd/mm/yy',
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.respuesta === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+
+    function Guardar()
+    {
+
+    }
+
+</script>

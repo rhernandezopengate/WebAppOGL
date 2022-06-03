@@ -7,8 +7,9 @@
 
 <div class="row">
     <div class="col-md-6">
-        @Html.Action("AsignacionEquiposParcial", "sis_asignacion")
+        @Html.Action("AsiganacionTerminalesParcial", "sis_asignacion_terminales")
     </div>
+
     <div class="col-md-6">
         @Html.Action("AsignacionCelularesParcial", "sis_asignacion_celulares")
     </div>
@@ -16,11 +17,10 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
-        @Html.Action("AsiganacionTerminalesParcial", "sis_asignacion_terminales")
+    <div class="col-md-12">
+        @Html.Action("AsignacionEquiposParcial", "sis_asignacion")
     </div>
 </div>
-
 
 <div id="MyModal" class="modal fade bs-example-modal-lg">
     <div class="modal-dialog modal-lg" id="mdialTamanio">
@@ -36,6 +36,7 @@
 <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
 <script src="~/build/js/custom.min.js"></script>
+
 
 <script type="text/javascript">
 

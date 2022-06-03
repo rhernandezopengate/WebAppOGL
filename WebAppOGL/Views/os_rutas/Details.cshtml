@@ -1,0 +1,35 @@
+﻿@model WebAppOGL.Entities.OrdenesServicio.os_rutas
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutOrdenesServicio.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>os_rutas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.os_origen.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.os_origen.Descripcion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

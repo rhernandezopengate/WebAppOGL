@@ -43,5 +43,9 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public virtual DbSet<oc_statussupervisor> oc_statussupervisor { get; set; }
         public virtual DbSet<oc_ordenescompras> oc_ordenescompras { get; set; }
         public virtual DbSet<oc_productos> oc_productos { get; set; }
+
+        public System.Data.Entity.DbSet<WebAppOGL.Entities.OrdenesServicio.os_conceptos> os_conceptos { get; set; }
+
+        public System.Data.Entity.DbSet<WebAppOGL.Entities.OrdenesServicio.os_statuscompras> os_statuscompras { get; set; }
     }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bbf8d70c323143d9a890039c30e7dc2f" Name="Diagram1">
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_detos_conceptos" Width="1.5" PointX="2.875" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_detrutas_destinos" Width="1.5" PointX="7.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_ordenesservicio" Width="1.5" PointX="5.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_origen" Width="1.5" PointX="10.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_rutas" Width="1.5" PointX="7.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_statuscompras" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_detos_conceptos_os_ordenesservicio_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_detrutas_destinos_os_rutas_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_ordenesservicio_os_rutas_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_ordenesservicio_os_statuscompras_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_rutas_os_origen_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_conceptos" Width="1.5" PointX="0.75" PointY="5.875" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_detos_conceptos_os_conceptos_FK" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_destinos" Width="1.5" PointX="10.375" PointY="3.625" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_detrutas_destinos_os_destinos_FK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

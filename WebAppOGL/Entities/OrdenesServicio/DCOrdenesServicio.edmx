@@ -1,0 +1,529 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_a3f19c_administracionModel3.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="os_conceptos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="os_destinos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="os_detos_conceptos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" />
+          <Property Name="Cantidad" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioUnitario" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="os_ordenesservicio_Id" Type="int" Nullable="false" />
+          <Property Name="os_conceptos_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="os_detrutas_destinos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="os_rutas_Id" Type="int" Nullable="false" />
+          <Property Name="os_destinos_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="os_ordenesservicio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaAlta" Type="datetime" />
+          <Property Name="Folio" Type="varchar" MaxLength="10" />
+          <Property Name="FechaSolicitud" Type="datetime" />
+          <Property Name="Semana" Type="int" />
+          <Property Name="Remision" Type="varchar" MaxLength="100" />
+          <Property Name="CostoVenta" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Observaciones" Type="varchar(max)" />
+          <Property Name="adm_empleados_Id" Type="int" Nullable="false" />
+          <Property Name="os_statuscompras_Id" Type="int" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="int" Nullable="false" />
+          <Property Name="oc_proveedores_Id" Type="int" Nullable="false" />
+          <Property Name="os_rutas_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="os_origen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="os_rutas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" />
+          <Property Name="os_origen_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="os_statuscompras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="os_detos_conceptos_os_conceptos_FK">
+          <End Role="os_conceptos" Type="Self.os_conceptos" Multiplicity="1" />
+          <End Role="os_detos_conceptos" Type="Self.os_detos_conceptos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_conceptos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detos_conceptos">
+              <PropertyRef Name="os_conceptos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_detos_conceptos_os_ordenesservicio_FK">
+          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="1" />
+          <End Role="os_detos_conceptos" Type="Self.os_detos_conceptos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_ordenesservicio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detos_conceptos">
+              <PropertyRef Name="os_ordenesservicio_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_detrutas_destinos_os_destinos_FK">
+          <End Role="os_destinos" Type="Self.os_destinos" Multiplicity="1" />
+          <End Role="os_detrutas_destinos" Type="Self.os_detrutas_destinos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_destinos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detrutas_destinos">
+              <PropertyRef Name="os_destinos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_detrutas_destinos_os_rutas_FK">
+          <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="1" />
+          <End Role="os_detrutas_destinos" Type="Self.os_detrutas_destinos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_rutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detrutas_destinos">
+              <PropertyRef Name="os_rutas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_ordenesservicio_os_rutas_FK">
+          <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="1" />
+          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_rutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_ordenesservicio">
+              <PropertyRef Name="os_rutas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_ordenesservicio_os_statuscompras_FK">
+          <End Role="os_statuscompras" Type="Self.os_statuscompras" Multiplicity="1" />
+          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_statuscompras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_ordenesservicio">
+              <PropertyRef Name="os_statuscompras_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_rutas_os_origen_FK">
+          <End Role="os_origen" Type="Self.os_origen" Multiplicity="1" />
+          <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_origen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_rutas">
+              <PropertyRef Name="os_origen_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a3f19c_administracionModel3StoreContainer">
+          <EntitySet Name="os_conceptos" EntityType="Self.os_conceptos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_destinos" EntityType="Self.os_destinos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_detos_conceptos" EntityType="Self.os_detos_conceptos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_detrutas_destinos" EntityType="Self.os_detrutas_destinos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_ordenesservicio" EntityType="Self.os_ordenesservicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_origen" EntityType="Self.os_origen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_rutas" EntityType="Self.os_rutas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_statuscompras" EntityType="Self.os_statuscompras" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="os_detos_conceptos_os_conceptos_FK" Association="Self.os_detos_conceptos_os_conceptos_FK">
+            <End Role="os_conceptos" EntitySet="os_conceptos" />
+            <End Role="os_detos_conceptos" EntitySet="os_detos_conceptos" />
+          </AssociationSet>
+          <AssociationSet Name="os_detos_conceptos_os_ordenesservicio_FK" Association="Self.os_detos_conceptos_os_ordenesservicio_FK">
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+            <End Role="os_detos_conceptos" EntitySet="os_detos_conceptos" />
+          </AssociationSet>
+          <AssociationSet Name="os_detrutas_destinos_os_destinos_FK" Association="Self.os_detrutas_destinos_os_destinos_FK">
+            <End Role="os_destinos" EntitySet="os_destinos" />
+            <End Role="os_detrutas_destinos" EntitySet="os_detrutas_destinos" />
+          </AssociationSet>
+          <AssociationSet Name="os_detrutas_destinos_os_rutas_FK" Association="Self.os_detrutas_destinos_os_rutas_FK">
+            <End Role="os_rutas" EntitySet="os_rutas" />
+            <End Role="os_detrutas_destinos" EntitySet="os_detrutas_destinos" />
+          </AssociationSet>
+          <AssociationSet Name="os_ordenesservicio_os_rutas_FK" Association="Self.os_ordenesservicio_os_rutas_FK">
+            <End Role="os_rutas" EntitySet="os_rutas" />
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+          </AssociationSet>
+          <AssociationSet Name="os_ordenesservicio_os_statuscompras_FK" Association="Self.os_ordenesservicio_os_statuscompras_FK">
+            <End Role="os_statuscompras" EntitySet="os_statuscompras" />
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+          </AssociationSet>
+          <AssociationSet Name="os_rutas_os_origen_FK" Association="Self.os_rutas_os_origen_FK">
+            <End Role="os_origen" EntitySet="os_origen" />
+            <End Role="os_rutas" EntitySet="os_rutas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_a3f19c_administracionModel3" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="os_detos_conceptos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PrecioUnitario" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="os_ordenesservicio_Id" Type="Int32" Nullable="false" />
+          <Property Name="os_conceptos_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="os_ordenesservicio" Relationship="Self.os_detos_conceptos_os_ordenesservicio_FK" FromRole="os_detos_conceptos" ToRole="os_ordenesservicio" />
+          <NavigationProperty Name="os_conceptos" Relationship="db_a3f19c_administracionModel3.os_detos_conceptos_os_conceptos_FK" FromRole="os_detos_conceptos" ToRole="os_conceptos" />
+        </EntityType>
+        <EntityType Name="os_detrutas_destinos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="os_rutas_Id" Type="Int32" Nullable="false" />
+          <Property Name="os_destinos_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="os_rutas" Relationship="Self.os_detrutas_destinos_os_rutas_FK" FromRole="os_detrutas_destinos" ToRole="os_rutas" />
+          <NavigationProperty Name="os_destinos" Relationship="db_a3f19c_administracionModel3.os_detrutas_destinos_os_destinos_FK" FromRole="os_detrutas_destinos" ToRole="os_destinos" />
+        </EntityType>
+        <EntityType Name="os_ordenesservicio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="Folio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Precision="3" />
+          <Property Name="Semana" Type="Int32" />
+          <Property Name="Remision" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CostoVenta" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="adm_empleados_Id" Type="Int32" Nullable="false" />
+          <Property Name="os_statuscompras_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_proveedores_Id" Type="Int32" Nullable="false" />
+          <Property Name="os_rutas_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="os_detos_conceptos" Relationship="Self.os_detos_conceptos_os_ordenesservicio_FK" FromRole="os_ordenesservicio" ToRole="os_detos_conceptos" />
+          <NavigationProperty Name="os_rutas" Relationship="Self.os_ordenesservicio_os_rutas_FK" FromRole="os_ordenesservicio" ToRole="os_rutas" />
+          <NavigationProperty Name="os_statuscompras" Relationship="Self.os_ordenesservicio_os_statuscompras_FK" FromRole="os_ordenesservicio" ToRole="os_statuscompras" />
+        </EntityType>
+        <EntityType Name="os_origen">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_rutas" Relationship="Self.os_rutas_os_origen_FK" FromRole="os_origen" ToRole="os_rutas" />
+        </EntityType>
+        <EntityType Name="os_rutas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="os_origen_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="os_detrutas_destinos" Relationship="Self.os_detrutas_destinos_os_rutas_FK" FromRole="os_rutas" ToRole="os_detrutas_destinos" />
+          <NavigationProperty Name="os_ordenesservicio" Relationship="Self.os_ordenesservicio_os_rutas_FK" FromRole="os_rutas" ToRole="os_ordenesservicio" />
+          <NavigationProperty Name="os_origen" Relationship="Self.os_rutas_os_origen_FK" FromRole="os_rutas" ToRole="os_origen" />
+        </EntityType>
+        <EntityType Name="os_statuscompras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_ordenesservicio" Relationship="Self.os_ordenesservicio_os_statuscompras_FK" FromRole="os_statuscompras" ToRole="os_ordenesservicio" />
+        </EntityType>
+        <Association Name="os_detos_conceptos_os_ordenesservicio_FK">
+          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="1" />
+          <End Role="os_detos_conceptos" Type="Self.os_detos_conceptos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_ordenesservicio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detos_conceptos">
+              <PropertyRef Name="os_ordenesservicio_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_detrutas_destinos_os_rutas_FK">
+          <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="1" />
+          <End Role="os_detrutas_destinos" Type="Self.os_detrutas_destinos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_rutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detrutas_destinos">
+              <PropertyRef Name="os_rutas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_ordenesservicio_os_rutas_FK">
+          <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="1" />
+          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_rutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_ordenesservicio">
+              <PropertyRef Name="os_rutas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_ordenesservicio_os_statuscompras_FK">
+          <End Role="os_statuscompras" Type="Self.os_statuscompras" Multiplicity="1" />
+          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_statuscompras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_ordenesservicio">
+              <PropertyRef Name="os_statuscompras_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_rutas_os_origen_FK">
+          <End Role="os_origen" Type="Self.os_origen" Multiplicity="1" />
+          <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_origen">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_rutas">
+              <PropertyRef Name="os_origen_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_a3f19c_administracionEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="os_detos_conceptos" EntityType="Self.os_detos_conceptos" />
+          <EntitySet Name="os_detrutas_destinos" EntityType="Self.os_detrutas_destinos" />
+          <EntitySet Name="os_ordenesservicio" EntityType="Self.os_ordenesservicio" />
+          <EntitySet Name="os_origen" EntityType="Self.os_origen" />
+          <EntitySet Name="os_rutas" EntityType="Self.os_rutas" />
+          <EntitySet Name="os_statuscompras" EntityType="Self.os_statuscompras" />
+          <AssociationSet Name="os_detos_conceptos_os_ordenesservicio_FK" Association="Self.os_detos_conceptos_os_ordenesservicio_FK">
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+            <End Role="os_detos_conceptos" EntitySet="os_detos_conceptos" />
+          </AssociationSet>
+          <AssociationSet Name="os_detrutas_destinos_os_rutas_FK" Association="Self.os_detrutas_destinos_os_rutas_FK">
+            <End Role="os_rutas" EntitySet="os_rutas" />
+            <End Role="os_detrutas_destinos" EntitySet="os_detrutas_destinos" />
+          </AssociationSet>
+          <AssociationSet Name="os_ordenesservicio_os_rutas_FK" Association="Self.os_ordenesservicio_os_rutas_FK">
+            <End Role="os_rutas" EntitySet="os_rutas" />
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+          </AssociationSet>
+          <AssociationSet Name="os_ordenesservicio_os_statuscompras_FK" Association="Self.os_ordenesservicio_os_statuscompras_FK">
+            <End Role="os_statuscompras" EntitySet="os_statuscompras" />
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+          </AssociationSet>
+          <AssociationSet Name="os_rutas_os_origen_FK" Association="Self.os_rutas_os_origen_FK">
+            <End Role="os_origen" EntitySet="os_origen" />
+            <End Role="os_rutas" EntitySet="os_rutas" />
+          </AssociationSet>
+          <EntitySet Name="os_conceptos" EntityType="db_a3f19c_administracionModel3.os_conceptos" />
+          <AssociationSet Name="os_detos_conceptos_os_conceptos_FK" Association="db_a3f19c_administracionModel3.os_detos_conceptos_os_conceptos_FK">
+            <End Role="os_conceptos" EntitySet="os_conceptos" />
+            <End Role="os_detos_conceptos" EntitySet="os_detos_conceptos" />
+          </AssociationSet>
+          <EntitySet Name="os_destinos" EntityType="db_a3f19c_administracionModel3.os_destinos" />
+          <AssociationSet Name="os_detrutas_destinos_os_destinos_FK" Association="db_a3f19c_administracionModel3.os_detrutas_destinos_os_destinos_FK">
+            <End Role="os_destinos" EntitySet="os_destinos" />
+            <End Role="os_detrutas_destinos" EntitySet="os_detrutas_destinos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="os_conceptos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_detos_conceptos" Relationship="db_a3f19c_administracionModel3.os_detos_conceptos_os_conceptos_FK" FromRole="os_conceptos" ToRole="os_detos_conceptos" />
+        </EntityType>
+        <Association Name="os_detos_conceptos_os_conceptos_FK">
+          <End Type="db_a3f19c_administracionModel3.os_conceptos" Role="os_conceptos" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel3.os_detos_conceptos" Role="os_detos_conceptos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_conceptos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detos_conceptos">
+              <PropertyRef Name="os_conceptos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="os_destinos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_detrutas_destinos" Relationship="db_a3f19c_administracionModel3.os_detrutas_destinos_os_destinos_FK" FromRole="os_destinos" ToRole="os_detrutas_destinos" />
+        </EntityType>
+        <Association Name="os_detrutas_destinos_os_destinos_FK">
+          <End Type="db_a3f19c_administracionModel3.os_destinos" Role="os_destinos" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel3.os_detrutas_destinos" Role="os_detrutas_destinos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_destinos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detrutas_destinos">
+              <PropertyRef Name="os_destinos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_a3f19c_administracionModel3StoreContainer" CdmEntityContainer="db_a3f19c_administracionEntities3">
+          <EntitySetMapping Name="os_detos_conceptos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_detos_conceptos">
+              <MappingFragment StoreEntitySet="os_detos_conceptos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioUnitario" ColumnName="PrecioUnitario" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="os_ordenesservicio_Id" ColumnName="os_ordenesservicio_Id" />
+                <ScalarProperty Name="os_conceptos_Id" ColumnName="os_conceptos_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_detrutas_destinos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_detrutas_destinos">
+              <MappingFragment StoreEntitySet="os_detrutas_destinos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="os_rutas_Id" ColumnName="os_rutas_Id" />
+                <ScalarProperty Name="os_destinos_Id" ColumnName="os_destinos_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_ordenesservicio">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_ordenesservicio">
+              <MappingFragment StoreEntitySet="os_ordenesservicio">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="Semana" ColumnName="Semana" />
+                <ScalarProperty Name="Remision" ColumnName="Remision" />
+                <ScalarProperty Name="CostoVenta" ColumnName="CostoVenta" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="adm_empleados_Id" ColumnName="adm_empleados_Id" />
+                <ScalarProperty Name="os_statuscompras_Id" ColumnName="os_statuscompras_Id" />
+                <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
+                <ScalarProperty Name="oc_proveedores_Id" ColumnName="oc_proveedores_Id" />
+                <ScalarProperty Name="os_rutas_Id" ColumnName="os_rutas_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_origen">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_origen">
+              <MappingFragment StoreEntitySet="os_origen">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_rutas">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_rutas">
+              <MappingFragment StoreEntitySet="os_rutas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="os_origen_Id" ColumnName="os_origen_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_statuscompras">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_statuscompras">
+              <MappingFragment StoreEntitySet="os_statuscompras">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_conceptos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_conceptos">
+              <MappingFragment StoreEntitySet="os_conceptos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_destinos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_destinos">
+              <MappingFragment StoreEntitySet="os_destinos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

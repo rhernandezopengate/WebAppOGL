@@ -218,6 +218,13 @@
     <Compile Include="Controllers\OrdenesCompra\oc_supervisoresController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_tipocompraController.cs" />
     <Compile Include="Controllers\OrdenesCompra\UoMsController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_conceptosController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_dashboardController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_destinosController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_ordenesservicioController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_origenController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_rutasController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_statuscomprasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
     <Compile Include="Entities\Administracion\AspNetUsers.cs">
       <DependentUpon>DCAdministracion.tt</DependentUpon>
@@ -336,6 +343,45 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DCAdministracion.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrdenesServicio\DCOrdenesServicio.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCOrdenesServicio.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\DCOrdenesServicio.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\DCOrdenesServicio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCOrdenesServicio.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_conceptos.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_destinos.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_detos_conceptos.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_detrutas_destinos.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_ordenesservicio.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_origen.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_rutas.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_statuscompras.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Sistemas\AsignacionCelularesViewModel.cs" />
     <Compile Include="Entities\Sistemas\AsignacionEquiposViewModel.cs" />
     <Compile Include="Entities\Sistemas\AsignacionTerminalesVM.cs" />
@@ -435,6 +481,16 @@
       <DependentUpon>DCAdministracion.edmx</DependentUpon>
       <LastGenOutput>DCAdministracion.cs</LastGenOutput>
     </Content>
+    <Content Include="Entities\OrdenesServicio\DCOrdenesServicio.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCOrdenesServicio.edmx</DependentUpon>
+      <LastGenOutput>DCOrdenesServicio.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\OrdenesServicio\DCOrdenesServicio.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCOrdenesServicio.edmx</DependentUpon>
+      <LastGenOutput>DCOrdenesServicio.cs</LastGenOutput>
+    </Content>
     <Content Include="Entities\Sistemas\DCSistemas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DCSistemas.edmx</DependentUpon>
@@ -469,6 +525,7 @@
     <Content Include="images\LOGO.jpg" />
     <Content Include="images\mastercard.png" />
     <Content Include="images\media.jpg" />
+    <Content Include="images\medios-magneticos.jpg" />
     <Content Include="images\oc.png" />
     <Content Include="images\paypal.png" />
     <Content Include="images\picture.jpg" />
@@ -515,6 +572,13 @@
     </EntityDeploy>
     <Content Include="Entities\OrdenesCompra\DCOrdenesCompras.edmx.diagram">
       <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Entities\OrdenesServicio\DCOrdenesServicio.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DCOrdenesServicio.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\OrdenesServicio\DCOrdenesServicio.edmx.diagram">
+      <DependentUpon>DCOrdenesServicio.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -677,6 +741,7 @@
     <Content Include="vendors\bootstrap\dist\css\bootstrap.css" />
     <Content Include="vendors\bootstrap\dist\css\bootstrap.min.css" />
     <Content Include="vendors\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="vendors\bootstrap\dist\js\bootstrap.bundle.min.js" />
     <Content Include="vendors\bootstrap\dist\js\bootstrap.js" />
     <Content Include="vendors\bootstrap\dist\js\bootstrap.min.js" />
     <Content Include="vendors\bootstrap\dist\js\npm.js" />
@@ -4988,6 +5053,36 @@
     <Content Include="Views\oc_det_ordenes_productos\EliminarConcepto.cshtml" />
     <Content Include="Views\oc_det_ordenes_productos\AgregarConcepto.cshtml" />
     <Content Include="Views\oc_productos\CreateParcial.cshtml" />
+    <Content Include="Views\sis_asignacion\AsignacionBlanco.cshtml" />
+    <Content Include="Views\Shared\_LayoutOrdenesServicio.cshtml" />
+    <Content Include="Views\os_dashboard\Index.cshtml" />
+    <Content Include="Views\os_ordenesservicio\Index.cshtml" />
+    <Content Include="Views\os_ordenesservicio\Create.cshtml" />
+    <Content Include="Views\os_conceptos\Create.cshtml" />
+    <Content Include="Views\os_conceptos\Delete.cshtml" />
+    <Content Include="Views\os_conceptos\Details.cshtml" />
+    <Content Include="Views\os_conceptos\Edit.cshtml" />
+    <Content Include="Views\os_conceptos\Index.cshtml" />
+    <Content Include="Views\os_statuscompras\Create.cshtml" />
+    <Content Include="Views\os_statuscompras\Delete.cshtml" />
+    <Content Include="Views\os_statuscompras\Details.cshtml" />
+    <Content Include="Views\os_statuscompras\Edit.cshtml" />
+    <Content Include="Views\os_statuscompras\Index.cshtml" />
+    <Content Include="Views\os_rutas\Create.cshtml" />
+    <Content Include="Views\os_rutas\Delete.cshtml" />
+    <Content Include="Views\os_rutas\Details.cshtml" />
+    <Content Include="Views\os_rutas\Edit.cshtml" />
+    <Content Include="Views\os_rutas\Index.cshtml" />
+    <Content Include="Views\os_origen\Create.cshtml" />
+    <Content Include="Views\os_origen\Delete.cshtml" />
+    <Content Include="Views\os_origen\Details.cshtml" />
+    <Content Include="Views\os_origen\Edit.cshtml" />
+    <Content Include="Views\os_origen\Index.cshtml" />
+    <Content Include="Views\os_destinos\Create.cshtml" />
+    <Content Include="Views\os_destinos\Delete.cshtml" />
+    <Content Include="Views\os_destinos\Details.cshtml" />
+    <Content Include="Views\os_destinos\Edit.cshtml" />
+    <Content Include="Views\os_destinos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
