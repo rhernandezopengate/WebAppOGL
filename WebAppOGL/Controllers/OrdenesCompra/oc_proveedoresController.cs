@@ -21,6 +21,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             return View(db.oc_proveedores.ToList());
         }        
 
+
         public JsonResult ListaSelect()
         {
             List<SelectListItem> listaProveedores = new List<SelectListItem>();

@@ -100,6 +100,7 @@ namespace WebAppOGL.Controllers.Sistemas
 
 
         // GET: sis_terminales/Details/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -115,6 +116,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_terminales/Create
+        [Authorize(Roles = "sistemas")]
         public ActionResult Create()
         {
             ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion");
@@ -144,6 +146,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_terminales/Edit/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -181,6 +184,7 @@ namespace WebAppOGL.Controllers.Sistemas
         }
 
         // GET: sis_terminales/Delete/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

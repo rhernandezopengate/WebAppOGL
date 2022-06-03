@@ -15,6 +15,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
 
         // GET: oc_formapago
+        [Authorize(Roles = "sistemas")]
         public ActionResult Index()
         {
             return View(db.oc_formapago.ToList());
@@ -37,6 +38,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_formapago/Details/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -52,6 +54,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_formapago/Create
+        [Authorize(Roles = "sistemas")]
         public ActionResult Create()
         {
             return View();
@@ -78,6 +81,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_formapago/Edit/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -112,6 +116,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_formapago/Delete/5
+        [Authorize(Roles = "sistemas")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
