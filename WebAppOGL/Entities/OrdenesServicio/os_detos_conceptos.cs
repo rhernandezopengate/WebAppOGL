@@ -22,7 +22,7 @@ namespace WebAppOGL.Entities.OrdenesServicio
         public int os_ordenesservicio_Id { get; set; }
         public int os_conceptos_Id { get; set; }
     
-        public virtual os_ordenesservicio os_ordenesservicio { get; set; }
         public virtual os_conceptos os_conceptos { get; set; }
+        public virtual os_ordenesservicio os_ordenesservicio { get; set; }
     }
 }

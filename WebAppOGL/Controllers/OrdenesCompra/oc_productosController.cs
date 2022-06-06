@@ -15,7 +15,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         private db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
 
         // GET: oc_productos
-        [Authorize(Roles = "sistemas")]
+        [Authorize]
         public ActionResult Index()
         {
             var oc_productos = db.oc_productos.Include(o => o.UoM);
@@ -37,7 +37,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_productos/Details/5
-        [Authorize(Roles = "sistemas")]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -53,7 +53,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_productos/Create
-        [Authorize(Roles = "sistemas")]
+        [Authorize]
         public ActionResult CreateParcial()
         {
             ViewBag.UoM_Id = new SelectList(db.UoM.OrderBy(x => x.Descripcion), "Id", "Descripcion");
@@ -108,7 +108,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_productos/Edit/5
-        [Authorize(Roles = "sistemas")]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -146,7 +146,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
         }
 
         // GET: oc_productos/Delete/5
-        [Authorize(Roles = "sistemas")]
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)

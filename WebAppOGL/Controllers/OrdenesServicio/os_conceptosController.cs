@@ -21,6 +21,22 @@ namespace WebAppOGL.Controllers.OrdenesServicio
             return View(db.os_conceptos.ToList());
         }
 
+
+        public JsonResult AutoComplete(string prefix)
+        {
+            var proveedores = (from p in db.os_conceptos
+                               where p.Descripcion.Contains(prefix)
+                               orderby p.Descripcion ascending
+                               select new
+                               {
+                                   label = p.Descripcion,
+                                   val = p.Id
+                               }).ToList();
+
+            return Json(proveedores);
+        }
+
+
         // GET: os_conceptos/Details/5
         public ActionResult Details(int? id)
         {

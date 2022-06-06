@@ -24,7 +24,7 @@
                         <span class="fa fa-users form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3  form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" placeholder="Remision" />
+                        <input id="txtRemision" type="text" class="form-control has-feedback-left" placeholder="Remision" />
                         <span class="fa fa-first-order form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3  form-group has-feedback">
@@ -48,8 +48,12 @@
                         <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-3  form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" placeholder="Costo de Venta" />
+                        <input id="txtCostoVenta" type="text" class="form-control has-feedback-left" placeholder="Costo de Venta" />
                         <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        <input id="txtObservaciones" type="text" class="form-control has-feedback-left" placeholder="Observaciones" />
+                        <span class="fa fa-comment-o form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
                 <br />
@@ -70,7 +74,7 @@
                             <th width="25%">Producto</th>
                             <th width="10%">Cantidad</th>
                             <th width="10%">Precio</th>
-                            <th width="10%">Retencion</th>
+                            
                             <th width="15%">Subtotal</th>
                             <td width="10%"></td>
                         </tr>
@@ -78,12 +82,10 @@
                             <th> <input type="text" id="txtCodigo" class="form-control" />  </th>
                             <th> <input type="text" id="txtProducto" class="form-control" /> </th>
                             <th> <input type="text" id="txtCantidad" class="form-control" value="0" /> </th>
-                            <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" value="0" /> </th>
-                            <th> <input type="text" id="txtRetencion" class="form-control" onkeyup="sumar()" value="0" /> </th>
+                            <th> <input type="text" id="txtPrecio" class="form-control" onkeyup="sumar()" value="0" /> </th>                            
                             <th> <input type="text" id="txtSubtotal" class="form-control" onkeyup="sumar()" value="0" disabled /> </th>
                             <th>
-                                <input type="button" id="btnAdd" value="Agregar" class="btn btn-primary btn-sm" all="Agregar" title="Agregar" data-dismiss="modal" />
-                                <button onclick="AgregarProductos()" class="btn btn-success btn-sm"><span class="fa fa-plus"></span></button>
+                                <input type="button" id="btnAdd" value="Agregar" class="btn btn-primary btn-sm" all="Agregar" title="Agregar" data-dismiss="modal" />                                
                             </th>
 
                         </tr>
@@ -91,7 +93,6 @@
                     <tbody></tbody>
                     <tfoot>
                         <tr>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -104,12 +105,18 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
                             <td>IVA</td>
                             <td> <input type="text" class="form-control" disabled id="txtIVA" value="0" /> </td>
                         </tr>
                         <tr>
                             <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Retencion</td>
+                            <td> <input type="text" class="form-control" disabled id="txtRetencion" value="0" /> </td>
+                        </tr>
+                        <tr>
+
                             <td></td>
                             <td></td>
                             <td></td>
@@ -129,6 +136,14 @@
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+    .ui-autocomplete {
+        width:200px;        
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+</style>
 
 <script type="text/javascript">
 
@@ -200,6 +215,35 @@
         });
     });
 
+    $("#txtProducto").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/os_conceptos/AutoComplete/',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return item;
+                    }))
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        },
+        select: function (e, i) {
+            $("#txtProducto").val(i.item.val);
+        },
+        minLength: 0
+    }).focus(function () {
+        $(this).autocomplete("search");
+    });
+
     $(function () {
         $("#txtFechaPeticion").datepicker({
             dateFormat: 'dd/mm/yy',
@@ -234,9 +278,217 @@
         });
     }
 
-    function Guardar()
-    {
+    $("body").on("click", "#btnSave", function () {
+        //Loop through the Table rows and build a JSON array.       
 
+        var encabezado = {
+            oc_proveedores_Id: $("#ddlProveedores").val(),
+            adm_cuentas_Id: $("#ddlCuentas").val(),
+            os_rutas_Id: $("#ddlRutas").val(),
+            FechaSolicitud: $("#txtFechaPeticion").val(),
+            CostoVenta: $("#txtCostoVenta").val(),
+            Observaciones: $("#txtObservaciones").val(),
+            Observaciones: $("#txtObservaciones").val(),
+            Remision: $("#txtRemision").val(),
+
+            Subtotal: $("#txtSubtotalCantidad").val(),
+            IVA: $("#txtIVA").val(),
+            Retencion: $("#txtRetencion").val(),
+            Total: $("#txtTotal").val(),
+        }
+
+        var listaconceptos = new Array();
+        $("#conceptos TBODY TR").each(function () {
+            var row = $(this);
+            var producto = {};
+            producto.Codigo = row.find("TD").eq(0).html();
+            producto.Concepto = row.find("TD").eq(1).html();
+            producto.Cantidad = row.find("TD").eq(2).html();
+            producto.PrecioUnitario = row.find("TD").eq(3).html();
+            producto.Subtotal = row.find("TD").eq(4).html();
+
+            listaconceptos.push(producto);
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/os_ordenesservicio/CreatePost",
+            data: '{encabezado:' + JSON.stringify(encabezado) + ', listaconceptos: ' + JSON.stringify(listaconceptos) + ' }',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                if (r.respuesta === "Correcto") {
+                    location.href = "/os_ordenesservicio/index";
+                }
+                else {
+                    toastr.error('Ha ocurrido un error. Valide la informacion capturada.');
+                }
+            }
+        });       
+    });
+
+    $("body").on("click", "#btnAdd", function () {
+        //Reference the Name and Country TextBoxes.
+        var txtCodigo = $("#txtCodigo");
+        var txtProducto = $("#txtProducto");
+        var txtCantidad = $("#txtCantidad");
+        var txtPrecio = $("#txtPrecio");
+        var txtSubtotal = $("#txtSubtotal");
+
+        //Get the reference of the Table's TBODY element.
+        var tBody = $("#conceptos > TBODY")[0];
+
+        //Add Row.
+        var row = tBody.insertRow(-1);
+
+        //Add Codigo cell.
+        var cell = $(row.insertCell(-1));
+        cell.html(txtCodigo.val());
+
+        //Add Producto cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtProducto.val());
+
+        //Add Cantidad cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtCantidad.val());
+
+        //Add Precio cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtPrecio.val());
+
+        //Add Subtotal cell.
+        cell = $(row.insertCell(-1));
+        cell.html(txtSubtotal.val());
+
+        //Add Button cell.
+        cell = $(row.insertCell(-1));
+        var btnRemove = $("<input class='btn btn-danger' />");
+        btnRemove.attr("type", "button");
+        btnRemove.attr("onclick", "Remove(this);");
+        btnRemove.val("Eliminar");
+        cell.append(btnRemove);          
+
+        //Subtotal
+        var subtotalproducto = parseFloat(txtCantidad.val() * txtPrecio.val());
+        var subtotalactual = parseFloat($("#txtSubtotalCantidad").val());
+        var subtotalcaja = (subtotalactual + subtotalproducto).toFixed(2);        
+
+        //Si se elimina el concepto SERVICIO DE TRANSPORTE comienzo el proceso con retencion
+        //De lo contrario avanza normal
+        if (txtProducto.val() == "SERVICIO DE TRANSPORTE") {
+
+            var retencionactual = parseFloat($("#txtRetencion").val());
+            var valorretencion = parseFloat("0.04");
+            var retencion = subtotalproducto * valorretencion;
+            var retencionCAJA = parseFloat(retencionactual + retencion);
+            
+            var valoriva = parseFloat(0.16);
+            var ivacaja = parseFloat(subtotalcaja * valoriva).toFixed(2);
+            
+            var totalcaja = parseFloat(parseFloat(subtotalcaja) + parseFloat(ivacaja));
+            var totaldescretencion = totalcaja - retencionCAJA;
+
+            $("#txtRetencion").val(retencionCAJA.toFixed(2));
+            $("#txtSubtotalCantidad").val(subtotalcaja);
+            $("#txtIVA").val(ivacaja);            
+            $("#txtTotal").val(totaldescretencion.toFixed(2));
+        }
+        else {
+
+            var retencionactual = parseFloat($("#txtRetencion").val());
+
+            $("#txtSubtotalCantidad").val(subtotalcaja);
+
+            var valoriva = parseFloat(0.16);
+
+            var ivacaja = parseFloat(subtotalcaja * valoriva).toFixed(2);
+
+            $("#txtIVA").val(ivacaja);
+
+            var totalcaja = parseFloat(parseFloat(subtotalcaja) + parseFloat(ivacaja));
+
+            var total = totalcaja - retencionactual;
+
+            $("#txtTotal").val(total.toFixed(2));
+
+        }
+          
+        //Clear the TextBoxes.
+
+        txtCodigo.val("");
+        txtCodigo.focus();
+        txtProducto.val("");
+        txtCantidad.val("");
+        txtPrecio.val("");
+        txtSubtotal.val("");
+    });
+
+    function Remove(button) {
+        //Determine the reference of the Row using the Button.
+        var row = $(button).closest("TR");
+
+        var concepto_eliminado = $("TD", row).eq(1).html();
+
+        if (concepto_eliminado == "SERVICIO DE TRANSPORTE") {            
+
+            var valoreliminado = parseFloat($("TD", row).eq(4).html());
+            var valorretencion = parseFloat(0.04);
+            var retencion_restar = valoreliminado * valorretencion;
+            var retencionactual = parseFloat($("#txtRetencion").val());
+            var retencion_total_resta = (retencionactual - retencion_restar).toFixed(2);
+
+            var subtotalactual = parseFloat($("#txtSubtotalCantidad").val());
+            var nuevosubtotal = parseFloat(subtotalactual - valoreliminado).toFixed(2);
+
+            var ivaactual = parseFloat($("#txtIVA").val());
+            var ivaeliminado = parseFloat(valoreliminado) * parseFloat(0.16);
+            var nuevoiva = parseFloat(ivaactual - ivaeliminado).toFixed(2);
+
+            var totalactual = parseFloat($("#txtTotal").val());
+            var totaleliminado = parseFloat(valoreliminado) + parseFloat(ivaeliminado) - parseFloat(retencion_restar);
+            var nuevototal = parseFloat(totalactual - totaleliminado).toFixed(2);
+
+            $("#txtSubtotalCantidad").val(nuevosubtotal);
+            $("#txtIVA").val(nuevoiva);
+            $("#txtTotal").val(nuevototal);
+
+            var table = $("#conceptos")[0];
+            table.deleteRow(row[0].rowIndex);
+
+
+            $("#txtRetencion").val(retencion_total_resta);
+        }
+        else
+        {
+            var valoreliminado = parseFloat($("TD", row).eq(4).html());
+
+            var subtotalactual = parseFloat($("#txtSubtotalCantidad").val());
+            var nuevosubtotal = parseFloat(subtotalactual - valoreliminado).toFixed(2);
+
+            var ivaactual = parseFloat($("#txtIVA").val());
+            var ivaeliminado = parseFloat(valoreliminado) * parseFloat(0.16);
+            var nuevoiva = parseFloat(ivaactual - ivaeliminado).toFixed(2);
+
+            var totalactual = parseFloat($("#txtTotal").val());
+            var totaleliminado = parseFloat(valoreliminado) + parseFloat(ivaeliminado);
+            var nuevototal = parseFloat(totalactual - totaleliminado).toFixed(2);
+
+            $("#txtSubtotalCantidad").val(nuevosubtotal);
+            $("#txtIVA").val(nuevoiva);
+            $("#txtTotal").val(nuevototal);
+
+            var table = $("#conceptos")[0];
+            table.deleteRow(row[0].rowIndex);
+        }   
+    };
+
+    function sumar() {
+        var txtCantidad = $("#txtCantidad");
+        var txtPrecio = $("#txtPrecio");
+        var subtotal = txtCantidad.val() * txtPrecio.val();
+
+        $("#txtSubtotal").val(subtotal.toFixed(2));
     }
 
 </script>

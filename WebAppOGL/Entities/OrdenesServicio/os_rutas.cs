@@ -27,8 +27,8 @@ namespace WebAppOGL.Entities.OrdenesServicio
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<os_detrutas_destinos> os_detrutas_destinos { get; set; }
+        public virtual os_origen os_origen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<os_ordenesservicio> os_ordenesservicio { get; set; }
-        public virtual os_origen os_origen { get; set; }
     }
 }

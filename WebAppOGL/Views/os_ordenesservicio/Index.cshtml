@@ -10,16 +10,114 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2> Orden de Servicio <small>Index</small></h2> &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Agregar Registro</a>                
+                <a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Agregar Registro</a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-
+                <table id="tblOrdenesServicio" class="table table-bordered jambo_table">
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>Folio</td>
+                            <td>FechaSolicitud</td>
+                            <td>Semana</td>
+                            <td>Remision</td>
+                            <td>Proveedor</td>
+                            <td>Ruta</td>
+                            <td>Profit</td>
+                            <td>%</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Custom Theme Scripts -->
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
 <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
 <script src="~/build/js/custom.min.js"></script>
+
+<script type="text/javascript">
+
+    var table;
+
+    $(document).ready(function () {
+        table = $('#tblOrdenesServicio').DataTable({
+            "order": [[0, "desc"]],
+            "ordering": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "pagingType": "simple_numbers",
+            "dom": 'Blrtip', // Hides Default Search
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "deferRender": true,
+            rowId: 'Id',
+            select: true,
+            "ajax": {
+                "url": "/os_ordenesservicio/ObtenerOrdenesServicio",
+                "type": "POST",                
+                "datatype": "json"
+            },
+            "aoColumns": [
+                { "data": "Id", "autoWidth": true, },
+                { "data": "Folio", "autoWidth": true, },
+                { "data": "FechaSolicitudString", "autoWidth": true, },
+                { "data": "Semana", "autoWidth": true, },
+                { "data": "Remision", "autoWidth": true, },
+                { "data": "Proveedor", "autoWidth": true, },
+                { "data": "Ruta", "autoWidth": true, },
+                { "data": "Profit", "autoWidth": true, },
+                { "data": "Utilidad", "autoWidth": true, },
+                {
+                    "data": null,
+                    "targets": -1,
+                    "render": function (data, type, full) {
+                        return " <button onclick='Edit(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
+                            "<a onclick='Details(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='fa fa-eye'></i></a>" +
+                            "<button onclick='AutorizarOC(" + full['Id'] + ")' class='btn btn-sm btn-success '><i class='fa fa-check-circle'></i></button>";
+                    },
+                    "bSearchable": false,
+                    "sortable": false,
+                    "autoWidth": true,
+                    "sWidth": "120px"
+                }
+            ]
+        });
+
+        $('#txtFolio').on('keyup', function () {
+            table.columns(0).search(this.value).draw();
+        });      
+    });
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+</script>

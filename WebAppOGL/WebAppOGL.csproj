@@ -358,6 +358,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DCOrdenesServicio.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrdenesServicio\DetalleOrdenServicioConceptosVM.cs" />
+    <Compile Include="Entities\OrdenesServicio\OrdenesServicioVM.cs" />
     <Compile Include="Entities\OrdenesServicio\os_conceptos.cs">
       <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
     </Compile>

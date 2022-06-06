@@ -28,6 +28,10 @@ namespace WebAppOGL.Entities.OrdenesServicio
         public string Remision { get; set; }
         public Nullable<decimal> CostoVenta { get; set; }
         public string Observaciones { get; set; }
+        public Nullable<decimal> Subtotal { get; set; }
+        public Nullable<decimal> IVA { get; set; }
+        public Nullable<decimal> Retencion { get; set; }
+        public Nullable<decimal> Total { get; set; }
         public int adm_empleados_Id { get; set; }
         public int os_statuscompras_Id { get; set; }
         public int adm_cuentas_Id { get; set; }

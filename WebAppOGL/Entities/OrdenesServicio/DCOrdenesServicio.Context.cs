@@ -27,11 +27,11 @@ namespace WebAppOGL.Entities.OrdenesServicio
     
         public virtual DbSet<os_detos_conceptos> os_detos_conceptos { get; set; }
         public virtual DbSet<os_detrutas_destinos> os_detrutas_destinos { get; set; }
-        public virtual DbSet<os_ordenesservicio> os_ordenesservicio { get; set; }
         public virtual DbSet<os_origen> os_origen { get; set; }
         public virtual DbSet<os_rutas> os_rutas { get; set; }
         public virtual DbSet<os_statuscompras> os_statuscompras { get; set; }
         public virtual DbSet<os_conceptos> os_conceptos { get; set; }
         public virtual DbSet<os_destinos> os_destinos { get; set; }
+        public virtual DbSet<os_ordenesservicio> os_ordenesservicio { get; set; }
     }
 }

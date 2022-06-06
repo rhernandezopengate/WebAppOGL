@@ -27,9 +27,15 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             string email = db1.AspNetUsers.Where(x => x.Id == user).Select(x => x.Email).FirstOrDefault().ToString();
             int empleado = db1.adm_empleados.Where(x => x.Email.Contains(email)).FirstOrDefault().Id;
 
-            if (User.IsInRole("compras") || User.IsInRole("finanzas") || User.IsInRole("direccion"))
+            if (User.IsInRole("compras"))
             {
                 ViewBag.Identificador = 3;
+                ViewBag.SupervisorId = 0;
+                ViewBag.EmpleadoId = 0;
+            }
+            else if (User.IsInRole("finanzas") || User.IsInRole("direccion"))
+            {
+                ViewBag.Identificador = 4;
                 ViewBag.SupervisorId = 0;
                 ViewBag.EmpleadoId = 0;
             }

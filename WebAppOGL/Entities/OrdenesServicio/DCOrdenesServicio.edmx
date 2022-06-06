@@ -51,6 +51,10 @@
           <Property Name="Remision" Type="varchar" MaxLength="100" />
           <Property Name="CostoVenta" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Observaciones" Type="varchar(max)" />
+          <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IVA" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Retencion" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" />
           <Property Name="adm_empleados_Id" Type="int" Nullable="false" />
           <Property Name="os_statuscompras_Id" Type="int" Nullable="false" />
           <Property Name="adm_cuentas_Id" Type="int" Nullable="false" />
@@ -216,8 +220,8 @@
           <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="os_ordenesservicio_Id" Type="Int32" Nullable="false" />
           <Property Name="os_conceptos_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="os_ordenesservicio" Relationship="Self.os_detos_conceptos_os_ordenesservicio_FK" FromRole="os_detos_conceptos" ToRole="os_ordenesservicio" />
           <NavigationProperty Name="os_conceptos" Relationship="db_a3f19c_administracionModel3.os_detos_conceptos_os_conceptos_FK" FromRole="os_detos_conceptos" ToRole="os_conceptos" />
+          <NavigationProperty Name="os_ordenesservicio" Relationship="db_a3f19c_administracionModel3.os_detos_conceptos_os_ordenesservicio_FK" FromRole="os_detos_conceptos" ToRole="os_ordenesservicio" />
         </EntityType>
         <EntityType Name="os_detrutas_destinos">
           <Key>
@@ -228,27 +232,6 @@
           <Property Name="os_destinos_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="os_rutas" Relationship="Self.os_detrutas_destinos_os_rutas_FK" FromRole="os_detrutas_destinos" ToRole="os_rutas" />
           <NavigationProperty Name="os_destinos" Relationship="db_a3f19c_administracionModel3.os_detrutas_destinos_os_destinos_FK" FromRole="os_detrutas_destinos" ToRole="os_destinos" />
-        </EntityType>
-        <EntityType Name="os_ordenesservicio">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
-          <Property Name="Folio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="FechaSolicitud" Type="DateTime" Precision="3" />
-          <Property Name="Semana" Type="Int32" />
-          <Property Name="Remision" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CostoVenta" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="adm_empleados_Id" Type="Int32" Nullable="false" />
-          <Property Name="os_statuscompras_Id" Type="Int32" Nullable="false" />
-          <Property Name="adm_cuentas_Id" Type="Int32" Nullable="false" />
-          <Property Name="oc_proveedores_Id" Type="Int32" Nullable="false" />
-          <Property Name="os_rutas_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="os_detos_conceptos" Relationship="Self.os_detos_conceptos_os_ordenesservicio_FK" FromRole="os_ordenesservicio" ToRole="os_detos_conceptos" />
-          <NavigationProperty Name="os_rutas" Relationship="Self.os_ordenesservicio_os_rutas_FK" FromRole="os_ordenesservicio" ToRole="os_rutas" />
-          <NavigationProperty Name="os_statuscompras" Relationship="Self.os_ordenesservicio_os_statuscompras_FK" FromRole="os_ordenesservicio" ToRole="os_statuscompras" />
         </EntityType>
         <EntityType Name="os_origen">
           <Key>
@@ -266,8 +249,8 @@
           <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="os_origen_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="os_detrutas_destinos" Relationship="Self.os_detrutas_destinos_os_rutas_FK" FromRole="os_rutas" ToRole="os_detrutas_destinos" />
-          <NavigationProperty Name="os_ordenesservicio" Relationship="Self.os_ordenesservicio_os_rutas_FK" FromRole="os_rutas" ToRole="os_ordenesservicio" />
           <NavigationProperty Name="os_origen" Relationship="Self.os_rutas_os_origen_FK" FromRole="os_rutas" ToRole="os_origen" />
+          <NavigationProperty Name="os_ordenesservicio" Relationship="db_a3f19c_administracionModel3.os_ordenesservicio_os_rutas_FK" FromRole="os_rutas" ToRole="os_ordenesservicio" />
         </EntityType>
         <EntityType Name="os_statuscompras">
           <Key>
@@ -275,20 +258,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="os_ordenesservicio" Relationship="Self.os_ordenesservicio_os_statuscompras_FK" FromRole="os_statuscompras" ToRole="os_ordenesservicio" />
+          <NavigationProperty Name="os_ordenesservicio" Relationship="db_a3f19c_administracionModel3.os_ordenesservicio_os_statuscompras_FK" FromRole="os_statuscompras" ToRole="os_ordenesservicio" />
         </EntityType>
-        <Association Name="os_detos_conceptos_os_ordenesservicio_FK">
-          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="1" />
-          <End Role="os_detos_conceptos" Type="Self.os_detos_conceptos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="os_ordenesservicio">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="os_detos_conceptos">
-              <PropertyRef Name="os_ordenesservicio_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="os_detrutas_destinos_os_rutas_FK">
           <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="1" />
           <End Role="os_detrutas_destinos" Type="Self.os_detrutas_destinos" Multiplicity="*" />
@@ -298,30 +269,6 @@
             </Principal>
             <Dependent Role="os_detrutas_destinos">
               <PropertyRef Name="os_rutas_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="os_ordenesservicio_os_rutas_FK">
-          <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="1" />
-          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="os_rutas">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="os_ordenesservicio">
-              <PropertyRef Name="os_rutas_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="os_ordenesservicio_os_statuscompras_FK">
-          <End Role="os_statuscompras" Type="Self.os_statuscompras" Multiplicity="1" />
-          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="os_statuscompras">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="os_ordenesservicio">
-              <PropertyRef Name="os_statuscompras_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -340,25 +287,12 @@
         <EntityContainer Name="db_a3f19c_administracionEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="os_detos_conceptos" EntityType="Self.os_detos_conceptos" />
           <EntitySet Name="os_detrutas_destinos" EntityType="Self.os_detrutas_destinos" />
-          <EntitySet Name="os_ordenesservicio" EntityType="Self.os_ordenesservicio" />
           <EntitySet Name="os_origen" EntityType="Self.os_origen" />
           <EntitySet Name="os_rutas" EntityType="Self.os_rutas" />
           <EntitySet Name="os_statuscompras" EntityType="Self.os_statuscompras" />
-          <AssociationSet Name="os_detos_conceptos_os_ordenesservicio_FK" Association="Self.os_detos_conceptos_os_ordenesservicio_FK">
-            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
-            <End Role="os_detos_conceptos" EntitySet="os_detos_conceptos" />
-          </AssociationSet>
           <AssociationSet Name="os_detrutas_destinos_os_rutas_FK" Association="Self.os_detrutas_destinos_os_rutas_FK">
             <End Role="os_rutas" EntitySet="os_rutas" />
             <End Role="os_detrutas_destinos" EntitySet="os_detrutas_destinos" />
-          </AssociationSet>
-          <AssociationSet Name="os_ordenesservicio_os_rutas_FK" Association="Self.os_ordenesservicio_os_rutas_FK">
-            <End Role="os_rutas" EntitySet="os_rutas" />
-            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
-          </AssociationSet>
-          <AssociationSet Name="os_ordenesservicio_os_statuscompras_FK" Association="Self.os_ordenesservicio_os_statuscompras_FK">
-            <End Role="os_statuscompras" EntitySet="os_statuscompras" />
-            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
           </AssociationSet>
           <AssociationSet Name="os_rutas_os_origen_FK" Association="Self.os_rutas_os_origen_FK">
             <End Role="os_origen" EntitySet="os_origen" />
@@ -373,6 +307,19 @@
           <AssociationSet Name="os_detrutas_destinos_os_destinos_FK" Association="db_a3f19c_administracionModel3.os_detrutas_destinos_os_destinos_FK">
             <End Role="os_destinos" EntitySet="os_destinos" />
             <End Role="os_detrutas_destinos" EntitySet="os_detrutas_destinos" />
+          </AssociationSet>
+          <EntitySet Name="os_ordenesservicio" EntityType="db_a3f19c_administracionModel3.os_ordenesservicio" />
+          <AssociationSet Name="os_detos_conceptos_os_ordenesservicio_FK" Association="db_a3f19c_administracionModel3.os_detos_conceptos_os_ordenesservicio_FK">
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+            <End Role="os_detos_conceptos" EntitySet="os_detos_conceptos" />
+          </AssociationSet>
+          <AssociationSet Name="os_ordenesservicio_os_rutas_FK" Association="db_a3f19c_administracionModel3.os_ordenesservicio_os_rutas_FK">
+            <End Role="os_rutas" EntitySet="os_rutas" />
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+          </AssociationSet>
+          <AssociationSet Name="os_ordenesservicio_os_statuscompras_FK" Association="db_a3f19c_administracionModel3.os_ordenesservicio_os_statuscompras_FK">
+            <End Role="os_statuscompras" EntitySet="os_statuscompras" />
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="os_conceptos">
@@ -415,6 +362,67 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="os_ordenesservicio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaAlta" Type="DateTime" Precision="3" />
+          <Property Name="Folio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FechaSolicitud" Type="DateTime" Precision="3" />
+          <Property Name="Semana" Type="Int32" />
+          <Property Name="Remision" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CostoVenta" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IVA" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Retencion" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="adm_empleados_Id" Type="Int32" Nullable="false" />
+          <Property Name="os_statuscompras_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_proveedores_Id" Type="Int32" Nullable="false" />
+          <Property Name="os_rutas_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="os_detos_conceptos" Relationship="db_a3f19c_administracionModel3.os_detos_conceptos_os_ordenesservicio_FK" FromRole="os_ordenesservicio" ToRole="os_detos_conceptos" />
+          <NavigationProperty Name="os_rutas" Relationship="db_a3f19c_administracionModel3.os_ordenesservicio_os_rutas_FK" FromRole="os_ordenesservicio" ToRole="os_rutas" />
+          <NavigationProperty Name="os_statuscompras" Relationship="db_a3f19c_administracionModel3.os_ordenesservicio_os_statuscompras_FK" FromRole="os_ordenesservicio" ToRole="os_statuscompras" />
+        </EntityType>
+        <Association Name="os_detos_conceptos_os_ordenesservicio_FK">
+          <End Type="db_a3f19c_administracionModel3.os_ordenesservicio" Role="os_ordenesservicio" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel3.os_detos_conceptos" Role="os_detos_conceptos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_ordenesservicio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_detos_conceptos">
+              <PropertyRef Name="os_ordenesservicio_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_ordenesservicio_os_rutas_FK">
+          <End Type="db_a3f19c_administracionModel3.os_rutas" Role="os_rutas" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel3.os_ordenesservicio" Role="os_ordenesservicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_rutas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_ordenesservicio">
+              <PropertyRef Name="os_rutas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="os_ordenesservicio_os_statuscompras_FK">
+          <End Type="db_a3f19c_administracionModel3.os_statuscompras" Role="os_statuscompras" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel3.os_ordenesservicio" Role="os_ordenesservicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_statuscompras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_ordenesservicio">
+              <PropertyRef Name="os_statuscompras_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -440,25 +448,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="os_rutas_Id" ColumnName="os_rutas_Id" />
                 <ScalarProperty Name="os_destinos_Id" ColumnName="os_destinos_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="os_ordenesservicio">
-            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_ordenesservicio">
-              <MappingFragment StoreEntitySet="os_ordenesservicio">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
-                <ScalarProperty Name="Folio" ColumnName="Folio" />
-                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
-                <ScalarProperty Name="Semana" ColumnName="Semana" />
-                <ScalarProperty Name="Remision" ColumnName="Remision" />
-                <ScalarProperty Name="CostoVenta" ColumnName="CostoVenta" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="adm_empleados_Id" ColumnName="adm_empleados_Id" />
-                <ScalarProperty Name="os_statuscompras_Id" ColumnName="os_statuscompras_Id" />
-                <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
-                <ScalarProperty Name="oc_proveedores_Id" ColumnName="oc_proveedores_Id" />
-                <ScalarProperty Name="os_rutas_Id" ColumnName="os_rutas_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -499,6 +488,29 @@
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_destinos">
               <MappingFragment StoreEntitySet="os_destinos">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_ordenesservicio">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_ordenesservicio">
+              <MappingFragment StoreEntitySet="os_ordenesservicio">
+                <ScalarProperty Name="os_rutas_Id" ColumnName="os_rutas_Id" />
+                <ScalarProperty Name="oc_proveedores_Id" ColumnName="oc_proveedores_Id" />
+                <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
+                <ScalarProperty Name="os_statuscompras_Id" ColumnName="os_statuscompras_Id" />
+                <ScalarProperty Name="adm_empleados_Id" ColumnName="adm_empleados_Id" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Retencion" ColumnName="Retencion" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Subtotal" ColumnName="Subtotal" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="CostoVenta" ColumnName="CostoVenta" />
+                <ScalarProperty Name="Remision" ColumnName="Remision" />
+                <ScalarProperty Name="Semana" ColumnName="Semana" />
+                <ScalarProperty Name="FechaSolicitud" ColumnName="FechaSolicitud" />
+                <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
