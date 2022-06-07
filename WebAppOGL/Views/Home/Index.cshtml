@@ -35,6 +35,29 @@
     </div>
 }
 
+@if (User.IsInRole("sistemas") || User.IsInRole("compras") || User.IsInRole("trafico") || User.IsInRole("finanzas"))
+{
+    <div class="col-md-55">
+        <div class="thumbnail" style="height:237px">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src="~/images/medios-magneticos.jpg" alt="image">
+                <div class="mask">
+                    <p>ORDENES DE SERVICIO</p>
+                    <div class="tools tools-bottom">
+                        <a href="@Url.Action("Index", "os_dashboard")"><i class="fa fa-link"></i></a>
+                    </div>
+                </div>
+            </div>
+            <center>
+                <div class="caption">
+                    <p>  Generacion y Seguimiento de Ordenes de Servicio</p>
+                    <p><a class="btn btn-default" href="@Url.Action("Index", "os_dashboard")">Ir a &raquo;</a></p>
+                </div>
+            </center>
+        </div>
+    </div>
+}
+
 <div class="col-md-55">
     <div class="thumbnail" style="height:237px">
         <div class="image view view-first">
@@ -56,26 +79,6 @@
     </div>
 </div>
 
-<div class="col-md-55">
-    <div class="thumbnail" style="height:237px">
-        <div class="image view view-first">
-            <img style="width: 100%; display: block;" src="~/images/medios-magneticos.jpg" alt="image">
-            <div class="mask">
-                <p>ORDENES DE SERVICIO</p>
-                <div class="tools tools-bottom">
-                    <a href="@Url.Action("Index", "os_dashboard")"><i class="fa fa-link"></i></a>
-                </div>
-            </div>
-        </div>
-        <center>
-            <div class="caption">
-                <p>  Generacion y Seguimiento de Ordenes de Servicio</p>
-                <p><a class="btn btn-default" href="@Url.Action("Index", "os_dashboard")">Ir a &raquo;</a></p>
-            </div>
-        </center>
-    </div>
-</div>
-    
 <!-- Custom Theme Scripts -->
 <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="~/build/js/custom.min.js"></script>
