@@ -7,22 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebAppOGL.Entities.OrdenesCompra
+namespace WebAppOGL.Entities.Sistemas
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class oc_det_ordenes_productos
+    public partial class sis_impresoras
     {
         public int Id { get; set; }
-        public string Codigo { get; set; }
-        public Nullable<int> Cantidad { get; set; }
-        public Nullable<decimal> Precio { get; set; }
-        public Nullable<decimal> Subtotal { get; set; }
-        public int oc_ordenescompras_Id { get; set; }
-        public int oc_productos_Id { get; set; }
+        public string Modelo { get; set; }
+        public string Modelo_Toner { get; set; }
+        public string Numero_Serie { get; set; }
+        public string Numero_Parte { get; set; }
+        public string MAC_Ethernet { get; set; }
+        public string Hostname { get; set; }
+        public int sis_marcas_Id { get; set; }
+        public int adm_sucursales_Id { get; set; }
     
-        public virtual oc_productos oc_productos { get; set; }
-        public virtual oc_ordenescompras oc_ordenescompras { get; set; }
+        public virtual sis_marcas sis_marcas { get; set; }
     }
 }

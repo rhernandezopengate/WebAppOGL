@@ -33,5 +33,7 @@ namespace WebAppOGL.Entities.OrdenesServicio
         public virtual DbSet<os_conceptos> os_conceptos { get; set; }
         public virtual DbSet<os_destinos> os_destinos { get; set; }
         public virtual DbSet<os_ordenesservicio> os_ordenesservicio { get; set; }
+
+        public System.Data.Entity.DbSet<WebAppOGL.Entities.Sistemas.sis_impresoras> sis_impresoras { get; set; }
     }
 }

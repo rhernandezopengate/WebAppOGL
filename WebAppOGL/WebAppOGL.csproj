@@ -226,6 +226,7 @@
     <Compile Include="Controllers\OrdenesServicio\os_rutasController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_statuscomprasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_impresorasController.cs" />
     <Compile Include="Entities\Administracion\AspNetUsers.cs">
       <DependentUpon>DCAdministracion.tt</DependentUpon>
     </Compile>
@@ -420,6 +421,9 @@
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\sis_estatusequipo.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\sis_impresoras.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\sis_mantenimiento.cs">
@@ -5085,6 +5089,11 @@
     <Content Include="Views\os_destinos\Details.cshtml" />
     <Content Include="Views\os_destinos\Edit.cshtml" />
     <Content Include="Views\os_destinos\Index.cshtml" />
+    <Content Include="Views\sis_impresoras\Create.cshtml" />
+    <Content Include="Views\sis_impresoras\Delete.cshtml" />
+    <Content Include="Views\sis_impresoras\Details.cshtml" />
+    <Content Include="Views\sis_impresoras\Edit.cshtml" />
+    <Content Include="Views\sis_impresoras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

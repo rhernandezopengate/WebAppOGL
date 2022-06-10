@@ -61,8 +61,8 @@
           <Property Name="FechaAlta" Type="date" />
           <Property Name="FechaCreacion" Type="datetime" />
           <Property Name="FechaPosibleEntrega" Type="date" />
-          <Property Name="Proyecto" Type="varchar" MaxLength="100" />
-          <Property Name="Justificacion" Type="varchar" MaxLength="100" />
+          <Property Name="Proyecto" Type="varchar(max)" />
+          <Property Name="Justificacion" Type="varchar(max)" />
           <Property Name="oc_categoria_Id" Type="int" Nullable="false" />
           <Property Name="oc_formapago_Id" Type="int" Nullable="false" />
           <Property Name="oc_centrocostos_Id" Type="int" Nullable="false" />
@@ -485,8 +485,8 @@
           <Property Name="Subtotal" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="oc_ordenescompras_Id" Type="Int32" Nullable="false" />
           <Property Name="oc_productos_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK" FromRole="oc_det_ordenes_productos" ToRole="oc_ordenescompras" />
           <NavigationProperty Name="oc_productos" Relationship="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_productos_FK" FromRole="oc_det_ordenes_productos" ToRole="oc_productos" />
+          <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_ordenescompras_FK" FromRole="oc_det_ordenes_productos" ToRole="oc_ordenescompras" />
         </EntityType>
         <EntityType Name="oc_divisa">
           <Key>
@@ -568,6 +568,15 @@
           <EntitySet Name="oc_statusdirector" EntityType="db_a3f19c_administracionModel2.oc_statusdirector" />
           <EntitySet Name="oc_statusfinanzas" EntityType="db_a3f19c_administracionModel2.oc_statusfinanzas" />
           <EntitySet Name="oc_statussupervisor" EntityType="db_a3f19c_administracionModel2.oc_statussupervisor" />
+          <EntitySet Name="oc_productos" EntityType="db_a3f19c_administracionModel2.oc_productos" />
+          <AssociationSet Name="oc_det_ordenes_productos_oc_productos_FK" Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_productos_FK">
+            <End Role="oc_productos" EntitySet="oc_productos" />
+            <End Role="oc_det_ordenes_productos" EntitySet="oc_det_ordenes_productos" />
+          </AssociationSet>
+          <AssociationSet Name="oc_productos_UoM_FK" Association="db_a3f19c_administracionModel2.oc_productos_UoM_FK">
+            <End Role="UoM" EntitySet="UoM" />
+            <End Role="oc_productos" EntitySet="oc_productos" />
+          </AssociationSet>
           <EntitySet Name="oc_ordenescompras" EntityType="db_a3f19c_administracionModel2.oc_ordenescompras" />
           <AssociationSet Name="oc_ordenescompras_oc_categoria_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_categoria_FK">
             <End Role="oc_categoria" EntitySet="oc_categoria" />
@@ -624,15 +633,6 @@
           <AssociationSet Name="oc_ordenescompras_oc_tipocompra_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK">
             <End Role="oc_tipocompra" EntitySet="oc_tipocompra" />
             <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
-          </AssociationSet>
-          <EntitySet Name="oc_productos" EntityType="db_a3f19c_administracionModel2.oc_productos" />
-          <AssociationSet Name="oc_det_ordenes_productos_oc_productos_FK" Association="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_productos_FK">
-            <End Role="oc_productos" EntitySet="oc_productos" />
-            <End Role="oc_det_ordenes_productos" EntitySet="oc_det_ordenes_productos" />
-          </AssociationSet>
-          <AssociationSet Name="oc_productos_UoM_FK" Association="db_a3f19c_administracionModel2.oc_productos_UoM_FK">
-            <End Role="UoM" EntitySet="UoM" />
-            <End Role="oc_productos" EntitySet="oc_productos" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="oc_solicitantes">
@@ -699,6 +699,40 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_statussupervisor_FK" FromRole="oc_statussupervisor" ToRole="oc_ordenescompras" />
         </EntityType>
+        <EntityType Name="oc_productos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UoM_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="oc_det_ordenes_productos" Relationship="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_productos_FK" FromRole="oc_productos" ToRole="oc_det_ordenes_productos" />
+          <NavigationProperty Name="UoM" Relationship="db_a3f19c_administracionModel2.oc_productos_UoM_FK" FromRole="oc_productos" ToRole="UoM" />
+        </EntityType>
+        <Association Name="oc_det_ordenes_productos_oc_productos_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_productos" Role="oc_productos" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_det_ordenes_productos" Role="oc_det_ordenes_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_productos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_det_ordenes_productos">
+              <PropertyRef Name="oc_productos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_productos_UoM_FK">
+          <End Type="db_a3f19c_administracionModel2.UoM" Role="UoM" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_productos" Role="oc_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UoM">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_productos">
+              <PropertyRef Name="UoM_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="oc_ordenescompras">
           <Key>
             <PropertyRef Name="Id" />
@@ -708,8 +742,8 @@
           <Property Name="FechaAlta" Type="DateTime" Precision="0" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
           <Property Name="FechaPosibleEntrega" Type="DateTime" Precision="0" />
-          <Property Name="Proyecto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Justificacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Proyecto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Justificacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="oc_categoria_Id" Type="Int32" Nullable="false" />
           <Property Name="oc_formapago_Id" Type="Int32" Nullable="false" />
           <Property Name="oc_centrocostos_Id" Type="Int32" Nullable="false" />
@@ -907,40 +941,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="oc_productos">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="UoM_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="oc_det_ordenes_productos" Relationship="db_a3f19c_administracionModel2.oc_det_ordenes_productos_oc_productos_FK" FromRole="oc_productos" ToRole="oc_det_ordenes_productos" />
-          <NavigationProperty Name="UoM" Relationship="db_a3f19c_administracionModel2.oc_productos_UoM_FK" FromRole="oc_productos" ToRole="UoM" />
-        </EntityType>
-        <Association Name="oc_det_ordenes_productos_oc_productos_FK">
-          <End Type="db_a3f19c_administracionModel2.oc_productos" Role="oc_productos" Multiplicity="1" />
-          <End Type="db_a3f19c_administracionModel2.oc_det_ordenes_productos" Role="oc_det_ordenes_productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oc_productos">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_det_ordenes_productos">
-              <PropertyRef Name="oc_productos_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="oc_productos_UoM_FK">
-          <End Type="db_a3f19c_administracionModel2.UoM" Role="UoM" Multiplicity="1" />
-          <End Type="db_a3f19c_administracionModel2.oc_productos" Role="oc_productos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UoM">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="oc_productos">
-              <PropertyRef Name="UoM_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1086,6 +1086,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="oc_productos">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_productos">
+              <MappingFragment StoreEntitySet="oc_productos">
+                <ScalarProperty Name="UoM_Id" ColumnName="UoM_Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="oc_ordenescompras">
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_ordenescompras">
               <MappingFragment StoreEntitySet="oc_ordenescompras">
@@ -1109,15 +1118,6 @@
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="oc_productos">
-            <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_productos">
-              <MappingFragment StoreEntitySet="oc_productos">
-                <ScalarProperty Name="UoM_Id" ColumnName="UoM_Id" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
