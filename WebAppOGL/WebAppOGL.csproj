@@ -432,6 +432,9 @@
     <Compile Include="Entities\Sistemas\sis_marcas.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Sistemas\sis_statusfiscal.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Sistemas\sis_terminales.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>

@@ -23,7 +23,11 @@ namespace WebAppOGL.Entities.Sistemas
         public string Hostname { get; set; }
         public int sis_marcas_Id { get; set; }
         public int adm_sucursales_Id { get; set; }
+        public int sis_statusfiscal_Id { get; set; }
+        public int sis_estatusequipo_Id { get; set; }
     
+        public virtual sis_estatusequipo sis_estatusequipo { get; set; }
         public virtual sis_marcas sis_marcas { get; set; }
+        public virtual sis_statusfiscal sis_statusfiscal { get; set; }
     }
 }

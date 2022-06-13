@@ -12,26 +12,17 @@ namespace WebAppOGL.Entities.Sistemas
     using System;
     using System.Collections.Generic;
     
-    public partial class sis_estatusequipo
+    public partial class sis_statusfiscal
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public sis_estatusequipo()
+        public sis_statusfiscal()
         {
-            this.sis_equipos = new HashSet<sis_equipos>();
-            this.sis_celulares = new HashSet<sis_celulares>();
-            this.sis_terminales = new HashSet<sis_terminales>();
             this.sis_impresoras = new HashSet<sis_impresoras>();
         }
     
         public int Id { get; set; }
         public string Descripcion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sis_equipos> sis_equipos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sis_celulares> sis_celulares { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sis_terminales> sis_terminales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sis_impresoras> sis_impresoras { get; set; }
     }
