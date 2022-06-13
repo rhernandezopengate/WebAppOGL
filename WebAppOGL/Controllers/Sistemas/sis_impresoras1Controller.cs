@@ -10,18 +10,18 @@ using WebAppOGL.Entities.Sistemas;
 
 namespace WebAppOGL.Controllers.Sistemas
 {
-    public class sis_impresorasController : Controller
+    public class sis_impresoras1Controller : Controller
     {
         private db_a3f19c_administracionEntities db = new db_a3f19c_administracionEntities();
 
-        // GET: sis_impresoras
+        // GET: sis_impresoras1
         public ActionResult Index()
         {
             var sis_impresoras = db.sis_impresoras.Include(s => s.sis_estatusequipo).Include(s => s.sis_marcas).Include(s => s.sis_statusfiscal);
             return View(sis_impresoras.ToList());
         }
 
-        // GET: sis_impresoras/Details/5
+        // GET: sis_impresoras1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +36,7 @@ namespace WebAppOGL.Controllers.Sistemas
             return View(sis_impresoras);
         }
 
-        // GET: sis_impresoras/Create
+        // GET: sis_impresoras1/Create
         public ActionResult Create()
         {
             ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion");
@@ -45,7 +45,7 @@ namespace WebAppOGL.Controllers.Sistemas
             return View();
         }
 
-        // POST: sis_impresoras/Create
+        // POST: sis_impresoras1/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -65,7 +65,7 @@ namespace WebAppOGL.Controllers.Sistemas
             return View(sis_impresoras);
         }
 
-        // GET: sis_impresoras/Edit/5
+        // GET: sis_impresoras1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,7 +83,7 @@ namespace WebAppOGL.Controllers.Sistemas
             return View(sis_impresoras);
         }
 
-        // POST: sis_impresoras/Edit/5
+        // POST: sis_impresoras1/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -102,7 +102,7 @@ namespace WebAppOGL.Controllers.Sistemas
             return View(sis_impresoras);
         }
 
-        // GET: sis_impresoras/Delete/5
+        // GET: sis_impresoras1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,7 +117,7 @@ namespace WebAppOGL.Controllers.Sistemas
             return View(sis_impresoras);
         }
 
-        // POST: sis_impresoras/Delete/5
+        // POST: sis_impresoras1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

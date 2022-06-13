@@ -7,6 +7,7 @@
 
 <h2>Edit</h2>
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -66,9 +67,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.sis_marcas_Id, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.sis_marcas_Id, "sis_marcas_Id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.sis_marcas_Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("sis_marcas_Id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.sis_marcas_Id, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -78,6 +79,22 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.adm_sucursales_Id, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.adm_sucursales_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sis_statusfiscal_Id, "sis_statusfiscal_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("sis_statusfiscal_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sis_statusfiscal_Id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sis_estatusequipo_Id, "sis_estatusequipo_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("sis_estatusequipo_Id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sis_estatusequipo_Id, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -92,3 +109,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

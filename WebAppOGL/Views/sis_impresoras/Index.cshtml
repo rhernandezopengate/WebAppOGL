@@ -31,10 +31,16 @@
             @Html.DisplayNameFor(model => model.Hostname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sis_marcas_Id)
+            @Html.DisplayNameFor(model => model.adm_sucursales_Id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.adm_sucursales_Id)
+            @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sis_statusfiscal.Descripcion)
         </th>
         <th></th>
     </tr>
@@ -60,10 +66,16 @@
             @Html.DisplayFor(modelItem => item.Hostname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.sis_marcas_Id)
+            @Html.DisplayFor(modelItem => item.adm_sucursales_Id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.adm_sucursales_Id)
+            @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
