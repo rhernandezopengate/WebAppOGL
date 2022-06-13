@@ -1,0 +1,105 @@
+﻿@model WebAppOGL.Entities.Sistemas.sis_impresoras
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>sis_impresoras</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo_Toner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo_Toner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero_Serie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_Serie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Numero_Parte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Numero_Parte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAC_Ethernet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAC_Ethernet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hostname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hostname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adm_sucursales_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adm_sucursales_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_estatusequipo.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_marcas.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sis_statusfiscal.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sis_statusfiscal.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
