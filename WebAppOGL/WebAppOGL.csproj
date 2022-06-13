@@ -226,7 +226,6 @@
     <Compile Include="Controllers\OrdenesServicio\os_rutasController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_statuscomprasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
-    <Compile Include="Controllers\Sistemas\sis_impresoras1Controller.cs" />
     <Compile Include="Controllers\Sistemas\sis_impresorasController.cs" />
     <Compile Include="Entities\Administracion\AspNetUsers.cs">
       <DependentUpon>DCAdministracion.tt</DependentUpon>
