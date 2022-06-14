@@ -4,85 +4,112 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
 }
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Impresoras</h2> &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Agregar Registro</a>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table id="tblEstatus" class="table table-bordered jambo_table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Modelo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Modelo_Toner)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Numero_Serie)
+                            </th>
 
-<h2>Index</h2>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Numero_Parte)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MAC_Ethernet)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Hostname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Hostname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.adm_sucursales_Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sis_statusfiscal.Descripcion)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo_Toner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Numero_Serie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Numero_Parte)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MAC_Ethernet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hostname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adm_sucursales_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit" all="Editar" title="Editar"></span></a>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.Id })"> <span class="fa fa-trash-o" all="Eliminar" title="Eliminar"></span> </a>
+                    </td>
+                </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Modelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modelo_Toner)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Numero_Serie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Numero_Parte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MAC_Ethernet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Hostname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.adm_sucursales_Id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sis_statusfiscal.Descripcion)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Modelo_Toner)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero_Serie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Numero_Parte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MAC_Ethernet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hostname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adm_sucursales_Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tblEstatus').DataTable();
+    });
+</script>
+
+
