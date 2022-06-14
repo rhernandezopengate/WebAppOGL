@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+<h2>Index</h2>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@using (Html.BeginForm("UploadXML", "oc_leerxml", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" id="fileUpload" name="fileUpload" style="float:left" />
+    <input type="submit" value="Get User List" />
+}
+@if (ViewBag.ShowList)
+{
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Mobile</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Gender</td>
+                <td>@item.Mobile</td>
+            </tr>
+        }
+    </table>
+}

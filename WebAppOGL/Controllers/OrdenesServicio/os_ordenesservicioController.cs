@@ -10,13 +10,17 @@ using System.Web.Mvc;
 using WebAppOGL.Entities.Administracion;
 using WebAppOGL.Entities.OrdenesServicio;
 using System.Linq.Dynamic;
+using WebAppOGL.Entities.OrdenesCompra;
 
 namespace WebAppOGL.Controllers.OrdenesServicio
 {
     public class os_ordenesservicioController : Controller
     {
-        db_a3f19c_administracionEntities1 db1 = new db_a3f19c_administracionEntities1();
+
         private db_a3f19c_administracionEntities3 db = new db_a3f19c_administracionEntities3();
+        db_a3f19c_administracionEntities1 dbadmin = new db_a3f19c_administracionEntities1();
+        db_a3f19c_administracionEntities2 dboc = new db_a3f19c_administracionEntities2();
+
 
         // GET: os_ordenesservicio
         public ActionResult Index()
@@ -48,7 +52,7 @@ namespace WebAppOGL.Controllers.OrdenesServicio
                     con.Open();
 
                     string sql = "exec SP_Ordenes_Servicio_Index @folio";
-                    
+
                     var query = new SqlCommand(sql, con);
 
                     if (folio != "")
@@ -59,7 +63,7 @@ namespace WebAppOGL.Controllers.OrdenesServicio
                     {
                         query.Parameters.AddWithValue("@folio", DBNull.Value);
                     }
-                    
+
                     using (var dr = query.ExecuteReader())
                     {
                         while (dr.Read())
@@ -124,20 +128,20 @@ namespace WebAppOGL.Controllers.OrdenesServicio
             try
             {
                 os_ordenesservicio ordenesservicio = new os_ordenesservicio();
-                
+
                 var user = User.Identity.GetUserId();
-                string email = db1.AspNetUsers.Where(x => x.Id == user).Select(x => x.Email).FirstOrDefault().ToString();
-                int empleado = db1.adm_empleados.Where(x => x.Email.Contains(email)).FirstOrDefault().Id;
-                
+                string email = dbadmin.AspNetUsers.Where(x => x.Id == user).Select(x => x.Email).FirstOrDefault().ToString();
+                int empleado = dbadmin.adm_empleados.Where(x => x.Email.Contains(email)).FirstOrDefault().Id;
+
                 ordenesservicio.adm_empleados_Id = empleado;
-                ordenesservicio.os_statuscompras_Id = 1;                     
+                ordenesservicio.os_statuscompras_Id = 1;
                 ordenesservicio.Folio = "OS-OGL-" + (db.os_ordenesservicio.Count() + 1);
                 ordenesservicio.FechaAlta = DateTime.Now;
 
                 ordenesservicio.os_rutas_Id = encabezado.os_rutas_Id;
                 ordenesservicio.adm_cuentas_Id = encabezado.adm_cuentas_Id;
                 ordenesservicio.oc_proveedores_Id = encabezado.oc_proveedores_Id;
-                ordenesservicio.FechaSolicitud = encabezado.FechaSolicitud;               
+                ordenesservicio.FechaSolicitud = encabezado.FechaSolicitud;
                 ordenesservicio.CostoVenta = encabezado.CostoVenta;
                 ordenesservicio.Observaciones = encabezado.Observaciones;
                 ordenesservicio.Semana = GetWeekNumber((DateTime)encabezado.FechaSolicitud);
@@ -163,7 +167,7 @@ namespace WebAppOGL.Controllers.OrdenesServicio
 
                     db.os_detos_conceptos.Add(detalle);
                 }
-                
+
                 db.SaveChanges();
 
                 return Json(new { respuesta = "Correcto" }, JsonRequestBehavior.AllowGet);
@@ -180,5 +184,27 @@ namespace WebAppOGL.Controllers.OrdenesServicio
             int weekNum = ciCurr.Calendar.GetWeekOfYear(fecha_solicitud, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
             return weekNum;
         }
+
+        public ActionResult Edit(int id)
+        {
+            os_ordenesservicio orden = new os_ordenesservicio();
+
+            orden = db.os_ordenesservicio.Find(id);
+
+            ViewBag.oc_proveedores_Id = new SelectList(dboc.oc_proveedores, "Id", "NombreComercial", orden.oc_proveedores_Id);
+            ViewBag.adm_cuentas_Id = new SelectList(dbadmin.adm_cuentas, "Id", "Descripcion", orden.adm_cuentas_Id);
+
+            ViewBag.os_rutas_Id = new SelectList(db.os_rutas, "Id", "Codigo", orden.os_rutas_Id);
+
+
+            return View(orden);
+        }
+
+
+        public ActionResult EditPost()
+        {
+            return View();
+        }
+
     }
 }

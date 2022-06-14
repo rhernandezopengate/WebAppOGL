@@ -78,7 +78,7 @@
                     "data": null,
                     "targets": -1,
                     "render": function (data, type, full) {
-                        return " <button onclick='Edit(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
+                        return " <button onclick='Editar(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
                             "<a onclick='Details(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='fa fa-eye'></i></a>" +
                             "<button onclick='AutorizarOC(" + full['Id'] + ")' class='btn btn-sm btn-success '><i class='fa fa-check-circle'></i></button>";
                     },
@@ -94,6 +94,12 @@
             table.columns(0).search(this.value).draw();
         });      
     });
+
+    var Editar = function (ID) {
+        $.ajaxSetup({ cache: false });
+        window.location.href = '/os_ordenesservicio/Edit/' + ID;
+        return false;
+    }
 
     function bindForm(dialog) {
         $('form', dialog).submit(function () {
