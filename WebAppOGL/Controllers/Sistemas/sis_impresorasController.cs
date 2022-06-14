@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebAppOGL.Entities.Administracion;
 using WebAppOGL.Entities.Sistemas;
 
 namespace WebAppOGL.Controllers.Sistemas
@@ -13,6 +14,7 @@ namespace WebAppOGL.Controllers.Sistemas
     public class sis_impresorasController : Controller
     {
         private db_a3f19c_administracionEntities db = new db_a3f19c_administracionEntities();
+        private db_a3f19c_administracionEntities1 dbadmin = new db_a3f19c_administracionEntities1();
 
         // GET: sis_impresoras
         public ActionResult Index()
@@ -42,6 +44,7 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion");
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion");
             ViewBag.sis_statusfiscal_Id = new SelectList(db.sis_statusfiscal, "Id", "Descripcion");
+            ViewBag.adm_sucursales_Id = new SelectList(dbadmin.adm_sucursales, "Id", "Descripcion");
             return View();
         }
 
@@ -80,6 +83,8 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion", sis_impresoras.sis_estatusequipo_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_impresoras.sis_marcas_Id);
             ViewBag.sis_statusfiscal_Id = new SelectList(db.sis_statusfiscal, "Id", "Descripcion", sis_impresoras.sis_statusfiscal_Id);
+            ViewBag.adm_sucursales_Id = new SelectList(dbadmin.adm_sucursales, "Id", "Descripcion", sis_impresoras.adm_sucursales_Id);
+
             return View(sis_impresoras);
         }
 
@@ -99,6 +104,7 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion", sis_impresoras.sis_estatusequipo_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_impresoras.sis_marcas_Id);
             ViewBag.sis_statusfiscal_Id = new SelectList(db.sis_statusfiscal, "Id", "Descripcion", sis_impresoras.sis_statusfiscal_Id);
+        
             return View(sis_impresoras);
         }
 
