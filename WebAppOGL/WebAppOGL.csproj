@@ -205,6 +205,7 @@
     <Compile Include="Controllers\OrdenesCompra\oc_det_ordenes_productosController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_divisaController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_formapagoController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_leerxmlController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_lugarentregaController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_ordenesdecomprasController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_productosController.cs" />
@@ -444,6 +445,7 @@
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\TerminalesVM.cs" />
+    <Compile Include="Entities\Sistemas\XML.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5104,6 +5106,8 @@
     <Content Include="Views\sis_statusfiscal\Details.cshtml" />
     <Content Include="Views\sis_statusfiscal\Edit.cshtml" />
     <Content Include="Views\sis_statusfiscal\Index.cshtml" />
+    <Content Include="Views\oc_leerxml\Index.cshtml" />
+    <Content Include="Views\os_ordenesservicio\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

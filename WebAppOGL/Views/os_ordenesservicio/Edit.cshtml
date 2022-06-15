@@ -1,0 +1,60 @@
+﻿@model WebAppOGL.Entities.OrdenesServicio.os_ordenesservicio
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutOrdenesServicio.cshtml";
+}
+
+<!-- Pagina con formulario -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Informacion del Equipo </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <!-- Inicia Formulario -->
+                <div class="form-label-left input_mask">
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Folio" } })
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.EditorFor(model => model.FechaSolicitud, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "FechaSolicitud" } })
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.EditorFor(model => model.Semana, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Semana" } })
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.EditorFor(model => model.Remision, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Remision" } })
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.EditorFor(model => model.CostoVenta, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "CostoVenta" } })
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Observaciones" } })
+                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.DropDownList("oc_proveedores_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                        @Html.DropDownList("os_rutas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <!-- Fin Formulario -->
+            </div>
+        </div>
+    </div>
+</div>
