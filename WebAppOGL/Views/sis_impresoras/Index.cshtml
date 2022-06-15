@@ -17,80 +17,82 @@
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Modelo)
+                                Modelo
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Modelo_Toner)
+                                Toner
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Numero_Serie)
-                            </th>
-
-                            <th>
-                                @Html.DisplayNameFor(model => model.Numero_Parte)
+                                Numero de Serie
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.MAC_Ethernet)
+                                Numero de Parte
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Hostname)
+                                MAC_Ethernet
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Hostname)
+                                Hostname
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.adm_sucursales_Id)
+                                Sucursales
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
+                                Estatus Equipo
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
+                                Marca
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.sis_statusfiscal.Descripcion)
+                                Estatus Fiscal
                             </th>
+                                                      
                             <th></th>
                         </tr>
+                 
+
                     </thead>
                     @foreach (var item in Model)
                     {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Modelo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Modelo_Toner)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Numero_Serie)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Numero_Parte)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MAC_Ethernet)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Hostname)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.adm_sucursales_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
-                    </td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit" all="Editar" title="Editar"></span></a>
-                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = item.Id })"> <span class="fa fa-trash-o" all="Eliminar" title="Eliminar"></span> </a>
-                    </td>
-                </tr>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Modelo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Modelo_Toner)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Numero_Serie)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Numero_Parte)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MAC_Ethernet)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Hostname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sucursales)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
+                            </td>
+                            <td>
+
+
+
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit" all="Editar" title="Editar"></span></a>
+                                <button class="btn btn-info" onclick="DetalleEquipo(@Html.Raw(item.Id))"> <span class="fa fa-list-alt" all="Editar" title="Editar"></span>  </button>
+                            </td>
+                        </tr>
                     }
                 </table>
             </div>
@@ -98,6 +100,14 @@
     </div>
 </div>
 
+<!-- Define el modal -->
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
+        <div class="modal-content">
+            <div id="MyModalContent"></div>
+        </div>
+    </div>
+</div>
 
 
 <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
@@ -113,3 +123,46 @@
 </script>
 
 
+<script type="text/javascript">
+
+
+    var DetalleEquipo = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_impresoras/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+
+</script>

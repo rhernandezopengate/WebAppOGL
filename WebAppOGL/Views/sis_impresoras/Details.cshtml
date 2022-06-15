@@ -2,98 +2,145 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<div class="modal-content">
 
-<div>
-    <h4>sis_impresoras</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Modelo)
-        </dt>
+    <div class="modal-body">
+        <div class="col-md-12 col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <center>
+                        <h3><i class="fa fa-desktop"></i> Detalles de Impresora <br /> @Model.Modelo</h3>
+                    </center>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel">
+                            <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h4 class="panel-title">Informacion de la Impresora</h4>
+                            </a>
+                            
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <center>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Modelo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.Modelo">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-print"></span> </div>
+                                                </div>
+                                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Modelo)
-        </dd>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Modelo de Toner</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.Modelo_Toner">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span> </div>
+                                                </div>
+                                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Modelo_Toner)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Modelo_Toner)
-        </dd>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Numero de Serie</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.Numero_Serie">
+                                                    <div class="input-group-addon"><span class="fa fa-asterisk"></span> </div>
+                                                </div>
+                                            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero_Serie)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Numero_Serie)
-        </dd>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Numero de Parte &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.Numero_Parte">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-menu-hamburger"></span> </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero_Parte)
-        </dt>
+                                                </div>
+                                            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Numero_Parte)
-        </dd>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">MAC Ethernet &nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.MAC_Ethernet">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span> </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Hostname &nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.Hostname">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-oil"></span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Sucursual&nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.adm_sucursales_Id">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Estatus Equipo &nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_estatusequipo.Descripcion">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Marcas &nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_marcas.Descripcion">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-folder-close"></span> </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Estatus Fiscal &nbsp;</div>
+                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_statusfiscal.Descripcion">
+                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-saved"></span> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MAC_Ethernet)
-        </dt>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MAC_Ethernet)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Hostname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hostname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.adm_sucursales_Id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adm_sucursales_Id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sis_estatusequipo.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sis_estatusequipo.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sis_marcas.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sis_marcas.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.sis_statusfiscal.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sis_statusfiscal.Descripcion)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+}</div>
