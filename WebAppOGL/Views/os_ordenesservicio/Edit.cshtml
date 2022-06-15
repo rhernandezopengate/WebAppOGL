@@ -5,56 +5,259 @@
     Layout = "~/Views/Shared/_LayoutOrdenesServicio.cshtml";
 }
 
-<!-- Pagina con formulario -->
 <div class="row">
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Informacion del Equipo </h2>
+                <h2>Orden de Servicio <small>Edit</small></h2> &nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-primary" id="btnSave"><i class="fa fa-floppy-o"></i> Guardar</button>
+                <a class="btn btn-danger" href="@Url.Action("Index")"><i class="fa fa-trash"></i> Cancelar</a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <!-- Inicia Formulario -->
                 <div class="form-label-left input_mask">
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
                         @Html.EditorFor(model => model.Folio, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Folio" } })
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
-                        @Html.EditorFor(model => model.FechaSolicitud, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "FechaSolicitud" } })
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
                         <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
-                        @Html.EditorFor(model => model.Semana, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Semana" } })
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        @Html.DropDownList("oc_proveedores_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-users form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
                         @Html.EditorFor(model => model.Remision, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Remision" } })
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-first-order form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        @Html.EditorFor(model => model.FechaSolicitudString, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "FechaSolicitud" } })
+                        <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="x_title">
+                    <h2>Rutas</h2>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <div class="clearfix"></div>
+                </div>
+                <div class="form-label-left input_mask">
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
+                        @Html.DropDownList("os_rutas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
+                        <span class="fa fa-map-marker form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-md-3 col-sm-3  form-group has-feedback">
                         @Html.EditorFor(model => model.CostoVenta, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "CostoVenta" } })
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-6 col-sm-6  form-group has-feedback">
                         @Html.EditorFor(model => model.Observaciones, new { htmlAttributes = new { @class = "form-control has-feedback-left", @placeholder = "Observaciones" } })
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
-                        @Html.DropDownList("oc_proveedores_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
-                        @Html.DropDownList("adm_cuentas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-md-6 col-sm-6  form-group has-feedback">
-                        @Html.DropDownList("os_rutas_Id", null, htmlAttributes: new { @class = "form-control has-feedback-left" })
-                        <span class="fa fa-group form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-comment-o form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>
-                <!-- Fin Formulario -->
+                <br />
+                <br />
+                <br />
+                <div class="x_title">
+                    <h2>Items</h2>
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <div class="clearfix"></div>
+                </div>
+                <table id="tblConceptos" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th width="10%">Codigo</th>
+                            <th width="25%">Producto</th>
+                            <th width="10%">Cantidad</th>
+                            <th width="10%">Precio</th>
+                            <th width="15%">Subtotal</th>
+                            <td width="10%"></td>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <td style="text-align:right" colspan="5">Subtotal</td>
+                            <td>
+                                <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="@Model.Subtotal" />
+                            </td>
+                            <td width="10%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right" colspan="5">IVA</td>
+                            <td>
+                                <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="@Model.IVA" />
+                            </td>
+                            <td width="10%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right" colspan="5">Retencion</td>
+                            <td>
+                                <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="@Model.Retencion" />
+                            </td>
+                            <td width="10%"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:right" colspan="5">Total</td>
+                            <td>
+                                <input type="text" class="form-control" disabled id="txtSubtotalCantidad" value="@Model.Total" />
+                            </td>
+                            <td width="10%"></td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
+        <div class="modal-content">
+            <div id="MyModalContent"></div>
+        </div>
+    </div>
+</div>
+
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    var table;
+
+    var IdOS = '@Html.Raw(Model.Id)';
+
+    $(document).ready(function () {
+        table = $('#tblConceptos').DataTable({
+            "order": [[0, "desc"]],
+            "ordering": true,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+            "pagingType": "simple_numbers",
+            "dom": 'Blrtip', // Hides Default Search
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "deferRender": true,
+            rowId: 'Id',
+            select: true,
+            "ajax": {
+                "url": "/os_ordenesservicio/ObtenerConceptosOS",
+                "data": { id: IdOS },
+                "type": "POST",
+                "datatype": "json"
+            },
+            "aoColumns": [
+                { "data": "Id", "autoWidth": true, "visible": false },
+                { "data": "Codigo", "autoWidth": true },
+                { "data": "Concepto", "autoWidth": true },
+                { "data": "Cantidad", "autoWidth": true },
+                { "data": "PrecioUnitario", "autoWidth": true },
+                { "data": "Subtotal", "autoWidth": true },
+                {
+                    "data": null,
+                    "targets": -1,
+                    "render": function (data, type, full) {
+                        return "<a onclick='EditarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-primary'><i class='fa fa-edit' all='Editar' title='Editar'></i></a>" +
+                            "<a onclick='EliminarConcepto(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-danger'><i class='fa fa-trash' all='Eliminar' title='Eliminar'></i></a>";
+                    },
+                    "bSearchable": false,
+                    "sortable": false,
+                    "autoWidth": false,
+                    "sWidth": "18px"
+                }
+            ]
+        });
+
+        $('#txtFolio').on('keyup', function () {
+            table.columns(0).search(this.value).draw();
+        });
+    });
+
+    var AgregarConcepto = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/oc_det_ordenes_productos/AgregarConcepto/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EditarConcepto = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/os_detos_conceptos/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EliminarConcepto = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/oc_det_ordenes_productos/EliminarConcepto/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.respuesta === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+
+
+                        $("#Subtotal").text('' + result.nuevosubtotal);
+                        $("#IVA").text('' + result.nuevoiva);
+                        $("#Total").text('' + result.nuevototal);
+
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+
+
+</script>

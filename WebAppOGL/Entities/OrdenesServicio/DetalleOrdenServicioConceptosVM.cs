@@ -11,8 +11,11 @@ namespace WebAppOGL.Entities.OrdenesServicio
     }
 
     public partial class os_detos_conceptos 
-    {
+    {        
+
         public string Concepto { get; set; }
+        
+
     }
 
 }

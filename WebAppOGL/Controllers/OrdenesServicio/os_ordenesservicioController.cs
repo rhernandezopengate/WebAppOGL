@@ -190,10 +190,11 @@ namespace WebAppOGL.Controllers.OrdenesServicio
             os_ordenesservicio orden = new os_ordenesservicio();
 
             orden = db.os_ordenesservicio.Find(id);
+            orden.FechaSolicitudString = orden.FechaSolicitud.Value.ToShortDateString();
+
 
             ViewBag.oc_proveedores_Id = new SelectList(dboc.oc_proveedores, "Id", "NombreComercial", orden.oc_proveedores_Id);
             ViewBag.adm_cuentas_Id = new SelectList(dbadmin.adm_cuentas, "Id", "Descripcion", orden.adm_cuentas_Id);
-
             ViewBag.os_rutas_Id = new SelectList(db.os_rutas, "Id", "Codigo", orden.os_rutas_Id);
 
 
@@ -204,6 +205,76 @@ namespace WebAppOGL.Controllers.OrdenesServicio
         public ActionResult EditPost()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ObtenerConceptosOS(int id) 
+        {
+            try
+            {
+                var Draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var Start = Request.Form.GetValues("start").FirstOrDefault();
+                var Length = Request.Form.GetValues("length").FirstOrDefault();
+                var SortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][data]").FirstOrDefault();
+                var SortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                var folio = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
+
+                int PageSize = Length != null ? Convert.ToInt32(Length) : 0;
+                int Skip = Start != null ? Convert.ToInt32(Start) : 0;
+                int TotalRecords = 0;
+
+                List<os_detos_conceptos> lista = new List<os_detos_conceptos>();
+
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString()))
+                {
+                    con.Open();
+
+                    string sql = "exec SP_OrdenesServicio_Conceptos @IdOrden";
+
+                    var query = new SqlCommand(sql, con);
+
+                    query.Parameters.AddWithValue("@IdOrden", id);
+
+                    using (var dr = query.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            // facturas
+                            var os = new os_detos_conceptos();
+
+                            os.Id = Convert.ToInt32(dr["ConceptoId"]);
+
+                            os.Codigo = dr["Codigo"].ToString();
+
+                            os.Concepto = dr["Descripcion"].ToString();
+
+                            os.Cantidad = Convert.ToDecimal(dr["Cantidad"]);
+
+                            os.PrecioUnitario = Convert.ToDecimal(dr["PrecioUnitario"]);
+
+                            os.Subtotal = Convert.ToDecimal(dr["Subtotal"]);
+
+                            lista.Add(os);
+                        }
+                    }
+                }
+
+                if (!(string.IsNullOrEmpty(SortColumn) && string.IsNullOrEmpty(SortColumnDir)))
+                {
+                    lista = lista.OrderBy(SortColumn + " " + SortColumnDir).ToList();
+                }
+
+                TotalRecords = lista.ToList().Count();
+                var NewItems = lista.Skip(Skip).Take(PageSize == -1 ? TotalRecords : PageSize).ToList();
+
+                return Json(new { draw = Draw, recordsFiltered = TotalRecords, recordsTotal = TotalRecords, data = NewItems }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception _ex)
+            {
+                Console.WriteLine(_ex.Message.ToString());
+                return null;
+            }
         }
 
     }

@@ -222,6 +222,7 @@
     <Compile Include="Controllers\OrdenesServicio\os_conceptosController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_dashboardController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_destinosController.cs" />
+    <Compile Include="Controllers\OrdenesServicio\os_detos_conceptosController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_ordenesservicioController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_origenController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_rutasController.cs" />
@@ -5107,6 +5108,11 @@
     <Content Include="Views\sis_statusfiscal\Index.cshtml" />
     <Content Include="Views\oc_leerxml\Index.cshtml" />
     <Content Include="Views\os_ordenesservicio\Edit.cshtml" />
+    <Content Include="Views\os_detos_conceptos\Create.cshtml" />
+    <Content Include="Views\os_detos_conceptos\Delete.cshtml" />
+    <Content Include="Views\os_detos_conceptos\Details.cshtml" />
+    <Content Include="Views\os_detos_conceptos\Edit.cshtml" />
+    <Content Include="Views\os_detos_conceptos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
