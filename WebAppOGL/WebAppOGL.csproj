@@ -408,6 +408,7 @@
       <DependentUpon>DCSistemas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\EquiposViewModel.cs" />
+    <Compile Include="Entities\Sistemas\ImpresorasVM.cs" />
     <Compile Include="Entities\Sistemas\sis_asignacion.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>

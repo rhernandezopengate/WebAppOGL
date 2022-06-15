@@ -20,7 +20,17 @@ namespace WebAppOGL.Controllers.Sistemas
         public ActionResult Index()
         {
             var sis_impresoras = db.sis_impresoras.Include(s => s.sis_estatusequipo).Include(s => s.sis_marcas).Include(s => s.sis_statusfiscal);
-            return View(sis_impresoras.ToList());
+
+            List<sis_impresoras> lista = new List<sis_impresoras>();
+
+            foreach (var item in sis_impresoras.ToList())
+            {
+                sis_impresoras impTemp = db.sis_impresoras.Find(item.Id);
+                impTemp.Sucursales = dbadmin.adm_sucursales.Where(x => x.Id.Equals(item.adm_sucursales_Id)).FirstOrDefault().Descripcion;
+                lista.Add(impTemp);
+            }
+
+            return View(lista);
         }
 
         // GET: sis_impresoras/Details/5
@@ -31,6 +41,7 @@ namespace WebAppOGL.Controllers.Sistemas
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             sis_impresoras sis_impresoras = db.sis_impresoras.Find(id);
+            
             if (sis_impresoras == null)
             {
                 return HttpNotFound();
