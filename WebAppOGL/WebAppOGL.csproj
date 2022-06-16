@@ -230,6 +230,7 @@
     <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_impresorasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_statusfiscalController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_tipoimpresorasController.cs" />
     <Compile Include="Entities\Administracion\AspNetUsers.cs">
       <DependentUpon>DCAdministracion.tt</DependentUpon>
     </Compile>
@@ -443,6 +444,9 @@
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\sis_tipoequipos.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Sistemas\sis_tipoimpresoras.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Sistemas\TerminalesVM.cs" />
@@ -5114,6 +5118,11 @@
     <Content Include="Views\os_detos_conceptos\Details.cshtml" />
     <Content Include="Views\os_detos_conceptos\Edit.cshtml" />
     <Content Include="Views\os_detos_conceptos\Index.cshtml" />
+    <Content Include="Views\sis_tipoimpresoras\Create.cshtml" />
+    <Content Include="Views\sis_tipoimpresoras\Delete.cshtml" />
+    <Content Include="Views\sis_tipoimpresoras\Details.cshtml" />
+    <Content Include="Views\sis_tipoimpresoras\Edit.cshtml" />
+    <Content Include="Views\sis_tipoimpresoras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

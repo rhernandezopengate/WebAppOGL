@@ -19,34 +19,39 @@
                             <th>
                                 Modelo
                             </th>
-                            <th>
-                                Toner
-                            </th>
+
                             <th>
                                 Numero de Serie
                             </th>
                             <th>
-                                Numero de Parte
-                            </th>
-                            <th>
-                                MAC_Ethernet
-                            </th>
-                            <th>
                                 Hostname
                             </th>
+                            <th>
+                                Toner
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Tipo Impresora
+                            </th>
+                            <th>
+                                Estatus Fiscal
+                            </th>
+                            <th>
+                                Area
+                            </th>
+
+
                             <th>
                                 Sucursales
                             </th>
                             <th>
                                 Estatus Equipo
                             </th>
-                            <th>
-                                Marca
-                            </th>
-                            <th>
-                                Estatus Fiscal
-                            </th>
-                                                      
+
+
+
                             <th></th>
                         </tr>
                  
@@ -54,45 +59,49 @@
                     </thead>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Modelo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Modelo_Toner)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Numero_Serie)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Numero_Parte)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MAC_Ethernet)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Hostname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Sucursales)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
-                            </td>
-                            <td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Numero_Serie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hostname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo_Toner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sis_marcas.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sis_tipoimpresoras.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Areas)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sucursales)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
+                    </td>
+
+
+                    <td>
 
 
 
-                                <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit" all="Editar" title="Editar"></span></a>
-                                <button class="btn btn-info" onclick="DetalleEquipo(@Html.Raw(item.Id))"> <span class="fa fa-list-alt" all="Editar" title="Editar"></span>  </button>
-                            </td>
-                        </tr>
+                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit" all="Editar" title="Editar"></span></a>
+                        <button class="btn btn-info" onclick="DetalleEquipo(@Html.Raw(item.Id))"> <span class="fa fa-list-alt" all="Editar" title="Editar"></span>  </button>
+                    </td>
+                </tr>
                     }
                 </table>
             </div>

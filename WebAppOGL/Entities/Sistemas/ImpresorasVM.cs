@@ -12,5 +12,7 @@ namespace WebAppOGL.Entities.Sistemas
     public partial class sis_impresoras
     {
         public string Sucursales { get; set; }
+
+        public string Areas { get; set; }
     }
 }

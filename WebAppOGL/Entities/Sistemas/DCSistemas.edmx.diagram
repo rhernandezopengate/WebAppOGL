@@ -28,11 +28,13 @@
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_terminales_sis_tipoequipos_FK" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_asignacion_terminales" Width="1.5" PointX="16" PointY="2.625" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_asignacion_terminales_sis_terminales_FK" />
-        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_impresoras" Width="1.5" PointX="10.75" PointY="10.875" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_statusfiscal" Width="1.5" PointX="15.25" PointY="9.5" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_impresoras" Width="1.5" PointX="17.5" PointY="6.5" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_tipoimpresoras" Width="1.5" PointX="15.25" PointY="6.875" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_impresoras_sis_estatusequipo_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_impresoras_sis_marcas_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_impresoras_sis_statusfiscal_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel.sis_impresoras_sis_tipoimpresoras_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

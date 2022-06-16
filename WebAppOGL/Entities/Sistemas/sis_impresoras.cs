@@ -25,9 +25,12 @@ namespace WebAppOGL.Entities.Sistemas
         public int adm_sucursales_Id { get; set; }
         public int sis_statusfiscal_Id { get; set; }
         public int sis_estatusequipo_Id { get; set; }
+        public Nullable<int> sis_tipoimpresoras_Id { get; set; }
+        public Nullable<int> adm_area_Id { get; set; }
     
         public virtual sis_estatusequipo sis_estatusequipo { get; set; }
         public virtual sis_marcas sis_marcas { get; set; }
         public virtual sis_statusfiscal sis_statusfiscal { get; set; }
+        public virtual sis_tipoimpresoras sis_tipoimpresoras { get; set; }
     }
 }

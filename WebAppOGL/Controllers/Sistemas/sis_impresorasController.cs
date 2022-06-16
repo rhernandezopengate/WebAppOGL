@@ -26,7 +26,12 @@ namespace WebAppOGL.Controllers.Sistemas
             foreach (var item in sis_impresoras.ToList())
             {
                 sis_impresoras impTemp = db.sis_impresoras.Find(item.Id);
-                impTemp.Sucursales = dbadmin.adm_sucursales.Where(x => x.Id.Equals(item.adm_sucursales_Id)).FirstOrDefault().Descripcion;
+                var area = dbadmin.adm_area.Find(item.adm_area_Id);
+                var sucursal = dbadmin.adm_sucursales.Where(x => x.Id.Equals(item.adm_sucursales_Id)).FirstOrDefault();
+
+                impTemp.Sucursales = sucursal.Descripcion;
+                impTemp.Areas = area.Descripcion;
+                
                 lista.Add(impTemp);
             }
 
@@ -56,6 +61,9 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion");
             ViewBag.sis_statusfiscal_Id = new SelectList(db.sis_statusfiscal, "Id", "Descripcion");
             ViewBag.adm_sucursales_Id = new SelectList(dbadmin.adm_sucursales, "Id", "Descripcion");
+            ViewBag.adm_area_Id = new SelectList(dbadmin.adm_area, "Id", "Descripcion");
+            ViewBag.sis_tipoimpresoras_Id = new SelectList(db.sis_tipoimpresoras, "Id", "Descripcion");
+
             return View();
         }
 
@@ -64,7 +72,7 @@ namespace WebAppOGL.Controllers.Sistemas
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Modelo,Modelo_Toner,Numero_Serie,Numero_Parte,MAC_Ethernet,Hostname,sis_marcas_Id,adm_sucursales_Id,sis_statusfiscal_Id,sis_estatusequipo_Id")] sis_impresoras sis_impresoras)
+        public ActionResult Create([Bind(Include = "Id,Modelo,Modelo_Toner,Numero_Serie,Numero_Parte,MAC_Ethernet,Hostname,sis_marcas_Id,adm_sucursales_Id,sis_statusfiscal_Id,sis_estatusequipo_Id,adm_area_Id,sis_tipoimpresoras_Id")] sis_impresoras sis_impresoras)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +104,11 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_statusfiscal_Id = new SelectList(db.sis_statusfiscal, "Id", "Descripcion", sis_impresoras.sis_statusfiscal_Id);
             ViewBag.adm_sucursales_Id = new SelectList(dbadmin.adm_sucursales, "Id", "Descripcion", sis_impresoras.adm_sucursales_Id);
 
+
+            ViewBag.sis_tipoimpresoras_Id = new SelectList(db.sis_tipoimpresoras, "Id", "Descripcion", sis_impresoras.sis_tipoimpresoras_Id);
+            ViewBag.adm_area_Id = new SelectList(dbadmin.adm_area, "Id", "Descripcion", sis_impresoras.adm_area_Id);
+
+
             return View(sis_impresoras);
         }
 
@@ -104,7 +117,7 @@ namespace WebAppOGL.Controllers.Sistemas
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Modelo,Modelo_Toner,Numero_Serie,Numero_Parte,MAC_Ethernet,Hostname,sis_marcas_Id,adm_sucursales_Id,sis_statusfiscal_Id,sis_estatusequipo_Id")] sis_impresoras sis_impresoras)
+        public ActionResult Edit([Bind(Include = "Id,Modelo,Modelo_Toner,Numero_Serie,Numero_Parte,MAC_Ethernet,Hostname,sis_marcas_Id,adm_sucursales_Id,sis_statusfiscal_Id,sis_estatusequipo_Id,sis_tipoimpresoras_Id,adm_area_Id")] sis_impresoras sis_impresoras)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +128,9 @@ namespace WebAppOGL.Controllers.Sistemas
             ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion", sis_impresoras.sis_estatusequipo_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_impresoras.sis_marcas_Id);
             ViewBag.sis_statusfiscal_Id = new SelectList(db.sis_statusfiscal, "Id", "Descripcion", sis_impresoras.sis_statusfiscal_Id);
-        
+            ViewBag.sis_tipoimpresoras_Id = new SelectList(db.sis_impresoras, "Id", "Descripcion", sis_impresoras.sis_tipoimpresoras_Id);
+            ViewBag.adm_area_Id = new SelectList(dbadmin.adm_area, "Id", "Descripcion", sis_impresoras.adm_area_Id);
+
             return View(sis_impresoras);
         }
 
