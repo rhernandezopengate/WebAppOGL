@@ -50,7 +50,10 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.sis_tipoimpresoras.Add(sis_tipoimpresoras);
+                sis_tipoimpresoras tipoimp = new sis_tipoimpresoras();
+                tipoimp.Descripcion = sis_tipoimpresoras.Descripcion.ToUpper();
+
+                db.sis_tipoimpresoras.Add(tipoimp);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -70,6 +73,9 @@ namespace WebAppOGL.Controllers.Sistemas
             {
                 return HttpNotFound();
             }
+            System.Diagnostics.Debug.WriteLine(sis_tipoimpresoras.Descripcion);
+            sis_tipoimpresoras.Descripcion = sis_tipoimpresoras.Descripcion.ToUpper();
+            System.Diagnostics.Debug.WriteLine(sis_tipoimpresoras.Descripcion);
             return View(sis_tipoimpresoras);
         }
 
@@ -82,7 +88,10 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sis_tipoimpresoras).State = EntityState.Modified;
+                sis_tipoimpresoras tipoimp = db.sis_tipoimpresoras.Find(sis_tipoimpresoras.Id);
+                tipoimp.Descripcion = tipoimp.Descripcion.ToUpper();
+
+                db.Entry(tipoimp).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -114,7 +123,6 @@ namespace WebAppOGL.Controllers.Sistemas
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -123,5 +131,6 @@ namespace WebAppOGL.Controllers.Sistemas
             }
             base.Dispose(disposing);
         }
+
     }
 }

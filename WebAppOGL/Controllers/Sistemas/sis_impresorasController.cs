@@ -76,6 +76,9 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
+                //Cambia a mayusculas la Descripcion
+                sis_impresoras.sis_tipoimpresoras.Descripcion = sis_impresoras.sis_tipoimpresoras.Descripcion.ToUpper();
+
                 db.sis_impresoras.Add(sis_impresoras);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -99,6 +102,7 @@ namespace WebAppOGL.Controllers.Sistemas
             {
                 return HttpNotFound();
             }
+
             ViewBag.sis_estatusequipo_Id = new SelectList(db.sis_estatusequipo, "Id", "Descripcion", sis_impresoras.sis_estatusequipo_Id);
             ViewBag.sis_marcas_Id = new SelectList(db.sis_marcas, "Id", "Descripcion", sis_impresoras.sis_marcas_Id);
             ViewBag.sis_statusfiscal_Id = new SelectList(db.sis_statusfiscal, "Id", "Descripcion", sis_impresoras.sis_statusfiscal_Id);
@@ -121,6 +125,8 @@ namespace WebAppOGL.Controllers.Sistemas
         {
             if (ModelState.IsValid)
             {
+                sis_impresoras.sis_tipoimpresoras.Descripcion = sis_impresoras.sis_tipoimpresoras.Descripcion.ToUpper();
+
                 db.Entry(sis_impresoras).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
