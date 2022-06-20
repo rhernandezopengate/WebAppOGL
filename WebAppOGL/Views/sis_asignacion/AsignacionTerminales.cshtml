@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "AsignacionTerminales";
+    Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
+}
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        @Html.Action("AsiganacionTerminalesParcial", "sis_asignacion_terminales")
+    </div>
+</div>
+
+
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
+        <div class="modal-content">
+            <div id="MyModalContent"></div>
+        </div>
+    </div>
+</div>
+
+<link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
+<script src="~/build/js/custom.min.js"></script>

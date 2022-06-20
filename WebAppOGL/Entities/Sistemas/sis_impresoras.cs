@@ -14,6 +14,12 @@ namespace WebAppOGL.Entities.Sistemas
     
     public partial class sis_impresoras
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public sis_impresoras()
+        {
+            this.sis_asignacion_impresoras = new HashSet<sis_asignacion_impresoras>();
+        }
+    
         public int Id { get; set; }
         public string Modelo { get; set; }
         public string Modelo_Toner { get; set; }
@@ -22,12 +28,12 @@ namespace WebAppOGL.Entities.Sistemas
         public string MAC_Ethernet { get; set; }
         public string Hostname { get; set; }
         public int sis_marcas_Id { get; set; }
-        public int adm_sucursales_Id { get; set; }
         public int sis_statusfiscal_Id { get; set; }
         public int sis_estatusequipo_Id { get; set; }
-        public Nullable<int> sis_tipoimpresoras_Id { get; set; }
-        public Nullable<int> adm_area_Id { get; set; }
+        public int sis_tipoimpresoras_Id { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sis_asignacion_impresoras> sis_asignacion_impresoras { get; set; }
         public virtual sis_estatusequipo sis_estatusequipo { get; set; }
         public virtual sis_marcas sis_marcas { get; set; }
         public virtual sis_statusfiscal sis_statusfiscal { get; set; }

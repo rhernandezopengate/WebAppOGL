@@ -416,6 +416,9 @@
     <Compile Include="Entities\Sistemas\sis_asignacion_celulares.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Sistemas\sis_asignacion_impresoras.cs">
+      <DependentUpon>DCSistemas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Sistemas\sis_asignacion_terminales.cs">
       <DependentUpon>DCSistemas.tt</DependentUpon>
     </Compile>
@@ -5123,6 +5126,10 @@
     <Content Include="Views\sis_tipoimpresoras\Details.cshtml" />
     <Content Include="Views\sis_tipoimpresoras\Edit.cshtml" />
     <Content Include="Views\sis_tipoimpresoras\Index.cshtml" />
+    <Content Include="Views\sis_asignacion\AsignacionImpresoras.cshtml" />
+    <Content Include="Views\sis_asignacion\AsignacionCelulares.cshtml" />
+    <Content Include="Views\sis_asignacion\AsignacionTerminales.cshtml" />
+    <Content Include="Views\sis_asignacion\AsignacionEquipos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

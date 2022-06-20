@@ -1,23 +1,8 @@
-﻿@model IEnumerable<WebAppOGL.Entities.Sistemas.sis_asignacion>
-
+﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "AsignacionEquipos";
     Layout = "~/Views/Shared/_LayoutSistemas.cshtml";
 }
-
-
-
-
-<div class="row">
-    <div class="col-md-6">
-        @Html.Action("AsiganacionTerminalesParcial", "sis_asignacion_terminales")
-    </div>
-
-    <div class="col-md-6">
-        @Html.Action("AsignacionCelularesParcial", "sis_asignacion_celulares")
-    </div>
-
-</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -40,35 +25,6 @@
 <script src="~/build/js/custom.min.js"></script>
 
 <script type="text/javascript">
-
-    /*Asignacion Terminales*/
-    var CrearAsignacionTerminales = function () {
-        $.ajaxSetup({ cache: false });
-        var url = "/sis_asignacion_terminales/Create";
-        $("#MyModalContent").load(url, function () {
-            $("#MyModal").modal({
-                //backdrop: 'static',
-                keyboard: false
-            }, 'show');
-            bindForm(this);
-        });
-        return false;
-    }
-
-    var EditarAsignacionTerminales = function (ID) {
-        $.ajaxSetup({ cache: false });
-        var url = "/sis_asignacion_terminales/Edit/" + ID;
-        $("#MyModalContent").load(url, function () {
-            $("#MyModal").modal({
-                //backdrop: 'static',
-                keyboard: false
-            }, 'show');
-            bindForm(this);
-        });
-        return false;
-    }
-
-    /*Asignacion Terminales*/
 
     var CrearAsignacionEquipo = function () {
         $.ajaxSetup({ cache: false });
@@ -109,61 +65,9 @@
         return false;
     }
 
-    var DetalleAsignacionTerminal = function (ID) {
-        $.ajaxSetup({ cache: false });
-        var url = "/sis_asignacion_terminales/Details/" + ID;
-        $("#MyModalContent").load(url, function () {
-            $("#MyModal").modal({
-                //backdrop: 'static',
-                keyboard: false
-            }, 'show');
-            bindForm(this);
-        });
-        return false;
-    }
-
     var DetalleAsignacionEquipo = function (ID) {
         $.ajaxSetup({ cache: false });
         var url = "/sis_asignacion/Details/" + ID;
-        $("#MyModalContent").load(url, function () {
-            $("#MyModal").modal({
-                //backdrop: 'static',
-                keyboard: false
-            }, 'show');
-            bindForm(this);
-        });
-        return false;
-    }
-
-    var CrearAsignacionCelulares = function () {
-        $.ajaxSetup({ cache: false });
-        var url = "/sis_asignacion_celulares/Create";
-        $("#MyModalContent").load(url, function () {
-            $("#MyModal").modal({
-                //backdrop: 'static',
-                keyboard: false
-            }, 'show');
-            bindForm(this);
-        });
-        return false;
-    }
-
-    var EditarAsignacionCelular = function (ID) {
-        $.ajaxSetup({ cache: false });
-        var url = "/sis_asignacion_celulares/Edit/" + ID;
-        $("#MyModalContent").load(url, function () {
-            $("#MyModal").modal({
-                //backdrop: 'static',
-                keyboard: false
-            }, 'show');
-            bindForm(this);
-        });
-        return false;
-    }
-
-    var DetalleAsignacionCelular = function (ID) {
-        $.ajaxSetup({ cache: false });
-        var url = "/sis_asignacion_celulares/Details/" + ID;
         $("#MyModalContent").load(url, function () {
             $("#MyModal").modal({
                 //backdrop: 'static',
@@ -201,5 +105,4 @@
             return false;
         });
     }
-
 </script>

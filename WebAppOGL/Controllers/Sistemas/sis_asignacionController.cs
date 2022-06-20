@@ -21,10 +21,24 @@ namespace WebAppOGL.Controllers.Sistemas
         private db_a3f19c_administracionEntities1 dbAdmin = new db_a3f19c_administracionEntities1();
 
 
-        public ActionResult AsignacionBlanco() {
+        public ActionResult AsignacionEquipos() 
+        {
+            return View();        
+        }
 
+        public ActionResult AsignacionTerminales()
+        {
             return View();
-        
+        }
+
+        public ActionResult AsignacionCelulares()
+        {
+            return View();
+        }
+
+        public ActionResult AsignacionImpresoras()
+        {
+            return View();
         }
 
 

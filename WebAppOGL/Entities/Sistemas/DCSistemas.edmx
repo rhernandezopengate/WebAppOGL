@@ -29,6 +29,18 @@
           <Property Name="sis_celulares_Id" Type="int" Nullable="false" />
           <Property Name="adm_cuentas_Id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="sis_asignacion_impresoras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FechaAsignacion" Type="datetime" />
+          <Property Name="sis_impresoras_Id" Type="int" Nullable="false" />
+          <Property Name="adm_area_Id" Type="int" Nullable="false" />
+          <Property Name="adm_sucursales_Id" Type="int" Nullable="false" />
+          <Property Name="sis_mantenimiento_Id" Type="int" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="sis_asignacion_terminales">
           <Key>
             <PropertyRef Name="Id" />
@@ -108,11 +120,9 @@
           <Property Name="MAC_Ethernet" Type="varchar" MaxLength="50" />
           <Property Name="Hostname" Type="varchar" MaxLength="50" />
           <Property Name="sis_marcas_Id" Type="int" Nullable="false" />
-          <Property Name="adm_sucursales_Id" Type="int" Nullable="false" />
           <Property Name="sis_statusfiscal_Id" Type="int" Nullable="false" />
           <Property Name="sis_estatusequipo_Id" Type="int" Nullable="false" />
-          <Property Name="sis_tipoimpresoras_Id" Type="int" />
-          <Property Name="adm_area_Id" Type="int" />
+          <Property Name="sis_tipoimpresoras_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sis_mantenimiento">
           <Key>
@@ -170,6 +180,30 @@
             </Principal>
             <Dependent Role="sis_asignacion_celulares">
               <PropertyRef Name="sis_celulares_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_asignacion_impresoras_sis_impresoras_FK">
+          <End Role="sis_impresoras" Type="Self.sis_impresoras" Multiplicity="1" />
+          <End Role="sis_asignacion_impresoras" Type="Self.sis_asignacion_impresoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_impresoras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_asignacion_impresoras">
+              <PropertyRef Name="sis_impresoras_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_asignacion_impresoras_sis_mantenimiento_FK">
+          <End Role="sis_mantenimiento" Type="Self.sis_mantenimiento" Multiplicity="1" />
+          <End Role="sis_asignacion_impresoras" Type="Self.sis_asignacion_impresoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_mantenimiento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_asignacion_impresoras">
+              <PropertyRef Name="sis_mantenimiento_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -318,7 +352,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="sis_impresoras_sis_tipoimpresoras_FK">
-          <End Role="sis_tipoimpresoras" Type="Self.sis_tipoimpresoras" Multiplicity="0..1" />
+          <End Role="sis_tipoimpresoras" Type="Self.sis_tipoimpresoras" Multiplicity="1" />
           <End Role="sis_impresoras" Type="Self.sis_impresoras" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="sis_tipoimpresoras">
@@ -368,6 +402,7 @@
         <EntityContainer Name="db_a3f19c_administracionModelStoreContainer">
           <EntitySet Name="sis_asignacion" EntityType="Self.sis_asignacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_asignacion_celulares" EntityType="Self.sis_asignacion_celulares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sis_asignacion_impresoras" EntityType="Self.sis_asignacion_impresoras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_asignacion_terminales" EntityType="Self.sis_asignacion_terminales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_celulares" EntityType="Self.sis_celulares" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_equipos" EntityType="Self.sis_equipos" Schema="dbo" store:Type="Tables" />
@@ -382,6 +417,14 @@
           <AssociationSet Name="sis_asignacion_celulares_sis_celulares_FK" Association="Self.sis_asignacion_celulares_sis_celulares_FK">
             <End Role="sis_celulares" EntitySet="sis_celulares" />
             <End Role="sis_asignacion_celulares" EntitySet="sis_asignacion_celulares" />
+          </AssociationSet>
+          <AssociationSet Name="sis_asignacion_impresoras_sis_impresoras_FK" Association="Self.sis_asignacion_impresoras_sis_impresoras_FK">
+            <End Role="sis_impresoras" EntitySet="sis_impresoras" />
+            <End Role="sis_asignacion_impresoras" EntitySet="sis_asignacion_impresoras" />
+          </AssociationSet>
+          <AssociationSet Name="sis_asignacion_impresoras_sis_mantenimiento_FK" Association="Self.sis_asignacion_impresoras_sis_mantenimiento_FK">
+            <End Role="sis_mantenimiento" EntitySet="sis_mantenimiento" />
+            <End Role="sis_asignacion_impresoras" EntitySet="sis_asignacion_impresoras" />
           </AssociationSet>
           <AssociationSet Name="sis_asignacion_sis_equipos_FK" Association="Self.sis_asignacion_sis_equipos_FK">
             <End Role="sis_equipos" EntitySet="sis_equipos" />
@@ -516,8 +559,17 @@
             <End Role="sis_asignacion_terminales" EntitySet="sis_asignacion_terminales" />
           </AssociationSet>
           <EntitySet Name="sis_statusfiscal" EntityType="db_a3f19c_administracionModel.sis_statusfiscal" />
-          <EntitySet Name="sis_impresoras" EntityType="db_a3f19c_administracionModel.sis_impresoras" />
           <EntitySet Name="sis_tipoimpresoras" EntityType="db_a3f19c_administracionModel.sis_tipoimpresoras" />
+          <EntitySet Name="sis_asignacion_impresoras" EntityType="db_a3f19c_administracionModel.sis_asignacion_impresoras" />
+          <EntitySet Name="sis_impresoras" EntityType="db_a3f19c_administracionModel.sis_impresoras" />
+          <AssociationSet Name="sis_asignacion_impresoras_sis_impresoras_FK" Association="db_a3f19c_administracionModel.sis_asignacion_impresoras_sis_impresoras_FK">
+            <End Role="sis_impresoras" EntitySet="sis_impresoras" />
+            <End Role="sis_asignacion_impresoras" EntitySet="sis_asignacion_impresoras" />
+          </AssociationSet>
+          <AssociationSet Name="sis_asignacion_impresoras_sis_mantenimiento_FK" Association="db_a3f19c_administracionModel.sis_asignacion_impresoras_sis_mantenimiento_FK">
+            <End Role="sis_mantenimiento" EntitySet="sis_mantenimiento" />
+            <End Role="sis_asignacion_impresoras" EntitySet="sis_asignacion_impresoras" />
+          </AssociationSet>
           <AssociationSet Name="sis_impresoras_sis_estatusequipo_FK" Association="db_a3f19c_administracionModel.sis_impresoras_sis_estatusequipo_FK">
             <End Role="sis_estatusequipo" EntitySet="sis_estatusequipo" />
             <End Role="sis_impresoras" EntitySet="sis_impresoras" />
@@ -543,6 +595,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="sis_equipos" Relationship="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK" FromRole="sis_mantenimiento" ToRole="sis_equipos" />
           <NavigationProperty Name="sis_celulares" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_mantenimiento_FK" FromRole="sis_mantenimiento" ToRole="sis_celulares" />
+          <NavigationProperty Name="sis_asignacion_impresoras" Relationship="db_a3f19c_administracionModel.sis_asignacion_impresoras_sis_mantenimiento_FK" FromRole="sis_mantenimiento" ToRole="sis_asignacion_impresoras" />
         </EntityType>
         <EntityType Name="sis_marcas">
           <Key>
@@ -851,6 +904,28 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="sis_impresoras" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_statusfiscal_FK" FromRole="sis_statusfiscal" ToRole="sis_impresoras" />
         </EntityType>
+        <EntityType Name="sis_tipoimpresoras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sis_impresoras" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_tipoimpresoras_FK" FromRole="sis_tipoimpresoras" ToRole="sis_impresoras" />
+        </EntityType>
+        <EntityType Name="sis_asignacion_impresoras">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FechaAsignacion" Type="DateTime" Precision="3" />
+          <Property Name="sis_impresoras_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_area_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_sucursales_Id" Type="Int32" Nullable="false" />
+          <Property Name="sis_mantenimiento_Id" Type="Int32" Nullable="false" />
+          <Property Name="adm_cuentas_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sis_impresoras" Relationship="db_a3f19c_administracionModel.sis_asignacion_impresoras_sis_impresoras_FK" FromRole="sis_asignacion_impresoras" ToRole="sis_impresoras" />
+          <NavigationProperty Name="sis_mantenimiento" Relationship="db_a3f19c_administracionModel.sis_asignacion_impresoras_sis_mantenimiento_FK" FromRole="sis_asignacion_impresoras" ToRole="sis_mantenimiento" />
+        </EntityType>
         <EntityType Name="sis_impresoras">
           <Key>
             <PropertyRef Name="Id" />
@@ -863,24 +938,39 @@
           <Property Name="MAC_Ethernet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Hostname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sis_marcas_Id" Type="Int32" Nullable="false" />
-          <Property Name="adm_sucursales_Id" Type="Int32" Nullable="false" />
           <Property Name="sis_statusfiscal_Id" Type="Int32" Nullable="false" />
           <Property Name="sis_estatusequipo_Id" Type="Int32" Nullable="false" />
-          <Property Name="sis_tipoimpresoras_Id" Type="Int32" />
-          <Property Name="adm_area_Id" Type="Int32" />
+          <Property Name="sis_tipoimpresoras_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sis_asignacion_impresoras" Relationship="db_a3f19c_administracionModel.sis_asignacion_impresoras_sis_impresoras_FK" FromRole="sis_impresoras" ToRole="sis_asignacion_impresoras" />
           <NavigationProperty Name="sis_estatusequipo" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_estatusequipo_FK" FromRole="sis_impresoras" ToRole="sis_estatusequipo" />
           <NavigationProperty Name="sis_marcas" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_marcas_FK" FromRole="sis_impresoras" ToRole="sis_marcas" />
           <NavigationProperty Name="sis_statusfiscal" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_statusfiscal_FK" FromRole="sis_impresoras" ToRole="sis_statusfiscal" />
           <NavigationProperty Name="sis_tipoimpresoras" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_tipoimpresoras_FK" FromRole="sis_impresoras" ToRole="sis_tipoimpresoras" />
         </EntityType>
-        <EntityType Name="sis_tipoimpresoras">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="sis_impresoras" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_tipoimpresoras_FK" FromRole="sis_tipoimpresoras" ToRole="sis_impresoras" />
-        </EntityType>
+        <Association Name="sis_asignacion_impresoras_sis_impresoras_FK">
+          <End Type="db_a3f19c_administracionModel.sis_impresoras" Role="sis_impresoras" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_asignacion_impresoras" Role="sis_asignacion_impresoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_impresoras">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_asignacion_impresoras">
+              <PropertyRef Name="sis_impresoras_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_asignacion_impresoras_sis_mantenimiento_FK">
+          <End Type="db_a3f19c_administracionModel.sis_mantenimiento" Role="sis_mantenimiento" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_asignacion_impresoras" Role="sis_asignacion_impresoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_mantenimiento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_asignacion_impresoras">
+              <PropertyRef Name="sis_mantenimiento_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="sis_impresoras_sis_estatusequipo_FK">
           <End Type="db_a3f19c_administracionModel.sis_estatusequipo" Role="sis_estatusequipo" Multiplicity="1" />
           <End Type="db_a3f19c_administracionModel.sis_impresoras" Role="sis_impresoras" Multiplicity="*" />
@@ -918,7 +1008,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="sis_impresoras_sis_tipoimpresoras_FK">
-          <End Type="db_a3f19c_administracionModel.sis_tipoimpresoras" Role="sis_tipoimpresoras" Multiplicity="0..1" />
+          <End Type="db_a3f19c_administracionModel.sis_tipoimpresoras" Role="sis_tipoimpresoras" Multiplicity="1" />
           <End Type="db_a3f19c_administracionModel.sis_impresoras" Role="sis_impresoras" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="sis_tipoimpresoras">
@@ -1077,14 +1167,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sis_tipoimpresoras">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_tipoimpresoras">
+              <MappingFragment StoreEntitySet="sis_tipoimpresoras">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_asignacion_impresoras">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_asignacion_impresoras">
+              <MappingFragment StoreEntitySet="sis_asignacion_impresoras">
+                <ScalarProperty Name="adm_cuentas_Id" ColumnName="adm_cuentas_Id" />
+                <ScalarProperty Name="sis_mantenimiento_Id" ColumnName="sis_mantenimiento_Id" />
+                <ScalarProperty Name="adm_sucursales_Id" ColumnName="adm_sucursales_Id" />
+                <ScalarProperty Name="adm_area_Id" ColumnName="adm_area_Id" />
+                <ScalarProperty Name="sis_impresoras_Id" ColumnName="sis_impresoras_Id" />
+                <ScalarProperty Name="FechaAsignacion" ColumnName="FechaAsignacion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sis_impresoras">
             <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_impresoras">
               <MappingFragment StoreEntitySet="sis_impresoras">
-                <ScalarProperty Name="adm_area_Id" ColumnName="adm_area_Id" />
                 <ScalarProperty Name="sis_tipoimpresoras_Id" ColumnName="sis_tipoimpresoras_Id" />
                 <ScalarProperty Name="sis_estatusequipo_Id" ColumnName="sis_estatusequipo_Id" />
                 <ScalarProperty Name="sis_statusfiscal_Id" ColumnName="sis_statusfiscal_Id" />
-                <ScalarProperty Name="adm_sucursales_Id" ColumnName="adm_sucursales_Id" />
                 <ScalarProperty Name="sis_marcas_Id" ColumnName="sis_marcas_Id" />
                 <ScalarProperty Name="Hostname" ColumnName="Hostname" />
                 <ScalarProperty Name="MAC_Ethernet" ColumnName="MAC_Ethernet" />
@@ -1092,14 +1201,6 @@
                 <ScalarProperty Name="Numero_Serie" ColumnName="Numero_Serie" />
                 <ScalarProperty Name="Modelo_Toner" ColumnName="Modelo_Toner" />
                 <ScalarProperty Name="Modelo" ColumnName="Modelo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sis_tipoimpresoras">
-            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_tipoimpresoras">
-              <MappingFragment StoreEntitySet="sis_tipoimpresoras">
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
