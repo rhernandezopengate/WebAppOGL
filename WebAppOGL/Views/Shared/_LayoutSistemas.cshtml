@@ -46,16 +46,28 @@
                             <ul class="nav side-menu">
                                 <li><a href='@Url.Action("Index", "sis_dashboard")'><i class="fa fa-dashboard"></i>Dashboard</a></li>
                                 <li>
-                                    <a><i class="fa fa-cogs"></i> Asignaciones <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-database"></i> Asignaciones <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu" style="">
                                         <li><a href='@Url.Action("AsignacionEquipos", "sis_asignacion")'>Equipos de Computo</a></li>
-                                        <li><a href='@Url.Action("AsignacionImpresoras", "sis_asignacion")'>Impresoras</a></li>
+                                        <li><a href='@Url.Action("Index", "sis_asignacion_impresoras")'>Impresoras</a></li>
                                         <li><a href='@Url.Action("AsignacionTerminales", "sis_asignacion")'>Terminales</a></li>
                                         <li><a href='@Url.Action("AsignacionCelulares", "sis_asignacion")'>Celulares</a></li>
                                     </ul>
-                                </li>                               
+                                </li>
+                                <li>
+                                    <a><i class="fa fa-desktop"></i> Registro de Activos <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu" style="">
+                                        <li><a href='@Url.Action("Index", "sis_equipos")'>Equipos de Computo</a></li>
+                                        <li><a href='@Url.Action("Index", "sis_impresoras")'>Impresoras</a></li>
+                                        <li><a href='@Url.Action("Index", "sis_terminales")'>Terminales</a></li>
+                                        <li><a href='@Url.Action("Index", "sis_celulares")'>Celulares</a></li>
+                                    </ul>
+                                </li>
                             </ul>
+
+                            
                         </div>
+                      
                         <div class="menu_section">
                             <h3>Catalogos Sistemas</h3>
                             <ul class="nav side-menu">

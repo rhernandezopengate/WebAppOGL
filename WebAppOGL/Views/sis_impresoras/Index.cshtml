@@ -8,8 +8,8 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Impresoras</h2> &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-success" href="@Url.Action("Create")"><i class="fa fa-plus-circle"></i> Agregar Registro</a>
+                <h2>Impresoras</h2> &nbsp;&nbsp;&nbsp;                
+                <button class="btn btn-success" onclick="CrearImpresora()"><i class="fa fa-plus-circle"></i> Agregar Registro</button>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -19,7 +19,6 @@
                             <th>
                                 Modelo
                             </th>
-
                             <th>
                                 Numero de Serie
                             </th>
@@ -37,25 +36,12 @@
                             </th>
                             <th>
                                 Estatus Fiscal
-                            </th>
-                            <th>
-                                Area
-                            </th>
-
-
-                            <th>
-                                Sucursales
-                            </th>
+                            </th>                          
                             <th>
                                 Estatus Equipo
                             </th>
-
-
-
                             <th></th>
                         </tr>
-                 
-
                     </thead>
                     @foreach (var item in Model)
                     {
@@ -81,25 +67,13 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.sis_statusfiscal.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Areas)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sucursales)
-                    </td>
+                    </td>                  
                     <td>
                         @Html.DisplayFor(modelItem => item.sis_estatusequipo.Descripcion)
                     </td>
-
-
                     <td>
-
-
-
-                        <a class="btn btn-primary btn-sm" href="@Url.Action("Edit", new { id = item.Id })"> <span class="fa fa-edit" all="Editar" title="Editar"></span></a>
-                        <button class="btn btn-info" onclick="DetalleEquipo(@Html.Raw(item.Id))"> <span class="fa fa-list-alt" all="Detalles" title="Detalles"></span>  </button>
+                        <button class="btn btn-primary" onclick="EditarImpresora(@Html.Raw(item.Id))"> <span class="fa fa-edit" all="Editar" title="Editar"></span>  </button>
+                        <button class="btn btn-info" onclick="DetalleImpresora(@Html.Raw(item.Id))"> <span class="fa fa-list-alt" all="Detalles" title="Detalles"></span>  </button>
                     </td>
                 </tr>
                     }
@@ -134,8 +108,33 @@
 
 <script type="text/javascript">
 
+    var CrearImpresora = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_impresoras/Create/";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
 
-    var DetalleEquipo = function (ID) {
+    var EditarImpresora = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_impresoras/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var DetalleImpresora = function (ID) {
         $.ajaxSetup({ cache: false });
         var url = "/sis_impresoras/Details/" + ID;
         $("#MyModalContent").load(url, function () {

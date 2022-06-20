@@ -28,3 +28,75 @@
 <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap.min.js"></script>
 <script src="~/build/js/custom.min.js"></script>
+
+
+<script type="text/javascript">
+   
+    var CrearAsignacionCelulares = function () {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Create";
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var EditarAsignacionCelular = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Edit/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    var DetalleAsignacionCelular = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/sis_asignacion_celulares/Details/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
+        return false;
+    }
+
+    function bindForm(dialog) {
+        $('form', dialog).submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result === 'Correcto') {
+                        $("#MyModal").modal('hide');
+                        toastr.success('Operacion Correcta.');
+                        table.draw();
+                        tableAsignacionCelulares.draw();
+                        tblAsignacionTerminales.draw();
+                    }
+                    else {
+                        $("#MyModal").modal('show');
+                        toastr.error('Ha ocurrido un error.');
+                        bindForm(dialog);
+                    }
+                },
+                error: function (xml, message, text) {
+                    toastr.error("Msg: " + message + ", Text: " + text);
+                }
+            });
+            return false;
+        });
+    }
+
+</script>

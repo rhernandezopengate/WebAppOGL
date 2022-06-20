@@ -227,6 +227,7 @@
     <Compile Include="Controllers\OrdenesServicio\os_origenController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_rutasController.cs" />
     <Compile Include="Controllers\OrdenesServicio\os_statuscomprasController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_asignacion_impresorasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
     <Compile Include="Controllers\Sistemas\sis_impresorasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_statusfiscalController.cs" />
@@ -5130,6 +5131,11 @@
     <Content Include="Views\sis_asignacion\AsignacionCelulares.cshtml" />
     <Content Include="Views\sis_asignacion\AsignacionTerminales.cshtml" />
     <Content Include="Views\sis_asignacion\AsignacionEquipos.cshtml" />
+    <Content Include="Views\sis_asignacion_impresoras\Create.cshtml" />
+    <Content Include="Views\sis_asignacion_impresoras\Delete.cshtml" />
+    <Content Include="Views\sis_asignacion_impresoras\Details.cshtml" />
+    <Content Include="Views\sis_asignacion_impresoras\Edit.cshtml" />
+    <Content Include="Views\sis_asignacion_impresoras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

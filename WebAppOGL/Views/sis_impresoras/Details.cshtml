@@ -6,7 +6,6 @@
 }
 
 <div class="modal-content">
-
     <div class="modal-body">
         <div class="col-md-12 col-sm-12">
             <div class="x_panel">
@@ -22,7 +21,6 @@
                             <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 <h4 class="panel-title">Informacion de la Impresora</h4>
                             </a>
-                            
                             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <center>
@@ -34,16 +32,6 @@
                                                     <div class="input-group-addon"><span class="glyphicon glyphicon-print"></span> </div>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">Modelo de Toner</div>
-                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.Modelo_Toner">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span> </div>
-                                                </div>
-                                            </div>
-
-
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">Numero de Serie</div>
@@ -51,25 +39,6 @@
                                                     <div class="input-group-addon"><span class="fa fa-asterisk"></span> </div>
                                                 </div>
                                             </div>
-
-
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">Numero de Parte &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.Numero_Parte">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-menu-hamburger"></span> </div>
-
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">MAC Ethernet &nbsp;</div>
-                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.MAC_Ethernet">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span> </div>
-                                                </div>
-                                            </div>
-                                            <br />
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">Hostname &nbsp;</div>
@@ -77,32 +46,40 @@
                                                     <div class="input-group-addon"><span class="glyphicon glyphicon-oil"></span> </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <h4 class="panel-title">Informacion Fisica del Equipo</h4>
+                            </a>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <center>
+                                        <div class="form-inline">
                                             <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">Sucursual&nbsp;</div>
-                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.adm_sucursales_Id">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span> </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Numero de Parte &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.Numero_Parte">
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-menu-hamburger"></span> </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">Estatus Equipo &nbsp;</div>
-                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_estatusequipo.Descripcion">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span> </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">MAC Ethernet &nbsp;</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.MAC_Ethernet">
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-qrcode"></span> </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">Marcas &nbsp;</div>
-                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_marcas.Descripcion">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-folder-close"></span> </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <div class="input-group-addon">Estatus Fiscal &nbsp;</div>
-                                                    <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_statusfiscal.Descripcion">
-                                                    <div class="input-group-addon"><span class="glyphicon glyphicon-saved"></span> </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Modelo de Toner</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.Modelo_Toner">
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-option-horizontal"></span> </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,7 +87,49 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="panel">
+                            <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h4 class="panel-title">Otra Informacion</h4>
+                            </a>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <center>
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Estatus Equipo &nbsp;</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_estatusequipo.Descripcion">
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-blackboard"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Marcas &nbsp;</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_marcas.Descripcion">
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-folder-close"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Estatus Fiscal &nbsp;</div>
+                                                        <input type="text" class="form-control" placeholder="Amount" value="@Model.sis_statusfiscal.Descripcion">
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-saved"></span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Tipo Impresora &nbsp;</div>
+                                                        <input type="text" class="form-control" value="@Model.sis_tipoimpresoras.Descripcion">
+                                                        <div class="input-group-addon"><span class="glyphicon glyphicon-saved"></span> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,5 +161,5 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
     </div>
-
-}</div>
+    }
+</div>
