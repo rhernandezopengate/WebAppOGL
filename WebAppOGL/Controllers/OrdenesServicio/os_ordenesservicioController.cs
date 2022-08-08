@@ -28,6 +28,19 @@ namespace WebAppOGL.Controllers.OrdenesServicio
             return View();
         }
 
+        public ActionResult RecibirOS(int id) 
+        {
+            os_ordenesservicio os = db.os_ordenesservicio.Find(id);
+            return View(os);
+        }
+
+        [HttpPost]
+        public ActionResult RecibirOS(os_ordenesservicio os_ordenesservicio)
+        {
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult ObtenerOrdenesServicio()
         {
@@ -115,7 +128,6 @@ namespace WebAppOGL.Controllers.OrdenesServicio
             }
         }
 
-
         [Authorize]
         public ActionResult Create()
         {
@@ -201,10 +213,29 @@ namespace WebAppOGL.Controllers.OrdenesServicio
             return View(orden);
         }
 
-
-        public ActionResult EditPost()
+        [HttpPost]
+        public ActionResult EditPost(os_ordenesservicio encabezado)
         {
-            return View();
+            try
+            {
+                os_ordenesservicio os = db.os_ordenesservicio.Find(encabezado.Id);
+
+                os.CostoVenta = encabezado.CostoVenta;
+                os.Observaciones = encabezado.Observaciones;
+                os.FechaSolicitud = DateTime.Parse(encabezado.FechaSolicitudString);
+                os.adm_cuentas_Id = encabezado.adm_cuentas_Id;
+                os.oc_proveedores_Id = encabezado.oc_proveedores_Id;
+                os.os_rutas_Id = encabezado.os_rutas_Id;
+                os.Remision = encabezado.Remision;
+
+                db.SaveChanges();
+
+                return Json(new { respuesta = "Correcto" }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { respuesta = "Error" }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]

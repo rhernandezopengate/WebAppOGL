@@ -10,6 +10,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Linq.Dynamic;
 using Rotativa;
+using WebAppOGL.Entities.Bitacora;
 
 namespace WebAppOGL.Controllers.OrdenesCompra
 {
@@ -18,6 +19,7 @@ namespace WebAppOGL.Controllers.OrdenesCompra
     {
         db_a3f19c_administracionEntities2 db = new db_a3f19c_administracionEntities2();
         db_a3f19c_administracionEntities1 db1 = new db_a3f19c_administracionEntities1();
+        db_a3f19c_administracionEntities4 dbbitacora = new db_a3f19c_administracionEntities4();
 
         // GET: oc_ordenesdecompras
         [Authorize]
@@ -63,6 +65,11 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             //validar si es supervisor
             
 
+            return View();
+        }
+
+        public ActionResult IndexHistorico() 
+        {
             return View();
         }
 
@@ -243,6 +250,20 @@ namespace WebAppOGL.Controllers.OrdenesCompra
             }
             catch (Exception _ex)
             {
+                sis_bitacoras_error b = new sis_bitacoras_error();
+
+                b.Vista = "InsertarOC";
+
+                b.Controlador = "oc_ordenesdecompras";
+
+                b.Mensaje = _ex.Message;
+
+                b.FechaError = DateTime.Now;
+
+                dbbitacora.sis_bitacoras_error.Add(b);
+
+                dbbitacora.SaveChanges();
+
                 return Json(" " + _ex.Message.ToString());
             }
         }

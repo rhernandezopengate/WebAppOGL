@@ -20,5 +20,10 @@ namespace WebAppOGL.Controllers.OrdenesCompra
 
             return View();
         }
+
+        public ActionResult Pruebas() 
+        {
+            return View();
+        }
     }
 }

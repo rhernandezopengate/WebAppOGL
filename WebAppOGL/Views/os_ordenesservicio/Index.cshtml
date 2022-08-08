@@ -34,6 +34,14 @@
     </div>
 </div>
 
+<div id="MyModal" class="modal fade bs-example-modal-lg">
+    <div class="modal-dialog modal-lg" id="mdialTamanio">
+        <div class="modal-content">
+            <div id="MyModalContent"></div>
+        </div>
+    </div>
+</div>
+
 <script src="~/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="~/build/js/custom.min.js"></script>
 
@@ -79,7 +87,7 @@
                     "render": function (data, type, full) {
                         return " <button onclick='Editar(" + full['Id'] + ")' class='btn btn-sm btn-primary '><i class='fa fa-edit'></i></button>" +
                             "<a onclick='Details(" + full['Id'] + ")' id='btnEdit" + full['id'] + "' class='btn btn-sm btn-info'><i class='fa fa-eye'></i></a>" +
-                            "<button onclick='AutorizarOC(" + full['Id'] + ")' class='btn btn-sm btn-success '><i class='fa fa-check-circle'></i></button>";
+                            "<button onclick='RecibirOS(" + full['Id'] + ")' class='btn btn-sm btn-success '><i class='fa fa-check-circle'></i></button>";
                     },
                     "bSearchable": false,
                     "sortable": false,
@@ -97,6 +105,19 @@
     var Editar = function (ID) {
         $.ajaxSetup({ cache: false });
         window.location.href = '/os_ordenesservicio/Edit/' + ID;
+        return false;
+    }
+
+    var RecibirOS = function (ID) {
+        $.ajaxSetup({ cache: false });
+        var url = "/os_ordenesservicio/RecibirOS/" + ID;
+        $("#MyModalContent").load(url, function () {
+            $("#MyModal").modal({
+                //backdrop: 'static',
+                keyboard: false
+            }, 'show');
+            bindForm(this);
+        });
         return false;
     }
 

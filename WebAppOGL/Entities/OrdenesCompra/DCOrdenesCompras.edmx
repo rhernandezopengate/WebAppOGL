@@ -12,6 +12,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="oc_categoriaproveedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="oc_centrocostos">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,6 +37,14 @@
           <Property Name="Subtotal" Type="decimal" Precision="18" Scale="2" />
           <Property Name="oc_ordenescompras_Id" Type="int" Nullable="false" />
           <Property Name="oc_productos_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oc_detproveedorcategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="oc_proveedores_Id" Type="int" Nullable="false" />
+          <Property Name="oc_categoriaproveedores_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="oc_divisa">
           <Key>
@@ -183,6 +198,30 @@
             </Principal>
             <Dependent Role="oc_det_ordenes_productos">
               <PropertyRef Name="oc_productos_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_detproveedorcategoria_oc_categoriaproveedores_FK">
+          <End Role="oc_categoriaproveedores" Type="Self.oc_categoriaproveedores" Multiplicity="1" />
+          <End Role="oc_detproveedorcategoria" Type="Self.oc_detproveedorcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_categoriaproveedores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_detproveedorcategoria">
+              <PropertyRef Name="oc_categoriaproveedores_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_detproveedorcategoria_oc_proveedores_FK">
+          <End Role="oc_proveedores" Type="Self.oc_proveedores" Multiplicity="1" />
+          <End Role="oc_detproveedorcategoria" Type="Self.oc_detproveedorcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_proveedores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_detproveedorcategoria">
+              <PropertyRef Name="oc_proveedores_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -368,8 +407,10 @@
         </Association>
         <EntityContainer Name="db_a3f19c_administracionModel2StoreContainer">
           <EntitySet Name="oc_categoria" EntityType="Self.oc_categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oc_categoriaproveedores" EntityType="Self.oc_categoriaproveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="oc_centrocostos" EntityType="Self.oc_centrocostos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="oc_det_ordenes_productos" EntityType="Self.oc_det_ordenes_productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oc_detproveedorcategoria" EntityType="Self.oc_detproveedorcategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="oc_divisa" EntityType="Self.oc_divisa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="oc_formapago" EntityType="Self.oc_formapago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="oc_lugarentrega" EntityType="Self.oc_lugarentrega" Schema="dbo" store:Type="Tables" />
@@ -392,6 +433,14 @@
           <AssociationSet Name="oc_det_ordenes_productos_oc_productos_FK" Association="Self.oc_det_ordenes_productos_oc_productos_FK">
             <End Role="oc_productos" EntitySet="oc_productos" />
             <End Role="oc_det_ordenes_productos" EntitySet="oc_det_ordenes_productos" />
+          </AssociationSet>
+          <AssociationSet Name="oc_detproveedorcategoria_oc_categoriaproveedores_FK" Association="Self.oc_detproveedorcategoria_oc_categoriaproveedores_FK">
+            <End Role="oc_categoriaproveedores" EntitySet="oc_categoriaproveedores" />
+            <End Role="oc_detproveedorcategoria" EntitySet="oc_detproveedorcategoria" />
+          </AssociationSet>
+          <AssociationSet Name="oc_detproveedorcategoria_oc_proveedores_FK" Association="Self.oc_detproveedorcategoria_oc_proveedores_FK">
+            <End Role="oc_proveedores" EntitySet="oc_proveedores" />
+            <End Role="oc_detproveedorcategoria" EntitySet="oc_detproveedorcategoria" />
           </AssociationSet>
           <AssociationSet Name="oc_ordenescompras_oc_categoria_FK" Association="Self.oc_ordenescompras_oc_categoria_FK">
             <End Role="oc_categoria" EntitySet="oc_categoria" />
@@ -522,6 +571,7 @@
           <Property Name="DiasCredito" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NombreComercial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="oc_ordenescompras" Relationship="db_a3f19c_administracionModel2.oc_ordenescompras_oc_proveedores_FK" FromRole="oc_proveedores" ToRole="oc_ordenescompras" />
+          <NavigationProperty Name="oc_detproveedorcategoria" Relationship="db_a3f19c_administracionModel2.oc_detproveedorcategoria_oc_proveedores_FK" FromRole="oc_proveedores" ToRole="oc_detproveedorcategoria" />
         </EntityType>
         <EntityType Name="oc_subcentrocostos">
           <Key>
@@ -633,6 +683,16 @@
           <AssociationSet Name="oc_ordenescompras_oc_tipocompra_FK" Association="db_a3f19c_administracionModel2.oc_ordenescompras_oc_tipocompra_FK">
             <End Role="oc_tipocompra" EntitySet="oc_tipocompra" />
             <End Role="oc_ordenescompras" EntitySet="oc_ordenescompras" />
+          </AssociationSet>
+          <EntitySet Name="oc_categoriaproveedores" EntityType="db_a3f19c_administracionModel2.oc_categoriaproveedores" />
+          <EntitySet Name="oc_detproveedorcategoria" EntityType="db_a3f19c_administracionModel2.oc_detproveedorcategoria" />
+          <AssociationSet Name="oc_detproveedorcategoria_oc_categoriaproveedores_FK" Association="db_a3f19c_administracionModel2.oc_detproveedorcategoria_oc_categoriaproveedores_FK">
+            <End Role="oc_categoriaproveedores" EntitySet="oc_categoriaproveedores" />
+            <End Role="oc_detproveedorcategoria" EntitySet="oc_detproveedorcategoria" />
+          </AssociationSet>
+          <AssociationSet Name="oc_detproveedorcategoria_oc_proveedores_FK" Association="db_a3f19c_administracionModel2.oc_detproveedorcategoria_oc_proveedores_FK">
+            <End Role="oc_proveedores" EntitySet="oc_proveedores" />
+            <End Role="oc_detproveedorcategoria" EntitySet="oc_detproveedorcategoria" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="oc_solicitantes">
@@ -941,6 +1001,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="oc_categoriaproveedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="oc_detproveedorcategoria" Relationship="db_a3f19c_administracionModel2.oc_detproveedorcategoria_oc_categoriaproveedores_FK" FromRole="oc_categoriaproveedores" ToRole="oc_detproveedorcategoria" />
+        </EntityType>
+        <EntityType Name="oc_detproveedorcategoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="oc_proveedores_Id" Type="Int32" Nullable="false" />
+          <Property Name="oc_categoriaproveedores_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="oc_categoriaproveedores" Relationship="db_a3f19c_administracionModel2.oc_detproveedorcategoria_oc_categoriaproveedores_FK" FromRole="oc_detproveedorcategoria" ToRole="oc_categoriaproveedores" />
+          <NavigationProperty Name="oc_proveedores" Relationship="db_a3f19c_administracionModel2.oc_detproveedorcategoria_oc_proveedores_FK" FromRole="oc_detproveedorcategoria" ToRole="oc_proveedores" />
+        </EntityType>
+        <Association Name="oc_detproveedorcategoria_oc_categoriaproveedores_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_categoriaproveedores" Role="oc_categoriaproveedores" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_detproveedorcategoria" Role="oc_detproveedorcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_categoriaproveedores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_detproveedorcategoria">
+              <PropertyRef Name="oc_categoriaproveedores_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oc_detproveedorcategoria_oc_proveedores_FK">
+          <End Type="db_a3f19c_administracionModel2.oc_proveedores" Role="oc_proveedores" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel2.oc_detproveedorcategoria" Role="oc_detproveedorcategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oc_proveedores">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="oc_detproveedorcategoria">
+              <PropertyRef Name="oc_proveedores_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1118,6 +1220,23 @@
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="Folio" ColumnName="Folio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oc_categoriaproveedores">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_categoriaproveedores">
+              <MappingFragment StoreEntitySet="oc_categoriaproveedores">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oc_detproveedorcategoria">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel2.oc_detproveedorcategoria">
+              <MappingFragment StoreEntitySet="oc_detproveedorcategoria">
+                <ScalarProperty Name="oc_categoriaproveedores_Id" ColumnName="oc_categoriaproveedores_Id" />
+                <ScalarProperty Name="oc_proveedores_Id" ColumnName="oc_proveedores_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -39,5 +39,7 @@ namespace WebAppOGL.Entities.Sistemas
         public virtual DbSet<sis_tipoimpresoras> sis_tipoimpresoras { get; set; }
         public virtual DbSet<sis_asignacion_impresoras> sis_asignacion_impresoras { get; set; }
         public virtual DbSet<sis_impresoras> sis_impresoras { get; set; }
+
+        public System.Data.Entity.DbSet<WebAppOGL.Entities.OrdenesCompra.oc_categoriaproveedores> oc_categoriaproveedores { get; set; }
     }
 }

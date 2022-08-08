@@ -200,8 +200,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_categoriaController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_categoriaproveedoresController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_centrocostosController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_dashboardController.cs" />
+    <Compile Include="Controllers\OrdenesCompra\oc_detproveedorcategoriaController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_det_ordenes_productosController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_divisaController.cs" />
     <Compile Include="Controllers\OrdenesCompra\oc_formapagoController.cs" />
@@ -229,11 +231,30 @@
     <Compile Include="Controllers\OrdenesServicio\os_statuscomprasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_impresorasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_asignacion_terminalesController.cs" />
+    <Compile Include="Controllers\Sistemas\sis_bitacoras_errorController.cs" />
     <Compile Include="Controllers\Sistemas\sis_impresorasController.cs" />
     <Compile Include="Controllers\Sistemas\sis_statusfiscalController.cs" />
     <Compile Include="Controllers\Sistemas\sis_tipoimpresorasController.cs" />
     <Compile Include="Entities\Administracion\AspNetUsers.cs">
       <DependentUpon>DCAdministracion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Bitacora\DCBitacoras.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCBitacoras.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Bitacora\DCBitacoras.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCBitacoras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Bitacora\DCBitacoras.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DCBitacoras.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Bitacora\sis_bitacoras_error.cs">
+      <DependentUpon>DCBitacoras.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\OrdenesCompra\DCOrdenesCompras.Context.cs">
       <AutoGen>True</AutoGen>
@@ -254,7 +275,13 @@
     <Compile Include="Entities\OrdenesCompra\oc_categoria.cs">
       <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_categoriaproveedores.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\OrdenesCompra\oc_centrocostos.cs">
+      <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrdenesCompra\oc_detproveedorcategoria.cs">
       <DependentUpon>DCOrdenesCompras.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\OrdenesCompra\oc_det_ordenes_productos.cs">
@@ -378,6 +405,9 @@
     <Compile Include="Entities\OrdenesServicio\os_detrutas_destinos.cs">
       <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrdenesServicio\os_facturas_compras.cs">
+      <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\OrdenesServicio\os_ordenesservicio.cs">
       <DependentUpon>DCOrdenesServicio.tt</DependentUpon>
     </Compile>
@@ -483,6 +513,16 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="css\style.css" />
+    <Content Include="Entities\Bitacora\DCBitacoras.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCBitacoras.edmx</DependentUpon>
+      <LastGenOutput>DCBitacoras.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\Bitacora\DCBitacoras.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DCBitacoras.edmx</DependentUpon>
+      <LastGenOutput>DCBitacoras.cs</LastGenOutput>
+    </Content>
     <Content Include="Entities\OrdenesCompra\DCOrdenesCompras.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DCOrdenesCompras.edmx</DependentUpon>
@@ -601,6 +641,13 @@
     </EntityDeploy>
     <Content Include="Entities\OrdenesServicio\DCOrdenesServicio.edmx.diagram">
       <DependentUpon>DCOrdenesServicio.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Entities\Bitacora\DCBitacoras.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DCBitacoras.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entities\Bitacora\DCBitacoras.edmx.diagram">
+      <DependentUpon>DCBitacoras.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -763,6 +810,7 @@
     <Content Include="vendors\bootstrap\dist\css\bootstrap.css" />
     <Content Include="vendors\bootstrap\dist\css\bootstrap.min.css" />
     <Content Include="vendors\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="vendors\bootstrap\dist\js\bootstrap.bundle.js" />
     <Content Include="vendors\bootstrap\dist\js\bootstrap.bundle.min.js" />
     <Content Include="vendors\bootstrap\dist\js\bootstrap.js" />
     <Content Include="vendors\bootstrap\dist\js\bootstrap.min.js" />
@@ -5136,10 +5184,27 @@
     <Content Include="Views\sis_asignacion_impresoras\Details.cshtml" />
     <Content Include="Views\sis_asignacion_impresoras\Edit.cshtml" />
     <Content Include="Views\sis_asignacion_impresoras\Index.cshtml" />
+    <Content Include="Views\oc_categoriaproveedores\Create.cshtml" />
+    <Content Include="Views\oc_categoriaproveedores\Delete.cshtml" />
+    <Content Include="Views\oc_categoriaproveedores\Details.cshtml" />
+    <Content Include="Views\oc_categoriaproveedores\Edit.cshtml" />
+    <Content Include="Views\oc_categoriaproveedores\Index.cshtml" />
+    <Content Include="Views\oc_detproveedorcategoria\Create.cshtml" />
+    <Content Include="Views\oc_detproveedorcategoria\Delete.cshtml" />
+    <Content Include="Views\oc_detproveedorcategoria\Details.cshtml" />
+    <Content Include="Views\oc_detproveedorcategoria\Edit.cshtml" />
+    <Content Include="Views\oc_detproveedorcategoria\Index.cshtml" />
+    <Content Include="Views\oc_dashboard\Pruebas.cshtml" />
+    <Content Include="vendors\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <Content Include="vendors\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="vendors\bootstrap\dist\js\bootstrap.js.map" />
+    <Content Include="vendors\bootstrap\dist\js\bootstrap.min.js.map" />
+    <Content Include="Views\os_ordenesservicio\RecibirOS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Mantenimiento\" />
+    <Folder Include="Views\sis_bitacoras_error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

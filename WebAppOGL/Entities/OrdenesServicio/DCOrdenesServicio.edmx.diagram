@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_detrutas_destinos" Width="1.5" PointX="7.75" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_origen" Width="1.5" PointX="10.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_rutas" Width="1.5" PointX="7.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_statuscompras" Width="1.5" PointX="5.375" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_statuscompras" Width="1.5" PointX="5.375" PointY="6" IsExpanded="true" />
         <AssociationConnector Association="db_a3f19c_administracionModel3.os_detrutas_destinos_os_rutas_FK" ManuallyRouted="false" />
         <AssociationConnector Association="db_a3f19c_administracionModel3.os_rutas_os_origen_FK" ManuallyRouted="false" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_conceptos" Width="1.5" PointX="0.5" PointY="1.125" />
@@ -20,6 +20,8 @@
         <AssociationConnector Association="db_a3f19c_administracionModel3.os_detos_conceptos_os_ordenesservicio_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel3.os_ordenesservicio_os_rutas_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel3.os_ordenesservicio_os_statuscompras_FK" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel3.os_facturas_compras" Width="1.5" PointX="2.875" PointY="3.625" />
+        <AssociationConnector Association="db_a3f19c_administracionModel3.os_facturas_compras_os_ordenesservicio_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

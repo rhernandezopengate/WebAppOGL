@@ -12,23 +12,17 @@ namespace WebAppOGL.Entities.OrdenesCompra
     using System;
     using System.Collections.Generic;
     
-    public partial class oc_proveedores
+    public partial class oc_categoriaproveedores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public oc_proveedores()
+        public oc_categoriaproveedores()
         {
-            this.oc_ordenescompras = new HashSet<oc_ordenescompras>();
             this.oc_detproveedorcategoria = new HashSet<oc_detproveedorcategoria>();
         }
     
         public int Id { get; set; }
-        public string RFC { get; set; }
-        public string RazonSocial { get; set; }
-        public string DiasCredito { get; set; }
-        public string NombreComercial { get; set; }
+        public string Descripcion { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<oc_ordenescompras> oc_ordenescompras { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<oc_detproveedorcategoria> oc_detproveedorcategoria { get; set; }
     }

@@ -43,5 +43,7 @@ namespace WebAppOGL.Entities.OrdenesCompra
         public virtual DbSet<oc_statussupervisor> oc_statussupervisor { get; set; }
         public virtual DbSet<oc_productos> oc_productos { get; set; }
         public virtual DbSet<oc_ordenescompras> oc_ordenescompras { get; set; }
+        public virtual DbSet<oc_categoriaproveedores> oc_categoriaproveedores { get; set; }
+        public virtual DbSet<oc_detproveedorcategoria> oc_detproveedorcategoria { get; set; }
     }
 }

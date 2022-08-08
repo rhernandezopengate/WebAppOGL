@@ -18,6 +18,7 @@ namespace WebAppOGL.Entities.OrdenesServicio
         public os_ordenesservicio()
         {
             this.os_detos_conceptos = new HashSet<os_detos_conceptos>();
+            this.os_facturas_compras = new HashSet<os_facturas_compras>();
         }
     
         public int Id { get; set; }
@@ -42,5 +43,7 @@ namespace WebAppOGL.Entities.OrdenesServicio
         public virtual ICollection<os_detos_conceptos> os_detos_conceptos { get; set; }
         public virtual os_rutas os_rutas { get; set; }
         public virtual os_statuscompras os_statuscompras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<os_facturas_compras> os_facturas_compras { get; set; }
     }
 }
