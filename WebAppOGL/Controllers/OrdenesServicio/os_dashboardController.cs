@@ -13,5 +13,10 @@ namespace WebAppOGL.Controllers.OrdenesServicio
         {
             return View();
         }
+
+        public ActionResult FacturasOS()
+        {
+            return View();
+        }
     }
 }

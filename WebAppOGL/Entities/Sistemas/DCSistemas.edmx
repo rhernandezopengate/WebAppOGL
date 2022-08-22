@@ -145,6 +145,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="sis_telefonosip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" />
+          <Property Name="Numero_Serie" Type="varchar" MaxLength="50" />
+          <Property Name="MAC" Type="varchar" MaxLength="50" />
+          <Property Name="Numero_Extension" Type="varchar" MaxLength="50" />
+          <Property Name="sis_marcas_Id" Type="int" Nullable="false" />
+          <Property Name="sis_estatusequipo_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="sis_terminales">
           <Key>
             <PropertyRef Name="Id" />
@@ -363,6 +375,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="sis_telefonosip_sis_estatusequipo_FK">
+          <End Role="sis_estatusequipo" Type="Self.sis_estatusequipo" Multiplicity="1" />
+          <End Role="sis_telefonosip" Type="Self.sis_telefonosip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_estatusequipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_telefonosip">
+              <PropertyRef Name="sis_estatusequipo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_telefonosip_sis_marcas_FK">
+          <End Role="sis_marcas" Type="Self.sis_marcas" Multiplicity="1" />
+          <End Role="sis_telefonosip" Type="Self.sis_telefonosip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_telefonosip">
+              <PropertyRef Name="sis_marcas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="sis_terminales_sis_estatusequipo_FK">
           <End Role="sis_estatusequipo" Type="Self.sis_estatusequipo" Multiplicity="1" />
           <End Role="sis_terminales" Type="Self.sis_terminales" Multiplicity="*" />
@@ -411,6 +447,7 @@
           <EntitySet Name="sis_mantenimiento" EntityType="Self.sis_mantenimiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_marcas" EntityType="Self.sis_marcas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_statusfiscal" EntityType="Self.sis_statusfiscal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sis_telefonosip" EntityType="Self.sis_telefonosip" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_terminales" EntityType="Self.sis_terminales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_tipoequipos" EntityType="Self.sis_tipoequipos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sis_tipoimpresoras" EntityType="Self.sis_tipoimpresoras" Schema="dbo" store:Type="Tables" />
@@ -477,6 +514,14 @@
           <AssociationSet Name="sis_impresoras_sis_tipoimpresoras_FK" Association="Self.sis_impresoras_sis_tipoimpresoras_FK">
             <End Role="sis_tipoimpresoras" EntitySet="sis_tipoimpresoras" />
             <End Role="sis_impresoras" EntitySet="sis_impresoras" />
+          </AssociationSet>
+          <AssociationSet Name="sis_telefonosip_sis_estatusequipo_FK" Association="Self.sis_telefonosip_sis_estatusequipo_FK">
+            <End Role="sis_estatusequipo" EntitySet="sis_estatusequipo" />
+            <End Role="sis_telefonosip" EntitySet="sis_telefonosip" />
+          </AssociationSet>
+          <AssociationSet Name="sis_telefonosip_sis_marcas_FK" Association="Self.sis_telefonosip_sis_marcas_FK">
+            <End Role="sis_marcas" EntitySet="sis_marcas" />
+            <End Role="sis_telefonosip" EntitySet="sis_telefonosip" />
           </AssociationSet>
           <AssociationSet Name="sis_terminales_sis_estatusequipo_FK" Association="Self.sis_terminales_sis_estatusequipo_FK">
             <End Role="sis_estatusequipo" EntitySet="sis_estatusequipo" />
@@ -586,6 +631,15 @@
             <End Role="sis_tipoimpresoras" EntitySet="sis_tipoimpresoras" />
             <End Role="sis_impresoras" EntitySet="sis_impresoras" />
           </AssociationSet>
+          <EntitySet Name="sis_telefonosip" EntityType="db_a3f19c_administracionModel.sis_telefonosip" />
+          <AssociationSet Name="sis_telefonosip_sis_estatusequipo_FK" Association="db_a3f19c_administracionModel.sis_telefonosip_sis_estatusequipo_FK">
+            <End Role="sis_estatusequipo" EntitySet="sis_estatusequipo" />
+            <End Role="sis_telefonosip" EntitySet="sis_telefonosip" />
+          </AssociationSet>
+          <AssociationSet Name="sis_telefonosip_sis_marcas_FK" Association="db_a3f19c_administracionModel.sis_telefonosip_sis_marcas_FK">
+            <End Role="sis_marcas" EntitySet="sis_marcas" />
+            <End Role="sis_telefonosip" EntitySet="sis_telefonosip" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="sis_mantenimiento">
           <Key>
@@ -607,6 +661,7 @@
           <NavigationProperty Name="sis_celulares" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_celulares" />
           <NavigationProperty Name="sis_terminales" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_terminales" />
           <NavigationProperty Name="sis_impresoras" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_impresoras" />
+          <NavigationProperty Name="sis_telefonosip" Relationship="db_a3f19c_administracionModel.sis_telefonosip_sis_marcas_FK" FromRole="sis_marcas" ToRole="sis_telefonosip" />
         </EntityType>
         <EntityType Name="sis_tipoequipos">
           <Key>
@@ -627,6 +682,7 @@
           <NavigationProperty Name="sis_celulares" Relationship="db_a3f19c_administracionModel.sis_celulares_sis_estatusequipo_FK" FromRole="sis_estatusequipo" ToRole="sis_celulares" />
           <NavigationProperty Name="sis_terminales" Relationship="db_a3f19c_administracionModel.sis_terminales_sis_estatusequipo_FK" FromRole="sis_estatusequipo" ToRole="sis_terminales" />
           <NavigationProperty Name="sis_impresoras" Relationship="db_a3f19c_administracionModel.sis_impresoras_sis_estatusequipo_FK" FromRole="sis_estatusequipo" ToRole="sis_impresoras" />
+          <NavigationProperty Name="sis_telefonosip" Relationship="db_a3f19c_administracionModel.sis_telefonosip_sis_estatusequipo_FK" FromRole="sis_estatusequipo" ToRole="sis_telefonosip" />
         </EntityType>
         <EntityType Name="sis_equipos">
           <Key>
@@ -1019,6 +1075,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="sis_telefonosip">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_Serie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MAC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero_Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sis_marcas_Id" Type="Int32" Nullable="false" />
+          <Property Name="sis_estatusequipo_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sis_estatusequipo" Relationship="db_a3f19c_administracionModel.sis_telefonosip_sis_estatusequipo_FK" FromRole="sis_telefonosip" ToRole="sis_estatusequipo" />
+          <NavigationProperty Name="sis_marcas" Relationship="db_a3f19c_administracionModel.sis_telefonosip_sis_marcas_FK" FromRole="sis_telefonosip" ToRole="sis_marcas" />
+        </EntityType>
+        <Association Name="sis_telefonosip_sis_estatusequipo_FK">
+          <End Type="db_a3f19c_administracionModel.sis_estatusequipo" Role="sis_estatusequipo" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_telefonosip" Role="sis_telefonosip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_estatusequipo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_telefonosip">
+              <PropertyRef Name="sis_estatusequipo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sis_telefonosip_sis_marcas_FK">
+          <End Type="db_a3f19c_administracionModel.sis_marcas" Role="sis_marcas" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel.sis_telefonosip" Role="sis_telefonosip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sis_marcas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sis_telefonosip">
+              <PropertyRef Name="sis_marcas_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1200,6 +1294,19 @@
                 <ScalarProperty Name="Numero_Parte" ColumnName="Numero_Parte" />
                 <ScalarProperty Name="Numero_Serie" ColumnName="Numero_Serie" />
                 <ScalarProperty Name="Modelo_Toner" ColumnName="Modelo_Toner" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sis_telefonosip">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel.sis_telefonosip">
+              <MappingFragment StoreEntitySet="sis_telefonosip">
+                <ScalarProperty Name="sis_estatusequipo_Id" ColumnName="sis_estatusequipo_Id" />
+                <ScalarProperty Name="sis_marcas_Id" ColumnName="sis_marcas_Id" />
+                <ScalarProperty Name="Numero_Extension" ColumnName="Numero_Extension" />
+                <ScalarProperty Name="MAC" ColumnName="MAC" />
+                <ScalarProperty Name="Numero_Serie" ColumnName="Numero_Serie" />
                 <ScalarProperty Name="Modelo" ColumnName="Modelo" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

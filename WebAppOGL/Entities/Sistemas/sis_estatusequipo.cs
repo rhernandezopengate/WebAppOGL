@@ -21,6 +21,7 @@ namespace WebAppOGL.Entities.Sistemas
             this.sis_celulares = new HashSet<sis_celulares>();
             this.sis_terminales = new HashSet<sis_terminales>();
             this.sis_impresoras = new HashSet<sis_impresoras>();
+            this.sis_telefonosip = new HashSet<sis_telefonosip>();
         }
     
         public int Id { get; set; }
@@ -34,5 +35,7 @@ namespace WebAppOGL.Entities.Sistemas
         public virtual ICollection<sis_terminales> sis_terminales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sis_impresoras> sis_impresoras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sis_telefonosip> sis_telefonosip { get; set; }
     }
 }

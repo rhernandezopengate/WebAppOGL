@@ -34,5 +34,6 @@ namespace WebAppOGL.Entities.OrdenesServicio
         public virtual DbSet<os_destinos> os_destinos { get; set; }
         public virtual DbSet<os_ordenesservicio> os_ordenesservicio { get; set; }
         public virtual DbSet<os_facturas_compras> os_facturas_compras { get; set; }
+        public virtual DbSet<os_facturas_trafico> os_facturas_trafico { get; set; }
     }
 }

@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_mantenimiento" Width="1.5" PointX="7" PointY="2.75" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_marcas" Width="1.5" PointX="6.875" PointY="5.5" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_tipoequipos" Width="1.5" PointX="7" PointY="0.75" />
-        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_estatusequipo" Width="1.5" PointX="4.75" PointY="9.625" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_estatusequipo" Width="1.5" PointX="0.625" PointY="10.875" />
         <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_equipos" Width="1.5" PointX="9.375" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_estatusequipo_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_equipos_sis_mantenimiento_FK" />
@@ -38,6 +38,9 @@
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_impresoras_sis_marcas_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_impresoras_sis_statusfiscal_FK" />
         <AssociationConnector Association="db_a3f19c_administracionModel.sis_impresoras_sis_tipoimpresoras_FK" />
+        <EntityTypeShape EntityType="db_a3f19c_administracionModel.sis_telefonosip" Width="1.5" PointX="3.5" PointY="7.5" />
+        <AssociationConnector Association="db_a3f19c_administracionModel.sis_telefonosip_sis_estatusequipo_FK" />
+        <AssociationConnector Association="db_a3f19c_administracionModel.sis_telefonosip_sis_marcas_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

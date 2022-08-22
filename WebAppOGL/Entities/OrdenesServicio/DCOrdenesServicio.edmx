@@ -48,6 +48,15 @@
           <Property Name="NumeroFactura" Type="varchar" MaxLength="50" />
           <Property Name="os_ordenesservicio_Id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="os_facturas_trafico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Factura" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCarga" Type="datetime" />
+          <Property Name="os_ordenesservicio_Id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="os_ordenesservicio">
           <Key>
             <PropertyRef Name="Id" />
@@ -152,6 +161,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="os_facturas_trafico_os_ordenesservicio_FK">
+          <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="1" />
+          <End Role="os_facturas_trafico" Type="Self.os_facturas_trafico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_ordenesservicio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_facturas_trafico">
+              <PropertyRef Name="os_ordenesservicio_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="os_ordenesservicio_os_rutas_FK">
           <End Role="os_rutas" Type="Self.os_rutas" Multiplicity="1" />
           <End Role="os_ordenesservicio" Type="Self.os_ordenesservicio" Multiplicity="*" />
@@ -194,6 +215,7 @@
           <EntitySet Name="os_detos_conceptos" EntityType="Self.os_detos_conceptos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="os_detrutas_destinos" EntityType="Self.os_detrutas_destinos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="os_facturas_compras" EntityType="Self.os_facturas_compras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_facturas_trafico" EntityType="Self.os_facturas_trafico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="os_ordenesservicio" EntityType="Self.os_ordenesservicio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="os_origen" EntityType="Self.os_origen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="os_rutas" EntityType="Self.os_rutas" Schema="dbo" store:Type="Tables" />
@@ -217,6 +239,10 @@
           <AssociationSet Name="os_facturas_compras_os_ordenesservicio_FK" Association="Self.os_facturas_compras_os_ordenesservicio_FK">
             <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
             <End Role="os_facturas_compras" EntitySet="os_facturas_compras" />
+          </AssociationSet>
+          <AssociationSet Name="os_facturas_trafico_os_ordenesservicio_FK" Association="Self.os_facturas_trafico_os_ordenesservicio_FK">
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+            <End Role="os_facturas_trafico" EntitySet="os_facturas_trafico" />
           </AssociationSet>
           <AssociationSet Name="os_ordenesservicio_os_rutas_FK" Association="Self.os_ordenesservicio_os_rutas_FK">
             <End Role="os_rutas" EntitySet="os_rutas" />
@@ -352,6 +378,11 @@
             <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
             <End Role="os_facturas_compras" EntitySet="os_facturas_compras" />
           </AssociationSet>
+          <EntitySet Name="os_facturas_trafico" EntityType="db_a3f19c_administracionModel3.os_facturas_trafico" />
+          <AssociationSet Name="os_facturas_trafico_os_ordenesservicio_FK" Association="db_a3f19c_administracionModel3.os_facturas_trafico_os_ordenesservicio_FK">
+            <End Role="os_ordenesservicio" EntitySet="os_ordenesservicio" />
+            <End Role="os_facturas_trafico" EntitySet="os_facturas_trafico" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="os_conceptos">
           <Key>
@@ -418,6 +449,7 @@
           <NavigationProperty Name="os_rutas" Relationship="db_a3f19c_administracionModel3.os_ordenesservicio_os_rutas_FK" FromRole="os_ordenesservicio" ToRole="os_rutas" />
           <NavigationProperty Name="os_statuscompras" Relationship="db_a3f19c_administracionModel3.os_ordenesservicio_os_statuscompras_FK" FromRole="os_ordenesservicio" ToRole="os_statuscompras" />
           <NavigationProperty Name="os_facturas_compras" Relationship="db_a3f19c_administracionModel3.os_facturas_compras_os_ordenesservicio_FK" FromRole="os_ordenesservicio" ToRole="os_facturas_compras" />
+          <NavigationProperty Name="os_facturas_trafico" Relationship="db_a3f19c_administracionModel3.os_facturas_trafico_os_ordenesservicio_FK" FromRole="os_ordenesservicio" ToRole="os_facturas_trafico" />
         </EntityType>
         <Association Name="os_detos_conceptos_os_ordenesservicio_FK">
           <End Type="db_a3f19c_administracionModel3.os_ordenesservicio" Role="os_ordenesservicio" Multiplicity="1" />
@@ -473,6 +505,28 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="os_facturas_compras">
+              <PropertyRef Name="os_ordenesservicio_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="os_facturas_trafico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Factura" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCarga" Type="DateTime" Precision="3" />
+          <Property Name="os_ordenesservicio_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="os_ordenesservicio" Relationship="db_a3f19c_administracionModel3.os_facturas_trafico_os_ordenesservicio_FK" FromRole="os_facturas_trafico" ToRole="os_ordenesservicio" />
+        </EntityType>
+        <Association Name="os_facturas_trafico_os_ordenesservicio_FK">
+          <End Type="db_a3f19c_administracionModel3.os_ordenesservicio" Role="os_ordenesservicio" Multiplicity="1" />
+          <End Type="db_a3f19c_administracionModel3.os_facturas_trafico" Role="os_facturas_trafico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_ordenesservicio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_facturas_trafico">
               <PropertyRef Name="os_ordenesservicio_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -575,6 +629,16 @@
                 <ScalarProperty Name="os_ordenesservicio_Id" ColumnName="os_ordenesservicio_Id" />
                 <ScalarProperty Name="NumeroFactura" ColumnName="NumeroFactura" />
                 <ScalarProperty Name="FechaRecibido" ColumnName="FechaRecibido" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_facturas_trafico">
+            <EntityTypeMapping TypeName="db_a3f19c_administracionModel3.os_facturas_trafico">
+              <MappingFragment StoreEntitySet="os_facturas_trafico">
+                <ScalarProperty Name="os_ordenesservicio_Id" ColumnName="os_ordenesservicio_Id" />
+                <ScalarProperty Name="FechaCarga" ColumnName="FechaCarga" />
+                <ScalarProperty Name="Factura" ColumnName="Factura" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
